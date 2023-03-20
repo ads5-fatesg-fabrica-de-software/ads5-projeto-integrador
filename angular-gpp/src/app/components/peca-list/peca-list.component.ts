@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
-import { PecaService } from '../peca.service';
-import { PecaModel } from '../models/PecaModel';
+
+import { PecaModel } from '../../models/PecaModel';
+import { PecaService } from 'src/app/services/peca.service';
 
 @Component({
   selector: 'app-peca-list',

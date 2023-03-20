@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 import { NbButtonModule, NbCardModule, NbCheckboxModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PecaComponent } from './peca/peca.component';
-import { EntregaComponent } from './entrega/entrega.component';
-import { PecaListComponent } from './peca-list/peca-list.component';
+import { PecaComponent } from './components/peca/peca.component';
+import { EntregaComponent } from './components/entrega/entrega.component';
+import { PecaListComponent } from './components/peca-list/peca-list.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 

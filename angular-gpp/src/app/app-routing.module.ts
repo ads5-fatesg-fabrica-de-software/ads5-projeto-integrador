@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PecaListComponent } from './peca-list/peca-list.component';
-import { PecaComponent } from './peca/peca.component';
-import { EntregaComponent } from './entrega/entrega.component';
+import { PecaListComponent } from './components/peca-list/peca-list.component';
+import { PecaComponent } from './components/peca/peca.component';
+import { EntregaComponent } from './components/entrega/entrega.component';
 
 const routes: Routes = [
   {path: '', component: PecaComponent},
