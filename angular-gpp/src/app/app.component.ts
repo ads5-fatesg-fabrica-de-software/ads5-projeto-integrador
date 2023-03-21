@@ -19,6 +19,10 @@ export class AppComponent {
       expanded: true,
       children: [
         {
+          title: 'Login',
+          link: 'login'
+        },
+        {
           title: 'Peca',
           link: 'pecaList'
         },
@@ -26,6 +30,7 @@ export class AppComponent {
           title: 'Locais de Entrega',
           link: 'entrega'
         },
+        
       ],
     },
     {
