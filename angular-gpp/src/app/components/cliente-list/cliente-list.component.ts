@@ -32,12 +32,24 @@ export class ClienteListComponent implements OnInit{
     hideHeader: false,
     hideSubHeader: false,
     columns: {
-      id_cliente: {
-        title: 'id_cliente',
+      idCliente: {
+        title: 'idCliente',
         type: 'string',
       },
       nome: {
         title: 'nome',
+        type: 'string',
+      },
+      cpfCnpj: {
+        title: 'cpfCnpj',
+        type: 'string',
+      },
+      email: {
+        title: 'email',
+        type: 'string',
+      },
+      endereco: {
+        title: 'endereco',
         type: 'string',
       },
     },
