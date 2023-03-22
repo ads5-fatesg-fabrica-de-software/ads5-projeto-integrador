@@ -1,4 +1,4 @@
-class ClienteModel {
+export class ClienteModel {
   idCliente: number;
   nome: string;
   cpfCnpj: string;

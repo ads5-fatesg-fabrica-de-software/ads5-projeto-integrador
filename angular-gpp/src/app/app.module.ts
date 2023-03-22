@@ -12,6 +12,7 @@ import { PecaComponent } from './components/peca/peca.component';
 import { EntregaComponent } from './components/entrega/entrega.component';
 import { PecaListComponent } from './components/peca-list/peca-list.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     AppComponent,
     PecaComponent,
     EntregaComponent,
-    PecaListComponent
+    PecaListComponent,
+    ClienteListComponent
   ],
   imports: [
     BrowserModule,

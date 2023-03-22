@@ -27,8 +27,8 @@ export class AppComponent {
           link: 'pecaList'
         },
         {
-          title: 'Locais de Entrega',
-          link: 'entrega'
+          title: 'Clientes',
+          link: 'clienteList'
         },
         
       ],
