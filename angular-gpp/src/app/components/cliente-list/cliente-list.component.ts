@@ -57,8 +57,11 @@ export class ClienteListComponent implements OnInit{
 
   constructor(private clienteService: ClienteService, private router: Router){}
 
+  
+
   ngOnInit(): void {
     this.source.load(this.clienteService.list());
+    console.log(this.source);
   }
 
   novo(){

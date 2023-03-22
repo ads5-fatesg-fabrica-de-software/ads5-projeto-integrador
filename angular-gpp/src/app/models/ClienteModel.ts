@@ -1,4 +1,5 @@
 export class ClienteModel {
+  [x: string]: any;
   idCliente: number;
   nome: string;
   cpfCnpj: string;

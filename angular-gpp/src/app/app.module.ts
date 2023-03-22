@@ -13,7 +13,7 @@ import { EntregaComponent } from './components/entrega/entrega.component';
 import { PecaListComponent } from './components/peca-list/peca-list.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { ClienteListComponent } from './components/cliente-list/cliente-list.com
     NbMenuModule.forRoot(),
     NbCardModule,
     BrowserAnimationsModule,
-    NbEvaIconsModule
+    NbEvaIconsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
