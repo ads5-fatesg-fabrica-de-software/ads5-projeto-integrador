@@ -14,6 +14,7 @@ import { PecaListComponent } from './components/peca-list/peca-list.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ClienteComponent } from './components/cliente/cliente.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     PecaComponent,
     EntregaComponent,
     PecaListComponent,
-    ClienteListComponent
+    ClienteListComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

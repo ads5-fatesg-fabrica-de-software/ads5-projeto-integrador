@@ -1,22 +1,12 @@
 export class ClienteModel {
-  [x: string]: any;
-  idCliente: number;
-  nome: string;
-  cpfCnpj: string;
-  email: string;
-  endereco: string;
-
+  // [x: string]: any;
+    
   constructor(
-    idCliente: number,
-    nome: string,
-    cpfCnpj: string,
-    email: string,
-    endereco: string
-  ) {
-    this.idCliente = idCliente;
-    this.nome = nome;
-    this.cpfCnpj = cpfCnpj;
-    this.email = email;
-    this.endereco = endereco;
-  }
+    public idCliente: number = 0,
+    public nome: string = "",
+    public cpfCnpj: string = "",
+    public email: string = "",
+    public endereco: string = ""
+  ) {}
+  
 }

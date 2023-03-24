@@ -5,6 +5,7 @@ import { PecaComponent } from './components/peca/peca.component';
 import { EntregaComponent } from './components/entrega/entrega.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
+import { ClienteComponent } from './components/cliente/cliente.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'peca/:id', component: PecaComponent},
   {path: 'pecaList', component: PecaListComponent},
   {path: 'clienteList', component: ClienteListComponent},
+  {path: 'cliente/:id', component: ClienteComponent}
 ];
 
 @NgModule({
