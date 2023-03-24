@@ -8,31 +8,21 @@ import { Observable, map } from 'rxjs';
 })
 export class ClienteService {
 
-
   public clientes: ClienteModel[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
-  // private getClientes(searchUrl: string): Observable<ClienteModel[]> {
-  //   return this.httpClient.get<ClienteModel[]>(searchUrl).pipe(map(response => response.clientes));
-  // }
-
-  
-  public add(cliente: ClienteModel){
-    this.clientes.push(cliente);
+  public add(cliente: ClienteModel): Observable<any>{
+    return this.httpClient.post(`http://localhost:8080/cliente`, cliente);
   }
 
-  public get(idx: number): ClienteModel{
-    return this.clientes[idx];
+  public get(idx: number): Observable<any>{
+    return this.httpClient.get(`http://localhost:8080/cliente/${idx}`);
   }
 
-  public list(): ClienteModel[]{
-    let idx = 0;
-    for(let c of this.clientes){
-      c.idCliente = idx;
-      idx++;
-    }
-    return this.clientes;
+  public list(): Observable<any>{
+    console.log(this.httpClient.get("http://localhost:8080/cliente"))
+    return this.httpClient.get("http://localhost:8080/cliente");
   }
 
 }

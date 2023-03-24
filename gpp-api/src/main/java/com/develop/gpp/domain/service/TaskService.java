@@ -13,7 +13,7 @@ import com.develop.gpp.domain.entity.Token;
 import com.develop.gpp.domain.entity.dto.TaskDTO;
 import com.develop.gpp.domain.repository.TaskRepository;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @Service

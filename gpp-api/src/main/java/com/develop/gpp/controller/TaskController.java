@@ -14,8 +14,8 @@ import com.develop.gpp.domain.entity.Task;
 import com.develop.gpp.domain.entity.dto.TaskDTO;
 import com.develop.gpp.domain.service.TaskService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.websocket.server.PathParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 
 @RestController
