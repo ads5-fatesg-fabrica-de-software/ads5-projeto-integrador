@@ -1,4 +1,4 @@
-package com.develop.gpp.controller;
+package com.develop.gpp.domain.service;
 
 import java.util.Optional;
 
@@ -21,13 +21,12 @@ private PecaRepository pecaRepository;
 
 
 
-// public ResponseEntity<PecaModel> BuscarPeca(@PathVariable Integer id) {
+public ResponseEntity<PecaModel> BuscarPorId(@PathVariable Integer id) {
 
-//     PecaModel peca = pecaRepository.findById(id);
+    return pecaRepository.findById(id).map(data -> ResponseEntity.ok().body(data))
+            .orElse(ResponseEntity.notFound().build());
 
-//     return ResponseEntity.ok(peca.get);
-   
-// }
+}
 
 
 
