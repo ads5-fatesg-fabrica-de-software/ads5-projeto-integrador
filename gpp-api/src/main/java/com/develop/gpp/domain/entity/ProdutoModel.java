@@ -1,41 +1,46 @@
-// package com.develop.gpp.domain.entity;
+package com.develop.gpp.domain.entity;
 
-// import java.util.List;
+import java.util.List;
 
-// import javax.persistence.Column;
-// import javax.persistence.ElementCollection;
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
-// import javax.persistence.Table;
-// import lombok.Getter;
-// import lombok.Setter;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-// @Getter
-// @Setter
-// //@Entity
-// //@Table(name = "produto")
-// public class ProdutoModel {
+import org.hibernate.annotations.ManyToAny;
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long idProduto;
+import lombok.Getter;
+import lombok.Setter;
 
-//     @Column(nullable = false)
-//     private String resumida;
+@Getter
+@Setter
+@Entity
+@Table(name = "produto")
+public class ProdutoModel {
 
-//     @Column(nullable = false)
-//     private Integer situacao;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProduto;
 
-//     @ElementCollection
-//     private List<String> fornecedores;
+    @Column(nullable = false)
+    private String descricao;
 
-//     // @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
-//     // private List<ProdutoPeca> produtoPecas;
+    @Column(nullable = false)
+    private Integer situacao;
 
-//     @Column(nullable = false)
-//     private Integer codFornecedor;
+    @ElementCollection
+    private List<String> fornecedores;
 
-//     // Constructors, getters and setters, and other methods
-// }
+   @OneToMany(mappedBy = "produto")
+    private List<ProdutoPecaModel> produtosPeca;
+
+    @Column(nullable = false)
+    private Integer codFornecedor;
+
+    // Constructors, getters and setters, and other methods
+}

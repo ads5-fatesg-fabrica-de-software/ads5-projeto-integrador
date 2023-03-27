@@ -1,34 +1,40 @@
-// package com.develop.gpp.domain.entity;
+package com.develop.gpp.domain.entity;
 
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
-// import lombok.Getter;
-// import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-// @Getter
-// @Setter
-// //@Entity
-// public class ProdutoPecaModel {
+import lombok.Getter;
+import lombok.Setter;
 
-//   @Id
-//   @GeneratedValue(strategy = GenerationType.IDENTITY)
-//   private Long idProdutoPeca;
+@Getter
+@Setter
+@Entity
+@Table(name = "produto_peca")
+public class ProdutoPecaModel {
 
-//   private int quantidadePorProduto;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer idProdutoPeca;
 
-//   // @ManyToOne
-//   // @JoinColumn(name = "id_peca")
-//   // private Peca peca;
+  private int quantidadePorProduto;
 
-//   // @ManyToOne
-//   // @JoinColumn(name = "id_produto")
-//   // private Produto produto;
+  @ManyToOne
+  @JoinColumn(name = "id_peca")
+  private PecaModel peca;
 
-//   private int status;
+  @ManyToOne
+  @JoinColumn(name = "id_produto")
+  private ProdutoModel produto;
 
-//   private int situacao;
+  private int status;
 
-//   // getters and setters
-// }
+  private int situacao;
+
+ 
+}

@@ -23,7 +23,7 @@ public class ClienteModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int idCliente;
+  private Integer idCliente;
 
   private String nome;
 

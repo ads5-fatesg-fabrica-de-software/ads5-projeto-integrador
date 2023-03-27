@@ -22,7 +22,7 @@ public class FilialModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_filial")
-    private Long idFilial;
+    private Integer idFilial;
 
     @Column(name = "sigla")
     private String sigla;
@@ -33,7 +33,7 @@ public class FilialModel {
     public FilialModel() {
     }
 
-    public FilialModel(Long idFilial, String sigla) {
+    public FilialModel(Integer idFilial, String sigla) {
         this.idFilial = idFilial;
         this.sigla = sigla;
         // this.clienteFilial = clienteFilial;
