@@ -24,13 +24,13 @@ public class PecaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_peca;
+    private Integer idPeca;
 
     @Column(nullable = false)
     private String numero;
 
     @Column(nullable = false)
-    private String codigo_fabrica;
+    private String codigoFabrica;
 
     @Column(nullable = false)
     private Integer unidade;
@@ -48,7 +48,7 @@ public class PecaModel {
     private Integer profundidade;
 
     @Column(nullable = false)
-    private Integer unidade_medida;
+    private Integer unidadeMedida;
 
     @Column(nullable = false)
     private String volumes;
@@ -73,13 +73,13 @@ public class PecaModel {
     private String material;
 
     @Column(nullable = false)
-    private Long id_fornecedor;
+    private Long idFornecedor;
 
     // @OneToMany(mappedBy = "peca", cascade = CascadeType.ALL)
     // private List<PecasCor> pecasCorModel;
 
     @Column(nullable = false)
-    private String material_fabricacao;
+    private String materialFabricacao;
 
     // @OneToMany(mappedBy = "peca", cascade = CascadeType.ALL)
     // private List<PecasMaterial> pecasMaterialModel;
