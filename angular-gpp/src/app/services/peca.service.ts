@@ -22,7 +22,7 @@ export class PecaService {
   public list(): PecaModel[]{
     let idx = 0;
     for(let c of this.pecas){
-      c.id_peca = idx;
+      c.idPeca = idx;
       idx++;
     }
     return this.pecas;
