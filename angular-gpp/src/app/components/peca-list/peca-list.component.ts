@@ -100,7 +100,9 @@ export class PecaListComponent implements OnInit{
   constructor(private pecaService: PecaService, private router: Router){}
 
   ngOnInit(): void {
-    this.source.load(this.pecaService.list());
+    this.pecaService.list().subscribe(resp => {
+      this.source.load(resp);
+    });
   }
 
   novo(){

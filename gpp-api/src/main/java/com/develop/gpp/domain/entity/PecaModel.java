@@ -90,7 +90,11 @@ public class PecaModel {
     /**
      *
      */
-   @OneToMany(mappedBy = "peca")
-    private List<ProdutoPecaModel> produtosPeca; 
+
+    // @Column(nullable = false)
+    // private String produtosPeca;
+
+  //  @OneToMany(mappedBy = "peca")
+  //   private List<ProdutoPecaModel> produtosPeca; 
 
 }
