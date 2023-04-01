@@ -17,7 +17,7 @@ import lombok.Setter;
 public class ClienteFilialModel {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer idCliente;
 
   private int idFilial;
