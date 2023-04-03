@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NbButtonModule, NbCardModule, NbCheckboxModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbCheckboxModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PecaComponent } from './components/peca/peca.component';
@@ -15,6 +15,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClienteComponent } from './components/cliente/cliente.component';
+import { FilialHeaderComponent } from './components/filial-header/filial-header.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ClienteComponent } from './components/cliente/cliente.component';
     EntregaComponent,
     PecaListComponent,
     ClienteListComponent,
-    ClienteComponent
+    ClienteComponent,
+    FilialHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { ClienteComponent } from './components/cliente/cliente.component';
     NbCardModule,
     BrowserAnimationsModule,
     NbEvaIconsModule,
-    HttpClientModule
+    HttpClientModule,
+    NbSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
