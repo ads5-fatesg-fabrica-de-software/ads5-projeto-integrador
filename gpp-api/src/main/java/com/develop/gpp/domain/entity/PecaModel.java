@@ -81,20 +81,8 @@ public class PecaModel {
     @Column(nullable = false)
     private String materialFabricacao;
 
-    // @OneToMany(mappedBy = "peca", cascade = CascadeType.ALL)
-    // private List<PecasMaterial> pecasMaterialModel;
+   
 
-    // @OneToMany(mappedBy = "peca", cascade = CascadeType.ALL)
-    // private List<PecasEspecieModel> pecasEspecieModel;
-
-    /**
-     *
-     */
-
-    // @Column(nullable = false)
-    // private String produtosPeca;
-
-  //  @OneToMany(mappedBy = "peca")
-  //   private List<ProdutoPecaModel> produtosPeca; 
+    
 
 }

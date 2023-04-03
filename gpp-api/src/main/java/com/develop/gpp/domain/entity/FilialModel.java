@@ -24,8 +24,12 @@ public class FilialModel {
     @Column(name = "id_filial")
     private Integer idFilial;
 
+
     @Column(name = "sigla")
     private String sigla;
+
+
+    private Integer numeroFilial;
 
     // @OneToOne(mappedBy = "filial")
     // private ClienteFilialModel clienteFilial;
