@@ -1,58 +1,55 @@
-// package com.develop.gpp.domain.entity;
+package com.develop.gpp.domain.entity;
 
-// import javax.persistence.Column;
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
-// import javax.persistence.Table;
-// import lombok.Getter;
-// import lombok.Setter;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-// @Getter
-// @Setter
-// //@Entity
-// //@Table(name = "pecas_estoque")
-// public class PecasEstoqueModel {
+@Getter
+@Setter
+@Entity
+@Table(name = "pecas_estoque")
+public class PecasEstoqueModel {
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id_peca_estoque;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idPecaEstoque;
 
-//     @Column(nullable = false)
-//     private Integer filial;
+    
+    private Integer filial;
 
-//     @Column(nullable = false)
-//     private Long id_peca;
+    
+    private Long idPeca;
 
-//     @Column(nullable = false)
-//     private Long id_box;
+    
+    private Long idBox;
 
-//     @Column(nullable = false)
-//     private Integer saldo_disponivel;
+    
+    private Integer saldoDisponivel;
 
-//     @Column(nullable = false)
-//     private Integer saldo_reservado;
+    
+    private Integer saldoReservado;
 
-//     @Column(nullable = false)
-//     private Integer quantidade_transferencia;
 
-//     @Column(nullable = false)
-//     private Integer quantidade_minima;
+    @ManyToOne
+    @JoinColumn(name = "idPeca")
+    private PecaModel peca;
 
-//     // @ManyToOne(fetch = FetchType.LAZY)
-//     // @JoinColumn(name = "id_peca", referencedColumnName = "id_peca", insertable = false, updatable = false)
-//     // private Pecas peca;
+    @ManyToOne
+    @JoinColumn(name = "idBox")
+    private BoxEnderecamentoModel box;
 
-//     // @ManyToOne(fetch = FetchType.LAZY)
-//     // @JoinColumn(name = "id_box", referencedColumnName = "id_box", insertable = false, updatable = false)
-//     // private BoxEnderecamento box;
+   
+    private String fornecedor;
 
-//     @Column(nullable = false)
-//     private String fornecedor;
+   
+    private String endereco;
 
-//     @Column(nullable = false)
-//     private String endereco;
-
-//     // getters and setters
-// }
+    
+}
