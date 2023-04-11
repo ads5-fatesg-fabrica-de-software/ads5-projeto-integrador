@@ -1,5 +1,7 @@
 package com.develop.gpp.domain.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class BoxEnderecamentoModel {
 
     private String descBox;
 
-    private int idPrateleira;
+    private Integer idPrateleira;
 
     private double altura;
 
@@ -28,7 +30,7 @@ public class BoxEnderecamentoModel {
 
     private int unidadeMedida;
 
-    private PrateleiraEnderecamentoModel prateleira;
+    private List<PrateleiraEnderecamentoModel> prateleiras;
 
     private String endereco;
 
