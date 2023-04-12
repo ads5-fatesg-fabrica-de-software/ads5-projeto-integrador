@@ -22,23 +22,14 @@ export class AppComponent {
       expanded: true,
       children: [
         {
-          title: 'Login',
-          link: 'login'
-        },
-        {
           title: 'Peca',
           link: 'pecaList'
         },
-        {
-          title: 'Clientes',
-          link: 'clienteList'
-        },
+        
         
       ],
     },
-    {
-      title: 'Relatórios',
-    },
+    
   ];  
 
 
