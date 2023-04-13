@@ -16,18 +16,23 @@ import { ClienteListComponent } from './components/cliente-list/cliente-list.com
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { FilialHeaderComponent } from './components/filial-header/filial-header.component';
+import { ButtonModule } from 'primeng/button';
+import { ButtonBasicDemoComponent } from './components/button-basic-demo/button-basic-demo.component';
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     PecaComponent,
     EntregaComponent,
     PecaListComponent,
     ClienteListComponent,
     ClienteComponent,
-    FilialHeaderComponent
+    FilialHeaderComponent,
+    ButtonBasicDemoComponent
   ],
   imports: [
+    ButtonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
