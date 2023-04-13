@@ -1,14 +1,19 @@
 package com.develop.gpp.domain.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,20 +32,14 @@ public class ProdutoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProduto;
 
-    @Column(nullable = false)
     private String descricao;
 
-    @Column(nullable = false)
     private Integer situacao;
 
-    @ElementCollection
-    private List<String> fornecedores;
+    @ManyToOne
+    private FornecedorModel fornecedor;
 
-   @OneToMany(mappedBy = "produto")
-    private List<ProdutoPecaModel> produtosPeca;
-
-    @Column(nullable = false)
     private Integer codFornecedor;
 
-    // Constructors, getters and setters, and other methods
+    
 }

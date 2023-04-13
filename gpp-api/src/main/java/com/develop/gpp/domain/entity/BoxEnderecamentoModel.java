@@ -1,40 +1,40 @@
-package com.develop.gpp.domain.entity;
+// package com.develop.gpp.domain.entity;
 
-import java.util.List;
+// import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+// import javax.persistence.Entity;
+// import javax.persistence.GeneratedValue;
+// import javax.persistence.GenerationType;
+// import javax.persistence.Id;
+// import lombok.Getter;
+// import lombok.Setter;
 
-@Getter
-@Setter
-@Entity(name = "box_enderecamento")
-public class BoxEnderecamentoModel {
+// @Getter
+// @Setter
+// @Entity(name = "box_enderecamento")
+// public class BoxEnderecamentoModel {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBox;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Integer idBox;
 
-    private String descBox;
+//     private String descBox;
 
-    private Integer idPrateleira;
+//     private Integer idPrateleira;
 
-    private double altura;
+//     private double altura;
 
-    private double largura;
+//     private double largura;
 
-    private double profundidade;
+//     private double profundidade;
 
-    private int unidadeMedida;
+//     private int unidadeMedida;
 
-    private List<PrateleiraEnderecamentoModel> prateleiras;
+//     private List<PrateleiraEnderecamentoModel> prateleiras;
 
-    private String endereco;
+//     private String endereco;
 
-    private PecasEstoqueModel pecaEstoque;
+//     private PecasEstoqueModel pecaEstoque;
 
     
-}
+// }
