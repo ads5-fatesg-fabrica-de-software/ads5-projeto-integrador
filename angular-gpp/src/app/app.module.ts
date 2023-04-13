@@ -18,6 +18,8 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { FilialHeaderComponent } from './components/filial-header/filial-header.component';
 import { ButtonModule } from 'primeng/button';
 import { ButtonBasicDemoComponent } from './components/button-basic-demo/button-basic-demo.component';
+import { TableModule } from 'primeng/table';
+import { TableBasicDemoComponent } from './components/table-basic-demo/table-basic-demo.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,11 @@ import { ButtonBasicDemoComponent } from './components/button-basic-demo/button-
     ClienteListComponent,
     ClienteComponent,
     FilialHeaderComponent,
-    ButtonBasicDemoComponent
+    ButtonBasicDemoComponent,
+    TableBasicDemoComponent
   ],
   imports: [
+    TableModule,
     ButtonModule,
     BrowserModule,
     AppRoutingModule,

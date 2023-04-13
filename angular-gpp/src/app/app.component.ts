@@ -26,6 +26,10 @@ export class AppComponent {
           title: 'Peca',
           link: 'pecaList'
         },
+        {
+          title: 'Teste',
+          link: 'teste'
+        },
         
         
       ],
