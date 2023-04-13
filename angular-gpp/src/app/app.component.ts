@@ -30,6 +30,10 @@ export class AppComponent {
           title: 'Teste',
           link: 'teste'
         },
+        {
+          title: 'login',
+          link: 'login'
+        },
         
         
       ],
