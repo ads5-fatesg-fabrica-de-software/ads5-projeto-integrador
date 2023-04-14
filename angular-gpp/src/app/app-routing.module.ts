@@ -6,14 +6,21 @@ import { EntregaComponent } from './components/entrega/entrega.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
+import { TableBasicDemoComponent } from './components/table-basic-demo/table-basic-demo.component';
+import { PecaFormComponent } from './components/peca-form/peca-form.component';
+import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
 
 const routes: Routes = [
+  { path: 'peca/editar/:id', component: EditPecaComponentComponent },
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'peca/:id', component: PecaComponent},
-  {path: 'pecaList', component: PecaListComponent},
+  // {path: 'peca/:id', component: PecaComponent},
+  {path: 'peca/:id', component: PecaFormComponent},
+  // {path: 'pecaList', component: PecaListComponent},
+  {path: 'pecaList', component: TableBasicDemoComponent},
   {path: 'clienteList', component: ClienteListComponent},
-  {path: 'cliente/:id', component: ClienteComponent}
+  {path: 'cliente/:id', component: ClienteComponent},
+  {path: 'teste', component: TableBasicDemoComponent}
 ];
 
 @NgModule({

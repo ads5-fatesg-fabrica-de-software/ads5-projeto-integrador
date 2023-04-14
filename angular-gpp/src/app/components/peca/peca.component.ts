@@ -24,17 +24,22 @@ export class PecaComponent implements OnInit{
     this.route.params.subscribe(params => {
       let id = params['id'];
       if(id !== 'novo'){
-        this.peca = this.pecaService.get(id);        
+        this.pecaService.get(id).subscribe(r =>{
+          this.peca = r;
+        })
       }
       console.log(id);
     });
   }
 
-  salvar(){
-    this.pecaService.add(this.peca);
-    this.peca = new PecaModel();
-    console.log(`funcionou. Nome: `);
-    this.router.navigateByUrl('/pecaList');
+  public salvar(){
+    this.pecaService.add(this.peca).subscribe(r => {
+
+      this.peca = new PecaModel();
+      console.log(`funcionou. Nome: `);
+      this.router.navigateByUrl('/pecaList');
+  
+    });
   }
 
 

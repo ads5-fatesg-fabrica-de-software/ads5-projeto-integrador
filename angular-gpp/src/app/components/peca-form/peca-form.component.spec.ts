@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PecaListComponent } from './peca-list.component';
+import { PecaFormComponent } from './peca-form.component';
 
-describe('PecaListComponent', () => {
-  let component: PecaListComponent;
-  let fixture: ComponentFixture<PecaListComponent>;
+describe('PecaFormComponent', () => {
+  let component: PecaFormComponent;
+  let fixture: ComponentFixture<PecaFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PecaListComponent ]
+      declarations: [ PecaFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PecaListComponent);
+    fixture = TestBed.createComponent(PecaFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
