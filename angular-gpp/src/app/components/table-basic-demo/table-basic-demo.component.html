@@ -1,5 +1,17 @@
 <div class="card">
-    <p-table [value]="pecas" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table 
+        [value]="pecas"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rows]="5"
+        [paginator]="true"
+        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+        
+    >
         <ng-template pTemplate="header">
             <tr>
 
