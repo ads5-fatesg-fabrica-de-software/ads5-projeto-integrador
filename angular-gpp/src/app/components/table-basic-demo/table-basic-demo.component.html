@@ -1,19 +1,12 @@
-<h1>Peças Lista</h1>
+<h1>Peça Lista <i class="fas fa-list"></i></h1>
+
+<!-- <h1>Peças Lista</h1> -->
 
 <div class="card">
-    <p-table 
-        [value]="pecas"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        [rows]="5"
-        [paginator]="true"
+    <p-table [value]="pecas" [tableStyle]="{ 'min-width': '50rem' }" [rows]="5" [paginator]="true"
         [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
-        [tableStyle]="{ 'min-width': '75rem' }"
-        [rowHover]="true"
-        dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [showCurrentPageReport]="true"
-        
-    >
+        [tableStyle]="{ 'min-width': '75rem' }" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="header">
             <tr>
 
@@ -57,8 +50,10 @@
                 <td>{{ peca.materialFabricacao }}</td>
                 <td>{{ peca.produtosPeca }}</td> -->
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editePeca(peca)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePeca(peca.idPeca)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editePeca(peca)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deletePeca(peca.idPeca)"></button>
                 </td>
             </tr>
         </ng-template>

@@ -4,6 +4,8 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { PecaModel } from 'src/app/models/PecaModel';
 import { PecaService } from 'src/app/services/peca.service';
 
+
+
 @Component({
   selector: 'app-table-basic-demo',
   templateUrl: './table-basic-demo.component.html',

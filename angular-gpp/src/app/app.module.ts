@@ -51,6 +51,7 @@ import { EditPecaComponentComponent } from './components/edit-peca-component/edi
     EditPecaComponentComponent
   ],
   imports: [
+    
     DialogModule,
     ButtonModule,
     InputTextModule,
