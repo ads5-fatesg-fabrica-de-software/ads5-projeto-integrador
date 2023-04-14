@@ -5,7 +5,10 @@
 // import javax.persistence.GenerationType;
 // import javax.persistence.Id;
 // import javax.persistence.JoinColumn;
+<<<<<<< HEAD
 // import javax.persistence.ManyToMany;
+=======
+>>>>>>> sprint-2-wenderson
 // import javax.persistence.ManyToOne;
 // import javax.persistence.Table;
 
@@ -22,6 +25,7 @@
 //   @GeneratedValue(strategy = GenerationType.IDENTITY)
 //   private Integer idProdutoPeca;
 
+<<<<<<< HEAD
 //   private int quantidadePorProduto;
 
 //   @ManyToOne
@@ -30,6 +34,16 @@
 
 //   @ManyToOne
 //   @JoinColumn(name = "id_produto")
+=======
+//   private Integer quantidadePorProduto;
+
+//   @ManyToOne
+//   @JoinColumn(name = "idPeca")
+//   private PecaModel peca;
+
+//   @ManyToOne
+//   @JoinColumn(name = "idProduto")
+>>>>>>> sprint-2-wenderson
 //   private ProdutoModel produto;
 
 //   private int status;

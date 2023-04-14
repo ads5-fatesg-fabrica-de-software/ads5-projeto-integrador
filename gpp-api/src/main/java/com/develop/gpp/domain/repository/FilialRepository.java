@@ -11,4 +11,5 @@ import com.develop.gpp.domain.entity.FilialModel;
 public interface  FilialRepository extends JpaRepository<FilialModel,Integer> {
 
     Optional<FilialModel> findByNumeroFilial (Integer numeroFilial);
+   
 }

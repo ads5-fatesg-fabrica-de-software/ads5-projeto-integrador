@@ -59,13 +59,6 @@ public class PecaModel {
     @Column(nullable = false)
     private Double custo;
 
-
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "id_peca_cor", referencedColumnName = "id_peca_cor", insertable = false, updatable = false)
-    // private PecasCor pecasCor;
-
-
-
     @Column(nullable = false)
     private String cor;
 
@@ -75,14 +68,11 @@ public class PecaModel {
     @Column(nullable = false)
     private Long idFornecedor;
 
-    // @OneToMany(mappedBy = "peca", cascade = CascadeType.ALL)
-    // private List<PecasCor> pecasCorModel;
-
     @Column(nullable = false)
     private String materialFabricacao;
 
-   
-
-    
+    @ManyToOne
+    @JoinColumn(name="produto_id")
+    private ProdutoModel produto;
 
 }

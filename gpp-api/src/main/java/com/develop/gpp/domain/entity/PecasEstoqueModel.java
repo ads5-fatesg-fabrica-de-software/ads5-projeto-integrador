@@ -5,54 +5,40 @@
 // import javax.persistence.GeneratedValue;
 // import javax.persistence.GenerationType;
 // import javax.persistence.Id;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.ManyToOne;
 // import javax.persistence.Table;
 // import lombok.Getter;
 // import lombok.Setter;
 
 // @Getter
 // @Setter
-// //@Entity
-// //@Table(name = "pecas_estoque")
+// @Entity
+// @Table(name = "pecas_estoque")
 // public class PecasEstoqueModel {
 
 //     @Id
 //     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id_peca_estoque;
+//     private Integer idPecaEstoque;
+ 
+//     private Integer idPeca;
 
-//     @Column(nullable = false)
-//     private Integer filial;
+//     private Integer idBox;
 
-//     @Column(nullable = false)
-//     private Long id_peca;
+//     private Integer saldoDisponivel;
 
-//     @Column(nullable = false)
-//     private Long id_box;
+//     private Integer saldoReservado;
 
-//     @Column(nullable = false)
-//     private Integer saldo_disponivel;
+//     @ManyToOne
+//     @JoinColumn(name = "idPeca")
+//     private PecaModel peca;
 
-//     @Column(nullable = false)
-//     private Integer saldo_reservado;
+//     @ManyToOne
+//     @JoinColumn(name = "idBox")
+//     private BoxEnderecamentoModel box;
 
-//     @Column(nullable = false)
-//     private Integer quantidade_transferencia;
-
-//     @Column(nullable = false)
-//     private Integer quantidade_minima;
-
-//     // @ManyToOne(fetch = FetchType.LAZY)
-//     // @JoinColumn(name = "id_peca", referencedColumnName = "id_peca", insertable = false, updatable = false)
-//     // private Pecas peca;
-
-//     // @ManyToOne(fetch = FetchType.LAZY)
-//     // @JoinColumn(name = "id_box", referencedColumnName = "id_box", insertable = false, updatable = false)
-//     // private BoxEnderecamento box;
-
-//     @Column(nullable = false)
 //     private String fornecedor;
 
-//     @Column(nullable = false)
 //     private String endereco;
-
-//     // getters and setters
+  
 // }
