@@ -20,6 +20,11 @@ import { ButtonModule } from 'primeng/button';
 import { ButtonBasicDemoComponent } from './components/button-basic-demo/button-basic-demo.component';
 import { TableModule } from 'primeng/table';
 import { TableBasicDemoComponent } from './components/table-basic-demo/table-basic-demo.component';
+import { DockModule } from 'primeng/dock';
+import { BasicDocComponent } from './components/basic-doc/basic-doc.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { PanelMenuBasicDemoComponent } from './components/panel-menu-basic-demo/panel-menu-basic-demo.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 @NgModule({
   declarations: [
@@ -32,9 +37,15 @@ import { TableBasicDemoComponent } from './components/table-basic-demo/table-bas
     ClienteComponent,
     FilialHeaderComponent,
     ButtonBasicDemoComponent,
-    TableBasicDemoComponent
+    TableBasicDemoComponent,
+    BasicDocComponent,
+    PanelMenuBasicDemoComponent
   ],
   imports: [
+
+    PanelMenuModule,
+    RadioButtonModule,
+    DockModule,
     TableModule,
     ButtonModule,
     BrowserModule,
