@@ -10,6 +10,7 @@
         <ng-template pTemplate="header">
             <tr>
 
+                <!-- <th>idPeca</th> -->
                 <th>idPeca</th>
                 <!-- <th>numero</th>
                 <th>codigoFabrica</th>
@@ -27,7 +28,17 @@
                 <th>idFornecedor</th>
                 <th>materialFabricacao</th>
                 <th>produtosPeca</th> -->
-                <th>Ações</th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="idPeca"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="descricao"></p-columnFilter>
+                </th>
+              
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-peca>
