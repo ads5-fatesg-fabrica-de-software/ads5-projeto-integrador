@@ -25,7 +25,11 @@ import { BasicDocComponent } from './components/basic-doc/basic-doc.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { PanelMenuBasicDemoComponent } from './components/panel-menu-basic-demo/panel-menu-basic-demo.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
-
+import { PecaFormComponent } from './components/peca-form/peca-form.component';
+import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {CheckboxModule} from 'primeng/checkbox';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations: [
     
@@ -39,10 +43,15 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     ButtonBasicDemoComponent,
     TableBasicDemoComponent,
     BasicDocComponent,
-    PanelMenuBasicDemoComponent
+    PanelMenuBasicDemoComponent,
+    PecaFormComponent
   ],
   imports: [
-
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    CheckboxModule,
+    DropdownModule,
     PanelMenuModule,
     RadioButtonModule,
     DockModule,

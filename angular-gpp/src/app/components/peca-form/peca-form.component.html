@@ -1,0 +1,76 @@
+<h1>Peças</h1>
+
+<p-dialog header="Nova Peça" [(visible)]="displayDialog">
+    <div class="form-group">
+        <label for="numero" class="label">Número:</label>
+        <input type="text" pInput id="numero" placeholder="" [(ngModel)]="peca.numero">
+    </div>
+    <div class="form-group">
+        <label for="codigoFabrica" class="label">Código de Fábrica:</label>
+        <input type="text" pInput id="codigoFabrica" placeholder="" [(ngModel)]="peca.codigoFabrica">
+    </div>
+    <div class="form-group">
+        <label for="unidade" class="label">Unidade:</label>
+        <input type="text" pInput id="unidade" placeholder="" [(ngModel)]="peca.unidade">
+    </div>
+    <div class="form-group">
+        <label for="descricao" class="label">Descrição:</label>
+        <input type="text" pInput id="descricao" placeholder="" [(ngModel)]="peca.descricao">
+    </div>
+    <div class="form-group">
+        <label for="altura" class="label">Altura:</label>
+        <input type="text" pInput id="altura" placeholder="" [(ngModel)]="peca.altura">
+    </div>
+    <div class="form-group">
+        <label for="largura" class="label">Largura:</label>
+        <input type="text" pInput id="largura" placeholder="" [(ngModel)]="peca.largura">
+    </div>
+    <div class="form-group">
+        <label for="profundidade" class="label">Profundidade:</label>
+        <input type="text" pInput id="profundidade" placeholder="" [(ngModel)]="peca.profundidade">
+    </div>
+    <div class="form-group">
+        <label for="unidadeMedida" class="label">Unidade de Medida:</label>
+        <input type="text" pInput id="unidadeMedida" placeholder="" [(ngModel)]="peca.unidadeMedida">
+    </div>
+    <div class="form-group">
+        <label for="volumes" class="label">Volumes:</label>
+        <input type="text" pInput id="volumes" placeholder="" [(ngModel)]="peca.volumes">
+    </div>
+    <div class="form-group">
+        <p-checkbox [(ngModel)]="peca.active"  label="Ativo"></p-checkbox>
+    </div>
+    <div class="form-group">
+        <label for="custo" class="label">Custo:</label>
+        <input type="text" pInput id="custo" placeholder="" [(ngModel)]="peca.custo">
+    </div>
+    <div class="form-group">
+        <label for="cor" class="label">Cor:</label>
+        <input type="text" pInput id="cor" placeholder="" [(ngModel)]="peca.cor">
+    </div>
+    <div class="form-group">
+        <label for="material" class="label">Material:</label>
+        <input type="text" pInput id="material" placeholder="" [(ngModel)]="peca.material">
+    </div>
+
+    <div class="form-group">
+      <label for="idFornecedor">idFornecedor:</label>
+      <input type="text" id="idFornecedor" pInput [(ngModel)]="peca.idFornecedor">
+    </div>
+    
+    <div class="form-group">
+      <label for="materialFabricacao">materialFabricacao:</label>
+      <input type="text" id="materialFabricacao" pInput [(ngModel)]="peca.materialFabricacao">
+    </div>
+    
+    <div class="form-group">
+      <label for="produtosPeca">produtosPeca:</label>
+      <input type="text" id="produtosPeca" pInput [(ngModel)]="peca.produtosPeca">
+    </div>
+    
+    <button (click)="salvar()" pButton type="button" label="Salvar" class="p-button-primary"></button>
+    
+    <br/><br/>
+    
+    
+  
