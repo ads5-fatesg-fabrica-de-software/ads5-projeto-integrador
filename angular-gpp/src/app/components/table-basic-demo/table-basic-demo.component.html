@@ -3,10 +3,31 @@
 <!-- <h1>Peças Lista</h1> -->
 
 <div class="card">
-    <p-table [value]="pecas" [tableStyle]="{ 'min-width': '50rem' }" [rows]="5" [paginator]="true"
+    <p-table
+        #dt2
+        [value]="pecas" 
+        [tableStyle]="{ 'min-width': '50rem' }" 
+        [rows]="5" 
+        [paginator]="true"
         [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
-        [tableStyle]="{ 'min-width': '75rem' }" [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        [tableStyle]="{ 'min-width': '75rem' }" 
+        [rowHover]="true" 
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+        [showCurrentPageReport]="true">
+
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+
+
+
+                    <!-- <input pInputText type="text" (keyup)="onSearch($event)" placeholder="Search keyword" /> -->
+                </span>
+            </div>
+        </ng-template>
+        
         <ng-template pTemplate="header">
             <tr>
 
