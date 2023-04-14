@@ -4,11 +4,11 @@ import { PecaService } from '../../services/peca.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-peca-form',
-  templateUrl: './peca-form.component.html',
-  styleUrls: ['./peca-form.component.css']
+  selector: 'app-fornecedor-form',
+  templateUrl: './fornecedor-form.component.html',
+  styleUrls: ['./fornecedor-form.component.css']
 })
-export class PecaFormComponent implements OnInit {
+export class FornecedorFormComponent implements OnInit {
 
   displayDialog: boolean = true; // add this line
 

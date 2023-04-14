@@ -9,9 +9,13 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { TableBasicDemoComponent } from './components/table-basic-demo/table-basic-demo.component';
 import { PecaFormComponent } from './components/peca-form/peca-form.component';
 import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
+import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
+import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
 
 const routes: Routes = [
-  { path: 'peca/editar/:id', component: EditPecaComponentComponent },
+  {path: 'fornecedor/:id', component: FornecedorFormComponent},
+  {path: 'fornecedorList', component: FornecedorTableComponent},
+  {path: 'peca/editar/:id', component: EditPecaComponentComponent },
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   // {path: 'peca/:id', component: PecaComponent},

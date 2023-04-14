@@ -31,6 +31,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
 import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
+import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
+import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { EditPecaComponentComponent } from './components/edit-peca-component/edi
     BasicDocComponent,
     PanelMenuBasicDemoComponent,
     PecaFormComponent,
-    EditPecaComponentComponent
+    EditPecaComponentComponent,
+    FornecedorFormComponent,
+    FornecedorTableComponent
   ],
   imports: [
     

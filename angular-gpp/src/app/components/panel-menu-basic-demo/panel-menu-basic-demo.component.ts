@@ -36,6 +36,27 @@ export class PanelMenuBasicDemoComponent implements OnInit {
           }
         ]
       },
+      {
+        label: 'Fornecedor',
+        icon: 'pi pi-fw pi-user',
+        items: [
+          {
+            label: 'Nova',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/peca/:id']);
+            }
+
+          },
+          {
+            label: 'Lista',
+            icon: 'pi pi-fw pi-list',
+            command: () => {
+              this.router.navigate(['/fornecedorList']);
+            }
+          }
+        ]
+      },
       // {
       //   label: 'Edit',
       //   icon: 'pi pi-fw pi-pencil',
