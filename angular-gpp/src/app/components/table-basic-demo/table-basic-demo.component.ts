@@ -15,23 +15,47 @@ export class TableBasicDemoComponent implements OnInit {
   public source: LocalDataSource = new LocalDataSource();
 
 
-    products: PecaModel[] = [];
+  pecas: PecaModel[] = [];
 
-    constructor(private pecaService: PecaService, private router: Router){}
+  constructor(private pecaService: PecaService, private router: Router) { }
 
-    ngOnInit(): void {
-      this.pecaService.list().subscribe(resp => {
-        this.source.load(resp);
-      });
-    }
+  ngOnInit(): void {
+    this.list();
+  }
+
+  list(){
+    this.pecaService.list().subscribe(resp => {
+      this.pecas = resp;
+    });
+  }
+
+  novo() {
+    this.router.navigateByUrl('/peca/novo');
+  }
+
+  onCustomAction(event: any) {
+    let peca: PecaModel = event.data;
+    console.log(event);
+    this.router.navigate([`peca/${peca.idPeca}`]);
+  }
+
+
+
+  editePeca(id: PecaModel) {
+    console.log('editar peça');
+
+  }
+
+  deletePeca(id: number) {
+    console.log('deletar peça');
   
-    novo(){
-      this.router.navigateByUrl('/peca/novo');
-    }
+    this.pecaService.delete(id).subscribe(() => {
+      this.list();
+      console.log(`Peca ${id} foi deletada`);
+    });
+  }
   
-    onCustomAction(event: any) {
-      let peca:PecaModel = event.data;
-      console.log(event);
-      this.router.navigate([`peca/${peca.idPeca}`]);
-    }  
+
+
+
 }
