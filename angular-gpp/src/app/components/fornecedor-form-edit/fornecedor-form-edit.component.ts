@@ -4,16 +4,22 @@ import { FornecedorService } from '../../services/fornecedor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-fornecedor-form',
-  templateUrl: './fornecedor-form.component.html',
-  styleUrls: ['./fornecedor-form.component.css']
+  selector: 'app-fornecedor-form-edit',
+  templateUrl: './fornecedor-form-edit.component.html',
+  styleUrls: ['./fornecedor-form-edit.component.css']
 })
-export class FornecedorFormComponent implements OnInit {
+export class FornecedorFormEditComponent implements OnInit {
+
 
   displayDialog: boolean = true; // add this line
 
   ngOnInit(): void {
-    
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    // console.log(id);
+    this.fornecedorService.get(id).subscribe(fornecedor => {
+      this.fornecedor = fornecedor;
+      console.log(this.fornecedor);
+    });
   }
 
   constructor(private fornecedorService: FornecedorService, private router: Router, private route: ActivatedRoute){}
@@ -22,13 +28,9 @@ export class FornecedorFormComponent implements OnInit {
     nomeFornecedor: '',
   };
 
-  public salvar(){
-    this.fornecedorService.add(this.fornecedor).subscribe(r => {
-
-      this.fornecedor = new FornecedorModel();
-      console.log(`funcionou. Nome: `);
+  public editar(){
+    this.fornecedorService.post(this.fornecedor).subscribe(r => {
       this.router.navigateByUrl('/fornecedorList');
-  
     });
   }
 }

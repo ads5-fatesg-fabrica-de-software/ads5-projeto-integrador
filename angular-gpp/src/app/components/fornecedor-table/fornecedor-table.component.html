@@ -5,7 +5,7 @@
 <div class="card">
     <p-table
         #dt2
-        [value]="pecas" 
+        [value]="fornecedores" 
         [tableStyle]="{ 'min-width': '50rem' }" 
         [rows]="5" 
         [paginator]="true"
@@ -31,12 +31,12 @@
         <ng-template pTemplate="header">
             <tr>
 
-                <!-- <th>idPeca</th> -->
-                <th>idPeca</th>
+                <!-- <th>idFornecedor</th> -->
+                <th>idFornecedor</th>
                 <!-- <th>numero</th>
                 <th>codigoFabrica</th>
                 <th>unidade</th> -->
-                <th>descricao</th>
+                <th>nomeFornecedor</th>
                 <!-- <th>altura</th>
                 <th>largura</th> -->
                 <!-- <th>profundidade</th>
@@ -48,44 +48,47 @@
                 <th>material</th>
                 <th>idFornecedor</th>
                 <th>materialFabricacao</th>
-                <th>produtosPeca</th> -->
+                <th>produtosFornecedor</th> -->
                 <th></th>
             </tr>
 
             <tr>
                 <th>
-                    <p-columnFilter type="text" field="idPeca"></p-columnFilter>
+                    <p-columnFilter type="text" field="idFornecedor"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="descricao"></p-columnFilter>
+                    <p-columnFilter type="text" field="nomeFornecedor"></p-columnFilter>
+                </th>
+
+                <th>
                 </th>
               
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-peca>
+        <ng-template pTemplate="body" let-fornecedor>
             <tr>
-                <td>{{ peca.idPeca }}</td>
-                <!-- <td>{{ peca.numero }}</td>
-                <td>{{ peca.codigoFabrica }}</td>
-                <td>{{ peca.unidade }}</td> -->
-                <td>{{ peca.descricao }}</td>
-                <!-- <td>{{ peca.altura }}</td>
-                <td>{{ peca.largura }}</td> -->
-                <!-- <td>{{ peca.profundidade }}</td>
-                <td>{{ peca.unidadeMedida }}</td>
-                <td>{{ peca.volumes }}</td>
-                <td>{{ peca.active }}</td>
-                <td>{{ peca.custo }}</td>
-                <td>{{ peca.cor }}</td>
-                <td>{{ peca.material }}</td>
-                <td>{{ peca.idFornecedor }}</td>
-                <td>{{ peca.materialFabricacao }}</td>
-                <td>{{ peca.produtosPeca }}</td> -->
+                <td>{{ fornecedor.idFornecedor }}</td>
+                <!-- <td>{{ fornecedor.numero }}</td>
+                <td>{{ fornecedor.codigoFabrica }}</td>
+                <td>{{ fornecedor.unidade }}</td> -->
+                <td>{{ fornecedor.nomeFornecedor }}</td>
+                <!-- <td>{{ fornecedor.altura }}</td>
+                <td>{{ fornecedor.largura }}</td> -->
+                <!-- <td>{{ fornecedor.profundidade }}</td>
+                <td>{{ fornecedor.unidadeMedida }}</td>
+                <td>{{ fornecedor.volumes }}</td>
+                <td>{{ fornecedor.active }}</td>
+                <td>{{ fornecedor.custo }}</td>
+                <td>{{ fornecedor.cor }}</td>
+                <td>{{ fornecedor.material }}</td>
+                <td>{{ fornecedor.idFornecedor }}</td>
+                <td>{{ fornecedor.materialFabricacao }}</td>
+                <td>{{ fornecedor.produtosFornecedor }}</td> -->
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                        (click)="editePeca(peca)"></button>
+                        (click)="editeFornecedor(fornecedor)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deletePeca(peca.idPeca)"></button>
+                        (click)="deleteFornecedor(fornecedor.idFornecedor)"></button>
                 </td>
             </tr>
         </ng-template>

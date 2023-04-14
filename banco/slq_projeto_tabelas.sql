@@ -28,6 +28,22 @@ INSERT INTO public.peca (id_peca, active, altura, codigo_fabrica, cor, custo, de
 VALUES (6, true, 14, 'COD6', 'Orange', 35, 'Widget 6', 102, 7, 'Metal', 'Copper', 678, 3, 3, 20, 4)
 ON CONFLICT (id_peca) DO NOTHING;
 
-//********************************************************************************************
+
+//fornecedor
+SELECT id_fornecedor, nome_fornecedor
+FROM public.fornecedor;
+
+INSERT INTO public.fornecedor (nome_fornecedor)
+VALUES
+    ('Acme Corporation'),
+    ('Globex Corporation'),
+    ('Stark Industries'),
+    ('Wayne Enterprises'),
+    ('Umbrella Corporation'),
+    ('Weyland-Yutani Corporation'),
+    ('Oscorp Industries'),
+    ('Tyrell Corporation'),
+    ('Aperture Science'),
+    ('InGen Corporation');
 
 

@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
-import { PecaModel } from 'src/app/models/PecaModel';
-import { PecaService } from 'src/app/services/peca.service';
+import { FornecedorService } from 'src/app/services/fornecedor.service';
 import { Table } from 'primeng/table';
+import { FornecedorModel } from 'src/app/models/FornecedorModel';
 
 @Component({
   selector: 'app-fornecedor-table',
@@ -18,12 +18,12 @@ export class FornecedorTableComponent implements OnInit {
     console.log('dt2:', this.dt2);
   }
   
-  pecas: PecaModel[] = [];
+  fornecedores: FornecedorModel[] = [];
 
-  public source: LocalDataSource = new LocalDataSource(this.pecas);
+  public source: LocalDataSource = new LocalDataSource(this.fornecedores);
 
   
-  constructor(private pecaService: PecaService, private router: Router, private cdr: ChangeDetectorRef) { }
+  constructor(private fornecedorService: FornecedorService, private router: Router, private cdr: ChangeDetectorRef) { }
 
   // onSearch(event: Event) {
   //   console.log("test")
@@ -48,38 +48,38 @@ export class FornecedorTableComponent implements OnInit {
   }
 
   list(){
-    this.pecaService.list().subscribe(resp => {
-      this.pecas = resp;
+    this.fornecedorService.list().subscribe(resp => {
+      this.fornecedores = resp;
     });
   }
 
   novo() {
-    this.router.navigateByUrl('/peca/novo');
+    this.router.navigateByUrl('/fornecedor/novo');
   }
 
   onCustomAction(event: any) {
-    let peca: PecaModel = event.data;
+    let fornecedor: FornecedorModel = event.data;
     console.log(event);
-    this.router.navigate([`peca/${peca.idPeca}`]);
+    this.router.navigate([`fornecedor/${fornecedor.idFornecedor}`]);
   }
 
 
 
-  editePeca(peca: PecaModel) {
-    this.router.navigateByUrl(`/peca/editar/${peca.idPeca}`);
+  editeFornecedor(fornecedor: FornecedorModel) {
+    this.router.navigateByUrl(`/fornecedor/editar/${fornecedor.idFornecedor}`);
 }
 
-editPeca(id: number) {
-  this.router.navigate(['/peca/editar', id]);
+editFornecedor(id: number) {
+  this.router.navigate(['/fornecedor/editar', id]);
 }
 
 
-  deletePeca(id: number) {
-    console.log('deletar peça');
+  deleteFornecedor(id: number) {
+    console.log('deletar fornecedor');
   
-    this.pecaService.delete(id).subscribe(() => {
+    this.fornecedorService.delete(id).subscribe(() => {
       this.list();
-      console.log(`Peca ${id} foi deletada`);
+      console.log(`Fornecedor ${id} foi deletada`);
     });
   }
   

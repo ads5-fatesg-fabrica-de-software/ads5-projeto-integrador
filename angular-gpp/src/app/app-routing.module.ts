@@ -11,11 +11,13 @@ import { PecaFormComponent } from './components/peca-form/peca-form.component';
 import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
 import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
 import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
+import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
 
 const routes: Routes = [
   {path: 'fornecedor/:id', component: FornecedorFormComponent},
   {path: 'fornecedorList', component: FornecedorTableComponent},
   {path: 'peca/editar/:id', component: EditPecaComponentComponent },
+  {path: 'fornecedor/editar/:id', component: FornecedorFormEditComponent },
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   // {path: 'peca/:id', component: PecaComponent},

@@ -44,7 +44,7 @@ export class PanelMenuBasicDemoComponent implements OnInit {
             label: 'Nova',
             icon: 'pi pi-fw pi-plus',
             command: () => {
-              this.router.navigate(['/peca/:id']);
+              this.router.navigate(['/fornecedor/:id']);
             }
 
           },

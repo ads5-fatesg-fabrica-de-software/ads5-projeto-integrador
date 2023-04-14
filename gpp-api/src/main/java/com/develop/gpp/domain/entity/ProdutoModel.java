@@ -1,20 +1,5 @@
-// package com.develop.gpp.domain.entity;
+package com.develop.gpp.domain.entity;
 
-<<<<<<< HEAD
-// import java.util.List;
-
-// import javax.persistence.Column;
-// import javax.persistence.ElementCollection;
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
-// import javax.persistence.ManyToMany;
-// import javax.persistence.OneToMany;
-// import javax.persistence.Table;
-
-// import org.hibernate.annotations.ManyToAny;
-=======
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,40 +17,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
->>>>>>> sprint-2-wenderson
 
-// import lombok.Getter;
-// import lombok.Setter;
+import lombok.Getter;
+import lombok.Setter;
 
-// @Getter
-// @Setter
-// @Entity
-// @Table(name = "produto")
-// public class ProdutoModel {
+@Getter
+@Setter
+@Entity
+@Table(name = "produto")
+public class ProdutoModel {
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Integer idProduto;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProduto;
 
-<<<<<<< HEAD
-//     @Column(nullable = false)
-//     private String descricao;
-
-//     @Column(nullable = false)
-//     private Integer situacao;
-
-//     @ElementCollection
-//     private List<String> fornecedores;
-
-//    @OneToMany(mappedBy = "produto")
-//     private List<ProdutoPecaModel> produtosPeca;
-
-//     @Column(nullable = false)
-//     private Integer codFornecedor;
-
-//     // Constructors, getters and setters, and other methods
-// }
-=======
     private String descricao;
 
     @ManyToOne
@@ -73,6 +38,5 @@ import javax.persistence.Table;
 
     @OneToMany(mappedBy = "produto")
     private List<PecaModel> pecas = new ArrayList<>();
- 
+
 }
->>>>>>> sprint-2-wenderson

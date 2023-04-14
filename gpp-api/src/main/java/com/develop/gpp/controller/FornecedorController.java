@@ -2,14 +2,11 @@ package com.develop.gpp.controller;
 
 import java.util.List;
 
+import com.develop.gpp.domain.entity.PecaModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.develop.gpp.domain.entity.FornecedorModel;
 import com.develop.gpp.domain.service.FornecedorService;
@@ -27,10 +24,18 @@ public class FornecedorController {
         return fornecedorService.listarTodos();
     }
 
-    @GetMapping("/{nome}")
-    public List<FornecedorModel> listarPorNome(@PathVariable String nome) {
+//    @GetMapping("/{nome}")
+//    public List<FornecedorModel> listarPorNome(@PathVariable String nome) {
+//
+//        return fornecedorService.listarPorNome(nome);
+//    }
 
-        return fornecedorService.listarPorNome(nome);
+    @GetMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<FornecedorModel> BuscarPorId(@PathVariable Integer id) {
+
+        return fornecedorService.BuscarPorId(id);
+
     }
 
     @DeleteMapping("/{id}")

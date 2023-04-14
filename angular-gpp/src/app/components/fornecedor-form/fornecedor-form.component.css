@@ -1,18 +1,19 @@
 .form-group {
-    clear: both;
-    margin-bottom: 10px;
-  }
+  clear: both;
   
-  .label {
-    display: block;
-    float: left;
-    width: 30%;
-    padding-right: 10px;
-    text-align: right;
-  }
-  
-  .input {
-    float: right;
-    width: 70%;
-  }
+}
+
+.label {
+  display: block;
+  float: left;
+  width: 30%;
+  padding-right: 10px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.input {
+  float: right;
+  width: 70%;
+}
   

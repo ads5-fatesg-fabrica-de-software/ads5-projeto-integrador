@@ -33,6 +33,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
 import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
 import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
+import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { FornecedorTableComponent } from './components/fornecedor-table/forneced
     PecaFormComponent,
     EditPecaComponentComponent,
     FornecedorFormComponent,
-    FornecedorTableComponent
+    FornecedorTableComponent,
+    FornecedorFormEditComponent
   ],
   imports: [
     
