@@ -41,10 +41,14 @@ export class TableBasicDemoComponent implements OnInit {
 
 
 
-  editePeca(id: PecaModel) {
-    console.log('editar peça');
+  editePeca(peca: PecaModel) {
+    this.router.navigateByUrl(`/peca/editar/${peca.idPeca}`);
+}
 
-  }
+editPeca(id: number) {
+  this.router.navigate(['/peca/editar', id]);
+}
+
 
   deletePeca(id: number) {
     console.log('deletar peça');

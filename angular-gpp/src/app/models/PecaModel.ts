@@ -3,19 +3,20 @@ export class PecaModel {
     public idPeca: number = 0,
     public numero: string = "",
     public codigoFabrica: string = "",
-    public unidade: number = 0,
+    public unidade: number | null = null,
     public descricao: string = "",
-    public altura: number = 0,
-    public largura: number = 0,
-    public profundidade: number = 0,
-    public unidadeMedida: number = 0,
+    public altura: number | null = null,
+    public largura: number | null = null,
+    public profundidade: number | null = null,
+    public unidadeMedida: number | null = null,
     public volumes: string = "",
     public active: boolean = false,
-    public custo: number = 0,
+    public custo: number | null = null,
     public cor: string = "",
     public material: string = "",
-    public idFornecedor: number = 0,
+    public idFornecedor: number | null = null,
     public materialFabricacao: string = "",
     public produtosPeca: string = ""
   ) {}
 }
+

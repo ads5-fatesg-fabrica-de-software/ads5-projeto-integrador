@@ -8,8 +8,10 @@ import { ClienteListComponent } from './components/cliente-list/cliente-list.com
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { TableBasicDemoComponent } from './components/table-basic-demo/table-basic-demo.component';
 import { PecaFormComponent } from './components/peca-form/peca-form.component';
+import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
 
 const routes: Routes = [
+  { path: 'peca/editar/:id', component: EditPecaComponentComponent },
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   // {path: 'peca/:id', component: PecaComponent},

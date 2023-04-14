@@ -30,6 +30,9 @@ import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
+import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
+
+
 @NgModule({
   declarations: [
     
@@ -44,7 +47,8 @@ import {DropdownModule} from 'primeng/dropdown';
     TableBasicDemoComponent,
     BasicDocComponent,
     PanelMenuBasicDemoComponent,
-    PecaFormComponent
+    PecaFormComponent,
+    EditPecaComponentComponent
   ],
   imports: [
     DialogModule,

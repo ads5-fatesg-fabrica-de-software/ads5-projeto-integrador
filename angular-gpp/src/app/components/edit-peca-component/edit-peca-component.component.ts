@@ -4,16 +4,19 @@ import { PecaService } from '../../services/peca.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-peca-form',
-  templateUrl: './peca-form.component.html',
-  styleUrls: ['./peca-form.component.css']
+  selector: 'app-edit-peca-component',
+  templateUrl: './edit-peca-component.component.html',
+  styleUrls: ['./edit-peca-component.component.css']
 })
-export class PecaFormComponent implements OnInit {
+export class EditPecaComponentComponent implements OnInit {
 
   displayDialog: boolean = true; // add this line
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.pecaService.get(id).subscribe(peca => {
+      this.peca = peca;
+    });
   }
 
   constructor(private pecaService: PecaService, private router: Router, private route: ActivatedRoute){}
@@ -23,30 +26,24 @@ export class PecaFormComponent implements OnInit {
     codigoFabrica: '',
     unidade: null,
     descricao: '',
-    altura: null,
-    largura: null,
-    profundidade: null,
-    unidadeMedida: null,
+    altura: 0,
+    largura: 0,
+    profundidade: 0,
+    unidadeMedida: 0,
     volumes: '',
     active: false,
-    custo: null,
+    custo: 0,
     cor: '',
     material: '',
-    idFornecedor: null,
-    materialFabricacao: ''
-    // produtosPeca: []
-    ,
+    idFornecedor: 0,
+    materialFabricacao: '',
     idPeca: 0,
     produtosPeca: ''
   };
 
-  public salvar(){
-    this.pecaService.add(this.peca).subscribe(r => {
-
-      this.peca = new PecaModel();
-      console.log(`funcionou. Nome: `);
+  public editar(){
+    this.pecaService.post(this.peca).subscribe(r => {
       this.router.navigateByUrl('/pecaList');
-  
     });
   }
 }

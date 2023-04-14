@@ -1,3 +1,5 @@
+<h1>Peças Lista</h1>
+
 <div class="card">
     <p-table 
         [value]="pecas"
@@ -16,13 +18,13 @@
             <tr>
 
                 <th>idPeca</th>
-                <th>numero</th>
+                <!-- <th>numero</th>
                 <th>codigoFabrica</th>
-                <th>unidade</th>
+                <th>unidade</th> -->
                 <th>descricao</th>
-                <th>altura</th>
-                <th>largura</th>
-                <th>profundidade</th>
+                <!-- <th>altura</th>
+                <th>largura</th> -->
+                <!-- <th>profundidade</th>
                 <th>unidadeMedida</th>
                 <th>volumes</th>
                 <th>active</th>
@@ -31,20 +33,20 @@
                 <th>material</th>
                 <th>idFornecedor</th>
                 <th>materialFabricacao</th>
-                <th>produtosPeca</th>
-                <th></th>
+                <th>produtosPeca</th> -->
+                <th>Ações</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-peca>
             <tr>
                 <td>{{ peca.idPeca }}</td>
-                <td>{{ peca.numero }}</td>
+                <!-- <td>{{ peca.numero }}</td>
                 <td>{{ peca.codigoFabrica }}</td>
-                <td>{{ peca.unidade }}</td>
+                <td>{{ peca.unidade }}</td> -->
                 <td>{{ peca.descricao }}</td>
-                <td>{{ peca.altura }}</td>
-                <td>{{ peca.largura }}</td>
-                <td>{{ peca.profundidade }}</td>
+                <!-- <td>{{ peca.altura }}</td>
+                <td>{{ peca.largura }}</td> -->
+                <!-- <td>{{ peca.profundidade }}</td>
                 <td>{{ peca.unidadeMedida }}</td>
                 <td>{{ peca.volumes }}</td>
                 <td>{{ peca.active }}</td>
@@ -53,7 +55,7 @@
                 <td>{{ peca.material }}</td>
                 <td>{{ peca.idFornecedor }}</td>
                 <td>{{ peca.materialFabricacao }}</td>
-                <td>{{ peca.produtosPeca }}</td>
+                <td>{{ peca.produtosPeca }}</td> -->
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editePeca(peca)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePeca(peca.idPeca)"></button>
