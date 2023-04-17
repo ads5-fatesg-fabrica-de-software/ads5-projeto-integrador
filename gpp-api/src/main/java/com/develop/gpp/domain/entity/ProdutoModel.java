@@ -36,7 +36,12 @@ public class ProdutoModel {
     @ManyToOne
     private FornecedorModel fornecedor;
 
+<<<<<<< HEAD
     @OneToMany(mappedBy = "produto")
     private List<PecaModel> pecas = new ArrayList<>();
 
 }
+=======
+   
+}
+>>>>>>> cebd5fbae66edd82335dd38c4fd3764e0d124ec4
