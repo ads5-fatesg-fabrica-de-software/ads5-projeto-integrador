@@ -57,6 +57,27 @@ export class PanelMenuBasicDemoComponent implements OnInit {
           }
         ]
       },
+      {
+        label: 'Produto',
+        icon: 'pi pi-fw pi-table',
+        items: [
+          {
+            label: 'Nova',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/produto/:id']);
+            }
+
+          },
+          {
+            label: 'Lista',
+            icon: 'pi pi-fw pi-list',
+            command: () => {
+              this.router.navigate(['/produtoList']);
+            }
+          }
+        ]
+      },
       // {
       //   label: 'Edit',
       //   icon: 'pi pi-fw pi-pencil',

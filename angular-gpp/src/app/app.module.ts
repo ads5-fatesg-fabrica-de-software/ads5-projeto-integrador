@@ -34,6 +34,7 @@ import { EditPecaComponentComponent } from './components/edit-peca-component/edi
 import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
 import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
 import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
+import { ProdutoTableComponent } from './components/produto-table/produto-table.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/f
     EditPecaComponentComponent,
     FornecedorFormComponent,
     FornecedorTableComponent,
-    FornecedorFormEditComponent
+    FornecedorFormEditComponent,
+    ProdutoTableComponent
   ],
   imports: [
     
