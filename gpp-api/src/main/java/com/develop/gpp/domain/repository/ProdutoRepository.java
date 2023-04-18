@@ -13,5 +13,5 @@ public interface ProdutoRepository extends JpaRepository<ProdutoModel, Integer> 
 
     Optional<ProdutoModel> findByDescricao(String descricao);
 
-    Optional<ProdutoModel> findByFornecedor(FornecedorModel fornec);
+    Optional<ProdutoModel> findByFornecedor(Integer fornec);
 }
