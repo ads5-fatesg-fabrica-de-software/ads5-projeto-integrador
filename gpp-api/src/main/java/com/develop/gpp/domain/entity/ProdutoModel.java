@@ -36,7 +36,5 @@ public class ProdutoModel {
     @ManyToOne
     private FornecedorModel fornecedor;
 
-    @OneToMany(mappedBy = "produto")
-    private List<PecaModel> pecas = new ArrayList<>();
- 
+   
 }
