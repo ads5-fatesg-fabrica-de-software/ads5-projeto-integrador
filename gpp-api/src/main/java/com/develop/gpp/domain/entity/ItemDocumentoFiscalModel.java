@@ -28,9 +28,8 @@ public class ItemDocumentoFiscalModel {
     private Integer numDocFiscal;
 
     private Integer idDocumentoFiscal;
-
-    @ManyToOne
-    private ProdutoModel produto;
+    
+    private String  produto;
 
     private Integer qtde;
 
