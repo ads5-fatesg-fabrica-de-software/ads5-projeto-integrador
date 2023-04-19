@@ -13,9 +13,10 @@ import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor
 import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
 import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
 import { ProdutoTableComponent } from './components/produto-table/produto-table.component';
+import { ProdutoFormComponent } from './components/produto-form/produto-form.component';
 
 const routes: Routes = [
-  {path: 'produto/:id', component: FornecedorFormComponent},
+  {path: 'produto/:id', component: ProdutoFormComponent},
   {path: 'produtoList', component: ProdutoTableComponent},
   {path: 'fornecedor/:id', component: FornecedorFormComponent},
   {path: 'fornecedorList', component: FornecedorTableComponent},

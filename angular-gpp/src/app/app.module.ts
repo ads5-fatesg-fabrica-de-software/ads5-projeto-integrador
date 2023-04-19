@@ -36,7 +36,7 @@ import { FornecedorTableComponent } from './components/fornecedor-table/forneced
 import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
 import { ProdutoTableComponent } from './components/produto-table/produto-table.component';
 import { ProdutoFormComponent } from './components/produto-form/produto-form.component';
-
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,7 @@ import { ProdutoFormComponent } from './components/produto-form/produto-form.com
     ProdutoFormComponent
   ],
   imports: [
-    
+    AutoCompleteModule,
     DialogModule,
     ButtonModule,
     InputTextModule,
