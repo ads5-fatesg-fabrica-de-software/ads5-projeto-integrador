@@ -8,9 +8,7 @@ import { AppComponent } from './app.component';
 import { NbButtonModule, NbCardModule, NbCheckboxModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PecaComponent } from './components/peca/peca.component';
 import { EntregaComponent } from './components/entrega/entrega.component';
-import { PecaListComponent } from './components/peca-list/peca-list.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,7 +17,7 @@ import { FilialHeaderComponent } from './components/filial-header/filial-header.
 import { ButtonModule } from 'primeng/button';
 import { ButtonBasicDemoComponent } from './components/button-basic-demo/button-basic-demo.component';
 import { TableModule } from 'primeng/table';
-import { TableBasicDemoComponent } from './components/table-basic-demo/table-basic-demo.component';
+import { PecaTableComponent } from './components/peca-table/peca-table.component';
 import { DockModule } from 'primeng/dock';
 import { BasicDocComponent } from './components/basic-doc/basic-doc.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -30,27 +28,36 @@ import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
-import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
-
+import { PecaEditComponent } from './components/peca-edit/peca-edit.component';
+import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
+import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
+import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
+import { ProdutoTableComponent } from './components/produto-table/produto-table.component';
+import { ProdutoFormComponent } from './components/produto-form/produto-form.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
     
     AppComponent,
-    PecaComponent,
     EntregaComponent,
-    PecaListComponent,
     ClienteListComponent,
     ClienteComponent,
     FilialHeaderComponent,
     ButtonBasicDemoComponent,
-    TableBasicDemoComponent,
+    PecaTableComponent,
     BasicDocComponent,
     PanelMenuBasicDemoComponent,
     PecaFormComponent,
-    EditPecaComponentComponent
+    PecaEditComponent,
+    FornecedorFormComponent,
+    FornecedorTableComponent,
+    FornecedorFormEditComponent,
+    ProdutoTableComponent,
+    ProdutoFormComponent
   ],
   imports: [
+    AutoCompleteModule,
     DialogModule,
     ButtonModule,
     InputTextModule,

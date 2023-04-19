@@ -1,18 +1,27 @@
 .form-group {
-    clear: both;
-    margin-bottom: 10px;
-  }
-  
-  .label {
-    display: block;
-    float: left;
-    width: 30%;
-    padding-right: 10px;
-    text-align: right;
-  }
-  
-  .input {
-    float: right;
-    width: 70%;
-  }
-  
+  display: inline-block;
+  width: calc(33.33% - 10px); /* Subtracting 10px for the margin */
+  margin-right: 10px;
+}
+
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.form-group input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-button {
+  margin-top: 1rem;
+}
+
+.p-dialogt{
+  margin-left: 200px;
+}

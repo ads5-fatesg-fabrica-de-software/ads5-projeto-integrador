@@ -1,46 +1,41 @@
-// package com.develop.gpp.domain.entity;
+package com.develop.gpp.domain.entity;
 
-// import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-// import javax.persistence.Column;
-// import javax.persistence.ElementCollection;
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
-// import javax.persistence.ManyToMany;
-// import javax.persistence.OneToMany;
-// import javax.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-// import org.hibernate.annotations.ManyToAny;
 
-// import lombok.Getter;
-// import lombok.Setter;
 
-// @Getter
-// @Setter
-// @Entity
-// @Table(name = "produto")
-// public class ProdutoModel {
+import lombok.Getter;
+import lombok.Setter;
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Integer idProduto;
+@Getter
+@Setter
+@Entity
+@Table(name = "produto")
+public class ProdutoModel {
 
-//     @Column(nullable = false)
-//     private String descricao;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProduto;
 
-//     @Column(nullable = false)
-//     private Integer situacao;
+    private String descricao;
 
-//     @ElementCollection
-//     private List<String> fornecedores;
+    @ManyToOne
+    private FornecedorModel fornecedor;
 
-//    @OneToMany(mappedBy = "produto")
-//     private List<ProdutoPecaModel> produtosPeca;
+}
 
-//     @Column(nullable = false)
-//     private Integer codFornecedor;
 
-//     // Constructors, getters and setters, and other methods
-// }

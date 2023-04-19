@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PecaModel } from 'src/app/models/PecaModel';
 import { PecaService } from '../../services/peca.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProdutoModel } from 'src/app/models/ProdutoModel';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-peca-form',
@@ -10,13 +12,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PecaFormComponent implements OnInit {
 
-  displayDialog: boolean = true; // add this line
+  displayDialog: boolean = true;
+  produtos: ProdutoModel[] = [];
+  filteredProdutos: ProdutoModel[] = [];
+  selectedProduto: ProdutoModel | null = null;
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.produtoService.list().subscribe(produtos => {
+      this.produtos = produtos;
+    });
   }
 
-  constructor(private pecaService: PecaService, private router: Router, private route: ActivatedRoute){}
+  constructor(private pecaService: PecaService, private router: Router, private route: ActivatedRoute, private produtoService: ProdutoService){}
 
   peca: PecaModel = {
     numero: '',
@@ -32,21 +39,34 @@ export class PecaFormComponent implements OnInit {
     custo: null,
     cor: '',
     material: '',
-    idFornecedor: null,
-    materialFabricacao: ''
-    // produtosPeca: []
-    ,
+    idFornecedor: 0,
+    materialFabricacao: '',
     idPeca: 0,
-    produtosPeca: ''
+    produto: new ProdutoModel()
   };
 
   public salvar(){
-    this.pecaService.add(this.peca).subscribe(r => {
 
+    this.peca.idFornecedor = this.peca.produto?.fornecedor?.idFornecedor;
+    
+    console.log("produto selecionado " + this.selectedProduto?.fornecedor.idFornecedor);
+
+    console.log("produto selecionado " + this.peca.produto?.fornecedor?.nomeFornecedor);
+    
+    console.log("peca original " + this.peca.idFornecedor);
+    
+    this.pecaService.add(this.peca).subscribe(r => {
       this.peca = new PecaModel();
+      
       console.log(`funcionou. Nome: `);
       this.router.navigateByUrl('/pecaList');
-  
     });
   }
+
+  searchProdutos(event: any)  {
+    this.filteredProdutos = this.produtos.filter(produto =>
+      produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
+    );
+  }
+
 }

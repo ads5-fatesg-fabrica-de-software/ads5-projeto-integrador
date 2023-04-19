@@ -1,5 +1,5 @@
 
-<h1>Peças Edição</h1>
+<h1>Peça Edição <i class="fas pi pi-pencil"></i></h1>
 
 
 <p-dialog header="Edite Peça" [(visible)]="displayDialog">
@@ -67,7 +67,7 @@
     
     <div class="form-group">
       <label for="produtosPeca">produtosPeca:</label>
-      <input type="text" id="produtosPeca" pInput [(ngModel)]="peca.produtosPeca">
+      <input type="text" id="produtosPeca" pInput [(ngModel)]="peca.produto">
     </div>
     
     <button (click)="editar()" pButton type="button" label="Editar" class="p-button-primary"></button>
