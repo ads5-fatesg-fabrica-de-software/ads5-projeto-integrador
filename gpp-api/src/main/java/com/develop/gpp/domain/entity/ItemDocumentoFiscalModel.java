@@ -1,43 +1,43 @@
-// package com.develop.gpp.domain.entity;
+package com.develop.gpp.domain.entity;
 
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
-// //@Entity
-// public class ItemDocumentoFiscalModel {
 
-//   @Id
-//   @GeneratedValue(strategy = GenerationType.IDENTITY)
-//   private Long idLd;
 
-//   private Long idItemDocFiscal;
+import java.util.List;
 
-//   private Long numDocFiscal;
+import lombok.Getter;
+import lombok.Setter;
 
-//   private String denominacaoProduto;
+@Getter
+@Setter
+@Entity
+@Table(name = "item_documento_fiscal")
+public class ItemDocumentoFiscalModel {
 
-//   private Long idDocumentoFiscal;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idItemDocFiscal;
 
-//   private Long qtde;
+    private Integer numDocFiscal;
 
-//   private Double valorVenda;
+    private Integer idDocumentoFiscal;
 
-//   private Double custoAdm;
+    @ManyToOne
+    private ProdutoModel produto;
 
-//   // Default constructor
-//   public ItemDocumentoFiscalModel() {}
+    private Integer qtde;
 
-//   // Parameterized constructor
-//   public ItemDocumentoFiscalModel(Long idItemDocFiscal, Long numDocFiscal, String denominacaoProduto, Long idDocumentoFiscal, Long qtde, Double valorVenda, Double custoAdm) {
-//     this.idItemDocFiscal = idItemDocFiscal;
-//     this.numDocFiscal = numDocFiscal;
-//     this.denominacaoProduto = denominacaoProduto;
-//     this.idDocumentoFiscal = idDocumentoFiscal;
-//     this.qtde = qtde;
-//     this.valorVenda = valorVenda;
-//     this.custoAdm = custoAdm;
-//   }
+    private Double valorVenda;
 
-// }
+    // Default constructor
+    public ItemDocumentoFiscalModel() {
+    }
+
+}
