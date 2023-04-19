@@ -35,7 +35,10 @@ import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/f
 import { ProdutoTableComponent } from './components/produto-table/produto-table.component';
 import { ProdutoFormComponent } from './components/produto-form/produto-form.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-
+import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
+import { CommonModule } from '@angular/common';
+import { MessagesModule } from 'primeng/messages';
 @NgModule({
   declarations: [
     
@@ -57,6 +60,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     ProdutoFormComponent
   ],
   imports: [
+    MessagesModule,
+    MessageModule,
     AutoCompleteModule,
     DialogModule,
     ButtonModule,
@@ -85,7 +90,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     HttpClientModule,
     NbSelectModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
