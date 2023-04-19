@@ -1,3 +1,5 @@
+import { ProdutoModel } from "./ProdutoModel";
+
 export class PecaModel {
   constructor(
     public idPeca: number = 0,
@@ -14,9 +16,10 @@ export class PecaModel {
     public custo: number | null = null,
     public cor: string = "",
     public material: string = "",
-    public idFornecedor: number | null = null,
+    public idFornecedor?: number,
     public materialFabricacao: string = "",
-    public produto: string = ""
+    // public produto: string = ""
+    public produto: ProdutoModel = new ProdutoModel()
   ) {}
 }
 

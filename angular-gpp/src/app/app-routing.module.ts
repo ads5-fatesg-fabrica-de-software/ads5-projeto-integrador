@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PecaListComponent } from './components/peca-list/peca-list.component';
 import { EntregaComponent } from './components/entrega/entrega.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteListComponent } from './components/cliente-list/cliente-list.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
-import { TableBasicDemoComponent } from './components/table-basic-demo/table-basic-demo.component';
+import { PecaTableComponent } from './components/peca-table/peca-table.component';
 import { PecaFormComponent } from './components/peca-form/peca-form.component';
-import { EditPecaComponentComponent } from './components/edit-peca-component/edit-peca-component.component';
+import { PecaEditComponent } from './components/peca-edit/peca-edit.component';
 import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
 import { FornecedorTableComponent } from './components/fornecedor-table/fornecedor-table.component';
 import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
@@ -19,17 +18,17 @@ const routes: Routes = [
   {path: 'produtoList', component: ProdutoTableComponent},
   {path: 'fornecedor/:id', component: FornecedorFormComponent},
   {path: 'fornecedorList', component: FornecedorTableComponent},
-  {path: 'peca/editar/:id', component: EditPecaComponentComponent },
+  {path: 'peca/editar/:id', component: PecaEditComponent },
   {path: 'fornecedor/editar/:id', component: FornecedorFormEditComponent },
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   // {path: 'peca/:id', component: PecaComponent},
   {path: 'peca/:id', component: PecaFormComponent},
   // {path: 'pecaList', component: PecaListComponent},
-  {path: 'pecaList', component: TableBasicDemoComponent},
+  {path: 'pecaList', component: PecaTableComponent},
   {path: 'clienteList', component: ClienteListComponent},
   {path: 'cliente/:id', component: ClienteComponent},
-  {path: 'teste', component: TableBasicDemoComponent}
+  {path: 'teste', component: PecaTableComponent}
 ];
 
 @NgModule({

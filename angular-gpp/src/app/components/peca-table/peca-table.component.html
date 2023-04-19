@@ -39,6 +39,11 @@
                 <th>codigoFabrica</th>
                 <th>unidade</th> -->
                 <th>descricao</th>
+
+                <th>Produto</th>
+                
+
+                <th>Fornecedor</th>
                 <!-- <th>altura</th>
                 <th>largura</th> -->
                 <!-- <th>profundidade</th>
@@ -61,6 +66,12 @@
                 <th>
                     <p-columnFilter type="text" field="descricao"></p-columnFilter>
                 </th>
+                <th>
+                    <p-columnFilter type="text" field="produto"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="fornecedor"></p-columnFilter>
+                </th>
 
                 <th>
                 </th>
@@ -74,6 +85,10 @@
                 <td>{{ peca.codigoFabrica }}</td>
                 <td>{{ peca.unidade }}</td> -->
                 <td>{{ peca.descricao }}</td>
+
+                <td>{{ peca.produto.descricao }}</td>
+
+                <td>{{ peca.produto.fornecedor.nomeFornecedor }}</td>
                 <!-- <td>{{ peca.altura }}</td>
                 <td>{{ peca.largura }}</td> -->
                 <!-- <td>{{ peca.profundidade }}</td>

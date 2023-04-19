@@ -6,11 +6,11 @@ import { PecaService } from 'src/app/services/peca.service';
 import { Table } from 'primeng/table';
 
 @Component({
-  selector: 'app-table-basic-demo',
-  templateUrl: './table-basic-demo.component.html',
-  styleUrls: ['./table-basic-demo.component.css']
+  selector: 'app-peca-table',
+  templateUrl: './peca-table.component.html',
+  styleUrls: ['./peca-table.component.css']
 })
-export class TableBasicDemoComponent implements OnInit {
+export class PecaTableComponent implements OnInit {
  
 
  

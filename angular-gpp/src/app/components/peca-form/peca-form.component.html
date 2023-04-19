@@ -54,16 +54,22 @@
         <input type="text" pInput id="material" placeholder="aço inox" [(ngModel)]="peca.material">
     </div>
     <div class="form-group">
+        <label for="materialFabricacao">materialFabricacao:</label>
+        <input type="text" id="materialFabricacao" pInput placeholder="plástico" [(ngModel)]="peca.materialFabricacao">
+    </div>
+    <!-- <div class="form-group">
       <label for="idFornecedor">idFornecedor:</label>
       <input type="text" id="idFornecedor" pInput placeholder="123" [(ngModel)]="peca.idFornecedor">
-    </div>
+    </div> -->
+
     <div class="form-group">
-      <label for="materialFabricacao">materialFabricacao:</label>
-      <input type="text" id="materialFabricacao" pInput placeholder="plástico" [(ngModel)]="peca.materialFabricacao">
-    </div>
-    <div class="form-group">
-      <label for="produtosPeca">produtosPeca:</label>
-      <input type="text" id="produtosPeca" pInput placeholder="parafusos, molas" [(ngModel)]="peca.produto">
+        <label for="idFornecedor">Nome do Fornecedor: </label>
+        <label id="idFornecedor">{{ peca.produto?.fornecedor?.nomeFornecedor }}</label>
+      </div>
+    <div class="form-group" style="margin-bottom: 200px;">
+        <label for="Produto" class="label">Produto:</label>
+        <p-autoComplete [(ngModel)]="peca.produto" [suggestions]="filteredProdutos" (completeMethod)="searchProdutos($event)" 
+          [field]="'descricao'" [dropdown]="true" placeholder="Selecione o produto"></p-autoComplete>
     </div>
     
     

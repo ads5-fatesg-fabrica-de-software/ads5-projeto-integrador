@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { PecaModel } from 'src/app/models/PecaModel';
 import { PecaService } from '../../services/peca.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProdutoModel } from 'src/app/models/ProdutoModel';
 
 @Component({
-  selector: 'app-edit-peca-component',
-  templateUrl: './edit-peca-component.component.html',
-  styleUrls: ['./edit-peca-component.component.css']
+  selector: 'app-peca-edit',
+  templateUrl: './peca-edit.component.html',
+  styleUrls: ['./peca-edit.component.css']
 })
-export class EditPecaComponentComponent implements OnInit {
+export class PecaEditComponent implements OnInit {
 
   displayDialog: boolean = true; // add this line
 
@@ -38,7 +39,7 @@ export class EditPecaComponentComponent implements OnInit {
     idFornecedor: 0,
     materialFabricacao: '',
     idPeca: 0,
-    produto: ''
+    produto: new ProdutoModel()
   };
 
   public editar(){
