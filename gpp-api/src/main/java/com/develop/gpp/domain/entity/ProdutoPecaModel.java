@@ -35,10 +35,6 @@ public class ProdutoPecaModel {
 
   private int situacao;
 
-<<<<<<< HEAD
-
-// }
-=======
  
 }
->>>>>>> sprint-2-wenderson
+
