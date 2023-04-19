@@ -38,7 +38,7 @@ export class EditPecaComponentComponent implements OnInit {
     idFornecedor: 0,
     materialFabricacao: '',
     idPeca: 0,
-    produtosPeca: ''
+    produto: ''
   };
 
   public editar(){

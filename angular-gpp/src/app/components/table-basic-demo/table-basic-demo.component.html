@@ -6,6 +6,8 @@
     <p-table
         #dt2
         [value]="pecas" 
+        [sortField]="'idPeca'"
+        [sortOrder]="-1"
         [tableStyle]="{ 'min-width': '50rem' }" 
         [rows]="5" 
         [paginator]="true"

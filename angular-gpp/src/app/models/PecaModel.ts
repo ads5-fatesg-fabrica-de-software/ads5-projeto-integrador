@@ -16,7 +16,7 @@ export class PecaModel {
     public material: string = "",
     public idFornecedor: number | null = null,
     public materialFabricacao: string = "",
-    public produtosPeca: string = ""
+    public produto: string = ""
   ) {}
 }
 

@@ -5,7 +5,9 @@
 <div class="card">
     <p-table
         #dt2
-        [value]="fornecedores" 
+        [value]="fornecedores"
+        [sortField]="'idFornecedor'"
+        [sortOrder]="-1" 
         [tableStyle]="{ 'min-width': '50rem' }" 
         [rows]="5" 
         [paginator]="true"

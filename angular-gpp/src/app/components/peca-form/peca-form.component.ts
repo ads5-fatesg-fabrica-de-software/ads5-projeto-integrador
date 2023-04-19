@@ -37,7 +37,7 @@ export class PecaFormComponent implements OnInit {
     // produtosPeca: []
     ,
     idPeca: 0,
-    produtosPeca: ''
+    produto: ''
   };
 
   public salvar(){
