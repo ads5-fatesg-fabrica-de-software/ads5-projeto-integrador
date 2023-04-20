@@ -39,6 +39,8 @@ import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { MessagesModule } from 'primeng/messages';
+import { AstecaFormComponent } from './components/asteca-form/asteca-form.component';
+import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
 @NgModule({
   declarations: [
     
@@ -57,7 +59,9 @@ import { MessagesModule } from 'primeng/messages';
     FornecedorTableComponent,
     FornecedorFormEditComponent,
     ProdutoTableComponent,
-    ProdutoFormComponent
+    ProdutoFormComponent,
+    AstecaFormComponent,
+    AstecaTableComponent
   ],
   imports: [
     MessagesModule,

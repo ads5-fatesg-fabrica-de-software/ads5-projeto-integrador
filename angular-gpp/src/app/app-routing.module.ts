@@ -12,8 +12,12 @@ import { FornecedorTableComponent } from './components/fornecedor-table/forneced
 import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/fornecedor-form-edit.component';
 import { ProdutoTableComponent } from './components/produto-table/produto-table.component';
 import { ProdutoFormComponent } from './components/produto-form/produto-form.component';
+import { AstecaFormComponent } from './components/asteca-form/asteca-form.component';
+import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
 
 const routes: Routes = [
+  {path: 'asteca/:id', component: AstecaFormComponent},
+  {path: 'astecaList', component: AstecaTableComponent},
   {path: 'produto/:id', component: ProdutoFormComponent},
   {path: 'produtoList', component: ProdutoTableComponent},
   {path: 'fornecedor/:id', component: FornecedorFormComponent},

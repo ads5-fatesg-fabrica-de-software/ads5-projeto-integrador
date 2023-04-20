@@ -78,6 +78,27 @@ export class PanelMenuBasicDemoComponent implements OnInit {
           }
         ]
       },
+      {
+        label: 'Asteca',
+        icon: 'pi pi-fw pi-inbox',
+        items: [
+          {
+            label: 'Nova',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/asteca/:id']);
+            }
+
+          },
+          {
+            label: 'Lista',
+            icon: 'pi pi-fw pi-list',
+            command: () => {
+              this.router.navigate(['/astecaList']);
+            }
+          }
+        ]
+      },
       // {
       //   label: 'Edit',
       //   icon: 'pi pi-fw pi-pencil',
