@@ -27,7 +27,9 @@ public class ItemDocumentoFiscalModel {
 
     private Integer numDocFiscal;
 
-    private Integer idDocumentoFiscal;
+    @ManyToOne
+    @JoinColumn(name = "documento_fiscal_id")
+    private DocumentoFiscalModel documentoFiscal;
     
     private String  produto;
 
