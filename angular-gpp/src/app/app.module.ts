@@ -21,7 +21,7 @@ import { PecaTableComponent } from './components/peca-table/peca-table.component
 import { DockModule } from 'primeng/dock';
 import { BasicDocComponent } from './components/basic-doc/basic-doc.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { PanelMenuBasicDemoComponent } from './components/panel-menu-basic-demo/panel-menu-basic-demo.component';
+import { PanelMenuBasicDemoComponent } from './components/menu/menu.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PecaFormComponent } from './components/peca-form/peca-form.component';
 import {DialogModule} from 'primeng/dialog';

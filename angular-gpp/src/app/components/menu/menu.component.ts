@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-panel-menu-basic-demo',
-  templateUrl: './panel-menu-basic-demo.component.html',
-  styleUrls: ['./panel-menu-basic-demo.component.css']
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css']
 })
 export class PanelMenuBasicDemoComponent implements OnInit {
 
