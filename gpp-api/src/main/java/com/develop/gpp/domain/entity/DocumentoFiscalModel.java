@@ -30,6 +30,7 @@ public class DocumentoFiscalModel {
 
     private String cpfCnpj;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer numDocFiscal;
 
     private String serieDocFiscal;

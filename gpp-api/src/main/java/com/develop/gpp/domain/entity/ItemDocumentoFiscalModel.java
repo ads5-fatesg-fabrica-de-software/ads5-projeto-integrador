@@ -7,9 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-
-
+import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.Getter;
@@ -25,20 +25,20 @@ public class ItemDocumentoFiscalModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idItemDocFiscal;
 
-    private Integer numDocFiscal;
-
     @ManyToOne
     @JoinColumn(name = "documento_fiscal_id")
     private DocumentoFiscalModel documentoFiscal;
-    
-    private String  produto;
+
+    @ManyToOne
+    private ProdutoModel produto;
 
     private Integer qtde;
 
-    private Double valorVenda;
+    private BigDecimal valorVenda;
 
-    // Default constructor
-    public ItemDocumentoFiscalModel() {
+    public BigDecimal valorTotal() {
+
+        return BigDecimal.valueOf(valorVenda.doubleValue() * qtde);
     }
 
 }
