@@ -4,6 +4,9 @@ import { PecaService } from '../../services/peca.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoModel } from 'src/app/models/ProdutoModel';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AstecaFormSelectionPopupComponent } from '../asteca-form-selection-popup/asteca-form-selection-popup.component';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-asteca-form',
@@ -23,7 +26,7 @@ export class AstecaFormComponent implements OnInit {
       });
     }
   
-    constructor(private pecaService: PecaService, private router: Router, private route: ActivatedRoute, private produtoService: ProdutoService){}
+    constructor(private dialogService: DialogService, private pecaService: PecaService, private router: Router, private route: ActivatedRoute, private produtoService: ProdutoService){}
   
     peca: PecaModel = {
       numero: '',
@@ -63,14 +66,37 @@ export class AstecaFormComponent implements OnInit {
       });
     }
   
-    testar(){
+    testa(){
       console.log(this.peca.numero);
     }
+
+    testar() {
+      const ref = this.dialogService.open(AstecaFormSelectionPopupComponent, {
+        header: 'Select an item',
+        width: '70%',
+        contentStyle: { 'max-height': '500px', 'overflow-y': 'auto' }
+      });
+    
+      ref.onClose.pipe(take(1)).subscribe((selectedItem: any) => {
+        // Do something with the selected item
+        console.log(selectedItem);
+        // Now the console.log statement is inside the subscribe block, so it will work correctly.
+      });
+    }
+    
+    
+
+    
 
     searchProdutos(event: any)  {
       this.filteredProdutos = this.produtos.filter(produto =>
         produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
       );
+    }
+
+    handlePecaSelected(selectedPeca: PecaModel) {
+      console.log('Selected Peca:', selectedPeca);
+      // do something with the selected PecaModel
     }
   
   }
