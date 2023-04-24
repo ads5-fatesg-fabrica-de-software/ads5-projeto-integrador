@@ -1,1 +1,62 @@
-<p>asteca-form works!</p>
+<h1>Asteca <i class="fas pi pi-fw pi-plus"></i></h1>
+
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="p-card">
+            <div class="p-card-body">
+                <div class="p-field">
+                    <label for="numero" class="p-d-block">ID Produto:</label>
+                    <div class="p-inputgroup">
+                        <input type="text" id="numero" placeholder="5654" [(ngModel)]="peca.numero"
+                            class="p-inputtext" />
+                        <span class="p-inputgroup-addon" (click)="testar()">
+                            <i class="pi pi-angle-right"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="p-field">
+                    <label for="codigoFabrica" class="p-d-block">Produto:</label>
+                    <input type="text" id="codigoFabrica" placeholder="Guarda-roupa 3 portas" [(ngModel)]="peca.codigoFabrica"
+                        class="p-inputtext" />
+                </div>
+                <div class="p-field">
+                    <label for="unidade" class="p-d-block">Motivo:</label>
+                    <input type="text" id="unidade" placeholder="lista" [(ngModel)]="peca.unidade" class="p-inputtext" />
+                </div>
+                <div class="p-field">
+                    <label for="descricao" class="p-d-block">Custo:</label>
+                    <input type="text" id="descricao" placeholder="550,00" [(ngModel)]="peca.descricao"
+                        class="p-inputtext" />
+                </div>
+                <div class="p-field">
+                    <label for="altura" class="p-d-block">Atendimento:</label>
+                    <input type="text" id="altura" placeholder="Vistoria" [(ngModel)]="peca.altura" class="p-inputtext" />
+                </div>
+                <div class="p-field">
+                    <label for="largura" class="p-d-block">Tipo:</label>
+                    <input type="text" id="largura" placeholder="Estoque" [(ngModel)]="peca.largura" class="p-inputtext" />
+                </div>
+                <div class="p-field">
+                    <label for="profundidade" class="p-d-block">Produto no Livro:</label>
+                    <input type="text" id="profundidade" placeholder="Sim/Não" [(ngModel)]="peca.profundidade"
+                        class="p-inputtext" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12">
+        <div class="p-card">
+            <div class="p-card-body">
+                <h1>Nota fiscal <i class="fas pi pi-fw pi-plus"></i></h1>
+
+                <!-- Add your Nota Fiscal form fields here -->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12">
+    </div>
+</div>
