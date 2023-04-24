@@ -21,7 +21,7 @@ import { PecaTableComponent } from './components/peca-table/peca-table.component
 import { DockModule } from 'primeng/dock';
 import { BasicDocComponent } from './components/basic-doc/basic-doc.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { PanelMenuBasicDemoComponent } from './components/panel-menu-basic-demo/panel-menu-basic-demo.component';
+import { PanelMenuBasicDemoComponent } from './components/menu/menu.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PecaFormComponent } from './components/peca-form/peca-form.component';
 import {DialogModule} from 'primeng/dialog';
@@ -35,7 +35,12 @@ import { FornecedorFormEditComponent } from './components/fornecedor-form-edit/f
 import { ProdutoTableComponent } from './components/produto-table/produto-table.component';
 import { ProdutoFormComponent } from './components/produto-form/produto-form.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-
+import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
+import { CommonModule } from '@angular/common';
+import { MessagesModule } from 'primeng/messages';
+import { AstecaFormComponent } from './components/asteca-form/asteca-form.component';
+import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
 @NgModule({
   declarations: [
     
@@ -54,9 +59,13 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     FornecedorTableComponent,
     FornecedorFormEditComponent,
     ProdutoTableComponent,
-    ProdutoFormComponent
+    ProdutoFormComponent,
+    AstecaFormComponent,
+    AstecaTableComponent
   ],
   imports: [
+    MessagesModule,
+    MessageModule,
     AutoCompleteModule,
     DialogModule,
     ButtonModule,
@@ -85,7 +94,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     HttpClientModule,
     NbSelectModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

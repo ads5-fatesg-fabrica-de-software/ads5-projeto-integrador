@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-panel-menu-basic-demo',
-  templateUrl: './panel-menu-basic-demo.component.html',
-  styleUrls: ['./panel-menu-basic-demo.component.css']
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css']
 })
 export class PanelMenuBasicDemoComponent implements OnInit {
 
@@ -74,6 +74,27 @@ export class PanelMenuBasicDemoComponent implements OnInit {
             icon: 'pi pi-fw pi-list',
             command: () => {
               this.router.navigate(['/produtoList']);
+            }
+          }
+        ]
+      },
+      {
+        label: 'Asteca',
+        icon: 'pi pi-fw pi-inbox',
+        items: [
+          {
+            label: 'Nova',
+            icon: 'pi pi-fw pi-plus',
+            command: () => {
+              this.router.navigate(['/asteca/:id']);
+            }
+
+          },
+          {
+            label: 'Lista',
+            icon: 'pi pi-fw pi-list',
+            command: () => {
+              this.router.navigate(['/astecaList']);
             }
           }
         ]
