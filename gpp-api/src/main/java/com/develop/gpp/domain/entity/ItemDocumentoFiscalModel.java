@@ -1,5 +1,6 @@
 package com.develop.gpp.domain.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,16 +30,19 @@ public class ItemDocumentoFiscalModel {
     @JoinColumn(name = "documento_fiscal_id")
     private DocumentoFiscalModel documentoFiscal;
 
-    @ManyToOne
-    private ProdutoModel produto;
+    // @ManyToOne(cascade = CascadeType.ALL)
+    // @JoinColumn(name = "produto_id")
+    // private ProdutoModel produto;
+
+    private Integer idProduto;
 
     private Integer qtde;
 
-    private BigDecimal valorVenda;
+    private Double valorVenda;
 
-    public BigDecimal valorTotal() {
+    public Double valorTotal(Integer qtd, Double valorVenda) {
 
-        return BigDecimal.valueOf(valorVenda.doubleValue() * qtde);
+        return (valorVenda * qtde);
     }
 
 }

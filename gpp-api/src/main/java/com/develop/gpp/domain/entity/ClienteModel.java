@@ -33,6 +33,5 @@ public class ClienteModel {
 
   @OneToMany(mappedBy = "cliente")
   private List<EndClienteModel> enderecos;
-  
 
 }
