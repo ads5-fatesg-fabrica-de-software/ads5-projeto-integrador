@@ -33,7 +33,7 @@ public class ProdutoModel {
 
     private String descricao;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private FornecedorModel fornecedor;
 
    
