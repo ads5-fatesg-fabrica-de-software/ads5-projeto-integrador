@@ -65,6 +65,8 @@ public class DocumentoFiscalController {
         item.valorTotal(qtd, valor);
         item.setDocumentoFiscal(doc);
         item.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
+
+        
         // item2
         item2.setDocumentoFiscal(doc);
         item2.setIdProduto(5);
