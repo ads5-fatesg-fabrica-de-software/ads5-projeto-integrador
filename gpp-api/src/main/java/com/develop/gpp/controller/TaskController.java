@@ -2,6 +2,7 @@ package com.develop.gpp.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TaskController {
     
-    private final TaskService service;
+	@Autowired
+    private  TaskService service;
 
     @GetMapping
     public List<Task> findAll(HttpServletRequest request) {
