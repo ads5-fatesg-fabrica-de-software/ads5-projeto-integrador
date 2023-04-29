@@ -14,12 +14,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "documento_fiscal")
 public class DocumentoFiscalModel {
 
@@ -38,15 +44,17 @@ public class DocumentoFiscalModel {
 
     private LocalDateTime dataEmissao;
 
-    @OneToMany(mappedBy = "documentoFiscal")
+    @OneToMany
     private List<ItemDocumentoFiscalModel> itens;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
     private ClienteModel cliente;
 
     private String descricao;
 
     private String fornecedor;
+
+
 
 }
