@@ -26,6 +26,7 @@
     "ng2-completer": "^9.0.1",
     "ng2-smart-table": "^1.7.2",
     "primeflex": "^3.3.0",
+    "primeicons": "^6.0.1",
     "primeng": "^15.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
