@@ -6,10 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -44,10 +46,10 @@ public class DocumentoFiscalModel {
 
     private LocalDateTime dataEmissao;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "documentoFiscal")
     private List<ItemDocumentoFiscalModel> itens;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
     private ClienteModel cliente;
 

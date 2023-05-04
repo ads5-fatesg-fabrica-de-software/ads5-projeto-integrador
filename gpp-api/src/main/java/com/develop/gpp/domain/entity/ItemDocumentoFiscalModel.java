@@ -32,10 +32,6 @@ public class ItemDocumentoFiscalModel {
     @JoinColumn(name = "documento_fiscal_id")
     private DocumentoFiscalModel documentoFiscal;
 
-    // @ManyToOne(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "produto_id")
-    // private ProdutoModel produto;
-
     private Integer idProduto;
 
     private Integer qtde;

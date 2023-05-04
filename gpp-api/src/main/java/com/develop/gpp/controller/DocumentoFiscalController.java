@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -18,11 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.develop.gpp.domain.entity.ClienteModel;
 import com.develop.gpp.domain.entity.DocumentoFiscalModel;
+import com.develop.gpp.domain.entity.FilialModel;
 import com.develop.gpp.domain.entity.FornecedorModel;
 import com.develop.gpp.domain.entity.ItemDocumentoFiscalModel;
 import com.develop.gpp.domain.entity.ProdutoModel;
 import com.develop.gpp.domain.repository.ClienteRepository;
 import com.develop.gpp.domain.repository.DocumentoFiscalRepository;
+import com.develop.gpp.domain.repository.FilialRepository;
+import com.develop.gpp.domain.repository.FornecedorRepository;
 import com.develop.gpp.domain.repository.ItemDocFiscalRepository;
 import com.develop.gpp.domain.repository.ProdutoRepository;
 import com.develop.gpp.domain.service.DocumentoFiscalService;
@@ -38,72 +42,68 @@ public class DocumentoFiscalController {
     public ProdutoRepository produtoRepository;
 
     @Autowired
+    public FornecedorRepository fornecedorRepository;
+
+    @Autowired
     public ClienteRepository clienteRepository;
+
+    @Autowired
+    public FilialRepository filialRepository;
 
     @Autowired
     public ItemDocFiscalRepository docFiscalRepository;
 
-    @PostConstruct
-    public void init() {
+    // @PostConstruct
+    // public void init() {
 
-        ProdutoModel prod = new ProdutoModel();
-        ClienteModel cli = new ClienteModel();
-        ItemDocumentoFiscalModel item = new ItemDocumentoFiscalModel();
-        ItemDocumentoFiscalModel item2 = new ItemDocumentoFiscalModel();
-        DocumentoFiscalModel doc = new DocumentoFiscalModel();
-        FornecedorModel fornc = new FornecedorModel();
-        Double valor = 450.99;
-        Integer qtd = 2;
+    // ItemDocumentoFiscalModel item = new ItemDocumentoFiscalModel();
+    // ItemDocumentoFiscalModel item2 = new ItemDocumentoFiscalModel();
+    // DocumentoFiscalModel doc = new DocumentoFiscalModel();
+    // List<ProdutoModel> prod = produtoRepository.findAll();
+    // List<ClienteModel> cli = clienteRepository.findAll();
+    // List<FilialModel> fi = filialRepository.findAll();
+    // Double valor1 = 450.99;
+    // Integer qtd1 = 2;
+    // Double valor2 = 15.400;
+    // Integer qtd2 = 1;
 
-        // cliente
-        cli.setCpfCnpj("06523244105");
-        cli.setEmail("asterty15@gmail.com");
-        cli.setNome("Wenderson Reis");
+    // // itemDoc
+    // item.setDocumentoFiscal(doc);
+    // item.setIdProduto(prod.get(0).getIdProduto());
+    // item.setQtde(qtd1);
+    // item.setValorVenda(valor1);
+    // item.valorTotal(qtd1, valor1);
+    // item.setDocumentoFiscal(doc);
+    // item.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
-        // fornecedor
-        fornc.setNomeFornecedor("teste");
+    // // item2
+    // item2.setDocumentoFiscal(doc);
+    // item2.setIdProduto(prod.get(1).getIdProduto());
+    // item2.setQtde(qtd2);
+    // item2.setValorVenda(valor2);
+    // item2.valorTotal(qtd2, valor2);
+    // item2.setDocumentoFiscal(doc);
+    // item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
-        // produto
-        prod.setFornecedor(fornc);
-        prod.setDescricao("teste");
+    // // lista de itens
+    // List<ItemDocumentoFiscalModel> listaItens = new ArrayList<>();
+    // listaItens.add(item);
+    // listaItens.add(item2);
 
-        // itemDoc
-        item.setDocumentoFiscal(doc);
-        item.setIdProduto(8);
-        item.setQtde(qtd);
-        item.setValorVenda(valor);
-        item.valorTotal(qtd, valor);
-        item.setDocumentoFiscal(doc);
-        item.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
+    // // documento
+    // doc.setCliente(cli.get(0));
+    // doc.setCpfCnpj(cli.get(0).getCpfCnpj());
+    // doc.setDataEmissao(LocalDateTime.now());
+    // doc.setFornecedor(prod.get(0).getFornecedor().getNomeFornecedor());
+    // doc.setItens(listaItens);
+    // doc.setSerieDocFiscal("10");
+    // doc.setIdFilialSaida(fi.get(0).getIdFilial());
+    // doc.setDescricao(prod.get(0).getDescricao());
 
-        // item2
-        item2.setDocumentoFiscal(doc);
-        item2.setIdProduto(5);
-        item2.setQtde(qtd);
-        item2.setValorVenda(valor);
-        item2.valorTotal(qtd, valor);
-        item2.setDocumentoFiscal(doc);
-        item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
+    // documentoFiscalRepository.save(doc);
+    // docFiscalRepository.saveAll(listaItens);
 
-        // lista de itens
-        List<ItemDocumentoFiscalModel> listaItens = new ArrayList<>();
-        listaItens.add(item);
-        listaItens.add(item2);
-
-        // documento
-        doc.setCliente(cli);
-        doc.setCpfCnpj(cli.getCpfCnpj());
-        doc.setDataEmissao(LocalDateTime.now());
-        doc.setFornecedor(prod.getFornecedor().getNomeFornecedor());
-        doc.setItens(listaItens);
-        doc.setNumDocFiscal(456654);
-        doc.setSerieDocFiscal("10");
-        doc.setIdFilialSaida(456);
-
-        documentoFiscalRepository.save(doc);
-        docFiscalRepository.saveAll(listaItens);
-
-    }
+    // }
 
     @Autowired
     private DocumentoFiscalService documentoFiscalService;
@@ -123,7 +123,7 @@ public class DocumentoFiscalController {
 
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public List<DocumentoFiscalModel> todas() {
 
         return documentoFiscalService.todas();
