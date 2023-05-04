@@ -44,17 +44,15 @@ public class DocumentoFiscalModel {
 
     private LocalDateTime dataEmissao;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ItemDocumentoFiscalModel> itens;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cliente")
     private ClienteModel cliente;
 
     private String descricao;
 
     private String fornecedor;
-
-
 
 }
