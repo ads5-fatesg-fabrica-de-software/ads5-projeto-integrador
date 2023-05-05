@@ -53,57 +53,57 @@ public class DocumentoFiscalController {
     @Autowired
     public ItemDocFiscalRepository docFiscalRepository;
 
-    // @PostConstruct
-    // public void init() {
+    @PostConstruct
+    public void init() {
 
-    // ItemDocumentoFiscalModel item = new ItemDocumentoFiscalModel();
-    // ItemDocumentoFiscalModel item2 = new ItemDocumentoFiscalModel();
-    // DocumentoFiscalModel doc = new DocumentoFiscalModel();
-    // List<ProdutoModel> prod = produtoRepository.findAll();
-    // List<ClienteModel> cli = clienteRepository.findAll();
-    // List<FilialModel> fi = filialRepository.findAll();
-    // Double valor1 = 450.99;
-    // Integer qtd1 = 2;
-    // Double valor2 = 15.400;
-    // Integer qtd2 = 1;
+        ItemDocumentoFiscalModel item = new ItemDocumentoFiscalModel();
+        ItemDocumentoFiscalModel item2 = new ItemDocumentoFiscalModel();
+        DocumentoFiscalModel doc = new DocumentoFiscalModel();
+        List<ProdutoModel> prod = produtoRepository.findAll();
+        List<ClienteModel> cli = clienteRepository.findAll();
+        List<FilialModel> fi = filialRepository.findAll();
+        Double valor1 = 450.99;
+        Integer qtd1 = 2;
+        Double valor2 = 15.400;
+        Integer qtd2 = 1;
 
-    // // itemDoc
-    // item.setDocumentoFiscal(doc);
-    // item.setIdProduto(prod.get(0).getIdProduto());
-    // item.setQtde(qtd1);
-    // item.setValorVenda(valor1);
-    // item.valorTotal(qtd1, valor1);
-    // item.setDocumentoFiscal(doc);
-    // item.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
+        // itemDoc
+        // item.setDocumentoFiscal(doc);
+        item.setIdProduto(prod.get(0).getIdProduto());
+        item.setQtde(qtd1);
+        item.setValorVenda(valor1);
+        item.valorTotal(qtd1, valor1);
+        // item.setDocumentoFiscal(doc);
+        item.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
-    // // item2
-    // item2.setDocumentoFiscal(doc);
-    // item2.setIdProduto(prod.get(1).getIdProduto());
-    // item2.setQtde(qtd2);
-    // item2.setValorVenda(valor2);
-    // item2.valorTotal(qtd2, valor2);
-    // item2.setDocumentoFiscal(doc);
-    // item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
+        // item2
+        // item2.setDocumentoFiscal(doc);
+        item2.setIdProduto(prod.get(1).getIdProduto());
+        item2.setQtde(qtd2);
+        item2.setValorVenda(valor2);
+        item2.valorTotal(qtd2, valor2);
+        // item2.setDocumentoFiscal(doc);
+        item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
-    // // lista de itens
-    // List<ItemDocumentoFiscalModel> listaItens = new ArrayList<>();
-    // listaItens.add(item);
-    // listaItens.add(item2);
+        // lista de itens
+        List<ItemDocumentoFiscalModel> listaItens = new ArrayList<>();
+        listaItens.add(item);
+        listaItens.add(item2);
 
-    // // documento
-    // doc.setCliente(cli.get(0));
-    // doc.setCpfCnpj(cli.get(0).getCpfCnpj());
-    // doc.setDataEmissao(LocalDateTime.now());
-    // doc.setFornecedor(prod.get(0).getFornecedor().getNomeFornecedor());
-    // doc.setItens(listaItens);
-    // doc.setSerieDocFiscal("10");
-    // doc.setIdFilialSaida(fi.get(0).getIdFilial());
-    // doc.setDescricao(prod.get(0).getDescricao());
+        // documento
+        doc.setCliente(cli.get(0));
+        doc.setCpfCnpj(cli.get(0).getCpfCnpj());
+        doc.setDataEmissao(LocalDateTime.now());
+        doc.setFornecedor(prod.get(0).getFornecedor().getNomeFornecedor());
+        doc.setItens(listaItens);
+        doc.setSerieDocFiscal("10");
+        doc.setIdFilialSaida(fi.get(0).getIdFilial());
+        doc.setDescricao(prod.get(0).getDescricao());
 
-    // documentoFiscalRepository.save(doc);
-    // docFiscalRepository.saveAll(listaItens);
+        documentoFiscalRepository.save(doc);
+        docFiscalRepository.saveAll(listaItens);
 
-    // }
+    }
 
     @Autowired
     private DocumentoFiscalService documentoFiscalService;

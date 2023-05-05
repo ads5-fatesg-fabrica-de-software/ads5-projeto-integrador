@@ -28,9 +28,9 @@ public class ItemDocumentoFiscalModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idItemDocFiscal;
 
-    @ManyToOne
-    @JoinColumn(name = "documento_fiscal_id")
-    private DocumentoFiscalModel documentoFiscal;
+    // @ManyToOne
+    // @JoinColumn(name = "documento_fiscal_id")
+    // private DocumentoFiscalModel documentoFiscal;
 
     private Integer idProduto;
 

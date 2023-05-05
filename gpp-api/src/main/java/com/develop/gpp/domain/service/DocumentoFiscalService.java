@@ -24,10 +24,9 @@ public class DocumentoFiscalService {
 
     public List<DocumentoFiscalModel> listaPorProduto(Integer prod) {
 
-    List<DocumentoFiscalModel> listaDoc =
-    documentoFiscalRepository.listarPorProduto(prod);
+        List<DocumentoFiscalModel> listaDoc = documentoFiscalRepository.listarPorProduto(prod);
 
-    return listaDoc;
+        return listaDoc;
 
     }
 
@@ -37,13 +36,12 @@ public class DocumentoFiscalService {
 
         // for (DocumentoFiscalModel documentoFiscalModel : listaDoc) {
 
-        //     for (ItemDocumentoFiscalModel documentoFiscalModel2 : documentoFiscalModel.getItens()) {
+        // for (ItemDocumentoFiscalModel documentoFiscalModel2 :
+        // documentoFiscalModel.getItens()) {
 
-        //         System.out.println(documentoFiscalModel2);
-                
-        //     }
+        // System.out.println(documentoFiscalModel2);
 
-            
+        // }
 
         // }
 

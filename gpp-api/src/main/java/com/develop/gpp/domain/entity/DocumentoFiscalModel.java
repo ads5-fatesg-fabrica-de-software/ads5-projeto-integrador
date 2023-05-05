@@ -1,6 +1,7 @@
 package com.develop.gpp.domain.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -46,8 +47,9 @@ public class DocumentoFiscalModel {
 
     private LocalDateTime dataEmissao;
 
-    @OneToMany(mappedBy = "documentoFiscal")
-    private List<ItemDocumentoFiscalModel> itens;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_doc_id")
+    private List<ItemDocumentoFiscalModel> itens = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
