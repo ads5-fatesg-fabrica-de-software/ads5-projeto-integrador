@@ -41,17 +41,5 @@ public class EndClienteModel {
     public EndClienteModel() {
     }
 
-    public EndClienteModel(Long idEndereco, String cep, String logradouro, String numero, String bairro,
-            String localidade, String uf, String complemento, ClienteModel cliente) {
-        this.idEndereco = idEndereco;
-        this.cep = cep;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.localidade = localidade;
-        this.uf = uf;
-        this.complemento = complemento;
-        this.cliente = cliente;
-    }
 
 }
