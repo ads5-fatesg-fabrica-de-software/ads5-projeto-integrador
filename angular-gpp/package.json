@@ -27,7 +27,11 @@
     "ng2-smart-table": "^1.7.2",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
+<<<<<<< HEAD
     "primeng": "^15.4.1",
+=======
+    "primeng": "^15.3.0",
+>>>>>>> origin/sprint-2-witor
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

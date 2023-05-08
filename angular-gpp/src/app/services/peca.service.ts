@@ -9,9 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PecaService {
 
-
-  
-
   public pecas: PecaModel[] = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -29,7 +26,7 @@ export class PecaService {
   }
 
   public list(): Observable<any>{
-    console.log(this.httpClient.get("http://localhost:8080/pecas/"))
+    // console.log(this.httpClient.get("http://localhost:8080/pecas/"))
     return this.httpClient.get("http://localhost:8080/pecas/");
   }
 

@@ -41,9 +41,10 @@ import { CommonModule } from '@angular/common';
 import { MessagesModule } from 'primeng/messages';
 import { AstecaFormComponent } from './components/asteca-form/asteca-form.component';
 import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
+import { AstecaFormSelectionPopupComponent } from './components/asteca-form-selection-popup/asteca-form-selection-popup.component';
+import { DialogService } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [
-    
     AppComponent,
     EntregaComponent,
     ClienteListComponent,
@@ -61,7 +62,8 @@ import { AstecaTableComponent } from './components/asteca-table/asteca-table.com
     ProdutoTableComponent,
     ProdutoFormComponent,
     AstecaFormComponent,
-    AstecaTableComponent
+    AstecaTableComponent,
+    AstecaFormSelectionPopupComponent,
   ],
   imports: [
     MessagesModule,
@@ -94,7 +96,7 @@ import { AstecaTableComponent } from './components/asteca-table/asteca-table.com
     HttpClientModule,
     NbSelectModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,26 +21,10 @@ public class FilialModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_filial")
     private Integer idFilial;
 
-
-    @Column(name = "sigla")
     private String sigla;
 
-
     private Integer numeroFilial;
-
-    // @OneToOne(mappedBy = "filial")
-    // private ClienteFilialModel clienteFilial;
-
-    public FilialModel() {
-    }
-
-    public FilialModel(Integer idFilial, String sigla) {
-        this.idFilial = idFilial;
-        this.sigla = sigla;
-        // this.clienteFilial = clienteFilial;
-    }
 
 }

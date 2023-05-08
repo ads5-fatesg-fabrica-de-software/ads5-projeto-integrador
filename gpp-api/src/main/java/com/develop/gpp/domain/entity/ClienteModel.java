@@ -33,10 +33,5 @@ public class ClienteModel {
 
   @OneToMany(mappedBy = "cliente")
   private List<EndClienteModel> enderecos;
-  
-  @OneToOne(mappedBy = "cliente")
-  private ClienteFilialModel clienteFilial;
-
-
 
 }

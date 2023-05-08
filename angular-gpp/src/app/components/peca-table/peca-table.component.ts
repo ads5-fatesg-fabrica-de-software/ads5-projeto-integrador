@@ -20,7 +20,7 @@ export class PecaTableComponent implements OnInit {
   @ViewChild('dt2') dt2: Table | undefined;
 
   ngAfterViewInit() {
-    console.log('dt2:', this.dt2);
+    // console.log('dt2:', this.dt2);
   }
   
   pecas: PecaModel[] = [];
@@ -55,7 +55,10 @@ export class PecaTableComponent implements OnInit {
   list(){
     this.pecaService.list().subscribe(resp => {
       this.pecas = resp;
+      console.log(this.pecas);
     });
+
+    
   }
 
   novo() {

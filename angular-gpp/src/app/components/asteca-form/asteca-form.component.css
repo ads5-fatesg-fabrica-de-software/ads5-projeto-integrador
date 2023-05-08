@@ -1,0 +1,35 @@
+.p-grid .p-field {
+    margin-bottom: 1rem;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .p-grid .p-field {
+      width: calc(100% / 3 - 1rem);
+      margin-right: 1rem;
+    }
+    
+    .p-grid .p-field:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+  
+  .p-card-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .p-field {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .p-inputtext {
+    width: 100%;
+  }
+  
+  .p-button-primary {
+    margin-top: 1rem;
+    margin-right: 1rem;
+  }
+  

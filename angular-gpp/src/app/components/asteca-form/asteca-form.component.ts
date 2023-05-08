@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { PecaModel } from 'src/app/models/PecaModel';
+import { PecaService } from '../../services/peca.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProdutoModel } from 'src/app/models/ProdutoModel';
+import { ProdutoService } from 'src/app/services/produto.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AstecaFormSelectionPopupComponent } from '../asteca-form-selection-popup/asteca-form-selection-popup.component';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-asteca-form',
@@ -7,9 +15,89 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AstecaFormComponent implements OnInit {
 
-  constructor() { }
+    displayDialog: boolean = true;
+    produtos: ProdutoModel[] = [];
+    filteredProdutos: ProdutoModel[] = [];
+    selectedProduto: ProdutoModel | null = null;
+  
+    ngOnInit(): void {
+      this.produtoService.list().subscribe(produtos => {
+        this.produtos = produtos;
+      });
+    }
+  
+    constructor(private dialogService: DialogService, private pecaService: PecaService, private router: Router, private route: ActivatedRoute, private produtoService: ProdutoService){}
+  
+    peca: PecaModel = {
+      numero: '',
+      codigoFabrica: '',
+      unidade: null,
+      descricao: '',
+      altura: null,
+      largura: null,
+      profundidade: null,
+      unidadeMedida: null,
+      volumes: '',
+      active: false,
+      custo: null,
+      cor: '',
+      material: '',
+      idFornecedor: 0,
+      materialFabricacao: '',
+      idPeca: 0,
+      produto: new ProdutoModel()
+    };
+  
+    public salvar(){
+  
+      this.peca.idFornecedor = this.peca.produto?.fornecedor?.idFornecedor;
+      
+      console.log("produto selecionado " + this.selectedProduto?.fornecedor.idFornecedor);
+  
+      console.log("produto selecionado " + this.peca.produto?.fornecedor?.nomeFornecedor);
+      
+      console.log("peca original " + this.peca.idFornecedor);
+      
+      this.pecaService.add(this.peca).subscribe(r => {
+        this.peca = new PecaModel();
+        
+        console.log(`funcionou. Nome: `);
+        this.router.navigateByUrl('/pecaList');
+      });
+    }
+  
+    testa(){
+      console.log(this.peca.numero);
+    }
 
-  ngOnInit(): void {
+    testar() {
+      const ref = this.dialogService.open(AstecaFormSelectionPopupComponent, {
+        header: 'Select an item',
+        width: '70%',
+        contentStyle: { 'max-height': '500px', 'overflow-y': 'auto' }
+      });
+    
+      ref.onClose.pipe(take(1)).subscribe((selectedItem: any) => {
+        // Do something with the selected item
+        console.log(selectedItem);
+        // Now the console.log statement is inside the subscribe block, so it will work correctly.
+      });
+    }
+    
+    
+
+    
+
+    searchProdutos(event: any)  {
+      this.filteredProdutos = this.produtos.filter(produto =>
+        produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
+      );
+    }
+
+    handlePecaSelected(selectedPeca: PecaModel) {
+      console.log('Selected Peca:', selectedPeca);
+      // do something with the selected PecaModel
+    }
+  
   }
-
-}
+  

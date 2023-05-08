@@ -6,7 +6,7 @@ export class PecaModel {
     public numero: string = "",
     public codigoFabrica: string = "",
     public unidade: number | null = null,
-    public descricao: string = "",
+    public descricao?: string,
     public altura: number | null = null,
     public largura: number | null = null,
     public profundidade: number | null = null,

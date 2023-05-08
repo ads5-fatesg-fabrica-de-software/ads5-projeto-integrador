@@ -21,4 +21,6 @@ public interface FornecedorRepository extends JpaRepository<FornecedorModel, Int
     @Query(nativeQuery = true, value = "select * from fornecedor f where lower(f.nome_fornecedor) like lower(:nome)")
     List<FornecedorModel> listarPorNome(@Param("nome") String nome);
 
+ 
+
 }
