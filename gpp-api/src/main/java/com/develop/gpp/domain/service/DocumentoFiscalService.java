@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.develop.gpp.domain.entity.DocumentoFiscalModel;
 import com.develop.gpp.domain.entity.ItemDocumentoFiscalModel;
@@ -26,7 +28,13 @@ public class DocumentoFiscalService {
 
         List<DocumentoFiscalModel> listaDoc = documentoFiscalRepository.listarPorProduto(prod);
 
-        return listaDoc;
+        if(listaDoc.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Sem notas para esse produto!"); 
+        }else{
+            return listaDoc;
+        }
+
+       
 
     }
 
@@ -34,16 +42,7 @@ public class DocumentoFiscalService {
 
         List<DocumentoFiscalModel> listaDoc = documentoFiscalRepository.findAll();
 
-        // for (DocumentoFiscalModel documentoFiscalModel : listaDoc) {
-
-        // for (ItemDocumentoFiscalModel documentoFiscalModel2 :
-        // documentoFiscalModel.getItens()) {
-
-        // System.out.println(documentoFiscalModel2);
-
-        // }
-
-        // }
+       
 
         return listaDoc;
 

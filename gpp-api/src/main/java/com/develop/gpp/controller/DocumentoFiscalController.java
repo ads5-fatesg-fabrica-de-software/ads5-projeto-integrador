@@ -68,8 +68,8 @@ public class DocumentoFiscalController {
         Integer qtd2 = 1;
 
         // itemDoc
-        // item.setDocumentoFiscal(doc);
-        item.setIdProduto(prod.get(0).getIdProduto());
+        //item.setDocumentoFiscal(doc);
+        item.setIdProduto(prod.get(2).getIdProduto());
         item.setQtde(qtd1);
         item.setValorVenda(valor1);
         item.valorTotal(qtd1, valor1);
@@ -77,8 +77,8 @@ public class DocumentoFiscalController {
         item.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
         // item2
-        // item2.setDocumentoFiscal(doc);
-        item2.setIdProduto(prod.get(1).getIdProduto());
+        //item2.setDocumentoFiscal(doc);
+        item2.setIdProduto(prod.get(3).getIdProduto());
         item2.setQtde(qtd2);
         item2.setValorVenda(valor2);
         item2.valorTotal(qtd2, valor2);
