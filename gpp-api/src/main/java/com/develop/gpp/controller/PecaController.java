@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.develop.gpp.domain.entity.PecaModel;
+import com.develop.gpp.domain.entity.dto.PecaDTO;
 import com.develop.gpp.domain.service.PecaService;
 
 @RestController
@@ -27,7 +28,7 @@ public class PecaController {
     private PecaService pecaService;
 
     @GetMapping("/")
-    public List<PecaModel> listaPecas() {
+    public List<PecaDTO> listaPecas() {
 
         return pecaService.listaPecas();
     }
@@ -40,17 +41,26 @@ public class PecaController {
 
     }
 
-    @GetMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public ResponseEntity<PecaModel> BuscarPorId(@PathVariable Integer id) {
+    // @GetMapping("/{id}")
+    // @ResponseStatus(code = HttpStatus.OK)
+    // public ResponseEntity<PecaModel> BuscarPorId(@PathVariable Integer id) {
 
-        return pecaService.BuscarPorId(id);
+    //     return pecaService.BuscarPorId(id);
 
-    }
+    // }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<PecaModel> deletePeca(@PathVariable Integer id) {
       return pecaService.deletePeca(id);
+    }
+
+    @GetMapping("/{prod}")
+    public List<PecaDTO> buscarPorProduto(@PathVariable Integer prod){
+
+
+        return pecaService.buscarPorProduto(prod);
+
+
     }
 
 }

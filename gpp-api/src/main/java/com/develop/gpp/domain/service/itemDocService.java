@@ -23,18 +23,14 @@ public class itemDocService {
 
         List<ItemDocumentoFiscalModel> listaItens = itemDocFiscalRepository.listarPorDocumento(doc);
 
-        // for (ItemDocumentoFiscalModel itemDocumentoFiscalModel : listaItens) {
-            
-        //     System.out.println(listaItens);
-
-        // }
-
+       
         if (listaItens.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Sem itens para essa nota!");
 
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Sem itens!");
+        } else {
+
+            return listaItens;
         }
-
-        return listaItens;
     }
 
      
