@@ -5,8 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoModel } from 'src/app/models/ProdutoModel';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { AstecaFormSelectionPopupComponent } from '../asteca-form-selection-popup/asteca-form-selection-popup.component';
 import { take } from 'rxjs';
+
+interface Item {
+  name: string;
+  description: string;
+}
 
 @Component({
   selector: 'app-asteca-form',
@@ -14,6 +18,27 @@ import { take } from 'rxjs';
   styleUrls: ['./asteca-form.component.css']
 })
 export class AstecaFormComponent implements OnInit {
+
+  items: Item[] = [
+    { name: 'Item 1', description: 'Item 1 Description' },
+    { name: 'Item 2', description: 'Item 2 Description' },
+    { name: 'Item 3', description: 'Item 3 Description' }
+  ];
+
+  selectedItem: Item | undefined;
+
+  displayModal = false;
+
+  onSelect(item: Item) {
+    this.selectedItem = item;
+    console.log(this.selectedItem);
+    
+    
+  }
+
+  showDialog() {
+    this.displayModal = true;
+  }
 
     displayDialog: boolean = true;
     produtos: ProdutoModel[] = [];
@@ -71,17 +96,9 @@ export class AstecaFormComponent implements OnInit {
     }
 
     testar() {
-      const ref = this.dialogService.open(AstecaFormSelectionPopupComponent, {
-        header: 'Select an item',
-        width: '70%',
-        contentStyle: { 'max-height': '500px', 'overflow-y': 'auto' }
-      });
+     
     
-      ref.onClose.pipe(take(1)).subscribe((selectedItem: any) => {
-        // Do something with the selected item
-        console.log(selectedItem);
-        // Now the console.log statement is inside the subscribe block, so it will work correctly.
-      });
+   
     }
     
     
