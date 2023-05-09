@@ -1,3 +1,10 @@
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+  margin-left: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .p-grid .p-field {
   margin-bottom: 1rem;
 }
@@ -31,4 +38,51 @@
 .p-button-primary {
   margin-top: 1rem;
   margin-right: 1rem;
+}
+
+.p-inputtext {
+  margin-top: 5px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: red;
+  background: #ffffff;
+  padding: 0.75rem 0.75rem;
+  border: 0.75px solid rgb(221, 221, 221);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+}
+
+label {
+  margin-top: -15px;
+  cursor: default;
+  color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.p-checkbox-label {
+  line-height: 1;
+  color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.p-button-primary[_ngcontent-olq-c372] {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.p-button {
+  margin: 0;
+  display: inline-flex;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  align-items: center;
+  vertical-align: bottom;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  margin-left: -105px;
+  margin-top: 0px;
 }

@@ -1,21 +1,29 @@
 <h1>Produto Novo <i class="fas pi pi-fw pi-plus"></i></h1>
 
 <p-dialog header="Novo Produto" [(visible)]="displayDialog">
-  <div class="form-group">
-    <label for="nomeProduto" class="label">Produto:</label>
-    <input type="text" pInput id="nomeProduto" placeholder="Guarda-roupa 3 portas" [(ngModel)]="produto.descricao">
+  <div class="p-fluid">
+    <div class="p-field p-grid">
+      <label for="nomeProduto" class="p-col-3">Produto</label>
+      <div class="p-col-9">
+        <input type="text" pInput id="nomeProduto" placeholder="Guarda-roupa 3 portas" [(ngModel)]="produto.descricao">
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="fornecedor" class="p-col-3">Fornecedor</label>
+      <div class="p-col-9">
+        <p-autoComplete [(ngModel)]="produto.fornecedor" [suggestions]="filteredFornecedors" (completeMethod)="searchFornecedors($event)" 
+          [field]="'nomeFornecedor'" [dropdown]="true" placeholder="Selecione o fornecedor"></p-autoComplete>
+      </div>
+    </div>
+
+    <div class="p-d-flex p-jc-end">
+      <p-messages [(value)]="msgs"></p-messages>
+      <button (click)="salvar()" pButton type="button" class="p-button-primary"><i class="pi pi-save"></i></button>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="fornecedor" class="label">Fornecedor:</label>
-    <p-autoComplete [(ngModel)]="produto.fornecedor" [suggestions]="filteredFornecedors" (completeMethod)="searchFornecedors($event)" 
-      [field]="'nomeFornecedor'" [dropdown]="true" placeholder="Selecione o fornecedor"></p-autoComplete>
-  </div>
-
-  <p-messages [(value)]="msgs"></p-messages>
-
-  <button (click)="salvar()" pButton type="button" label="Salvar" class="p-button-primary"></button>
 </p-dialog>
+
 
 
 
