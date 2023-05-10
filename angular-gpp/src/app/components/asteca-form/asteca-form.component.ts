@@ -7,6 +7,9 @@ import { ProdutoService } from 'src/app/services/produto.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { take } from 'rxjs';
 
+import { DocumentoFiscalModel } from 'src/app/models/DocumentoFiscalModel';
+import { DocumentoFiscalService } from 'src/app/services/doc.service';
+
 interface Item {
   name: string;
   description: string;
@@ -32,89 +35,56 @@ export class AstecaFormComponent implements OnInit {
   onSelect(item: Item) {
     this.selectedItem = item;
     console.log(this.selectedItem);
-    
-    
   }
 
   showDialog() {
     this.displayModal = true;
   }
 
-    displayDialog: boolean = true;
-    produtos: ProdutoModel[] = [];
-    filteredProdutos: ProdutoModel[] = [];
-    selectedProduto: ProdutoModel | null = null;
-  
-    ngOnInit(): void {
-      this.produtoService.list().subscribe(produtos => {
-        this.produtos = produtos;
-      });
-    }
-  
-    constructor(private dialogService: DialogService, private pecaService: PecaService, private router: Router, private route: ActivatedRoute, private produtoService: ProdutoService){}
-  
-    peca: PecaModel = {
-      numero: '',
-      codigoFabrica: '',
-      unidade: null,
-      descricao: '',
-      altura: null,
-      largura: null,
-      profundidade: null,
-      unidadeMedida: null,
-      volumes: '',
-      active: false,
-      custo: null,
-      cor: '',
-      material: '',
-      idFornecedor: 0,
-      materialFabricacao: '',
-      idPeca: 0,
-      produto: new ProdutoModel()
-    };
-  
-    public salvar(){
-  
-      this.peca.idFornecedor = this.peca.produto?.fornecedor?.idFornecedor;
-      
-      console.log("produto selecionado " + this.selectedProduto?.fornecedor.idFornecedor);
-  
-      console.log("produto selecionado " + this.peca.produto?.fornecedor?.nomeFornecedor);
-      
-      console.log("peca original " + this.peca.idFornecedor);
-      
-      this.pecaService.add(this.peca).subscribe(r => {
-        this.peca = new PecaModel();
-        
-        console.log(`funcionou. Nome: `);
-        this.router.navigateByUrl('/pecaList');
-      });
-    }
-  
-    testa(){
-      console.log(this.peca.numero);
-    }
+  displayDialog: boolean = true;
 
-    testar() {
-     
-    
-   
-    }
-    
-    
+  documentosFiscais: DocumentoFiscalModel[] = [];
 
+  ngOnInit(): void {
     
+  }
 
-    searchProdutos(event: any)  {
-      this.filteredProdutos = this.produtos.filter(produto =>
-        produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
-      );
-    }
 
-    handlePecaSelected(selectedPeca: PecaModel) {
-      console.log('Selected Peca:', selectedPeca);
-      // do something with the selected PecaModel
-    }
-  
+  listaProdutosService(){
+    this.documentoFiscalService.list().subscribe(documentosFiscais => {
+      this.documentosFiscais = documentosFiscais;
+      console.log(this.documentosFiscais);
+
+    });
+
   }
   
+  listaProdutosServicePorId(numero: string){
+    const num = parseInt(numero);
+    this.documentoFiscalService.get(num).subscribe(documentoFiscalResp => {
+      this.documentosFiscais = documentoFiscalResp;
+      console.log(this.documentosFiscais);
+      // do something with the documentoFiscal object
+    });
+
+    this.showDialog();
+  }
+  
+  numero: string = '';
+
+
+  
+  
+
+
+  constructor(
+    private dialogService: DialogService,
+    private pecaService: PecaService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private produtoService: ProdutoService,
+    private documentoFiscalService: DocumentoFiscalService
+  ) {}
+
+}
+
