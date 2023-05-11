@@ -1,6 +1,7 @@
+
 export class FornecedorModel {
   constructor(
-    public idFornecedor: number,
-    public cliente: ClienteModel
+    public idFornecedor?: number,
+    public nomeFornecedor?: String
   ) {}
 }

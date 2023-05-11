@@ -1,0 +1,50 @@
+
+h1{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+  clear: both;
+  
+}
+
+
+.label {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: black;
+  display: block;
+  float: left;
+  width: 30%;
+  padding-right: 10px;
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+input {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  float: right;
+  font-size: 1rem;
+  background: #ffffff;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  padding: 0.50rem 0.50rem;
+  width: 70%;
+  border: 0.75px solid rgb(221, 221, 221);
+  margin-left: 15px;
+  margin-top: -26px;
+  border-radius: 5px;
+}
+  
+.p-button {
+  margin-top: 25px;
+  margin-left: 160px;
+  display: inline-flex;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  align-items: center;
+  vertical-align: bottom;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}

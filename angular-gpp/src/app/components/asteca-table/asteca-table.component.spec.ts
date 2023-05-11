@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PecaComponent } from './peca.component';
+import { AstecaTableComponent } from './asteca-table.component';
 
-describe('PecaComponent', () => {
-  let component: PecaComponent;
-  let fixture: ComponentFixture<PecaComponent>;
+describe('AstecaTableComponent', () => {
+  let component: AstecaTableComponent;
+  let fixture: ComponentFixture<AstecaTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PecaComponent ]
+      declarations: [ AstecaTableComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PecaComponent);
+    fixture = TestBed.createComponent(AstecaTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

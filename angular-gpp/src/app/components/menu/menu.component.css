@@ -1,0 +1,8 @@
+.p-card {
+  display: flex;
+  justify-content: center;
+}
+
+.p-panelMenu {
+  width: 300px;
+}

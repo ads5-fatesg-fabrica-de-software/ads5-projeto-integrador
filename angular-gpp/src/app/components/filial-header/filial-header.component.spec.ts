@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PecaListComponent } from './peca-list.component';
+import { FilialHeaderComponent } from './filial-header.component';
 
-describe('PecaListComponent', () => {
-  let component: PecaListComponent;
-  let fixture: ComponentFixture<PecaListComponent>;
+describe('FilialHeaderComponent', () => {
+  let component: FilialHeaderComponent;
+  let fixture: ComponentFixture<FilialHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PecaListComponent ]
+      declarations: [ FilialHeaderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PecaListComponent);
+    fixture = TestBed.createComponent(FilialHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { PecaModel } from './models/PecaModel';
 import { LocalDataSource } from 'ng2-smart-table';
 import { NbMenuItem } from '@nebular/theme';
+import { NbMenuService } from '@nebular/theme';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -19,23 +23,22 @@ export class AppComponent {
       expanded: true,
       children: [
         {
-          title: 'Login',
-          link: 'login'
-        },
-        {
           title: 'Peca',
           link: 'pecaList'
         },
         {
-          title: 'Clientes',
-          link: 'clienteList'
+          title: 'Teste',
+          link: 'teste'
         },
+        {
+          title: 'login',
+          link: 'login'
+        },
+        
         
       ],
     },
-    {
-      title: 'Relatórios',
-    },
+    
   ];  
 
 

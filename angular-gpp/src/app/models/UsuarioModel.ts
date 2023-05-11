@@ -3,7 +3,7 @@ import { PefllUsuarioModel } from './pefll-usuario.model';
 
 export class UsuarioModel {
   id: number;
-  uid: number;
+  ui: number;
   nome: string;
   email: string;
   idFilial: number;

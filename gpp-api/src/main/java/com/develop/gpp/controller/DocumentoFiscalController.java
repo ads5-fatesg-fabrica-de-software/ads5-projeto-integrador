@@ -78,12 +78,12 @@ public class DocumentoFiscalController {
 
         // item2
         //item2.setDocumentoFiscal(doc);
-        item2.setIdProduto(prod.get(3).getIdProduto());
-        item2.setQtde(qtd2);
-        item2.setValorVenda(valor2);
-        item2.valorTotal(qtd2, valor2);
-        // item2.setDocumentoFiscal(doc);
-        item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
+        // item2.setIdProduto(prod.get(3).getIdProduto());
+        // item2.setQtde(qtd2);
+        // item2.setValorVenda(valor2);
+        // item2.valorTotal(qtd2, valor2);
+        // // item2.setDocumentoFiscal(doc);
+        // item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
         // lista de itens
         List<ItemDocumentoFiscalModel> listaItens = new ArrayList<>();

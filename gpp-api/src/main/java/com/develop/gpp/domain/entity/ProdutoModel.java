@@ -36,5 +36,6 @@ public class ProdutoModel {
     @ManyToOne
     private FornecedorModel fornecedor;
 
-   
 }
+
+

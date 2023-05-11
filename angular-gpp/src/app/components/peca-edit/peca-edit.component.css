@@ -1,0 +1,18 @@
+.form-group {
+    clear: both;
+    margin-bottom: 10px;
+  }
+  
+  .label {
+    display: block;
+    float: left;
+    width: 30%;
+    padding-right: 10px;
+    text-align: right;
+  }
+  
+  .input {
+    float: right;
+    width: 70%;
+  }
+  
