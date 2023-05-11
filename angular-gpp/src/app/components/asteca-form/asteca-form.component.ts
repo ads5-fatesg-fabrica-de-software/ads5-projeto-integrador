@@ -45,32 +45,58 @@ export class AstecaFormComponent implements OnInit {
 
   documentosFiscais: DocumentoFiscalModel[] = [];
 
+  produto: ProdutoModel = new ProdutoModel();
+
+  searchText = '';
+
   ngOnInit(): void {
-    
+    this.filterDocumentosFiscais();
   }
 
+  onSearchTextChange() {
+    this.filterDocumentosFiscais();
+  }
 
-  listaProdutosService(){
-    this.documentoFiscalService.list().subscribe(documentosFiscais => {
-      this.documentosFiscais = documentosFiscais;
-      console.log(this.documentosFiscais);
-
+  filterDocumentosFiscais() {
+    const documentosFiscaisCopy = [...this.documentosFiscais];
+    this.documentosFiscais = documentosFiscaisCopy.filter(documentoFiscal => {
+      const searchTextLower = this.searchText.toLowerCase();
+      return (
+        documentoFiscal.idDocumentoFiscal?.toString().toLowerCase().includes(searchTextLower) ||
+        documentoFiscal.idFilialSaida?.toString().toLowerCase().includes(searchTextLower) ||
+        documentoFiscal.cpfCnpj?.toLowerCase().includes(searchTextLower) ||
+        documentoFiscal.numDocFiscal?.toString().toLowerCase().includes(searchTextLower) ||
+        documentoFiscal.serieDocFiscal?.toLowerCase().includes(searchTextLower) ||
+        documentoFiscal.descricao?.toLowerCase().includes(searchTextLower) ||
+        documentoFiscal.fornecedor?.toLowerCase().includes(searchTextLower)
+      );
     });
-
   }
   
+  
+  
+  
   listaProdutosServicePorId(numero: string){
+    this.documentosFiscais = [];
+    this.qtdNotasPorProdutoSelecionado = 0;
+
+    console.log(numero);
     const num = parseInt(numero);
     this.documentoFiscalService.get(num).subscribe(documentoFiscalResp => {
       this.documentosFiscais = documentoFiscalResp;
-      console.log(this.documentosFiscais);
-      // do something with the documentoFiscal object
+      this.qtdNotasPorProdutoSelecionado = this.documentosFiscais.length;
+      console.log(this.documentosFiscais)
+    console.log(this.documentosFiscais.length)
+      
     });
 
     this.showDialog();
+
+    
   }
   
   numero: string = '';
+  qtdNotasPorProdutoSelecionado: number = 0;
 
 
   

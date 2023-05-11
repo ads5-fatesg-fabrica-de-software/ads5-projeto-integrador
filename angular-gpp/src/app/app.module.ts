@@ -43,7 +43,7 @@ import { AstecaFormComponent } from './components/asteca-form/asteca-form.compon
 import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ListboxModule } from 'primeng/listbox';
-
+import { FieldsetModule } from 'primeng/fieldset';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +66,8 @@ import { ListboxModule } from 'primeng/listbox';
     AstecaTableComponent
   ],
   imports: [
+    InputTextModule,
+    FieldsetModule,
     ListboxModule,
     MessagesModule,
     MessageModule,

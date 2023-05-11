@@ -7,11 +7,20 @@
         <div class="p-field">
           <label for="numero" class="p-d-block">ID Produto:</label>
           <div class="p-inputgroup">
-            <input type="text" id="numero" placeholder="5654" class="p-inputtext" [(ngModel)]="numero">
-            <button pButton type="button" icon="pi pi-angle-right" (click)="listaProdutosServicePorId(numero)"></button>
+            <input
+              type="text"
+              id="numero"
+              placeholder="5654"
+              class="p-inputtext"
+              [(ngModel)]="numero"
+            />
+            <button
+              pButton
+              type="button"
+              icon="pi pi-angle-right"
+              (click)="listaProdutosServicePorId(numero)"
+            ></button>
           </div>
-          
-          
         </div>
 
         <div class="p-field">
@@ -20,6 +29,7 @@
             type="text"
             id="codigoFabrica"
             placeholder="Guarda-roupa 3 portas"
+            [(ngModel)]="produto.descricao"
             class="p-inputtext"
           />
         </div>
@@ -59,62 +69,69 @@
             class="p-inputtext"
           />
         </div>
-        <div class="p-field">
-          <label for="profundidade" class="p-d-block">Produto no Livro:</label>
-          <input
-            type="text"
-            id="profundidade"
-            placeholder="Sim/Não"
-            class="p-inputtext"
-          />
-        </div>
+        
+        
+          
       </div>
     </div>
   </div>
 
   <p-dialog
-    header="Selectable List Modal"
+    header="Produto {{ numero }}  Notas Fiscais {{ qtdNotasPorProdutoSelecionado }} "
     [(visible)]="displayModal"
     [modal]="true"
   >
-    <p-table
-      [value]="documentosFiscais"
-      [selectionMode]="'single'"
-      [(selection)]="selectedItem"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th>ID Documento Fiscal</th>
-          <th>ID Filial Saida</th>
-          <th>CPF/CNPJ</th>
-          <th>Numero do Documento Fiscal</th>
-          <th>Serie do Documento Fiscal</th>
-          <th>Data de Emissao</th>
-          <th>Descricao</th>
-          <th>Fornecedor</th>
-          <th>Selecionar</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-documentosFiscais>
-        <tr>
-          <td>{{ documentosFiscais.idDocumentoFiscal }}</td>
-          <td>{{ documentosFiscais.idFilialSaida }}</td>
-          <td>{{ documentosFiscais.cpfCnpj }}</td>
-          <td>{{ documentosFiscais.numDocFiscal }}</td>
-          <td>{{ documentosFiscais.serieDocFiscal }}</td>
-          <td>{{ documentosFiscais.dataEmissao }}</td>
-          <td>{{ documentosFiscais.descricao }}</td>
-          <td>{{ documentosFiscais.fornecedor }}</td>
-          <td>
-            <button
-              pButton
-              label="Select"
-              (click)="onSelect(documentosFiscais)"
-            ></button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <ng-container *ngIf="documentosFiscais.length > 0; else noNotas">
+
+        <div class="p-field">
+            <label for="search" class="p-d-block">Search:</label>
+            <input type="text" id="search" class="p-inputtext" [(ngModel)]="searchText" (input)="onSearchTextChange()" />
+          </div>
+          
+          
+
+      <p-table
+        [value]="documentosFiscais"
+        [selectionMode]="'single'"
+        [(selection)]="selectedItem"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID Documento Fiscal</th>
+            <th>ID Filial Saida</th>
+            <th>CPF/CNPJ</th>
+            <th>Numero do Documento Fiscal</th>
+            <th>Serie do Documento Fiscal</th>
+            <th>Data de Emissao</th>
+            <th>Descricao</th>
+            <th>Fornecedor</th>
+            <th>Selecionar</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-documentosFiscais>
+          <tr>
+            <td>{{ documentosFiscais.idDocumentoFiscal }}</td>
+            <td>{{ documentosFiscais.idFilialSaida }}</td>
+            <td>{{ documentosFiscais.cpfCnpj }}</td>
+            <td>{{ documentosFiscais.numDocFiscal }}</td>
+            <td>{{ documentosFiscais.serieDocFiscal }}</td>
+            <td>{{ documentosFiscais.dataEmissao }}</td>
+            <td>{{ documentosFiscais.descricao }}</td>
+            <td>{{ documentosFiscais.fornecedor }}</td>
+            <td>
+              <button
+                pButton
+                label="Select"
+                (click)="onSelect(documentosFiscais)"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </ng-container>
+    <ng-template #noNotas>
+      <div class="no-notas-message">Sem notas para esse produto</div>
+    </ng-template>
     <button pButton type="button" (click)="displayModal = false">Close</button>
   </p-dialog>
 
