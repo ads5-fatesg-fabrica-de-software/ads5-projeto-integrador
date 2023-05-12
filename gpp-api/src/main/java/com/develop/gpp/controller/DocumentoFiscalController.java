@@ -88,7 +88,7 @@ public class DocumentoFiscalController {
         // lista de itens
         List<ItemDocumentoFiscalModel> listaItens = new ArrayList<>();
         listaItens.add(item);
-        listaItens.add(item2);
+        //listaItens.add(item2);
 
         // documento
         doc.setCliente(cli.get(0));
@@ -98,7 +98,7 @@ public class DocumentoFiscalController {
         doc.setItens(listaItens);
         doc.setSerieDocFiscal("10");
         doc.setIdFilialSaida(fi.get(0).getIdFilial());
-        doc.setDescricao(prod.get(0).getDescricao());
+        doc.setDescricao(prod.get(1).getDescricao());
 
         documentoFiscalRepository.save(doc);
         docFiscalRepository.saveAll(listaItens);
