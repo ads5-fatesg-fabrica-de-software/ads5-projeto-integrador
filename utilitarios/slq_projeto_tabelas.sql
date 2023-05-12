@@ -1,7 +1,5 @@
 --fornecedor
 
-
-
 TRUNCATE TABLE fornecedor CASCADE;
 
 INSERT INTO fornecedor (id_fornecedor, nome_fornecedor)
@@ -83,4 +81,65 @@ ON CONFLICT DO NOTHING;
 SELECT id_filial, numero_filial, sigla
 FROM public.filial;
   
+--****************************************************************************************************************************************************************************************************************************
 
+TRUNCATE TABLE asteca_motivo CASCADE;
+
+INSERT INTO public.asteca_motivo (id_asteca_motivo, denominacao, data_criacao, data_alteracao)
+SELECT
+  ROW_NUMBER() OVER () + 0 AS id_asteca_motivo,
+  t.denominacao,
+  CASE
+    WHEN c.data_alteracao IS NULL THEN NOW() - (random() * INTERVAL '365 days')
+    ELSE NOW() - (random() * (NOW() - c.data_alteracao))
+  END AS data_criacao,
+  NOW() - (random() * INTERVAL '365 days') AS data_alteracao
+FROM (
+  VALUES
+    ('MERC. DANIFICADA EM USO'),
+    ('MAU USO CONSUMIDOR'),
+    ('AVARIA NA MONTAGEM'),
+    ('MERCADORIA NÃO FUNCIONA'),
+    ('MERCADORIA S/CONDIÇOES DE VENDA'),
+    ('CARAC. NÃO ESPECIFICADA PELO VENDEDOR'),
+    ('MERC. DANIFICADA POR DEFICIÊNCIA DA EMB. / FALTA ACESSORIOS'),
+    ('DEFEITO DE FABRICAÇÃO'),
+    ('MERC.  NÃO FUNCIONA CD/DVD'),
+    ('DEFEITO NO AUDIO'),
+    ('FALTA ACESSORIO/PEÇA NA EMBALAGEM'),
+    ('PRODUTO CONSERTADO'),
+    ('LOGISTICA'),
+    ('MOTIVO CRIADO PELO SISMA'),
+    ('PEÇA AVARIADA'),
+    ('PRODUTO MOSTRUARIO'),
+    ('PEÇA EM SEPARAÇAO'),
+    ('MAU USO CONSUMIDOR'),
+    ('MONTAGEM E DESMONTAGEM PRODUTOS/ESTOFADOS/PROD.SEM AVARIA'),
+    ('VISTORIA'),
+    ('PEÇAS PARA PRODUTO MOSTRUARIO'),
+    ('PRODUTO DESMONTADO LOJA'),
+    ('DESCOSTURADO'),
+    ('PASSAR ESTOFADO PRA DENTRO RESIDENCIA'),
+    ('PORTA COM VIDRO QUEBRADO'),
+    ('TROCA VOLUME'),
+    ('PRODUTO DESMONTADO'),
+    ('PRODUTO ENTREGUE NA COR ERRADA'),
+    ('ENTREGUE FALTANDO VOLUME'),
+    ('PRODUTO MONTADO LOJA'),
+    ('REPARO'),
+    ('PRODUTO SEM DEFEITO')
+) AS t(denominacao)
+LEFT JOIN public.asteca_motivo c ON c.denominacao = t.denominacao
+ON CONFLICT DO NOTHING;
+
+
+SELECT id_asteca_motivo, data_alteracao, data_criacao, denominacao
+FROM public.asteca_motivo;
+  
+--****************************************************************************************************************************************************************************************************************************
+
+SELECT *
+FROM documento_fiscal df ;
+
+SELECT *
+FROM item_documento_fiscal idf ;
