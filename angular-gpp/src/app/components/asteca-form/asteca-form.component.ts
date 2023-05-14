@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { AstecaMotivoModel } from './../../models/AstecaMotivoModel';
 import { AstecaMotivoService } from './../../services/astecamotivo.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,8 @@ interface Item {
 @Component({
   selector: 'app-asteca-form',
   templateUrl: './asteca-form.component.html',
-  styleUrls: ['./asteca-form.component.css']
+  styleUrls: ['./asteca-form.component.css'],
+  providers: [DatePipe]
 })
 export class AstecaFormComponent implements OnInit {
 
@@ -30,15 +32,24 @@ export class AstecaFormComponent implements OnInit {
     { name: 'Item 3', description: 'Item 3 Description' }
   ];
 
-  selectedItem: Item | undefined;
+  selectedItem: DocumentoFiscalModel = new DocumentoFiscalModel;
 
   displayModal = false;
-
+  displaySelectedModal = false;
  
 
-  onSelect(item: Item) {
+  onSelect(item: DocumentoFiscalModel) {
     this.selectedItem = item;
-    console.log(this.selectedItem);
+    
+    
+    this.openSelectedModal();
+  }
+
+
+  openSelectedModal() {
+    this.displaySelectedModal = true;
+    console.log(this.selectedItem.itens);
+    
   }
 
   showDialog() {
@@ -149,6 +160,7 @@ export class AstecaFormComponent implements OnInit {
 
 
   constructor(
+    public datePipe: DatePipe,
     private dialogService: DialogService,
     private pecaService: PecaService,
     private router: Router,
