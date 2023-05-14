@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
@@ -62,14 +63,20 @@ public class DocumentoFiscalController {
         List<ProdutoModel> prod = produtoRepository.findAll();
         List<ClienteModel> cli = clienteRepository.findAll();
         List<FilialModel> fi = filialRepository.findAll();
-        Double valor1 = 450.99;
-        Integer qtd1 = 2;
-        Double valor2 = 15.400;
-        Integer qtd2 = 1;
 
-        // itemDoc
+        // populando valores nos itens
+        Random random = new Random();
+        Double valor1 = 100.0 + (400.0 - 100.0) * random.nextDouble();
+        Integer qtd1 = random.nextInt(10) + 1; // random number between 1 and 10
+
+        Double valor2 = 10.0 + (50.0 - 10.0) * random.nextDouble();
+        Integer qtd2 = random.nextInt(10) + 1; // random number between 1 and 10
+
+        Integer id1a10Aleatorio = random.nextInt(10) + 1; // random number between 1 and 10
+
+        // item 1
         //item.setDocumentoFiscal(doc);
-        item.setProduto(prod.get(2));
+        item.setProduto(prod.get(id1a10Aleatorio));
         item.setQtde(qtd1);
         item.setValorVenda(valor1);
         item.valorTotal(qtd1, valor1);
@@ -77,28 +84,27 @@ public class DocumentoFiscalController {
         item.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
         // item2
-        //item2.setDocumentoFiscal(doc);
-        // item2.setIdProduto(prod.get(3).getIdProduto());
-        // item2.setQtde(qtd2);
-        // item2.setValorVenda(valor2);
-        // item2.valorTotal(qtd2, valor2);
-        // // item2.setDocumentoFiscal(doc);
-        // item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
+        item2.setProduto(prod.get(id1a10Aleatorio));
+        item2.setQtde(qtd2);
+        item2.setValorVenda(valor2);
+        item2.valorTotal(qtd2, valor2);
+        // item.setDocumentoFiscal(doc);
+        item2.setIdItemDocFiscal(doc.getIdDocumentoFiscal());
 
         // lista de itens
         List<ItemDocumentoFiscalModel> listaItens = new ArrayList<>();
         listaItens.add(item);
-        //listaItens.add(item2);
+        listaItens.add(item2);
 
         // documento
-        doc.setCliente(cli.get(0));
-        doc.setCpfCnpj(cli.get(0).getCpfCnpj());
+        doc.setCliente(cli.get(id1a10Aleatorio));
+        doc.setCpfCnpj(cli.get(id1a10Aleatorio).getCpfCnpj());
         doc.setDataEmissao(LocalDateTime.now());
-        doc.setFornecedor(prod.get(0).getFornecedor().getNomeFornecedor());
+        doc.setFornecedor(prod.get(id1a10Aleatorio).getFornecedor().getNomeFornecedor());
         doc.setItens(listaItens);
         doc.setSerieDocFiscal("10");
-        doc.setIdFilialSaida(fi.get(0).getIdFilial());
-        doc.setDescricao(prod.get(1).getDescricao());
+        doc.setIdFilialSaida(fi.get(id1a10Aleatorio).getIdFilial());
+        doc.setDescricao(prod.get(id1a10Aleatorio).getDescricao());
 
         documentoFiscalRepository.save(doc);
         docFiscalRepository.saveAll(listaItens);

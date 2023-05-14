@@ -64,17 +64,26 @@ export class AstecaFormComponent implements OnInit {
     this.listAstecaMotivo();
     this.testeListResp();
   }
+  
+  calculateTotalValorVenda(): number {
+    return this.selectedItem?.itens?.reduce((total, item) => total + (item.valorVenda || 0), 0) || 0;
+  }
+  
+  
+  
 
   selecionarNota(item: DocumentoFiscalModel) {
     console.log(item);
     this.selectedItem = item;
+    
     this.displayModal = false;
 
   }
 
   verItensNota(item: DocumentoFiscalModel) {
     this.selectedItem = item;
-
+    console.log(this.selectedItem.itens);
+    
     this.openSelectedModal();
   }
 
