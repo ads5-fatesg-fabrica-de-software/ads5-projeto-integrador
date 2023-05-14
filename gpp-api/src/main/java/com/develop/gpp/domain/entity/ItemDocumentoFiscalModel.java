@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -31,7 +32,9 @@ public class ItemDocumentoFiscalModel {
     // @ManyToOne
     // private DocumentoFiscalModel documentoFiscal;
 
-    private Integer idProduto;
+    @OneToOne
+    @JoinColumn(name = "id_produto")
+    private ProdutoModel produto;
 
     private Integer qtde;
 
