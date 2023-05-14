@@ -48,6 +48,10 @@ export class AstecaFormComponent implements OnInit {
 
   selectedMotivo: AstecaMotivoModel | undefined;
 
+  selectedPecas: PecaModel[] = [];
+  pecasAvailability: boolean[] = [];
+  
+
   constructor(
     public datePipe: DatePipe,
     private dialogService: DialogService,
@@ -65,6 +69,17 @@ export class AstecaFormComponent implements OnInit {
     this.testeListResp();
   }
 
+  displayPecasModal: boolean = false;
+
+selecionarPeca() {
+  this.selectedPecas = []; // Clear the selected pecas array
+  this.pecasAvailability = []; // Clear the pecas availability array
+  // Get the pecas for the selected product using this.selectedProductId
+  // Assign the retrieved pecas to this.selectedPecas
+  // Determine the availability of each peca and assign it to this.pecasAvailability
+  this.displayPecasModal = true; // Open the modal
+}
+
   calculateValorTotal(item: any): number {
     return (item?.qtde || 0) * (item?.valorVenda || 0);
   }
@@ -74,13 +89,8 @@ export class AstecaFormComponent implements OnInit {
     return this.selectedItem?.itens?.reduce((total, item) => total + ((item.qtde ?? 0) * (item.valorVenda ?? 0)), 0) ?? 0;
   }
   
-  
-  
-  
-  
-
   selecionarNota(item: DocumentoFiscalModel) {
-    console.log(item);
+    // console.log(item);
     this.selectedItem = item;
     
     this.displayModal = false;
@@ -89,7 +99,7 @@ export class AstecaFormComponent implements OnInit {
 
   verItensNota(item: DocumentoFiscalModel) {
     this.selectedItem = item;
-    console.log(this.selectedItem.itens);
+    // console.log(this.selectedItem.itens);
     
     this.openSelectedModal();
   }

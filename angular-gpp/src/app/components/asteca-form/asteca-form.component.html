@@ -130,9 +130,13 @@
 </p-dialog>
 
 
-  <!-- <button pButton type="button" (click)="showDialog()">Show Dialog</button> -->
+  <!-- notal fiscal -->
 
-  <h1>Nota fiscal <i class="fas pi pi-fw pi-plus"></i></h1>
+  <h1 class="p-d-flex p-ai-center">
+    Nota fiscal
+    <i class="pi pi-fw pi-plus p-ml-2"></i>
+  </h1>
+  
   <div class="p-col-12">
     <div class="p-card">
       <div class="p-card-body">
@@ -169,7 +173,78 @@
     </div>
   </div>
   
-  
+ <!-- Pecas -->
+
+ <div class="p-d-flex p-jc-between p-ai-center">
+  <h1 class="p-m-0">Escolhas as peças para atendimento</h1>
+  <button pButton type="button" icon="pi pi-plus" (click)="selecionarPeca()" class="p-button-secondary"></button>
+</div>
+
+ <div class="p-col-12">
+   <div class="p-card">
+     <div class="p-card-body">
+       
+       <!-- Add your Nota Fiscal form fields here -->
+       <p-table [value]="selectedItem ? [selectedItem] : []">
+         <ng-template pTemplate="header">
+           <tr>
+             <th>ID</th>
+             <th>Nome</th>
+             <th>Número das Peças</th>
+             <th>Quantidade</th>
+             <th>Valor R$</th>
+             <th>Subtotal R$</th>
+             <th>Motivo</th>
+             <th>Ações</th>
+             <th>Endereço</th>
+             <th>Saldo</th>
+           </tr>
+         </ng-template>
+         <ng-template pTemplate="body" let-selectedItem>
+           <tr>
+             <td>{{ selectedItem?.numDocFiscal }}</td>
+             <td>{{ selectedItem?.serieDocFiscal }}</td>
+             <td>
+               {{
+                 datePipe.transform(
+                   selectedItem?.dataEmissao,
+                   "dd/MM/yyyy HH:mm"
+                 )
+               }}
+             </td>
+             <td>{{ selectedItem?.descricao }}</td>
+             <td>{{ selectedItem?.fornecedor }}</td>
+           </tr>
+         </ng-template>
+       </p-table>
+     </div>
+   </div>
+ </div>
+
+ <!-- Pecas Modal -->
+<p-dialog [(visible)]="displayPecasModal" [modal]="true">
+  <h3>{{ selectedItem }}</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Check</th>
+        <th>ID</th>
+        <th>Nome</th>
+        <!-- Add more columns for other peca properties -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let peca of selectedPecas; let i = index">
+        <td>
+          <p-checkbox [(ngModel)]="pecasAvailability[i]"></p-checkbox>
+        </td>
+        <td>{{ peca.idPeca }}</td>
+        <td>{{ peca.descricao }}</td>
+        <!-- Add more columns for other peca properties -->
+      </tr>
+    </tbody>
+  </table>
+</p-dialog>
 
   <div class="p-col-12"></div>
 </div>

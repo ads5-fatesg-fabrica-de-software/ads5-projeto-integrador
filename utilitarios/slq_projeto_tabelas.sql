@@ -189,3 +189,59 @@ TRUNCATE TABLE documento_fiscal CASCADE;
 
 SELECT *
 FROM documento_fiscal df ;
+
+--****************************************************************************************************************************************************************************************************************************
+
+TRUNCATE TABLE pecas_estoque CASCADE;
+
+INSERT INTO public.pecas_estoque (id_peca_estoque, endereco, fornecedor, quantidade_ideal, quantidade_maxima, quantidade_minima, saldo_disponivel, saldo_reservado, id_peca)
+VALUES
+    (1, 'Endereco 1', 'Fornecedor 1', 10, 20, 5, 15, 5, 1),
+    (2, 'Endereco 2', 'Fornecedor 2', 12, 25, 8, 18, 6, 2),
+    (3, 'Endereco 3', 'Fornecedor 3', 15, 30, 10, 20, 7, 3),
+    (4, 'Endereco 4', 'Fornecedor 4', 8, 18, 3, 13, 3, 4),
+    (5, 'Endereco 5', 'Fornecedor 5', 20, 40, 15, 25, 10, 5),
+    (6, 'Endereco 6', 'Fornecedor 6', 10, 22, 6, 16, 4, 6),
+    (7, 'Endereco 7', 'Fornecedor 7', 14, 28, 9, 19, 5, 7),
+    (8, 'Endereco 8', 'Fornecedor 8', 18, 35, 12, 22, 8, 8),
+    (9, 'Endereco 9', 'Fornecedor 9', 13, 26, 7, 17, 6, 9),
+    (10, 'Endereco 10', 'Fornecedor 10', 16, 32, 11, 21, 9, 10)
+ON CONFLICT (id_peca_estoque) DO NOTHING;
+
+SELECT id_peca_estoque, endereco, fornecedor, quantidade_ideal, quantidade_maxima, quantidade_minima, saldo_disponivel, saldo_reservado, id_peca
+FROM public.pecas_estoque;
+
+
+--****************************************************************************************************************************************************************************************************************************
+
+/*
+
+SELECT *
+FROM item_documento_fiscal idf ;
+
+SELECT *
+FROM item_documento_fiscal idf ;
+
+SELECT *
+FROM documento_fiscal df ;
+
+SELECT *
+FROM produto;
+
+select
+	*
+from
+	documento_fiscal df
+inner join item_documento_fiscal idf on
+	idf.id_item_doc_fiscal = df.id_documento_fiscal
+
+	
+select
+	*
+from
+	documento_fiscal df
+inner join item_documento_fiscal idf on
+	idf.item_doc_id = df.id_documento_fiscal
+	
+	
+SELECT * FROM documento_fiscal df INNER JOIN item_documento_fiscal idf ON idf.item_doc_id = df.id_documento_fiscal INNER JOIN produto p ON idf.id_produto = p.id_produto WHERE p.id_produto = :prod

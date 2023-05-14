@@ -59,7 +59,7 @@ public class DocumentoFiscalController {
 
 
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 0; i++) {
 
             // populando valores nos itens
             Random random = new Random();
@@ -107,7 +107,8 @@ public class DocumentoFiscalController {
             doc.setDataEmissao(LocalDateTime.now());
             doc.setFornecedor(prod.get((random.nextInt(8) + 1)).getFornecedor().getNomeFornecedor());
             doc.setItens(listaItens);
-            doc.setSerieDocFiscal("10");
+            doc.setSerieDocFiscal(Integer.toString(random.nextInt(8) + 1));
+            doc.setNumDocFiscal((random.nextInt(8) + 1));
             doc.setIdFilialSaida(fi.get((random.nextInt(8) + 1)).getIdFilial());
             doc.setDescricao(prod.get((random.nextInt(8) + 1)).getDescricao());
 
