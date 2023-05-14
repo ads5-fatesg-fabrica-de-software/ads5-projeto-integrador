@@ -7,97 +7,47 @@
         <div class="p-field">
           <label for="numero" class="p-d-block">ID Produto:</label>
           <div class="p-inputgroup">
-            <input
-              type="text"
-              id="numero"
-              placeholder="5654"
-              class="p-inputtext"
-              [(ngModel)]="numero"
-            />
-            <button
-              pButton
-              type="button"
-              icon="pi pi-angle-right"
-              (click)="listaProdutosServicePorId(numero)"
-            ></button>
+            <input type="text" id="numero" placeholder="5654" class="p-inputtext" [(ngModel)]="numero" />
+            <button pButton type="button" icon="pi pi-angle-right" (click)="listaProdutosServicePorId(numero)"></button>
           </div>
         </div>
 
         <div class="p-field">
           <label for="codigoFabrica" class="p-d-block">Produto:</label>
-          <input
-            type="text"
-            id="codigoFabrica"
-            placeholder="Guarda-roupa 3 portas"
-            [(ngModel)]="produto.descricao"
-            class="p-inputtext"
-          />
+          <input type="text" id="codigoFabrica" placeholder="Guarda-roupa 3 portas" [(ngModel)]="produto.descricao"
+            class="p-inputtext" />
         </div>
         <div class="p-field">
           <label for="Motivo" class="p-d-block">Motivo</label>
-          <p-autoComplete
-            [(ngModel)]="selectedMotivo"
-            [suggestions]="filteredAstecaMotivos"
-            (completeMethod)="pesquiseMotivos($event)"
-            field="denominacao"
-            [dropdown]="true"
-            placeholder="Selecione o motivo"
-          ></p-autoComplete>
+          <p-autoComplete [(ngModel)]="selectedMotivo" [suggestions]="filteredAstecaMotivos"
+            (completeMethod)="pesquiseMotivos($event)" field="denominacao" [dropdown]="true"
+            placeholder="Selecione o motivo"></p-autoComplete>
         </div>
         <div class="p-field">
           <label for="descricao" class="p-d-block">Custo:</label>
-          <input
-            type="text"
-            id="descricao"
-            placeholder="550,00"
-            class="p-inputtext"
-          />
+          <input type="text" id="descricao" placeholder="550,00" class="p-inputtext" />
         </div>
         <div class="p-field">
           <label for="altura" class="p-d-block">Atendimento:</label>
-          <input
-            type="text"
-            id="altura"
-            placeholder="Vistoria"
-            class="p-inputtext"
-          />
+          <input type="text" id="altura" placeholder="Vistoria" class="p-inputtext" />
         </div>
         <div class="p-field">
           <label for="largura" class="p-d-block">Tipo:</label>
-          <input
-            type="text"
-            id="largura"
-            placeholder="Estoque"
-            class="p-inputtext"
-          />
+          <input type="text" id="largura" placeholder="Estoque" class="p-inputtext" />
         </div>
       </div>
     </div>
   </div>
 
-  <p-dialog
-    header="Produto {{ numero }}  Notas Fiscais {{
+  <p-dialog header="Produto {{ numero }}  Notas Fiscais {{
       qtdNotasPorProdutoSelecionado
-    }} "
-    [(visible)]="displayModal"
-    [modal]="true"
-  >
+    }} " [(visible)]="displayModal" [modal]="true">
     <div class="p-field">
       <label for="search" class="p-d-block">Search:</label>
-      <input
-        type="text"
-        id="search"
-        class="p-inputtext"
-        [(ngModel)]="searchText"
-        (input)="onSearchTextChange()"
-      />
+      <input type="text" id="search" class="p-inputtext" [(ngModel)]="searchText" (input)="onSearchTextChange()" />
     </div>
 
-    <p-table
-      [value]="documentosFiscais"
-      [selectionMode]="'single'"
-      [(selection)]="selectedItem"
-    >
+    <p-table [value]="documentosFiscais" [selectionMode]="'single'" [(selection)]="selectedItem" class="centered-table">
       <ng-template pTemplate="header">
         <tr>
           <th>ID Documento Fiscal</th>
@@ -112,7 +62,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-documentosFiscais>
-        <tr>
+        <tr (click)="selecionarNota(documentosFiscais)">
           <td>{{ documentosFiscais.idDocumentoFiscal }}</td>
           <td>{{ documentosFiscais.idFilialSaida }}</td>
           <td>{{ documentosFiscais.cpfCnpj }}</td>
@@ -129,52 +79,39 @@
           <td>{{ documentosFiscais.descricao }}</td>
           <td>{{ documentosFiscais.fornecedor }}</td>
           <td>
-            <button
-              pButton
-              label="Select"
-              (click)="onSelect(documentosFiscais)"
-            ></button>
+            <button pButton icon="pi pi-eye" class="button-spacing" (click)="verItensNota(documentosFiscais); $event.stopPropagation();"></button>
           </td>
         </tr>
       </ng-template>
+      
     </p-table>
   </p-dialog>
   <!-- Selected documento fiscal modal -->
-  <p-dialog
-    *ngIf="displaySelectedModal"
-    header="Itens da Nota Fiscal"
-    [(visible)]="displaySelectedModal"
-    [modal]="true"
-  >
-    <div class="p-grid p-dir-col">
-      <div class="p-col-12">
-        <table class="p-table p-component">
-          <thead>
-            <tr>
-              <th>ID Item Doc Fiscal</th>
-              <th>ID Produto</th>
-              <th>Quantidade</th>
-              <th>Valor Venda</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ng-container *ngIf="selectedItem?.itens">
-              <tr *ngFor="let item of selectedItem?.itens">
-                <td>{{ item?.idItemDocFiscal }}</td>
-                <td>{{ item?.idProduto }}</td>
-                <td>{{ item?.qtde }}</td>
-                <td>{{ item?.valorVenda }}</td>
-              </tr>
-            </ng-container>
-            <tr
-              *ngIf="!selectedItem?.itens || selectedItem?.itens?.length === 0"
-            >
-              <td colspan="4">No items available.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  <p-dialog *ngIf="displaySelectedModal" header="Itens da Nota Fiscal" [(visible)]="displaySelectedModal"
+    [modal]="true">
+    <p-table [value]="selectedItem?.itens || []" class="centered-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID Item Doc Fiscal</th>
+          <th>ID Produto</th>
+          <th>Quantidade</th>
+          <th>Valor Venda</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{ item?.idItemDocFiscal }}</td>
+          <td>{{ item?.idProduto }}</td>
+          <td>{{ item?.qtde }}</td>
+          <td>{{ item?.valorVenda }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">No items available.</td>
+        </tr>
+      </ng-template>
+    </p-table>
 
     <button pButton type="button" (click)="displaySelectedModal = false">
       Close
@@ -183,15 +120,44 @@
 
   <!-- <button pButton type="button" (click)="showDialog()">Show Dialog</button> -->
 
+  <h1>Nota fiscal <i class="fas pi pi-fw pi-plus"></i></h1>
   <div class="p-col-12">
     <div class="p-card">
       <div class="p-card-body">
-        <h1>Nota fiscal <i class="fas pi pi-fw pi-plus"></i></h1>
-
+        
         <!-- Add your Nota Fiscal form fields here -->
+        <p-table [value]="selectedItem ? [selectedItem] : []">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Numero do Documento Fiscal</th>
+              <th>Serie do Documento Fiscal</th>
+              <th>Data de Emissao</th>
+              <th>Descricao</th>
+              <th>Fornecedor</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-selectedItem>
+            <tr>
+              <td>{{ selectedItem?.numDocFiscal }}</td>
+              <td>{{ selectedItem?.serieDocFiscal }}</td>
+              <td>
+                {{
+                  datePipe.transform(
+                    selectedItem?.dataEmissao,
+                    "dd/MM/yyyy HH:mm"
+                  )
+                }}
+              </td>
+              <td>{{ selectedItem?.descricao }}</td>
+              <td>{{ selectedItem?.fornecedor }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
     </div>
   </div>
+  
+  
 
   <div class="p-col-12"></div>
 </div>
