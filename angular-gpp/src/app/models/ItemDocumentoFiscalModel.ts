@@ -6,4 +6,5 @@ export class ItemDocumentoFiscalModel {
   qtde?: number = 0;
   valorVenda?: number = 0;
   valorTotal?: number = 0;
+
 }
