@@ -1,3 +1,5 @@
+import { AstecaMotivoModel } from './../../models/AstecaMotivoModel';
+import { AstecaMotivoService } from './../../services/astecamotivo.service';
 import { Component, OnInit } from '@angular/core';
 import { PecaModel } from 'src/app/models/PecaModel';
 import { PecaService } from '../../services/peca.service';
@@ -32,6 +34,8 @@ export class AstecaFormComponent implements OnInit {
 
   displayModal = false;
 
+ 
+
   onSelect(item: Item) {
     this.selectedItem = item;
     console.log(this.selectedItem);
@@ -47,10 +51,51 @@ export class AstecaFormComponent implements OnInit {
 
   produto: ProdutoModel = new ProdutoModel();
 
+  astecaMotivos: AstecaMotivoModel[] = [];
+
+  filteredAstecaMotivos: AstecaMotivoModel[] = [];
+
   searchText = '';
+
+  selectedMotivo: AstecaMotivoModel | undefined;
+
 
   ngOnInit(): void {
     this.filterDocumentosFiscais();
+    this.listAstecaMotivo();
+    this.testeListResp();
+    
+  }
+
+  pesquiseMotivos(event: any)  {
+    this.filteredAstecaMotivos = this.astecaMotivos.filter(motivo =>
+      motivo?.denominacao?.toLowerCase().includes(event.query.toLowerCase())
+    );
+  }
+  
+  listAstecaMotivo(){
+    this.astecaMotivoService.list().subscribe(resp => {
+      this.astecaMotivos = resp;
+      // console.log("listAstecaMotivo funciona?", JSON.stringify(this.astecaMotivos[0]));
+
+      
+      // console.log("resp service " + resp);
+      // console.log("resp service 1" + resp[0]);
+    })
+
+  }
+
+  
+
+  testeListResp(){
+      this.astecaMotivoService.list().subscribe(
+        resp => {
+          console.log('Response:', resp);
+        },
+        error => {
+          console.error('Error:', error);
+        }
+      );
   }
 
   onSearchTextChange() {
@@ -109,7 +154,8 @@ export class AstecaFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private produtoService: ProdutoService,
-    private documentoFiscalService: DocumentoFiscalService
+    private documentoFiscalService: DocumentoFiscalService,
+    private astecaMotivoService: AstecaMotivoService
   ) {}
 
 }
