@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../app.config';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { FornecedorModel } from '../models/FornecedorModel';
 import { Observable } from 'rxjs';
@@ -16,25 +16,25 @@ export class FornecedorService {
   constructor(private httpClient: HttpClient) { }
 
   public post(fornecedor: FornecedorModel): Observable<any>{
-    return this.httpClient.post(`${API_BASE_URL}/fornecedor/`, fornecedor);
+    return this.httpClient.post(`${environment.url}/fornecedor/`, fornecedor);
   }
 
   public add(fornecedor: FornecedorModel): Observable<any>{
-    return this.httpClient.post(`${API_BASE_URL}/fornecedor/`, fornecedor);
+    return this.httpClient.post(`${environment.url}/fornecedor/`, fornecedor);
   }
 
   public get(idx: number): Observable<any>{
-    return this.httpClient.get(`${API_BASE_URL}/fornecedor/${idx}`);
+    return this.httpClient.get(`${environment.url}/fornecedor/${idx}`);
     
   }
 
   public list(): Observable<any>{
-    console.log(this.httpClient.get(`${API_BASE_URL}/fornecedor/`))
-    return this.httpClient.get(`${API_BASE_URL}/fornecedor/`);
+    console.log(this.httpClient.get(`${environment.url}/fornecedor/`))
+    return this.httpClient.get(`${environment.url}/fornecedor/`);
   }
 
   public delete(id: number): Observable<any>{
-    return this.httpClient.delete(`${API_BASE_URL}/fornecedor/${id}`);
+    return this.httpClient.delete(`${environment.url}/fornecedor/${id}`);
   }
 
 }

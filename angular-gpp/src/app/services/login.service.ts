@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../app.config';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
@@ -18,7 +18,7 @@ export class LoginService {
 
   login(LoginModel: any): Observable<any> {
   
-    const url = `${API_BASE_URL}/login`;
+    const url = `${environment.url}/login`;
     return this.http.post(url, LoginModel);
 
   }

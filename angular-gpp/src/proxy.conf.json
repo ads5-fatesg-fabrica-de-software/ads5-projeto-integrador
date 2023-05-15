@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "${API_BASE_URL}",
+        "target": "${environment.url}",
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {

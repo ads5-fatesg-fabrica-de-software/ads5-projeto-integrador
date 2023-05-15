@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../app.config';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -16,25 +16,25 @@ export class DocumentoFiscalService {
   constructor(private httpClient: HttpClient) { }
 
   public post(doc: DocumentoFiscalModel): Observable<any>{
-    return this.httpClient.post(`${API_BASE_URL}/doc/`, doc);
+    return this.httpClient.post(`${environment.url}/doc/`, doc);
   }
 
   public add(doc: DocumentoFiscalModel): Observable<any>{
-    return this.httpClient.post(`${API_BASE_URL}/doc/`, doc);
+    return this.httpClient.post(`${environment.url}/doc/`, doc);
   }
 
   public get(idx: number): Observable<any>{
-    return this.httpClient.get(`${API_BASE_URL}/doc/${idx}`);
+    return this.httpClient.get(`${environment.url}/doc/${idx}`);
     
   }
 
   public list(): Observable<any>{
-    console.log(this.httpClient.get(`${API_BASE_URL}/doc/`))
-    return this.httpClient.get(`${API_BASE_URL}/doc/`);
+    console.log(this.httpClient.get(`${environment.url}/doc/`))
+    return this.httpClient.get(`${environment.url}/doc/`);
   }
 
   public delete(id: number): Observable<any>{
-    return this.httpClient.delete(`${API_BASE_URL}/doc/${id}`);
+    return this.httpClient.delete(`${environment.url}/doc/${id}`);
   }
 
 }

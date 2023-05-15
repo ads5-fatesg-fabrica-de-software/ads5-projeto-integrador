@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../app.config';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { ClienteModel } from '../models/ClienteModel';
 import { HttpClient } from '@angular/common/http';
@@ -14,16 +14,16 @@ export class ClienteService {
   constructor(private httpClient: HttpClient) { }
 
   public add(cliente: ClienteModel): Observable<any>{
-    return this.httpClient.post(`${API_BASE_URL}/cliente`, cliente);
+    return this.httpClient.post(`${environment.url}/cliente`, cliente);
   }
 
   public get(idx: number): Observable<any>{
-    return this.httpClient.get(`${API_BASE_URL}/cliente/${idx}`);
+    return this.httpClient.get(`${environment.url}/cliente/${idx}`);
   }
 
   public list(): Observable<any>{
-    console.log(this.httpClient.get(`${API_BASE_URL}/cliente`))
-    return this.httpClient.get(`${API_BASE_URL}/cliente`);
+    console.log(this.httpClient.get(`${environment.url}/cliente`))
+    return this.httpClient.get(`${environment.url}/cliente`);
   }
 
 }
