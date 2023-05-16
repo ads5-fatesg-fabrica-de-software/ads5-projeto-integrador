@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AstecaMotivoModel } from '../models/AstecaMotivoModel';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -16,13 +17,13 @@ export class AstecaMotivoService {
   
   public get(idx: number): Observable<any>{
     
-    return this.httpClient.get(`http://localhost:8080/astecamotivo/${idx}`);
+    return this.httpClient.get(`${environment.url}/astecamotivo/${idx}`);
   
   }
 
   public list(): Observable<any>{
     
-    return this.httpClient.get("http://localhost:8080/astecamotivo/");
+    return this.httpClient.get(`${environment.url}/astecamotivo/`);
 
   }
 

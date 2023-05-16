@@ -1,0 +1,29 @@
+Build angular
+ip minha máquina: 10.150.160.63
+create files of project: 
+descontinuado: ng build --prod --configuration production
+ng build --configuration=production --base-href /
+ng build --configuration production
+
+"configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5000kb",
+                  "maximumError": "5mb"
+                },
+
+mvn clean package
+java -jar authentication_api-0.0.1-SNAPSHOT.jar
+sudo lsof -i :8081
+sudo kill 39638
+docker ps
+docker stop dc64
+
+
+Docker File
+nano Dockerfile
+docker build -t ubuntu/gpi-ads4-chico .
+run -p 8082:8080 ubuntu/gpi-ads4-chico
+
