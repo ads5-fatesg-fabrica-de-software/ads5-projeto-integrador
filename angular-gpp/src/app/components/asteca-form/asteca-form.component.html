@@ -183,57 +183,36 @@
     </div>
   </div>
   
- <!-- Pecas -->
-
- <div class="p-d-flex p-jc-between p-ai-center">
+<!-- Pecas Selecionadas -->
+<div class="p-d-flex p-jc-between p-ai-center">
   <h1 class="p-m-0">Escolhas as peças para atendimento</h1>
-  <button pButton type="button" icon="pi pi-plus" (click)="selecionarPeca()" class="p-button-secondary"></button>
+  <button pButton type="button" icon="pi pi-plus" (click)="selecionarTodasPecasComIdProduto()" class="p-button-secondary"></button>
 </div>
 
- <div class="p-col-12">
-   <div class="p-card">
-     <div class="p-card-body">
-       
-       <!-- Add your Nota Fiscal form fields here -->
-       <p-table [value]="selectedItem ? [selectedItem] : []">
-         <ng-template pTemplate="header">
-           <tr>
-             <th>ID</th>
-             <th>Nome</th>
-             <th>Número das Peças</th>
-             <th>Quantidade</th>
-             <th>Valor R$</th>
-             <th>Subtotal R$</th>
-             <th>Motivo</th>
-             <th>Ações</th>
-             <th>Endereço</th>
-             <th>Saldo</th>
-           </tr>
-         </ng-template>
-         <ng-template pTemplate="body" let-selectedItem>
-           <tr>
-             <td>{{ selectedItem?.numDocFiscal }}</td>
-             <td>{{ selectedItem?.serieDocFiscal }}</td>
-             <td>
-               {{
-                 datePipe.transform(
-                   selectedItem?.dataEmissao,
-                   "dd/MM/yyyy HH:mm"
-                 )
-               }}
-             </td>
-             <td>{{ selectedItem?.descricao }}</td>
-             <td>{{ selectedItem?.fornecedor }}</td>
-           </tr>
-         </ng-template>
-       </p-table>
-     </div>
-   </div>
- </div>
+<div class="p-col-12">
+  <div class="p-card">
+    <div class="p-card-body">
+      <p-table [value]="selectedPecas">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-peca>
+          <tr>
+            <td>{{ peca.idPeca }}</td>
+            <td>{{ peca.descricao }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
 
- <!-- Pecas Modal -->
+<!-- Pecas Modal Selecionar -->
 <p-dialog [(visible)]="displayPecasModal" [modal]="true">
-  <h3>{{ selectedItem }}</h3>
+  <h3>Escolhas as Peças do Produto {{ numero }} </h3>
   <table>
     <thead>
       <tr>
@@ -244,9 +223,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let peca of selectedPecas; let i = index">
+      <tr *ngFor="let peca of todasPecasParaEsseIdProduto; let i = index">
         <td>
-          <p-checkbox [(ngModel)]="pecasAvailability[i]"></p-checkbox>
+          <input type="checkbox" [checked]="selectedPecaIndices[i]" (change)="togglePecaSelection(i)" />
         </td>
         <td>{{ peca.idPeca }}</td>
         <td>{{ peca.descricao }}</td>
@@ -254,7 +233,10 @@
       </tr>
     </tbody>
   </table>
+  <button pButton type="button" label="Enviar Selecionadas" (click)="enviarPecasSelecionadas()"></button>
 </p-dialog>
+
+
 
   <div class="p-col-12"></div>
 </div>

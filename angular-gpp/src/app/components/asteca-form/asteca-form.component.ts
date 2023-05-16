@@ -49,11 +49,14 @@ export class AstecaFormComponent implements OnInit {
   selectedMotivo: AstecaMotivoModel | undefined;
 
   selectedPecas: PecaModel[] = [];
+  selectedPecasComIdProduto: PecaModel[] = [];
   pecasAvailability: boolean[] = [];
 
   isDataLoaded = false;
 
   buttonClicked = false;
+  
+  idProdutoSelecionado!: number;
 
   
 
@@ -76,14 +79,48 @@ export class AstecaFormComponent implements OnInit {
 
   displayPecasModal: boolean = false;
 
-selecionarPeca() {
-  this.selectedPecas = []; // Clear the selected pecas array
-  this.pecasAvailability = []; // Clear the pecas availability array
-  // Get the pecas for the selected product using this.selectedProductId
-  // Assign the retrieved pecas to this.selectedPecas
-  // Determine the availability of each peca and assign it to this.pecasAvailability
-  this.displayPecasModal = true; // Open the modal
-}
+
+  selectedPecaIndices: boolean[] = [];
+
+  togglePecaSelection(index: number) {
+    this.selectedPecaIndices[index] = !this.selectedPecaIndices[index];
+  }
+
+  enviarPecasSelecionadas() {
+    // Filter the selected pecas based on selectedPecaIndices array
+    const selectedPecasToSend = this.todasPecasParaEsseIdProduto.filter((_, index) => this.selectedPecaIndices[index]);
+    this.todasPecasParaEsseIdProduto = [];
+    // Add the selected pecas to the selectedPecas array
+    this.selectedPecas = this.todasPecasParaEsseIdProduto.concat(selectedPecasToSend);
+  
+    // Close the Pecas Modal Selecionar
+    this.displayPecasModal = false;
+  }
+  
+  
+  todasPecasParaEsseIdProduto: PecaModel[] = [];
+  pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
+
+  
+  selecionarTodasPecasComIdProduto() {
+    this.selectedPecas = []; // Clear the selected pecas array
+    this.pecasAvailability = []; // Clear the pecas availability array
+    this.todasPecasParaEsseIdProduto = [];
+
+
+    // Get the pecas for the selected product using this.selectedItem.produto.idProduto
+    this.pecaService.list().subscribe((response) => {
+      const filteredPecas = response.filter((peca: PecaModel) => peca.produto?.idProduto === this.idProdutoSelecionado);
+      this.todasPecasParaEsseIdProduto = filteredPecas;
+      
+      this.pecasAvailability = new Array(filteredPecas.length).fill(false);
+  
+      
+      this.displayPecasModal = true; // Open the modal
+    });
+  }
+  
+  
 
   calculateValorTotal(item: any): number {
     return (item?.qtde || 0) * (item?.valorVenda || 0);
@@ -180,6 +217,7 @@ selecionarPeca() {
     this.documentosFiscais = [];
     this.qtdNotasPorProdutoSelecionado = 0;
     this.isDataLoaded = false;
+    this.idProdutoSelecionado = parseInt(numero);
 
     // console.log(numero);
     const num = parseInt(numero);
