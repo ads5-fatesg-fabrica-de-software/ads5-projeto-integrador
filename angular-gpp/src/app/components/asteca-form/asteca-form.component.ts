@@ -12,6 +12,8 @@ import { take } from "rxjs";
 
 import { DocumentoFiscalModel } from "src/app/models/DocumentoFiscalModel";
 import { DocumentoFiscalService } from "src/app/services/doc.service";
+import { PecasEstoqueModel } from "src/app/models/PecasEstoqueModel";
+import { PecaEstoqueService } from "src/app/services/pecaestoque.service";
 
 interface Item {
   name: string;
@@ -57,10 +59,12 @@ export class AstecaFormComponent implements OnInit {
   buttonClicked = false;
   
   idProdutoSelecionado!: number;
+  pecasEstoque: any;
 
   
 
   constructor(
+    private pecaEstoqueService: PecaEstoqueService,
     public datePipe: DatePipe,
     private dialogService: DialogService,
     private pecaService: PecaService,
@@ -80,7 +84,7 @@ export class AstecaFormComponent implements OnInit {
   displayPecasModal: boolean = false;
 
 
-  selectedPecaIndices: boolean[] = [];
+  selectedPecaIndices: boolean[] = [];  
 
   togglePecaSelection(index: number) {
     this.selectedPecaIndices[index] = !this.selectedPecaIndices[index];

@@ -197,12 +197,14 @@
           <tr>
             <th>ID</th>
             <th>Nome</th>
+            <th>Número de Peças no Estoque</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-peca>
           <tr>
             <td>{{ peca.idPeca }}</td>
             <td>{{ peca.descricao }}</td>
+            <!-- Número de Peças no Estoque -->
           </tr>
         </ng-template>
       </p-table>
@@ -219,7 +221,8 @@
         <th>Check</th>
         <th>ID</th>
         <th>Nome</th>
-        <!-- Add more columns for other peca properties -->
+        <th>Número de Peças no Estoque</th>
+       
       </tr>
     </thead>
     <tbody>
@@ -229,9 +232,10 @@
         </td>
         <td>{{ peca.idPeca }}</td>
         <td>{{ peca.descricao }}</td>
-        <!-- Add more columns for other peca properties -->
+        <!-- Número de Peças no Estoque -->
       </tr>
     </tbody>
+    
   </table>
   <button pButton type="button" label="Enviar Selecionadas" (click)="enviarPecasSelecionadas()"></button>
 </p-dialog>

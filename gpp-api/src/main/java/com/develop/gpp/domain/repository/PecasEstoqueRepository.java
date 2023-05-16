@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface PecasEstoqueRepository extends JpaRepository<PecasEstoqueModel, Integer> {
-    // ...
+    List<PecasEstoqueModel> findByPeca_IdPeca(Integer idPeca);
 }
 
