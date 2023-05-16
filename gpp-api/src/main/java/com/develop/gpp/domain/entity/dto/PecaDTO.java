@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class PecaDTO {
 
+    private Integer idPeca;
+
     private String descricao;
 
     private String cor;

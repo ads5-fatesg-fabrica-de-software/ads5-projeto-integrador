@@ -116,6 +116,7 @@ export class AstecaFormComponent implements OnInit {
     this.pecaService.list().subscribe((response) => {
       const filteredPecas = response.filter((peca: PecaModel) => peca.produto?.idProduto === this.idProdutoSelecionado);
       this.todasPecasParaEsseIdProduto = filteredPecas;
+      console.log(this.todasPecasParaEsseIdProduto);
       
       this.pecasAvailability = new Array(filteredPecas.length).fill(false);
   

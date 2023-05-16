@@ -26,6 +26,7 @@ public class PecaService {
 
         for (PecaModel pecaModel : lista) {
             PecaDTO pecaDTO = new PecaDTO();
+            pecaDTO.setIdPeca(pecaModel.getIdPeca());
             pecaDTO.setCor(pecaModel.getCor());
             pecaDTO.setDescricao(pecaModel.getDescricao());
             pecaDTO.setMaterial(pecaModel.getMaterial());
@@ -43,6 +44,7 @@ public class PecaService {
 
         for (PecaModel pecaModel : lista) {
             PecaDTO pecaDTO = new PecaDTO();
+            pecaDTO.setIdPeca(pecaModel.getIdPeca());
             pecaDTO.setCor(pecaModel.getCor());
             pecaDTO.setDescricao(pecaModel.getDescricao());
             pecaDTO.setMaterial(pecaModel.getMaterial());
