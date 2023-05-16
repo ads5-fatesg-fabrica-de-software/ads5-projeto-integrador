@@ -21,21 +21,37 @@ public class PecaService {
     private PecaRepository pecaRepository;
 
     public List<PecaDTO> listaPecas() {
-        PecaDTO peca = new PecaDTO();
-        List<PecaDTO> dto = new ArrayList<>();
+        List<PecaDTO> dtoList = new ArrayList<>();
         List<PecaModel> lista = pecaRepository.findAll();
 
-        for (int i = 0; i < lista.size(); i++) {
+        for (PecaModel pecaModel : lista) {
+            PecaDTO pecaDTO = new PecaDTO();
+            pecaDTO.setCor(pecaModel.getCor());
+            pecaDTO.setDescricao(pecaModel.getDescricao());
+            pecaDTO.setMaterial(pecaModel.getMaterial());
+            pecaDTO.setProduto(pecaModel.getProduto());
 
-            peca.setCor(lista.get(i).getCor());
-            peca.setDescricao(lista.get(i).getDescricao());
-            peca.setMaterial(lista.get(i).getMaterial());
-
-            dto.add(peca);
-
+            dtoList.add(pecaDTO);
         }
 
-        return dto;
+        return dtoList;
+    }
+
+    public List<PecaDTO> buscarPorProduto(@PathVariable Integer prod) {
+        List<PecaDTO> dtoList = new ArrayList<>();
+        List<PecaModel> lista = pecaRepository.buscarPorProduto(prod);
+
+        for (PecaModel pecaModel : lista) {
+            PecaDTO pecaDTO = new PecaDTO();
+            pecaDTO.setCor(pecaModel.getCor());
+            pecaDTO.setDescricao(pecaModel.getDescricao());
+            pecaDTO.setMaterial(pecaModel.getMaterial());
+            pecaDTO.setProduto(pecaModel.getProduto());
+
+            dtoList.add(pecaDTO);
+        }
+
+        return dtoList;
     }
 
     public PecaModel salvarPeca(@RequestBody PecaModel peca) {
@@ -66,25 +82,6 @@ public class PecaService {
         }
     }
 
-    public List<PecaDTO> buscarPorProduto(@PathVariable Integer prod) {
 
-        PecaDTO peca = new PecaDTO();
-        List<PecaDTO> dto = new ArrayList<>();
-        List<PecaModel> lista = pecaRepository.buscarPorProduto(prod);
-        
-
-
-        for (int i = 0; i < lista.size(); i++) {
-
-            peca.setCor(lista.get(i).getCor());
-            peca.setDescricao(lista.get(i).getDescricao());
-            peca.setMaterial(lista.get(i).getMaterial());
-
-            dto.add(peca);
-
-        }
-
-        return dto;
-    }
 
 }

@@ -50,6 +50,11 @@ export class AstecaFormComponent implements OnInit {
 
   selectedPecas: PecaModel[] = [];
   pecasAvailability: boolean[] = [];
+
+  isDataLoaded = false;
+
+  buttonClicked = false;
+
   
 
   constructor(
@@ -174,16 +179,21 @@ selecionarPeca() {
   listaProdutosServicePorId(numero: string) {
     this.documentosFiscais = [];
     this.qtdNotasPorProdutoSelecionado = 0;
+    this.isDataLoaded = false;
 
     // console.log(numero);
     const num = parseInt(numero);
     this.documentoFiscalService.get(num).subscribe((documentoFiscalResp) => {
       this.documentosFiscais = documentoFiscalResp;
       this.qtdNotasPorProdutoSelecionado = this.documentosFiscais.length;
+      this.isDataLoaded = true;
       // console.log(this.documentosFiscais);
       // console.log(this.documentosFiscais.length);
     });
 
     this.showDialog();
   }
+
+
+  
 }
