@@ -19,7 +19,8 @@ export class PecaModel {
     public idFornecedor?: number,
     public materialFabricacao: string = "",
     // public produto: string = ""
-    public produto: ProdutoModel = new ProdutoModel()
+    public produto: ProdutoModel = new ProdutoModel(),
+    public saldoDisponivel?: number
     
   ) {}
 }

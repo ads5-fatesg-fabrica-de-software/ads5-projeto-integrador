@@ -105,25 +105,36 @@ export class AstecaFormComponent implements OnInit {
   todasPecasParaEsseIdProduto: PecaModel[] = [];
   pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
 
+  incrementarQuantidade(peca: any) {
+    peca.quantity = peca.quantity ? peca.quantity + 1 : 1;
+  }
   
+  diminuirQuantidade(peca: any) {
+    if (peca.quantity && peca.quantity > 0) {
+      peca.quantity -= 1;
+    }
+  }
+  
+
   selecionarTodasPecasComIdProduto() {
-    this.selectedPecas = []; // Clear the selected pecas array
-    this.pecasAvailability = []; // Clear the pecas availability array
-    this.todasPecasParaEsseIdProduto = [];
-
-
-    // Get the pecas for the selected product using this.selectedItem.produto.idProduto
+    // ...
     this.pecaService.list().subscribe((response) => {
       const filteredPecas = response.filter((peca: PecaModel) => peca.produto?.idProduto === this.idProdutoSelecionado);
       this.todasPecasParaEsseIdProduto = filteredPecas;
-      console.log(this.todasPecasParaEsseIdProduto);
       
-      this.pecasAvailability = new Array(filteredPecas.length).fill(false);
+      // Retrieve the saldoDisponivel for each PecaModel
+      for (const peca of this.todasPecasParaEsseIdProduto) {
+        this.pecaEstoqueService.get(peca.idPeca).subscribe((pecaEstoque: PecasEstoqueModel) => {
+          peca.saldoDisponivel = pecaEstoque.saldoDisponivel;
+        });
+      }
   
+      this.pecasAvailability = new Array(filteredPecas.length).fill(false);
       
       this.displayPecasModal = true; // Open the modal
     });
   }
+  
   
   
 

@@ -183,12 +183,47 @@
     </div>
   </div>
   
-<!-- Pecas Selecionadas -->
+<!-- Pecas  -->
 <div class="p-d-flex p-jc-between p-ai-center">
   <h1 class="p-m-0">Escolhas as peças para atendimento</h1>
   <button pButton type="button" icon="pi pi-plus" (click)="selecionarTodasPecasComIdProduto()" class="p-button-secondary"></button>
 </div>
 
+<p-dialog [(visible)]="displayPecasModal" [modal]="true">
+  <h3>Escolhas as Peças do Produto {{ numero }}</h3>
+  <div class="p-grid p-dir-col">
+    <div class="p-col">
+      <table class="p-table p-mb-3">
+        <thead>
+          <tr>
+            <th style="width: 20%;">Check</th>
+            <th style="width: 20%;">ID</th>
+            <th style="width: 40%;">Nome</th>
+            <th style="width: 20%;">Estoque</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let peca of todasPecasParaEsseIdProduto; let i = index">
+            <td style="text-align: center; width: 20%;">
+              <div class="p-checkbox">
+                <input type="checkbox" [checked]="selectedPecaIndices[i]" (change)="togglePecaSelection(i)" class="p-checkbox-input" />
+                <label class="p-checkbox-label"></label>
+              </div>
+            </td>
+            <td style="text-align: center; width: 20%;">{{ peca.idPeca }}</td>
+            <td style="width: 40%;">{{ peca.descricao }}</td>
+            <td style="text-align: center; width: 20%;">{{ peca.saldoDisponivel }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="p-col">
+      <button pButton type="button" label="Enviar Selecionadas" (click)="enviarPecasSelecionadas()" class="p-button p-mt-2"></button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- pecas selecionadas para o produto -->
 <div class="p-col-12">
   <div class="p-card">
     <div class="p-card-body">
@@ -197,48 +232,28 @@
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Número de Peças no Estoque</th>
+            <th>Estoque</th>
+            <th>Qtd</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-peca>
           <tr>
             <td>{{ peca.idPeca }}</td>
             <td>{{ peca.descricao }}</td>
-            <!-- Número de Peças no Estoque -->
+            <td>{{ peca.saldoDisponivel }}</td>
+            <td>
+              <div class="p-inputgroup">
+                <button pButton type="button" icon="pi pi-plus" class="p-button-secondary" (click)="incrementarQuantidade(peca)"></button>
+                <input type="text" [(ngModel)]="peca.quantity" class="p-inputtext" />
+                <button pButton type="button" icon="pi pi-minus" class="p-button-secondary" (click)="diminuirQuantidade(peca)"></button>
+              </div>
+            </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
   </div>
 </div>
-
-<!-- Pecas Modal Selecionar -->
-<p-dialog [(visible)]="displayPecasModal" [modal]="true">
-  <h3>Escolhas as Peças do Produto {{ numero }} </h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Check</th>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Número de Peças no Estoque</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let peca of todasPecasParaEsseIdProduto; let i = index">
-        <td>
-          <input type="checkbox" [checked]="selectedPecaIndices[i]" (change)="togglePecaSelection(i)" />
-        </td>
-        <td>{{ peca.idPeca }}</td>
-        <td>{{ peca.descricao }}</td>
-        <!-- Número de Peças no Estoque -->
-      </tr>
-    </tbody>
-    
-  </table>
-  <button pButton type="button" label="Enviar Selecionadas" (click)="enviarPecasSelecionadas()"></button>
-</p-dialog>
 
 
 
