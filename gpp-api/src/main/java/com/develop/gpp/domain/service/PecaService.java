@@ -1,9 +1,5 @@
 package com.develop.gpp.domain.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,50 +10,49 @@ import com.develop.gpp.domain.entity.PecaModel;
 import com.develop.gpp.domain.entity.dto.PecaDTO;
 import com.develop.gpp.domain.repository.PecaRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class PecaService {
 
+    private final PecaRepository pecaRepository;
+
     @Autowired
-    private PecaRepository pecaRepository;
+    public PecaService(PecaRepository pecaRepository) {
+        this.pecaRepository = pecaRepository;
+    }
 
     public List<PecaDTO> listaPecas() {
-        PecaDTO peca = new PecaDTO();
-        List<PecaDTO> dto = new ArrayList<>();
         List<PecaModel> lista = pecaRepository.findAll();
-
-        for (int i = 0; i < lista.size(); i++) {
-
-            peca.setCor(lista.get(i).getCor());
-            peca.setDescricao(lista.get(i).getDescricao());
-            peca.setMaterial(lista.get(i).getMaterial());
-
-            dto.add(peca);
-
-        }
-
-        return dto;
+        return lista.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    public PecaModel salvarPeca(@RequestBody PecaModel peca) {
+    public List<PecaDTO> buscarPorProduto(Integer prod) {
+        List<PecaModel> lista = pecaRepository.buscarPorProduto(prod);
+        return lista.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
 
+    public PecaModel salvarPeca(PecaModel peca) {
         return pecaRepository.save(peca);
-
     }
 
-    public ResponseEntity<PecaModel> BuscarPorId(@PathVariable Integer id) {
-
+    public ResponseEntity<PecaModel> buscarPorId(Integer id) {
         Optional<PecaModel> optionalPeca = pecaRepository.findById(id);
 
-        if (optionalPeca.isPresent()) {
-            return ResponseEntity.ok(optionalPeca.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-
+        return optionalPeca.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<PecaModel> deletePeca(@PathVariable Integer id) {
+    public ResponseEntity<PecaModel> deletePeca(Integer id) {
         Optional<PecaModel> optionalPeca = pecaRepository.findById(id);
+
         if (optionalPeca.isPresent()) {
             pecaRepository.delete(optionalPeca.get());
             return ResponseEntity.ok().build();
@@ -66,25 +61,13 @@ public class PecaService {
         }
     }
 
-    public List<PecaDTO> buscarPorProduto(@PathVariable Integer prod) {
-
-        PecaDTO peca = new PecaDTO();
-        List<PecaDTO> dto = new ArrayList<>();
-        List<PecaModel> lista = pecaRepository.buscarPorProduto(prod);
-        
-
-
-        for (int i = 0; i < lista.size(); i++) {
-
-            peca.setCor(lista.get(i).getCor());
-            peca.setDescricao(lista.get(i).getDescricao());
-            peca.setMaterial(lista.get(i).getMaterial());
-
-            dto.add(peca);
-
-        }
-
-        return dto;
+    private PecaDTO convertToDTO(PecaModel pecaModel) {
+        PecaDTO pecaDTO = new PecaDTO();
+        pecaDTO.setIdPeca(pecaModel.getIdPeca());
+        pecaDTO.setCor(pecaModel.getCor());
+        pecaDTO.setDescricao(pecaModel.getDescricao());
+        pecaDTO.setMaterial(pecaModel.getMaterial());
+        pecaDTO.setProduto(pecaModel.getProduto());
+        return pecaDTO;
     }
-
 }

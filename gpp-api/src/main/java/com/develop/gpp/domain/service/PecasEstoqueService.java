@@ -18,7 +18,13 @@ public class PecasEstoqueService {
         return pecasEstoqueRepository.findAll();
     }
 
-
+    public PecasEstoqueModel getPecasEstoqueByIdPeca(Integer idPeca) {
+        List<PecasEstoqueModel> pecasEstoqueList = pecasEstoqueRepository.findByPeca_IdPeca(idPeca);
+        if (!pecasEstoqueList.isEmpty()) {
+            return pecasEstoqueList.get(0);
+        }
+        return null;
+    }
 
 
 }

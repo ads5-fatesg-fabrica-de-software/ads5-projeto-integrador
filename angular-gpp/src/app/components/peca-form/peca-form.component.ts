@@ -17,14 +17,6 @@ export class PecaFormComponent implements OnInit {
   filteredProdutos: ProdutoModel[] = [];
   selectedProduto: ProdutoModel | null = null;
 
-  ngOnInit(): void {
-    this.produtoService.list().subscribe(produtos => {
-      this.produtos = produtos;
-    });
-  }
-
-  constructor(private pecaService: PecaService, private router: Router, private route: ActivatedRoute, private produtoService: ProdutoService){}
-
   peca: PecaModel = {
     numero: '',
     codigoFabrica: '',
@@ -45,28 +37,36 @@ export class PecaFormComponent implements OnInit {
     produto: new ProdutoModel()
   };
 
-  public salvar(){
+  constructor(
+    private pecaService: PecaService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private produtoService: ProdutoService
+  ) {}
 
+  ngOnInit(): void {
+    this.produtoService.list().subscribe(produtos => {
+      this.produtos = produtos;
+    });
+  }
+
+  public salvar(): void {
     this.peca.idFornecedor = this.peca.produto?.fornecedor?.idFornecedor;
     
     console.log("produto selecionado " + this.selectedProduto?.fornecedor.idFornecedor);
-
     console.log("produto selecionado " + this.peca.produto?.fornecedor?.nomeFornecedor);
-    
     console.log("peca original " + this.peca.idFornecedor);
     
-    this.pecaService.add(this.peca).subscribe(r => {
+    this.pecaService.add(this.peca).subscribe(() => {
       this.peca = new PecaModel();
-      
-      console.log(`funcionou. Nome: `);
+      console.log(`Funcionou. Nome: `);
       this.router.navigateByUrl('/pecaList');
     });
   }
 
-  searchProdutos(event: any)  {
+  public searchProdutos(event: any): void {
     this.filteredProdutos = this.produtos.filter(produto =>
       produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
     );
   }
-
 }

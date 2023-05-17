@@ -1,113 +1,69 @@
 <h1>Peça Lista <i class="fas fa-list"></i></h1>
 
-<!-- <h1>Peças Lista</h1> -->
-
 <div class="card">
-    <p-table
-        #dt2
-        [value]="pecas" 
-        [sortField]="'idPeca'"
-        [sortOrder]="-1"
-        [tableStyle]="{ 'min-width': '50rem' }" 
-        [rows]="5" 
-        [paginator]="true"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
-        [tableStyle]="{ 'min-width': '75rem' }" 
-        [rowHover]="true" 
-        dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
-        [showCurrentPageReport]="true">
+  <p-table
+    #dt2
+    [value]="pecas" 
+    [sortField]="'idPeca'"
+    [sortOrder]="-1"
+    [tableStyle]="{ 'min-width': '50rem' }" 
+    [rows]="5" 
+    [paginator]="true"
+    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+    [tableStyle]="{ 'min-width': '75rem' }" 
+    [rowHover]="true" 
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+    [showCurrentPageReport]="true">
 
-        <ng-template pTemplate="caption">
-            <div class="flex">
-                <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-
-
-
-                    <!-- <input pInputText type="text" (keyup)="onSearch($event)" placeholder="Search keyword" /> -->
-                </span>
-            </div>
-        </ng-template>
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <!-- <input pInputText type="text" (keyup)="onSearch($event)" placeholder="Search keyword" /> -->
+        </span>
+      </div>
+    </ng-template>
         
-        <ng-template pTemplate="header">
-            <tr>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID Peça</th>
+        <th>Descrição</th>
+        <th>Produto</th>
+        <th>Fornecedor</th>
+        <th></th>
+      </tr>
 
-                <!-- <th>idPeca</th> -->
-                <th>idPeca</th>
-                <!-- <th>numero</th>
-                <th>codigoFabrica</th>
-                <th>unidade</th> -->
-                <th>descricao</th>
+      <tr>
+        <th>
+          <p-columnFilter type="text" field="idPeca"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="descricao"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="produto"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="fornecedor"></p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
 
-                <th>Produto</th>
-                
-
-                <th>Fornecedor</th>
-                <!-- <th>altura</th>
-                <th>largura</th> -->
-                <!-- <th>profundidade</th>
-                <th>unidadeMedida</th>
-                <th>volumes</th>
-                <th>active</th>
-                <th>custo</th>
-                <th>cor</th>
-                <th>material</th>
-                <th>idFornecedor</th>
-                <th>materialFabricacao</th>
-                <th>produtosPeca</th> -->
-                <th></th>
-            </tr>
-
-            <tr>
-                <th>
-                    <p-columnFilter type="text" field="idPeca"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="descricao"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="produto"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="fornecedor"></p-columnFilter>
-                </th>
-
-                <th>
-                </th>
-              
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-peca>
-            <tr>
-                <td>{{ peca.idPeca }}</td>
-                <!-- <td>{{ peca.numero }}</td>
-                <td>{{ peca.codigoFabrica }}</td>
-                <td>{{ peca.unidade }}</td> -->
-                <td>{{ peca.descricao }}</td>
-
-                <td>{{ peca.produto.descricao }}</td>
-
-                <td>{{ peca.produto.fornecedor.nomeFornecedor }}</td>
-                <!-- <td>{{ peca.altura }}</td>
-                <td>{{ peca.largura }}</td> -->
-                <!-- <td>{{ peca.profundidade }}</td>
-                <td>{{ peca.unidadeMedida }}</td>
-                <td>{{ peca.volumes }}</td>
-                <td>{{ peca.active }}</td>
-                <td>{{ peca.custo }}</td>
-                <td>{{ peca.cor }}</td>
-                <td>{{ peca.material }}</td>
-                <td>{{ peca.idFornecedor }}</td>
-                <td>{{ peca.materialFabricacao }}</td>
-                <td>{{ peca.produtosPeca }}</td> -->
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                        (click)="editePeca(peca)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deletePeca(peca.idPeca)"></button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+    <ng-template pTemplate="body" let-peca>
+      <tr>
+        <td>{{ peca.idPeca }}</td>
+        <td>{{ peca.descricao }}</td>
+        <td>{{ peca.produto.descricao }}</td>
+        <td>{{ peca.produto.fornecedor.nomeFornecedor }}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+            (click)="editePeca(peca)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deletePeca(peca.idPeca)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

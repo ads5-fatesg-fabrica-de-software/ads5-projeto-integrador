@@ -24,5 +24,14 @@ public class PecasEstoqueController {
         return pecasEstoqueService.listarTodos();
     }
 
+    @GetMapping("/{idPeca}")
+    public ResponseEntity<PecasEstoqueModel> getPecasEstoqueByIdPeca(@PathVariable Integer idPeca) {
+        PecasEstoqueModel pecasEstoque = pecasEstoqueService.getPecasEstoqueByIdPeca(idPeca);
+        if (pecasEstoque != null) {
+            return new ResponseEntity<>(pecasEstoque, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
