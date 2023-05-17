@@ -3,24 +3,36 @@
 <p-dialog header="Edite Peça" [(visible)]="displayDialog">
   <div class="form-group">
     <label for="descricao" class="label">Descrição:</label>
-    <input type="text" pInput id="descricao" placeholder="" [(ngModel)]="peca.descricao">
+    <div class="input">
+      <input type="text" pInput id="descricao" placeholder="" [(ngModel)]="peca.descricao">
+    </div>
   </div>
   <div class="form-group">
     <label for="cor" class="label">Cor:</label>
-    <input type="text" pInput id="cor" placeholder="" [(ngModel)]="peca.cor">
+    <div class="input">
+      <input type="text" pInput id="cor" placeholder="" [(ngModel)]="peca.cor">
+    </div>
   </div>
   <div class="form-group">
     <label for="material" class="label">Material:</label>
-    <input type="text" pInput id="material" placeholder="" [(ngModel)]="peca.material">
+    <div class="input">
+      <input type="text" pInput id="material" placeholder="" [(ngModel)]="peca.material">
+    </div>
   </div>
   <div class="form-group">
-    <label for="idFornecedor">ID Fornecedor:</label>
-    <input type="text" id="idFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.idFornecedor">
+    <label for="idFornecedor" class="label">ID Fornecedor:</label>
+    <div class="input">
+      <input type="text" id="idFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.idFornecedor">
+    </div>
   </div>
   <div class="form-group">
-    <label for="nomeFornecedor">Nome do Fornecedor:</label>
-    <input type="text" id="nomeFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.nomeFornecedor">
+    <label for="nomeFornecedor" class="label">Nome do Fornecedor:</label>
+    <div class="input">
+      <input type="text" id="nomeFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.nomeFornecedor">
+    </div>
   </div>
-  <button (click)="editar()" pButton type="button" label="Editar" class="p-button-primary"></button>
+  <div class="form-group button-group">
+    <button (click)="editar()" pButton type="button" label="Editar" class="p-button p-button-primary"></button>
+  </div>
   <br /><br />
 </p-dialog>
