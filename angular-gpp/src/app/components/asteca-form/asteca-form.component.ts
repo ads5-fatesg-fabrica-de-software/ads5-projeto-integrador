@@ -1,15 +1,15 @@
 import { DatePipe } from "@angular/common";
-import { AstecaMotivoModel } from "./../../models/AstecaMotivoModel";
-import { AstecaMotivoService } from "./../../services/astecamotivo.service";
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { take } from "rxjs";
+import { DialogService } from "primeng/dynamicdialog";
+
+import { AstecaMotivoModel } from "../../models/AstecaMotivoModel";
+import { AstecaMotivoService } from "../../services/astecamotivo.service";
 import { PecaModel } from "src/app/models/PecaModel";
 import { PecaService } from "../../services/peca.service";
-import { ActivatedRoute, Router } from "@angular/router";
 import { ProdutoModel } from "src/app/models/ProdutoModel";
 import { ProdutoService } from "src/app/services/produto.service";
-import { DialogService } from "primeng/dynamicdialog";
-import { take } from "rxjs";
-
 import { DocumentoFiscalModel } from "src/app/models/DocumentoFiscalModel";
 import { DocumentoFiscalService } from "src/app/services/doc.service";
 import { PecasEstoqueModel } from "src/app/models/PecasEstoqueModel";
@@ -28,40 +28,28 @@ interface Item {
 })
 export class AstecaFormComponent implements OnInit {
   numero: string = "";
-
   qtdNotasPorProdutoSelecionado: number = 0;
-
   selectedItem: DocumentoFiscalModel = new DocumentoFiscalModel();
-
   displayModal = false;
   displaySelectedModal = false;
-
   displayDialog: boolean = true;
-
   documentosFiscais: DocumentoFiscalModel[] = [];
-
   produto: ProdutoModel = new ProdutoModel();
-
   astecaMotivos: AstecaMotivoModel[] = [];
-
   filteredAstecaMotivos: AstecaMotivoModel[] = [];
-
   searchText = "";
-
   selectedMotivo: AstecaMotivoModel | undefined;
-
   selectedPecas: PecaModel[] = [];
   selectedPecasComIdProduto: PecaModel[] = [];
   pecasAvailability: boolean[] = [];
-
   isDataLoaded = false;
-
   buttonClicked = false;
-  
   idProdutoSelecionado!: number;
   pecasEstoque: any;
-
-  
+  displayPecasModal: boolean = false;
+  selectedPecaIndices: boolean[] = [];
+  todasPecasParaEsseIdProduto: PecaModel[] = [];
+  pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
 
   constructor(
     private pecaEstoqueService: PecaEstoqueService,
@@ -81,90 +69,78 @@ export class AstecaFormComponent implements OnInit {
     this.testeListResp();
   }
 
-  displayPecasModal: boolean = false;
-
-
-  selectedPecaIndices: boolean[] = [];  
-
   togglePecaSelection(index: number) {
     this.selectedPecaIndices[index] = !this.selectedPecaIndices[index];
   }
 
   enviarPecasSelecionadas() {
-    // Filter the selected pecas based on selectedPecaIndices array
-    const selectedPecasToSend = this.todasPecasParaEsseIdProduto.filter((_, index) => this.selectedPecaIndices[index]);
-    this.todasPecasParaEsseIdProduto = [];
-    // Add the selected pecas to the selectedPecas array
-    this.selectedPecas = this.todasPecasParaEsseIdProduto.concat(selectedPecasToSend);
-  
-    // Close the Pecas Modal Selecionar
+    const selectedPecasToSend = this.todasPecasParaEsseIdProduto.filter(
+      (_, index) => this.selectedPecaIndices[index]
+    );
+    this.selectedPecas = this.selectedPecas.concat(selectedPecasToSend);
     this.displayPecasModal = false;
   }
-  
-  
-  todasPecasParaEsseIdProduto: PecaModel[] = [];
-  pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
 
   incrementarQuantidade(peca: any) {
     peca.quantity = peca.quantity ? peca.quantity + 1 : 1;
   }
-  
+
   diminuirQuantidade(peca: any) {
     if (peca.quantity && peca.quantity > 0) {
       peca.quantity -= 1;
     }
   }
-  
 
   selecionarTodasPecasComIdProduto() {
-    // ...
     this.pecaService.list().subscribe((response) => {
-      const filteredPecas = response.filter((peca: PecaModel) => peca.produto?.idProduto === this.idProdutoSelecionado);
+      const filteredPecas = response.filter(
+        (peca: PecaModel) =>
+          peca.produto?.idProduto === this.idProdutoSelecionado
+      );
       this.todasPecasParaEsseIdProduto = filteredPecas;
-      
-      // Retrieve the saldoDisponivel for each PecaModel
+
       for (const peca of this.todasPecasParaEsseIdProduto) {
-        this.pecaEstoqueService.get(peca.idPeca).subscribe((pecaEstoque: PecasEstoqueModel) => {
-          peca.saldoDisponivel = pecaEstoque.saldoDisponivel;
-        });
+        this.pecaEstoqueService.get(peca.idPeca).subscribe(
+          (pecaEstoque: PecasEstoqueModel) => {
+            peca.saldoDisponivel = pecaEstoque.saldoDisponivel;
+          },
+          (error) => {
+            console.error("Error:", error);
+          }
+        );
       }
-  
+
       this.pecasAvailability = new Array(filteredPecas.length).fill(false);
-      
-      this.displayPecasModal = true; // Open the modal
+
+      this.displayPecasModal = true;
     });
   }
-  
-  
-  
 
   calculateValorTotal(item: any): number {
     return (item?.qtde || 0) * (item?.valorVenda || 0);
   }
-  
-  
-  calculateTotalValorVenda(): number {
-    return this.selectedItem?.itens?.reduce((total, item) => total + ((item.qtde ?? 0) * (item.valorVenda ?? 0)), 0) ?? 0;
-  }
-  
-  selecionarNota(item: DocumentoFiscalModel) {
-    // console.log(item);
-    this.selectedItem = item;
-    
-    this.displayModal = false;
 
+  calculateTotalValorVenda(): number {
+    return (
+      this.selectedItem?.itens?.reduce(
+        (total, item) => total + (item.qtde ?? 0) * (item.valorVenda ?? 0),
+        0
+      ) ?? 0
+    );
+  }
+
+  selecionarNota(item: DocumentoFiscalModel) {
+    this.selectedItem = item;
+    this.displayModal = false;
   }
 
   verItensNota(item: DocumentoFiscalModel) {
     this.selectedItem = item;
-    // console.log(this.selectedItem.itens);
-    
     this.openSelectedModal();
   }
 
   openSelectedModal() {
     this.displaySelectedModal = true;
-    // console.log(this.selectedItem.itens);
   }
 
   showDialog() {
@@ -178,13 +154,14 @@ export class AstecaFormComponent implements OnInit {
   }
 
   listAstecaMotivo() {
-    this.astecaMotivoService.list().subscribe((resp) => {
-      this.astecaMotivos = resp;
-      // console.log("listAstecaMotivo funciona?", JSON.stringify(this.astecaMotivos[0]));
-
-      // console.log("resp service " + resp);
-      // console.log("resp service 1" + resp[0]);
-    });
+    this.astecaMotivoService.list().subscribe(
+      (resp) => {
+        this.astecaMotivos = resp;
+      },
+      (error) => {
+        console.error("Error:", error);
+      }
+    );
   }
 
   testeListResp() {
@@ -235,19 +212,18 @@ export class AstecaFormComponent implements OnInit {
     this.isDataLoaded = false;
     this.idProdutoSelecionado = parseInt(numero);
 
-    // console.log(numero);
     const num = parseInt(numero);
-    this.documentoFiscalService.get(num).subscribe((documentoFiscalResp) => {
-      this.documentosFiscais = documentoFiscalResp;
-      this.qtdNotasPorProdutoSelecionado = this.documentosFiscais.length;
-      this.isDataLoaded = true;
-      // console.log(this.documentosFiscais);
-      // console.log(this.documentosFiscais.length);
-    });
+    this.documentoFiscalService.get(num).subscribe(
+      (documentoFiscalResp) => {
+        this.documentosFiscais = documentoFiscalResp;
+        this.qtdNotasPorProdutoSelecionado = this.documentosFiscais.length;
+        this.isDataLoaded = true;
+      },
+      (error) => {
+        console.error("Error:", error);
+      }
+    );
 
     this.showDialog();
   }
-
-
-  
 }

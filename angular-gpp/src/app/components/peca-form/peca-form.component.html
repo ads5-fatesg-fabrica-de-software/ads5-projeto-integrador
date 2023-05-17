@@ -1,4 +1,4 @@
-<h1>Nova Peça </h1>
+<h1>Nova Peça</h1>
 
 <div class="p-grid">
   <div class="p-col-12">
@@ -33,48 +33,46 @@
           <input type="text" id="profundidade" placeholder="0,5" [(ngModel)]="peca.profundidade" class="p-inputtext" />
         </div>
         <div class="p-field">
-            <label for="unidadeMedida" class="p-d-block label">Unidade de Medida</label>
-            <input type="text" id="unidadeMedida" placeholder="1,3" [(ngModel)]="peca.unidadeMedida" class="p-inputtext" />
-          </div>
-          <div class="p-field">
-            <label for="volumes" class="p-d-block label">Volumes</label>
-            <input type="text" id="volumes" placeholder="4,5" [(ngModel)]="peca.volumes" class="p-inputtext" />
-          </div>
-          <div class="p-field">
-            <p-checkbox [(ngModel)]="peca.active" label="Ativo"></p-checkbox>
-          </div>
-          <div class="p-field">
-            <label for="custo" class="p-d-block label">Custo</label>
-            <input type="text" id="custo" placeholder="50,00" [(ngModel)]="peca.custo" class="p-inputtext" />
-          </div>
-          <div class="p-field">
-            <label for="cor" class="p-d-block label">Cor</label>
-            <input type="text" id="cor" placeholder="vermelho" [(ngModel)]="peca.cor" class="p-inputtext" />
-          </div>
-          <div class="p-field">
-            <label for="material" class="p-d-block label">Material</label>
-            <input type="text" id="material" placeholder="aço inox" [(ngModel)]="peca.material" class="p-inputtext" />
-          </div>
-          <div class="p-field">
-            <label for="materialFabricacao" class="p-d-block label">Material de Fabricação</label>
-            <input type="text" id="materialFabricacao" placeholder="plástico" [(ngModel)]="peca.materialFabricacao" class="p-inputtext" />
-          </div>
-          <div class="p-field">
-            <label for="idFornecedor" class="p-d-block label">Nome do Fornecedor:</label>
-            <label id="idFornecedor" class="p-d-block">{{ peca.produto.fornecedor.nomeFornecedor }}</label>
-          </div>
-          <div class="p-field">
-            <label for="Produto" class="p-d-block">Produto</label>
-            <p-autoComplete [(ngModel)]="peca.produto" [suggestions]="filteredProdutos"
-              (completeMethod)="searchProdutos($event)" [field]="'descricao'" [dropdown]="true"
-              placeholder="Selecione o produto"></p-autoComplete>
-          </div>
-          
-          <div class="p-field">
-            <button (click)="salvar()" pButton type="button" class="p-button-primary"><i class="pi pi-save"></i></button>
-          </div>
-          
-            </div>
+          <label for="unidadeMedida" class="p-d-block label">Unidade de Medida</label>
+          <input type="text" id="unidadeMedida" placeholder="1,3" [(ngModel)]="peca.unidadeMedida" class="p-inputtext" />
         </div>
+        <div class="p-field">
+          <label for="volumes" class="p-d-block label">Volumes</label>
+          <input type="text" id="volumes" placeholder="4,5" [(ngModel)]="peca.volumes" class="p-inputtext" />
+        </div>
+        <div class="p-field">
+          <p-checkbox [(ngModel)]="peca.active" label="Ativo"></p-checkbox>
+        </div>
+        <div class="p-field">
+          <label for="custo" class="p-d-block label">Custo</label>
+          <input type="text" id="custo" placeholder="50,00" [(ngModel)]="peca.custo" class="p-inputtext" />
+        </div>
+        <div class="p-field">
+          <label for="cor" class="p-d-block label">Cor</label>
+          <input type="text" id="cor" placeholder="vermelho" [(ngModel)]="peca.cor" class="p-inputtext" />
+        </div>
+        <div class="p-field">
+          <label for="material" class="p-d-block label">Material</label>
+          <input type="text" id="material" placeholder="aço inox" [(ngModel)]="peca.material" class="p-inputtext" />
+        </div>
+        <div class="p-field">
+          <label for="materialFabricacao" class="p-d-block label">Material de Fabricação</label>
+          <input type="text" id="materialFabricacao" placeholder="plástico" [(ngModel)]="peca.materialFabricacao" class="p-inputtext" />
+        </div>
+        <div class="p-field">
+          <label for="idFornecedor" class="p-d-block label">Nome do Fornecedor:</label>
+          <label id="idFornecedor" class="p-d-block">{{ peca.produto.fornecedor.nomeFornecedor }}</label>
+        </div>
+        <div class="p-field">
+          <label for="Produto" class="p-d-block">Produto</label>
+          <p-autoComplete [(ngModel)]="peca.produto" [suggestions]="filteredProdutos"
+            (completeMethod)="searchProdutos($event)" [field]="'descricao'" [dropdown]="true"
+            placeholder="Selecione o produto"></p-autoComplete>
+        </div>
+        <div class="p-field">
+          <button (click)="salvar()" pButton type="button" class="p-button-primary"><i class="pi pi-save"></i>Salvar</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
