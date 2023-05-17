@@ -41,4 +41,9 @@ public class PecaController {
     public List<PecaDTO> buscarPorProduto(@PathVariable Integer prod) {
         return pecaService.buscarPorProduto(prod);
     }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<PecaModel> buscarPorId(@PathVariable Integer id) {
+        return pecaService.buscarPorId(id);
+    }
 }

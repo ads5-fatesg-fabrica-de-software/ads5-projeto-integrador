@@ -26,6 +26,10 @@ export class PecaService {
     return this.httpClient.get(`${environment.url}/pecas/${idx}`);
   }
 
+  public getPorIdPeca(idx: number): Observable<any>{
+    return this.httpClient.get(`${environment.url}/pecas/id/${idx}`);
+  }
+
   public list(): Observable<any>{
     // console.log(this.httpClient.get("${environment.url}/pecas/"))
     return this.httpClient.get(`${environment.url}/pecas/`);
