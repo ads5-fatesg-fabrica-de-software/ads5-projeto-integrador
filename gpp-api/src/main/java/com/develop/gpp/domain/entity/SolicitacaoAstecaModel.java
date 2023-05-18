@@ -1,19 +1,30 @@
 package com.develop.gpp.domain.entity;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.develop.gpp.domain.enumeradores.SituacaoAstecaEnum;
+import com.develop.gpp.domain.enumeradores.TipoAstecaEnum;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,42 +39,30 @@ public class SolicitacaoAstecaModel {
     @Column(name = "id_asteca")
     private Integer idAsteca;
 
-   
-    private String astecaMotivo;
+    private Integer idProduto;
 
-   
-    private Integer tipoAsteca;
+    private String descricaoProduto;
 
-   
-    private Long idFilialRegistro;
-
-    
     private String observacao;
 
-  
-    private String defeitoEstadoProd;
+    private LocalDateTime dataCriacao;
 
-   
-    @Temporal(TemporalType.DATE)
-    private Date dataCriacao;
+    @Enumerated(EnumType.STRING)
+    private SituacaoAstecaEnum situacaoAsteca;
 
-   @ManyToOne
-   @JoinColumn(name = "id_doc")
+    @Enumerated(EnumType.STRING)
+    private TipoAstecaEnum tipoAsteca;
+
+   @ManyToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "id_doc_fiscal")
     private DocumentoFiscalModel documentoFiscal;
 
-    @Column(name = "funcionario")
-    private String funcionario;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_asteca")
+    private List<ItemSolicitacaoAstecaModel> itensAsteca = new ArrayList<>();
 
-    @Column(name = "pedido_saida")
-    private String pedidoSaida;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_motivo")
+    private AstecaMotivoModel motivoCriacaoAsteca = new AstecaMotivoModel();
 
-    @Column(name = "pedido_entrada")
-    private String pedidoEntrada;
-
-    @ElementCollection
-    @CollectionTable(name = "asteca_pendencias", joinColumns = @JoinColumn(name = "id_asteca"))
-    @Column(name = "asteca_pendencias")
-    private List<String> astecaPendencias;
-
-   
 }

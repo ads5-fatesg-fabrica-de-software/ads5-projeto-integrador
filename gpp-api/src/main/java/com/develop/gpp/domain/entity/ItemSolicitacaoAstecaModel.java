@@ -30,9 +30,7 @@ public class ItemSolicitacaoAstecaModel {
       
     @OneToOne
     @JoinColumn(name = "id_peca_estoque")
-    private PecasEstoqueModel peca;
-                        
-    private Integer saldoDisponivel;
-    
+    private PecasEstoqueModel pecaEstoque;
+                            
     
 }
