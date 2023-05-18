@@ -53,15 +53,15 @@ public class SolicitacaoAstecaModel {
     @Enumerated(EnumType.STRING)
     private TipoAstecaEnum tipoAsteca;
 
-   @ManyToOne(cascade = CascadeType.ALL)
+   @ManyToOne
    @JoinColumn(name = "id_doc_fiscal")
     private DocumentoFiscalModel documentoFiscal;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "item_asteca")
     private List<ItemSolicitacaoAstecaModel> itensAsteca = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_motivo")
     private AstecaMotivoModel motivoCriacaoAsteca = new AstecaMotivoModel();
 

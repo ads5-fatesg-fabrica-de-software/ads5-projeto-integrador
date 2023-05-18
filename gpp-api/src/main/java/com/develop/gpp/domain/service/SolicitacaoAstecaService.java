@@ -1,5 +1,6 @@
 package com.develop.gpp.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.catalina.connector.Response;
@@ -24,6 +25,11 @@ public class SolicitacaoAstecaService {
     public ResponseEntity<SolicitacaoAstecaModel> salvarAsteca(SolicitacaoAstecaModel asteca) {
         SolicitacaoAstecaModel solicitacaoSalva = solicitacaoAstecaRepository.save(asteca);
         return new ResponseEntity<>(solicitacaoSalva, HttpStatus.CREATED);
+    }
+
+    public List<SolicitacaoAstecaModel> listarTodas() {
+
+        return solicitacaoAstecaRepository.findAll();
     }
 
 }

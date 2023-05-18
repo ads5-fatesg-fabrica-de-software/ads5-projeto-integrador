@@ -15,7 +15,7 @@ public class PecasEstoqueModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPecaEstoque;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "idPeca")
     private PecaModel peca;
 
