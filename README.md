@@ -7,7 +7,7 @@
 <br>
 <br>
 <div align="center">
-    <img src="utilitarios/Design_sem_nome__2_-removebg-preview.png" style="margin-right: 85px;" alt="Texto alternativo" />
+    <img src="utilitarios/logo-gpp2.png" style="margin-right: 85px;" alt="Texto alternativo" />
 </div>
 
 <br>
