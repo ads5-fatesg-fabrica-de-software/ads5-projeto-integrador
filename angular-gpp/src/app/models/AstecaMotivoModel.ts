@@ -1,6 +1,10 @@
 export class AstecaMotivoModel {
-  idAstecaMotivo: number = 0;
-  denominacao: string = "";
-  
-
+  constructor(
+    public idAstecaMotivo?: number,
+    public denominacao?: string,
+    public dataCriacao?: string,
+    public dataAlteracao?: string
+  ) {}
 }
+
+

@@ -1,3 +1,8 @@
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -44,6 +49,10 @@ import { AstecaTableComponent } from './components/asteca-table/asteca-table.com
 import { DialogService } from 'primeng/dynamicdialog';
 import { ListboxModule } from 'primeng/listbox';
 import { FieldsetModule } from 'primeng/fieldset';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+
+registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +72,8 @@ import { FieldsetModule } from 'primeng/fieldset';
     ProdutoTableComponent,
     ProdutoFormComponent,
     AstecaFormComponent,
-    AstecaTableComponent
+    AstecaTableComponent,
+    DashboardComponent
   ],
   imports: [
     InputTextModule,
@@ -102,4 +112,6 @@ import { FieldsetModule } from 'primeng/fieldset';
   providers: [MessageService, DialogService],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

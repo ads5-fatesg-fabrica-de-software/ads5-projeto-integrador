@@ -1,12 +1,8 @@
 export class ClienteModel {
-  // [x: string]: any;
-    
-  constructor(
-    public idCliente: number = 0,
-    public nome: string = "",
-    public cpfCnpj: string = "",
-    public email: string = "",
-    public endereco: string = ""
-  ) {}
-  
+  idCliente?: number;
+  nome?: string;
+  cpfCnpj?: string;
+  email?: string;
+  enderecos?: any[];  // Update this with the correct type if you know what it should be
 }
+

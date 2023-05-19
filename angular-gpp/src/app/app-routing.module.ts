@@ -14,8 +14,10 @@ import { ProdutoTableComponent } from './components/produto-table/produto-table.
 import { ProdutoFormComponent } from './components/produto-form/produto-form.component';
 import { AstecaFormComponent } from './components/asteca-form/asteca-form.component';
 import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
+  {path: 'dashboard', component: DashboardComponent},
   {path: 'asteca/:id', component: AstecaFormComponent},
   {path: 'astecaList', component: AstecaTableComponent},
   {path: 'produto/:id', component: ProdutoFormComponent},

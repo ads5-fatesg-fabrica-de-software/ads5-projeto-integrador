@@ -25,6 +25,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeflex/primeflex.css",
+
               "node_modules/@nebular/theme/styles/prebuilt/default.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
@@ -39,18 +41,23 @@
               "src/styles.css"
             ],
             "scripts": [
-              // "node_modules/primeng/resources/primeng.min.js",
-              // "node_modules/primeng/resources/themes/saga-blue/theme.js"
+              
             
             ]
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -102,6 +109,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeflex/primeflex.css",
               "node_modules/@nebular/theme/styles/prebuilt/default.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
