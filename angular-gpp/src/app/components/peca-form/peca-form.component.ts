@@ -17,25 +17,7 @@ export class PecaFormComponent implements OnInit {
   filteredProdutos: ProdutoModel[] = [];
   selectedProduto: ProdutoModel | null = null;
 
-  peca: PecaModel = {
-    numero: '',
-    codigoFabrica: '',
-    unidade: null,
-    descricao: '',
-    altura: null,
-    largura: null,
-    profundidade: null,
-    unidadeMedida: null,
-    volumes: '',
-    active: false,
-    custo: null,
-    cor: '',
-    material: '',
-    idFornecedor: 0,
-    materialFabricacao: '',
-    idPeca: 0,
-    produto: new ProdutoModel()
-  };
+  peca: PecaModel = new PecaModel();
 
   constructor(
     private pecaService: PecaService,
@@ -52,14 +34,9 @@ export class PecaFormComponent implements OnInit {
 
   public salvar(): void {
     this.peca.idFornecedor = this.peca.produto?.fornecedor?.idFornecedor;
-    
-    console.log("produto selecionado " + this.selectedProduto?.fornecedor.idFornecedor);
-    console.log("produto selecionado " + this.peca.produto?.fornecedor?.nomeFornecedor);
-    console.log("peca original " + this.peca.idFornecedor);
-    
+
     this.pecaService.add(this.peca).subscribe(() => {
-      this.peca = new PecaModel();
-      console.log(`Funcionou. Nome: `);
+      console.log('Saved successfully.');
       this.router.navigateByUrl('/pecaList');
     });
   }

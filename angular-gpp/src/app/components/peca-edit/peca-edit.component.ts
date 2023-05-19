@@ -26,7 +26,7 @@ export class PecaEditComponent implements OnInit {
   }
 
   public editar(): void {
-    this.pecaService.post(this.peca).subscribe(() => {
+    this.pecaService.add(this.peca).subscribe(() => {
       this.router.navigateByUrl('/pecaList');
     });
   }

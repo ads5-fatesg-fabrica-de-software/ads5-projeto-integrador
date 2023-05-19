@@ -14,11 +14,14 @@ export class PecaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public post(peca: PecaModel): Observable<any>{
+  public editarPeca(peca: PecaModel): Observable<any>{
     return this.httpClient.post(`${environment.url}/pecas/`, peca);
   }
 
   public add(peca: PecaModel): Observable<any>{
+    const jsonPayload = JSON.stringify(peca);
+    console.log('JSON payload:', jsonPayload);
+
     return this.httpClient.post(`${environment.url}/pecas/`, peca);
   }
 
@@ -32,6 +35,7 @@ export class PecaService {
 
   public list(): Observable<any>{
     // console.log(this.httpClient.get("${environment.url}/pecas/"))
+    // console.log(environment.url); // Add this line
     return this.httpClient.get(`${environment.url}/pecas/`);
   }
 

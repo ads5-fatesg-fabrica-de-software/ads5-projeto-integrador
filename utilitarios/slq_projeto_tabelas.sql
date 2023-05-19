@@ -105,7 +105,7 @@ VALUES
     (20, true, 5, 'COD20', 'Dourado', 15, 'Dobradiça para gaveta', 12, 1, 'Metal', 'Bronze', 1111, 1, 30, 14, 2, 9)
     ON CONFLICT (id_peca) DO NOTHING;
 
-SELECT * FROM peca;
+SELECT id_peca, active, altura, codigo_fabrica, cor, custo, descricao, id_fornecedor, largura, material, material_fabricacao, numero, profundidade, unidade, unidade_medida, volumes, produto_id FROM peca;
 
 --****************************************************************************************************************************************************************************************************************************
 
@@ -211,17 +211,34 @@ VALUES
     (5, 'Endereco 5', 'Fornecedor 5', 20, 40, 15, 25, 10, 5),
     (6, 'Endereco 6', 'Fornecedor 6', 10, 22, 6, 16, 4, 4),
     (7, 'Endereco 7', 'Fornecedor 7', 14, 28, 9, 19, 5, 3),
-    (8, 'Endereco 8', 'Fornecedor 8', 18, 35, 12, 22, 8, 2),
+    (8, 'Endereco 8', 'Fornecedor 8', 18, 35, 12, 22, 8, 16),
     (9, 'Endereco 9', 'Fornecedor 9', 13, 26, 7, 17, 6, 1),
-    (10, 'Endereco 10', 'Fornecedor 10', 16, 32, 11, 21, 6, 10)
+    (10, 'Endereco 10', 'Fornecedor 10', 16, 32, 11, 21, 6, 10),
+    (11, 'Endereco 11', 'Fornecedor 11', 13, 27, 9, 19, 6, 13),
+    (12, 'Endereco 12', 'Fornecedor 12', 16, 32, 11, 21, 8, 20),
+    (13, 'Endereco 13', 'Fornecedor 13', 19, 38, 13, 23, 9, 11),
+    (14, 'Endereco 14', 'Fornecedor 14', 14, 28, 10, 18, 7, 18),
+    (15, 'Endereco 15', 'Fornecedor 15', 21, 42, 16, 26, 11, 12),
+    (16, 'Endereco 16', 'Fornecedor 16', 12, 24, 8, 16, 5, 17),
+    (17, 'Endereco 17', 'Fornecedor 17', 16, 32, 10, 22, 7, 2),
+    (18, 'Endereco 18', 'Fornecedor 18', 20, 40, 14, 26, 10, 14),
+    (19, 'Endereco 19', 'Fornecedor 19', 15, 30, 9, 21, 8, 19),
+    (20, 'Endereco 20', 'Fornecedor 20', 18, 36, 12, 24, 9, 15)
 ON CONFLICT (id_peca_estoque) DO NOTHING;
 
 SELECT id_peca_estoque, endereco, fornecedor, quantidade_ideal, quantidade_maxima, quantidade_minima, saldo_disponivel, saldo_reservado, id_peca
 FROM public.pecas_estoque;
 
+--se não funcionar o delete de peca então é porque esta relacionado a chave com pecas_estoque
+--ALTER TABLE pecas_estoque
+--DROP CONSTRAINT fklh9usdaqxuutbs0atofojxpry,
+--ADD CONSTRAINT fklh9usdaqxuutbs0atofojxpry
+--FOREIGN KEY (id_peca)  -- Update the column name here
+--REFERENCES peca (id_peca);  -- Update the column name here
 
 --****************************************************************************************************************************************************************************************************************************
 
+SELECT * FROM peca 
 
 SELECT * FROM peca pc INNER JOIN produto p ON pc.produto_id = p.id_produto WHERE p.id_produto = :prod
 
