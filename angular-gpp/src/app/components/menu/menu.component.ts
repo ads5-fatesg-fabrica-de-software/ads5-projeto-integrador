@@ -16,6 +16,13 @@ export class PanelMenuBasicDemoComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
+        label: 'Dashboard',
+        icon: 'pi pi-fw pi-home',
+        command: () => {
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      {
         label: 'Peça',
         icon: 'pi pi-fw pi-box',
         items: [

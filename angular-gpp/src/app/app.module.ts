@@ -49,6 +49,7 @@ import { AstecaTableComponent } from './components/asteca-table/asteca-table.com
 import { DialogService } from 'primeng/dynamicdialog';
 import { ListboxModule } from 'primeng/listbox';
 import { FieldsetModule } from 'primeng/fieldset';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 registerLocaleData(localePt);
@@ -71,7 +72,8 @@ registerLocaleData(localePt);
     ProdutoTableComponent,
     ProdutoFormComponent,
     AstecaFormComponent,
-    AstecaTableComponent
+    AstecaTableComponent,
+    DashboardComponent
   ],
   imports: [
     InputTextModule,
