@@ -59,7 +59,7 @@ public class DocumentoFiscalController {
 
 
 
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i < 3; i++) {
 
             // populando valores nos itens
             Random random = new Random();

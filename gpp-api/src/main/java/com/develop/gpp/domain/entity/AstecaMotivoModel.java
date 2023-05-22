@@ -16,13 +16,13 @@ public class AstecaMotivoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAstecaMotivo;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String denominacao;
 
-    @Column(nullable = false)
+   
     private LocalDateTime dataCriacao;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime dataAlteracao;
 
 }
