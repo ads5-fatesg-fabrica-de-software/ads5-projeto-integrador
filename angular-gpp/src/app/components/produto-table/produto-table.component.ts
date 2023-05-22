@@ -14,7 +14,7 @@ export class ProdutoTableComponent implements OnInit {
   @ViewChild('dt2') dt2: Table | undefined;
 
   ngAfterViewInit() {
-    console.log('dt2:', this.dt2);
+    // console.log('dt2:', this.dt2);
   }
   
   produtos: ProdutoModel[] = [];

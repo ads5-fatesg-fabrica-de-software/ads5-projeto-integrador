@@ -44,14 +44,14 @@ export class ProdutoFormComponent implements OnInit {
     this.produtoService.add(this.produto).subscribe(
       response => {
         this.produto = new ProdutoModel();
-        console.log(`funcionou. Nome: `);
+        // console.log(`funcionou. Nome: `);
         this.router.navigateByUrl('/produtoList');
         this.msgs = [{severity:'success', summary:'Success', detail:'Product added successfully.'}];
       },
       error => {
-        console.log(`ocorreu um erro: ${error}`);
-        console.log(`Status code: ${error.status}`);
-        console.log(`Response body: ${error.error}`);
+        // console.log(`ocorreu um erro: ${error}`);
+        // console.log(`Status code: ${error.status}`);
+        // console.log(`Response body: ${error.error}`);
         this.msgs = [{severity:'error', summary:'Error', detail:`Failed to add product. Status code: ${error.status}. Response body: ${error.error.message}` }];
 
       }
