@@ -32,11 +32,11 @@ O sistema de assistência técnica terceirizada é uma solução implementada po
 
 O escopo inclui as seguintes funcionalidades:
 
-<li> 1 - Registro de casos: O sistema permitirá o registro de novos casos de assistência técnica, incluindo informações do cliente, detalhes do produto, número de série e garantia.
-<li> 2 - Acompanhamento de casos: O sistema permitirá o acompanhamento do progresso dos casos de assistência técnica, registrando interações entre o cliente e o técnico, atualizações de status e soluções propostas.
-<li> 3 - Comunicação com clientes: O sistema facilitará a comunicação entre os técnicos e os clientes, permitindo o envio de mensagens, agendamento de visitas técnicas e obtenção de informações adicionais sobre os problemas enfrentados.
-<li> 4 - Registro de soluções: O sistema registrará as soluções adotadas para resolver os problemas dos clientes, incluindo peças substituídas, procedimentos realizados e qualquer outra ação tomada.
-<li> 5 - Fechamento de casos: O sistema permitirá o registro das informações de fechamento dos casos, incluindo a descrição da solução adotada e o feedback do cliente.
+<li><b> 1 - Registro de casos:</b> O sistema permitirá o registro de novos casos de assistência técnica, incluindo informações do cliente, detalhes do produto, número de série e garantia.
+<li><b> 2 - Acompanhamento de casos:</b> O sistema permitirá o acompanhamento do progresso dos casos de assistência técnica, registrando interações entre o cliente e o técnico, atualizações de status e soluções propostas.
+<li><b>3 - Comunicação com clientes:</b> O sistema facilitará a comunicação entre os técnicos e os clientes, permitindo o envio de mensagens, agendamento de visitas técnicas e obtenção de informações adicionais sobre os problemas enfrentados.
+<li><b>4 - Registro de soluções: O</b> sistema registrará as soluções adotadas para resolver os problemas dos clientes, incluindo peças substituídas, procedimentos realizados e qualquer outra ação tomada.
+<li><b>5 - Fechamento de casos:</b> O sistema permitirá o registro das informações de fechamento dos casos, incluindo a descrição da solução adotada e o feedback do cliente.
 </p>
 <br>
 <p> Fundamentado nas necessidades levantadas com o cliente, foram identificados os seguintes requisitos funcionais :
@@ -83,8 +83,31 @@ O escopo inclui as seguintes funcionalidades:
 </div>
 <br>
 <h3> 2 - Arquitetura do Software </h2>
-<p> A arquitetura de software de uma aplicação é o conjunto de decisões de design que definem como os diferentes componentes do sistema se relacionam e interagem entre si. Ela é responsável por garantir que a aplicação seja escalável, segura e capaz de lidar com as demandas dos usuários de forma eficiente. A documentação técnica da arquitetura de software é uma parte fundamental do processo de desenvolvimento, pois ajuda a equipe a entender como o sistema funciona e como cada componente se relaciona com os demais. Neste documento, serão descritos os principais componentes da arquitetura da aplicação, como eles se comunicam e quais são as suas responsabilidades. Além disso, serão apresentadas as principais tecnologias utilizadas na implementação da arquitetura, assim como as decisões de design que levaram à escolha dessas tecnologias.</p>
+<p> A arquitetura do nosso software de assistência técnica terceirizada foi desenvolvida com o objetivo de oferecer um sistema flexível, escalável e de alta eficiência. Com uma abordagem moderna e orientada a serviços, nossa arquitetura permite uma gestão eficaz dos casos de assistência técnica, garantindo uma experiência de suporte aprimorada para nossos clientes.</p>
 
 <div align="center">
-    <img src="imagens/arquitetura-software.png" alt="Texto alternativo" />
+    <img src="utilitarios/Arquitetura.png" alt="Texto alternativo" />
 </div>
+<h4> 2.1 - Tecnologias da implementação </h2>
+<br>
+<p>As principais tecnologias de implementação utilizadas em nosso projeto foram:</p>
+<br>
+<ul>
+<li><b>Docker: </b>Docker é uma plataforma que utiliza a tecnologia de contêineres para simplificar o empacotamento e distribuição de aplicativos. Ele cria ambientes isolados e padronizados, permitindo que os aplicativos sejam executados de maneira consistente em diferentes sistemas operacionais, facilitando a implantação e o gerenciamento.</li>
+<li><b>Angular:</b> Angular é um framework desenvolvido pelo Google, focado no desenvolvimento de aplicações web front-end. Com a utilização de componentes reutilizáveis, ele permite a criação de interfaces de usuário dinâmicas e responsivas. Recursos como data binding (ligação de dados), injeção de dependência e roteamento simplificam o desenvolvimento de aplicações complexas.
+</li>
+<li><b>Spring Boot:</b> Spring Boot é um framework para o desenvolvimento de aplicativos Java que facilita a criação de aplicações autônomas e prontas para produção. Ele oferece uma configuração rápida e automática de componentes comuns do ecossistema Spring, permitindo que os desenvolvedores se concentrem na lógica de negócios em vez de gastar tempo configurando e integrando diferentes camadas do aplicativo.</li>
+<li><b>PostgreSQL:</b> PostgreSQL é um sistema de gerenciamento de banco de dados relacional de código aberto e altamente escalável. Ele possui recursos avançados, como suporte a consultas complexas, transações ACID (Atomicidade, Consistência, Isolamento e Durabilidade), replicação e extensibilidade. O PostgreSQL é amplamente utilizado em aplicações que exigem um banco de dados confiável e poderoso, fornecendo uma base sólida para o armazenamento e manipulação de dados.</li>
+</ul>
+<br>
+<h3> Referências </h3>
+<br>
+<ol>
+<li>Docker. Disponível em: https://www.docker.com/. Acesso em: 16 maio 2023.</li>
+<li>Angular. Disponível em: https://angular.io/. Acesso em: 16 maio 2023.</li>
+<li>Spring Boot. Disponível em: https://spring.io/projects/spring-boot. Acesso em: 16 maio </li>
+<li>PostgreSQL. Disponível em: https://www.postgresql.org/. Acesso em: 16 maio 2023.</li>
+<li>TypeScript. Disponível em: https://www.typescriptlang.org/. Acesso em: 16 maio 2023.</li>
+<li>Java. Disponível em: https://www.java.com/. Acesso em: 16 maio 2023.</li>
+</ol>
+<br>
