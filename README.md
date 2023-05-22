@@ -76,7 +76,7 @@ O escopo inclui as seguintes funcionalidades:
 </table>
 </div>
 <br>
-<h4> 1.4 - Modelo de Domínio </h2>
+<h4> 1.3 - Modelo de Domínio </h2>
 <p>O modelo de domínio do GPP - Gerenciamento de Peças e Pedidos foi cuidadosamente desenvolvido para oferecer uma representação clara e estruturada dos principais elementos do processo de suporte e atendimento ao cliente. Esse modelo nos permite compreender e visualizar a forma como cada parte se relaciona e interage, o que resulta em uma gestão eficaz dos casos de assistência técnica.</p>
 <div align="center">
     <img src="utilitarios/Modelo Dominio.png" alt="Texto alternativo" />
