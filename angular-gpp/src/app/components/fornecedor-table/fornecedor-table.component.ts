@@ -15,7 +15,7 @@ export class FornecedorTableComponent implements OnInit {
   @ViewChild('dt2') dt2: Table | undefined;
 
   ngAfterViewInit() {
-    console.log('dt2:', this.dt2);
+    // console.log('dt2:', this.dt2);
   }
   
   fornecedores: FornecedorModel[] = [];
@@ -33,12 +33,12 @@ export class FornecedorTableComponent implements OnInit {
   
   onSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value;
-    console.log('Search value:', value);
+    // console.log('Search value:', value);
     this.dt2?.filterGlobal(value, 'contains');
-    console.log('Filtered data:', this.dt2?.value);
+    // console.log('Filtered data:', this.dt2?.value);
     this.cdr.detectChanges(); // trigger change detection
 
-    console.log('test data:', this.dt2?.value);
+    // console.log('test data:', this.dt2?.value);
   }
   
   
@@ -75,11 +75,11 @@ editFornecedor(id: number) {
 
 
   deleteFornecedor(id: number) {
-    console.log('deletar fornecedor');
+    // console.log('deletar fornecedor');
   
     this.fornecedorService.delete(id).subscribe(() => {
       this.list();
-      console.log(`Fornecedor ${id} foi deletada`);
+      // console.log(`Fornecedor ${id} foi deletada`);
     });
   }
   

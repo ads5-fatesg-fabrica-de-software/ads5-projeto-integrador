@@ -26,7 +26,7 @@ export class FornecedorFormComponent implements OnInit {
     this.fornecedorService.add(this.fornecedor).subscribe(r => {
 
       this.fornecedor = new FornecedorModel();
-      console.log(`funcionou. Nome: `);
+      // console.log(`funcionou. Nome: `);
       this.router.navigateByUrl('/fornecedorList');
   
     });

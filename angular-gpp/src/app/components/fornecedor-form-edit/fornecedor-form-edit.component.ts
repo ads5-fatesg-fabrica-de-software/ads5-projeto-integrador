@@ -18,7 +18,7 @@ export class FornecedorFormEditComponent implements OnInit {
     // console.log(id);
     this.fornecedorService.get(id).subscribe(fornecedor => {
       this.fornecedor = fornecedor;
-      console.log(this.fornecedor);
+      // console.log(this.fornecedor);
     });
   }
 
