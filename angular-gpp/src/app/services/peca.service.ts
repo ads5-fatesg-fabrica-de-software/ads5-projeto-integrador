@@ -19,8 +19,8 @@ export class PecaService {
   }
 
   public add(peca: PecaModel): Observable<any>{
-    const jsonPayload = JSON.stringify(peca);
-    console.log('JSON payload:', jsonPayload);
+    // const jsonPayload = JSON.stringify(peca);
+    // console.log('JSON payload:', jsonPayload);
 
     return this.httpClient.post(`${environment.url}/pecas/`, peca);
   }

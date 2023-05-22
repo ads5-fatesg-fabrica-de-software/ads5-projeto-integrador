@@ -26,7 +26,7 @@ export class PecaEditComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.pecaService.getPorIdPeca(id).subscribe(peca => {
-      console.log(peca);
+      // console.log(peca);
       
       this.peca = peca;
       this.peca.produto = { ...peca.produto };
