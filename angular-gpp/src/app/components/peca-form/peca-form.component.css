@@ -33,21 +33,13 @@ h1 {
 
 .p-inputtext {
   width: 100%;
-}
-
-.p-button-primary {
-  margin-top: 1rem;
-  margin-right: 1rem;
-}
-
-.p-inputtext {
   margin-top: 5px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1rem;
   color: red;
   background: #ffffff;
-  padding: 0.75rem 0.75rem;
-  border: 0.75px solid rgb(221, 221, 221);
+  padding: 0.75rem;
+  border: 1px solid rgb(221, 221, 221);
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   -webkit-appearance: none;
   appearance: none;
@@ -67,7 +59,7 @@ label {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.p-button-primary[_ngcontent-olq-c372] {
+.p-button-primary {
   margin-top: 1rem;
   margin-right: 1rem;
 }
@@ -83,6 +75,5 @@ label {
   text-align: center;
   overflow: hidden;
   position: relative;
-  margin-left: -105px;
-  margin-top: 0px;
 }
+

@@ -40,9 +40,13 @@
           <label for="volumes" class="p-d-block label">Volumes</label>
           <input type="text" id="volumes" placeholder="4,5" [(ngModel)]="peca.volumes" class="p-inputtext" />
         </div>
-        <div class="p-field">
-          <p-checkbox [(ngModel)]="peca.active" label="Ativo"></p-checkbox>
+        <div class="p-field toggle-switch">
+          <label for="active" class="p-d-block">Ativo</label>
+          <input type="checkbox" id="active" [(ngModel)]="peca.active" class="toggle-input">
+          <span class="toggle-slider"></span>
         </div>
+        
+        
         <div class="p-field">
           <label for="custo" class="p-d-block label">Custo</label>
           <input type="text" id="custo" placeholder="50,00" [(ngModel)]="peca.custo" class="p-inputtext" />
