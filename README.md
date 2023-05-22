@@ -77,8 +77,14 @@ O escopo inclui as seguintes funcionalidades:
 </div>
 <br>
 <h4> 1.4 - Modelo de Domínio </h2>
-<p>A documentação do modelo Entidade-Relacionamento (ER) é uma etapa crucial no processo de desenvolvimento de um sistema de informação. O modelo ER é usado para representar a estrutura do banco de dados, incluindo as entidades, relacionamentos e atributos. A partir desse modelo, é possível criar um esquema de banco de dados que possa ser implementado em um sistema de gerenciamento de banco de dados (SGBD). Neste documento, apresentaremos o modelo ER para Sistema de Controle de Acesso a Ambientes que contém a descrição detalhada dessa estrutura, incluindo as entidades, relacionamentos, chaves primárias e estrangeiras.</p>
+<p>O modelo de domínio do GPP - Gerenciamento de Peças e Pedidos foi cuidadosamente desenvolvido para oferecer uma representação clara e estruturada dos principais elementos do processo de suporte e atendimento ao cliente. Esse modelo nos permite compreender e visualizar a forma como cada parte se relaciona e interage, o que resulta em uma gestão eficaz dos casos de assistência técnica.</p>
 <div align="center">
-    <img src="imagens/entidades.png" alt="Texto alternativo" />
+    <img src="utilitarios/Modelo Dominio.png" alt="Texto alternativo" />
 </div>
 <br>
+<h3> 2 - Arquitetura do Software </h2>
+<p> A arquitetura de software de uma aplicação é o conjunto de decisões de design que definem como os diferentes componentes do sistema se relacionam e interagem entre si. Ela é responsável por garantir que a aplicação seja escalável, segura e capaz de lidar com as demandas dos usuários de forma eficiente. A documentação técnica da arquitetura de software é uma parte fundamental do processo de desenvolvimento, pois ajuda a equipe a entender como o sistema funciona e como cada componente se relaciona com os demais. Neste documento, serão descritos os principais componentes da arquitetura da aplicação, como eles se comunicam e quais são as suas responsabilidades. Além disso, serão apresentadas as principais tecnologias utilizadas na implementação da arquitetura, assim como as decisões de design que levaram à escolha dessas tecnologias.</p>
+
+<div align="center">
+    <img src="imagens/arquitetura-software.png" alt="Texto alternativo" />
+</div>
