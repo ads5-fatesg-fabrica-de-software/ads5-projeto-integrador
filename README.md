@@ -24,7 +24,7 @@ O sistema de assistência técnica terceirizada é uma solução implementada po
    O objetivo do Gerenciamento de Peças e Pedidos - GPP é fornecer um suporte eficiente e de qualidade aos clientes após a venda de um produto ou serviço. Ele busca garantir a resolução rápida e eficaz de problemas técnicos, promovendo a satisfação do cliente e fortalecendo a reputação da empresa. O software visa facilitar o gerenciamento dos casos de assistência, desde o registro inicial até o fechamento do chamado, proporcionando uma experiência positiva e um atendimento personalizado aos clientes.
 </p>
 <div align="center">
-    <img src="utilitarios/telas.png" alt="telas" />
+    <img src="utilitarios/TelasMaior.png" alt="telas" />
 </div>
 
 <h4> 1.2 - Escopo do Projeto e Requisitos de Software </h4>
