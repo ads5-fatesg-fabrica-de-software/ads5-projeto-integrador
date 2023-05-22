@@ -1,112 +1,69 @@
 <h1>Peça Edição <i class="fas pi pi-pencil"></i></h1>
 
-<p-dialog header="Edite Peça" [(visible)]="displayDialog">
-  <div class="form-group">
-    <label for="numero" class="label">Número:</label>
-    <div class="input">
+<p-dialog header="Edite Peça" [(visible)]="displayDialog" [style]="{ 'max-width': '600px' }">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="numero" class="label">Número:</label>
       <input type="text" id="numero" pInput [(ngModel)]="peca.numero">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="codigoFabrica" class="label">Código de Fábrica:</label>
-    <div class="input">
+    <div class="p-field">
+      <label for="codigoFabrica" class="label">Código de Fábrica:</label>
       <input type="text" id="codigoFabrica" pInput [(ngModel)]="peca.codigoFabrica">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="unidade" class="label">Unidade:</label>
-    <div class="input">
+    <div class="p-field">
+      <label for="unidade" class="label">Unidade:</label>
       <input type="text" id="unidade" pInput [(ngModel)]="peca.unidade">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="descricao" class="label">Descrição:</label>
-    <div class="input">
-      <input type="text" pInput id="descricao" placeholder="" [(ngModel)]="peca.descricao">
+    <div class="p-field">
+      <label for="descricao" class="label">Descrição:</label>
+      <input type="text" id="descricao" pInput placeholder="" [(ngModel)]="peca.descricao">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="altura" class="label">Altura:</label>
-    <div class="input">
-      <input type="text" pInput id="altura" placeholder="" [(ngModel)]="peca.altura">
+    <div class="p-field">
+      <label for="altura" class="label">Altura:</label>
+      <input type="text" id="altura" pInput placeholder="" [(ngModel)]="peca.altura">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="largura" class="label">Largura:</label>
-    <div class="input">
-      <input type="text" pInput id="largura" placeholder="" [(ngModel)]="peca.largura">
+    <div class="p-field">
+      <label for="largura" class="label">Largura:</label>
+      <input type="text" id="largura" pInput placeholder="" [(ngModel)]="peca.largura">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="profundidade" class="label">Profundidade:</label>
-    <div class="input">
-      <input type="text" pInput id="profundidade" placeholder="" [(ngModel)]="peca.profundidade">
+    <div class="p-field">
+      <label for="profundidade" class="label">Profundidade:</label>
+      <input type="text" id="profundidade" pInput placeholder="" [(ngModel)]="peca.profundidade">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="unidadeMedida" class="label">Unidade de Medida:</label>
-    <div class="input">
-      <input type="text" pInput id="unidadeMedida" placeholder="" [(ngModel)]="peca.unidadeMedida">
+    <div class="p-field">
+      <label for="unidadeMedida" class="label">Unidade de Medida:</label>
+      <input type="text" id="unidadeMedida" pInput placeholder="" [(ngModel)]="peca.unidadeMedida">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="volumes" class="label">Volumes:</label>
-    <div class="input">
-      <input type="text" pInput id="volumes" placeholder="" [(ngModel)]="peca.volumes">
+    <div class="p-field">
+      <label for="volumes" class="label">Volumes:</label>
+      <input type="text" id="volumes" pInput placeholder="" [(ngModel)]="peca.volumes">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="active" class="label">Ativo:</label>
-    <div class="input">
-      <input type="text" pInput id="active" placeholder="" [(ngModel)]="peca.active">
+    <div class="p-field">
+      <label for="active" class="label">Ativo:</label>
+      <input type="text" id="active" pInput placeholder="" [(ngModel)]="peca.active">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="custo" class="label">Custo:</label>
-    <div class="input">
-      <input type="text" pInput id="custo" placeholder="" [(ngModel)]="peca.custo">
+    <div class="p-field">
+      <label for="custo" class="label">Custo:</label>
+      <input type="text" id="custo" pInput placeholder="" [(ngModel)]="peca.custo">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="cor" class="label">Cor:</label>
-    <div class="input">
-      <input type="text" pInput id="cor" placeholder="" [(ngModel)]="peca.cor">
+    <div class="p-field">
+      <label for="cor" class="label">Cor:</label>
+      <input type="text" id="cor" pInput placeholder="" [(ngModel)]="peca.cor">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="material" class="label">Material:</label>
-    <div class="input">
-      <input type="text" pInput id="material" placeholder="" [(ngModel)]="peca.material">
+    <div class="p-field">
+      <label for="material" class="label">Material:</label>
+      <input type="text" id="material" pInput placeholder="" [(ngModel)]="peca.material">
     </div>
-  </div>
-  <!-- <div class="form-group">
-    <label for="idProduto" class="label">ID Produto:</label>
-    <div class="input">
-      <input type="text" id="idProduto" pInput [(ngModel)]="peca.produto.idProduto">
+    <div class="p-field">
+      <label for="produto" class="label">Produto:</label>
+      <p-dropdown id="produto" [options]="produtos" [(ngModel)]="peca.produto" optionLabel="descricao"></p-dropdown>
     </div>
-  </div> -->
-  <div class="form-group">
-    <label for="produto" class="label">Produto:</label>
-    <div class="input">
-      <select id="produto" pInput [(ngModel)]="peca.produto">
-        <option *ngFor="let produto of produtos" [ngValue]="produto">{{ produto.descricao }}</option>
-      </select>
-    </div>
-  </div>
-  <!-- <div class="form-group">
-    <label for="idFornecedor" class="label">ID Fornecedor:</label>
-    <div class="input">
-      <input type="text" id="idFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.idFornecedor">
-    </div>
-  </div> -->
-  <div class="form-group">
-    <label for="nomeFornecedor" class="label">Nome do Fornecedor:</label>
-    <div class="input">
+    <div class="p-field">
+      <label for="nomeFornecedor" class="label">Nome do Fornecedor:</label>
       <input type="text" id="nomeFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.nomeFornecedor" readonly>
     </div>
+    <div class="p-field button-group">
+      <button (click)="editar()" pButton type="button" label="Editar" class="p-button p-button-primary"></button>
+    </div>
   </div>
-  <div class="form-group button-group">
-    <button (click)="editar()" pButton type="button" label="Editar" class="p-button p-button-primary"></button>
-  </div>
-  <br /><br />
 </p-dialog>

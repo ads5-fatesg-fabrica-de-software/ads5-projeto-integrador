@@ -29,7 +29,7 @@ export class ProdutoService {
   }
 
   public list(): Observable<any>{
-    console.log(this.httpClient.get(`${environment.url}/produto/`))
+    // console.log(this.httpClient.get(`${environment.url}/produto/`))
     return this.httpClient.get(`${environment.url}/produto/`);
   }
 

@@ -34,9 +34,14 @@ export class PecaFormComponent implements OnInit {
 
   public salvar(): void {
     this.peca.idFornecedor = this.peca.produto?.fornecedor?.idFornecedor;
-
+    
+    console.log("produto selecionado " + this.selectedProduto?.fornecedor.idFornecedor);
+    console.log("produto selecionado " + this.peca.produto?.fornecedor?.nomeFornecedor);
+    console.log("peca original " + this.peca.idFornecedor);
+    
     this.pecaService.add(this.peca).subscribe(() => {
-      console.log('Saved successfully.');
+      this.peca = new PecaModel();
+      console.log(`Funcionou. Nome: `);
       this.router.navigateByUrl('/pecaList');
     });
   }
