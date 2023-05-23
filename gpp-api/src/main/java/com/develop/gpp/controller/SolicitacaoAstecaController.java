@@ -8,7 +8,11 @@ import java.util.Random;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,47 +52,47 @@ public class SolicitacaoAstecaController {
     @Autowired
     private AstecaMotivoRepository astecaMotivoRepository;
 
-    @PostConstruct
-    public void init() {
+    // @PostConstruct
+    // public void init() {
 
-            ItemSolicitacaoAstecaModel item = new ItemSolicitacaoAstecaModel();
-            ItemSolicitacaoAstecaModel item2 = new ItemSolicitacaoAstecaModel();
-            SolicitacaoAstecaModel  asteca = new SolicitacaoAstecaModel();
-            List<DocumentoFiscalModel> documento = documentoFiscalRepository.findAll();
-            List<PecasEstoqueModel> pecasEstoque = pecasEstoqueRepository.findAll();
-            List<AstecaMotivoModel> motivo = astecaMotivoRepository.findAll();
-            SituacaoAstecaEnum situacao = null;
-            TipoAstecaEnum tipo = null;
+    //         ItemSolicitacaoAstecaModel item = new ItemSolicitacaoAstecaModel();
+    //         ItemSolicitacaoAstecaModel item2 = new ItemSolicitacaoAstecaModel();
+    //         SolicitacaoAstecaModel  asteca = new SolicitacaoAstecaModel();
+    //         List<DocumentoFiscalModel> documento = documentoFiscalRepository.findAll();
+    //         List<PecasEstoqueModel> pecasEstoque = pecasEstoqueRepository.findAll();
+    //         List<AstecaMotivoModel> motivo = astecaMotivoRepository.findAll();
+    //         SituacaoAstecaEnum situacao = null;
+    //         TipoAstecaEnum tipo = null;
 
 
-            item.setPecaEstoque(pecasEstoque.get(0));
-            item.setQuantidade(2);
+    //         item.setPecaEstoque(pecasEstoque.get(0));
+    //         item.setQuantidade(2);
 
-            item2.setPecaEstoque(pecasEstoque.get(0));
-            item2.setQuantidade(3);
+    //         item2.setPecaEstoque(pecasEstoque.get(0));
+    //         item2.setQuantidade(3);
 
-            List<ItemSolicitacaoAstecaModel> listaItens = new ArrayList<>();
+    //         List<ItemSolicitacaoAstecaModel> listaItens = new ArrayList<>();
 
-            listaItens.add(item);
-            listaItens.add(item2);
+    //         listaItens.add(item);
+    //         listaItens.add(item2);
 
-            itemAstecaRepository.saveAll(listaItens);
+    //         itemAstecaRepository.saveAll(listaItens);
 
-            asteca.setDataCriacao(LocalDateTime.now());
-            asteca.setDocumentoFiscal(documento.get(8));
-            asteca.setDescricaoProduto(documento.get(8).getDescricao());
-            asteca.setIdProduto(3);
-            asteca.setItensAsteca(listaItens);
-            asteca.setMotivoCriacaoAsteca(motivo.get(0));
-            asteca.setObservacao("Primeiro Teste");
-            asteca.setSituacaoAsteca(situacao.EMABERTO);
-            asteca.setTipoAsteca(tipo.VISTORIA);
+    //         asteca.setDataCriacao(LocalDateTime.now());
+    //         asteca.setDocumentoFiscal(documento.get(8));
+    //         asteca.setDescricaoProduto(documento.get(8).getDescricao());
+    //         asteca.setIdProduto(3);
+    //         asteca.setItensAsteca(listaItens);
+    //         asteca.setMotivoCriacaoAsteca(motivo.get(0));
+    //         asteca.setObservacao("Primeiro Teste");
+    //         asteca.setSituacaoAsteca(situacao.EMABERTO);
+    //         asteca.setTipoAsteca(tipo.VISTORIA);
 
            
-            solicitacaoAstecaService.salvarAsteca(asteca);
+    //         solicitacaoAstecaService.salvarAsteca(asteca);
             
 
-    }
+    // }
 
     @GetMapping("/")
     public List<SolicitacaoAstecaModel> listarTodas(){
@@ -96,4 +100,16 @@ public class SolicitacaoAstecaController {
         return solicitacaoAstecaService.listarTodas();
     }
 
+
+    @PostMapping("/")
+    public ResponseEntity<SolicitacaoAstecaModel> salvarAsteca(@RequestBody SolicitacaoAstecaModel asteca){
+
+        return solicitacaoAstecaService.salvarAsteca(asteca);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<SolicitacaoAstecaModel> executarSolicitacao(@RequestBody SolicitacaoAstecaModel asteca){
+
+        return solicitacaoAstecaService.executarSolicitacao(asteca);
+    }
 }

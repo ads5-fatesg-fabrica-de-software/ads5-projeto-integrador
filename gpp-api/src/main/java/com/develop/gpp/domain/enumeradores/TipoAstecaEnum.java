@@ -1,8 +1,10 @@
 package com.develop.gpp.domain.enumeradores;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public enum TipoAstecaEnum {
 
     VISTORIA("Vistoria", 1),

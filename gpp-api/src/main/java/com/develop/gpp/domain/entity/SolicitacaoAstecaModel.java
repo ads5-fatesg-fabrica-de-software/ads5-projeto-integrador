@@ -57,7 +57,7 @@ public class SolicitacaoAstecaModel {
    @JoinColumn(name = "id_doc_fiscal")
     private DocumentoFiscalModel documentoFiscal;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "item_asteca")
     private List<ItemSolicitacaoAstecaModel> itensAsteca = new ArrayList<>();
 
