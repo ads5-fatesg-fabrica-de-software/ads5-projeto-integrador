@@ -47,10 +47,12 @@ public class SolicitacaoAstecaModel {
 
     private LocalDateTime dataCriacao;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
+    @Column(columnDefinition = "1- Em aberto, 2- Em Execução, 3- Cancelada, 4- Finalizada")
     private SituacaoAstecaEnum situacaoAsteca;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
+    @Column(columnDefinition = "1- Vistoria, 2- Reparo")
     private TipoAstecaEnum tipoAsteca;
 
    @ManyToOne
