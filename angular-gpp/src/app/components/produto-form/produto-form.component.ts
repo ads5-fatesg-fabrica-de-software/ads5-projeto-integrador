@@ -41,21 +41,14 @@ export class ProdutoFormComponent implements OnInit {
   
 
   public salvar() {
-    this.produtoService.add(this.produto).subscribe(
-      response => {
-        this.produto = new ProdutoModel();
-        // console.log(`funcionou. Nome: `);
-        this.router.navigateByUrl('/produtoList');
-        this.msgs = [{severity:'success', summary:'Success', detail:'Product added successfully.'}];
-      },
-      error => {
-        // console.log(`ocorreu um erro: ${error}`);
-        // console.log(`Status code: ${error.status}`);
-        // console.log(`Response body: ${error.error}`);
-        this.msgs = [{severity:'error', summary:'Error', detail:`Failed to add product. Status code: ${error.status}. Response body: ${error.error.message}` }];
+    
+    this.produtoService.add(this.produto).subscribe(() => {
+      // console.log(`Funcionou. Nome: `);
+      this.router.navigateByUrl('/produtoList');
+    });
 
-      }
-    );
   }
+
+  
   
 }
