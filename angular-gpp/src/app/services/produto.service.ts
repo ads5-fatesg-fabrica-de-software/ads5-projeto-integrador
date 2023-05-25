@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProdutoService {
 
-
   public produtos: ProdutoModel[] = [];
 
   constructor(private httpClient: HttpClient) { }

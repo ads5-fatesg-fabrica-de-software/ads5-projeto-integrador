@@ -74,7 +74,7 @@ editProduto(id: number) {
 
 
   deleteProduto(id: number) {
-    console.log('deletar produto');
+    // console.log('deletar produto');
   
     this.produtoService.delete(id).subscribe(() => {
       this.list();
