@@ -1,6 +1,9 @@
 package com.develop.gpp.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.develop.gpp.domain.entity.PecaModel;
 import com.develop.gpp.domain.entity.dto.PecaDTO;
 import com.develop.gpp.domain.repository.PecaRepository;
+
+import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +31,11 @@ public class PecaService {
     }
 
     public List<PecaDTO> listaPecas() {
+
+          
+        //PageRequest.of(0, 0, JpaSort.by(Direction.DESC, "peca.id_peca"));
+
+        
         List<PecaModel> lista = pecaRepository.findAll();
         return lista.stream()
                 .map(this::convertToDTO)
