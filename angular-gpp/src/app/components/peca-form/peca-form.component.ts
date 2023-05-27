@@ -19,38 +19,38 @@ export class PecaFormComponent implements OnInit {
   selectedProduto: ProdutoModel | null = null;
   peca: PecaModel = new PecaModel();
   pageTitle: string = 'Novo';
-  pecaForm: FormGroup; // Initialize the pecaForm property
+  pecaForm: FormGroup;
 
   constructor(
     private pecaService: PecaService,
     private router: Router,
     private route: ActivatedRoute,
     private produtoService: ProdutoService,
-    private formBuilder: FormBuilder // Inject the FormBuilder
+    private formBuilder: FormBuilder
   ) {
-    this.pecaForm = this.formBuilder.group({}); // Initialize the pecaForm FormGroup
+    this.pecaForm = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
     this.produtoService.list().subscribe(produtos => {
       this.produtos = produtos;
     });
-    this.buildForm(); // Call the buildForm method to create the form controls
+    this.buildForm();
   }
 
   private buildForm(): void {
     this.pecaForm = this.formBuilder.group({
-      numero: ['', Validators.required],
+      numero: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       codigoFabrica: ['', Validators.required],
-      unidade: ['', Validators.required],
+      unidade: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       descricao: ['', Validators.required],
-      altura: ['', Validators.required],
-      largura: ['', Validators.required],
-      profundidade: ['', Validators.required],
+      altura: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      largura: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      profundidade: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
       unidadeMedida: ['', Validators.required],
-      volumes: ['', Validators.required],
+      volumes: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
       active: [false],
-      custo: ['', Validators.required],
+      custo: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
       cor: ['', Validators.required],
       material: ['', Validators.required],
       materialFabricacao: ['', Validators.required],
@@ -60,7 +60,6 @@ export class PecaFormComponent implements OnInit {
 
   public salvar(): void {
     if (this.pecaForm.invalid) {
-      // Handle form validation errors
       return;
     }
 
@@ -79,7 +78,6 @@ export class PecaFormComponent implements OnInit {
       produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
     );
 
-    // Reset the selectedProduto when the product selection changes
     this.selectedProduto = null;
   }
 
