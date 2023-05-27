@@ -16,8 +16,8 @@ export class PecaFormComponent implements OnInit {
   produtos: ProdutoModel[] = [];
   filteredProdutos: ProdutoModel[] = [];
   selectedProduto: ProdutoModel | null = null;
-
   peca: PecaModel = new PecaModel();
+  pageTitle: string = 'Novo';
 
   constructor(
     private pecaService: PecaService,
@@ -51,4 +51,9 @@ export class PecaFormComponent implements OnInit {
       produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
     );
   }
+
+  cancelar(): void {
+    this.router.navigateByUrl('/pecaList');
+  }
+  
 }

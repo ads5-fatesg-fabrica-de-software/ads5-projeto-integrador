@@ -9,6 +9,7 @@ import com.develop.gpp.domain.entity.ProdutoModel;
 import com.develop.gpp.domain.repository.FornecedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -55,9 +56,8 @@ public class ProdutoService {
 
 
     public List<ProdutoModel> listaProduto() {
-
-        return produtoRepository.findAll();
-
+        Sort sortByDescricao = Sort.by(Sort.Direction.ASC, "descricao");
+        return produtoRepository.findAll(sortByDescricao);
     }
 
     public ResponseEntity<Integer> deleteProduto(Integer id) {

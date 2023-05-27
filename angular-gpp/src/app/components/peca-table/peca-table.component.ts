@@ -14,6 +14,7 @@ export class PecaTableComponent implements OnInit {
   @ViewChild('dt2') dt2: Table | undefined;
   pecas: PecaModel[] = [];
   public source: LocalDataSource = new LocalDataSource(this.pecas);
+  pageTitle: string = 'Peça';
 
   constructor(
     private pecaService: PecaService,
@@ -70,4 +71,9 @@ export class PecaTableComponent implements OnInit {
     this.cdr.detectChanges(); // trigger change detection
     console.log('test data:', this.dt2?.value);
   }
+
+  adicionarPeca(): void {
+    this.router.navigateByUrl(`peca/:id`);
+  }
+  
 }

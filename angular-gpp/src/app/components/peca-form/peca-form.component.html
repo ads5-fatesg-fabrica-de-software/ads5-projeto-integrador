@@ -1,4 +1,6 @@
-<h1>Nova Peça</h1>
+<div class="page-title">
+  <h1>{{ pageTitle }}</h1>
+</div>
 
 <div class="p-grid">
   <div class="p-col-12">
@@ -64,7 +66,7 @@
           <input type="text" id="materialFabricacao" placeholder="plástico" [(ngModel)]="peca.materialFabricacao" class="p-inputtext" />
         </div>
         <div class="p-field">
-          <label for="idFornecedor" class="p-d-block label">Nome do Fornecedor:</label>
+          <label for="idFornecedor" class="p-d-block label">Nome do Fornecedor: </label>
           <label id="idFornecedor" class="p-d-block">{{ peca.produto.fornecedor.nomeFornecedor }}</label>
         </div>
         <div class="p-field">
@@ -74,8 +76,10 @@
             placeholder="Selecione o produto"></p-autoComplete>
         </div>
         <div class="p-field">
-          <button (click)="salvar()" pButton type="button" class="p-button-primary"><i class="pi pi-save"></i>Salvar</button>
+          <button pButton type="button" class="p-button-primary" (click)="salvar()"><i class="pi pi-save"></i>Salvar</button>
+          <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
         </div>
+        
       </div>
     </div>
   </div>

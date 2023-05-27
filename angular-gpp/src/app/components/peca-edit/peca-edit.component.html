@@ -1,6 +1,8 @@
-<h1>Peça Edição <i class="fas pi pi-pencil"></i></h1>
+<div class="page-title">
+  <h1>{{ pageTitle }}</h1>
+</div>
 
-<p-dialog header="Edite Peça" [(visible)]="displayDialog" [style]="{ 'max-width': '600px' }">
+<p-dialog header="Editar" [(visible)]="displayDialog" [style]="{ 'max-width': '600px' }" (onHide)="onDialogHide()"> 
   <div class="p-fluid">
     <div class="p-field">
       <label for="numero" class="label">Número:</label>
@@ -63,7 +65,10 @@
       <input type="text" id="nomeFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.nomeFornecedor" readonly>
     </div>
     <div class="p-field button-group">
-      <button (click)="editar()" pButton type="button" label="Editar" class="p-button p-button-primary"></button>
+      <div class="p-field">
+        <button pButton type="button" class="p-button-primary" (click)="editar()"><i class="pi pi-save"></i>Salvar</button>
+        <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
+      </div>
     </div>
   </div>
 </p-dialog>

@@ -15,6 +15,7 @@ export class PecaEditComponent implements OnInit {
   peca: PecaModel = new PecaModel();
   fornecedores: string[] = []; // Populate this array with the list of fornecedores
   produtos: ProdutoModel[] = [];
+  pageTitle: string = 'Edição';
 
   constructor(
     private pecaService: PecaService,
@@ -42,4 +43,13 @@ export class PecaEditComponent implements OnInit {
       this.router.navigateByUrl('/pecaList');
     });
   }
+
+  cancelar(): void {
+    this.router.navigateByUrl('/pecaList');
+  }
+
+  onDialogHide(): void {
+    this.cancelar();
+  }
+  
 }
