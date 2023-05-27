@@ -5,7 +5,7 @@ registerLocaleData(localePt);
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import 'eva-icons';
 import { AppRoutingModule } from './app-routing.module';
@@ -109,7 +109,8 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     NbEvaIconsModule,
     HttpClientModule,
-    NbSelectModule
+    NbSelectModule,
+    ReactiveFormsModule
   ],
   providers: [MessageService, DialogService],
   bootstrap: [AppComponent]
