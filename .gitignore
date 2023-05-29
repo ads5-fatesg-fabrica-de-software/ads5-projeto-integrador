@@ -20,7 +20,7 @@ angular-gpp/node_modules/
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 gpp-api/src/main/resources/application.properties
-gpp-api/src/main/resources/static
+gpp-api/src/main/resources/static/
 angular-gpp/package-lock.json
 angular-gpp/package.json
 gpp-api/src/main/resources/application.properties
