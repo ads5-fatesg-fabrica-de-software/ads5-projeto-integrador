@@ -89,7 +89,7 @@
             <div *ngIf="pecaForm.get('produto')?.invalid && pecaForm.get('produto')?.touched" class="p-invalid">Produto é obrigatório</div>
           </div>
           <div class="p-field">
-            <button pButton type="submit" class="p-button-primary" [disabled]="pecaForm?.invalid"><i class="pi pi-save"></i>Salvar</button>
+            <button pButton type="submit" class="p-button-primary" (click)="salvar()" [disabled]="pecaForm?.invalid"><i class="pi pi-save"></i>Salvar</button>
             <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
           </div>
         </form>

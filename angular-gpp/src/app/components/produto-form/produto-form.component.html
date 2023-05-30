@@ -1,29 +1,31 @@
-<h1>Produto Novo <i class="fas pi pi-fw pi-plus"></i></h1>
+<div class="page-title">
+  <h1>{{ pageTitle }}</h1>
+</div>
 
-<p-dialog header="Novo Produto" [(visible)]="displayDialog">
-  <div class="p-fluid">
-    <div class="p-field p-grid">
-      <label for="nomeProduto" class="p-col-3">Produto</label>
-      <div class="p-col-9">
-        <input type="text" pInput id="nomeProduto" placeholder="Guarda-roupa 3 portas" [(ngModel)]="produto.descricao">
+<p-dialog header="Novo" [(visible)]="displayDialog" (onHide)="onDialogHide()">
+  <form [formGroup]="produtoForm">
+    <div class="p-fluid">
+      <div class="form-group">
+        <label for="nomeProduto" class="p-d-block">Produto</label>
+        <input type="text" id="nomeProduto" placeholder="Guarda-roupa 3 portas" formControlName="descricao" class="p-inputtext" />
+        <div *ngIf="produtoForm.get('descricao')?.invalid && produtoForm.get('descricao')?.touched" class="p-invalid">O nome do produto é obrigatório</div>
       </div>
-    </div>
 
-    <div class="p-field p-grid">
-      <label for="fornecedor" class="p-col-3">Fornecedor</label>
-      <div class="p-col-9">
-        <p-autoComplete [(ngModel)]="produto.fornecedor" [suggestions]="filteredFornecedors" (completeMethod)="searchFornecedors($event)" 
-          [field]="'nomeFornecedor'" [dropdown]="true" placeholder="Selecione o fornecedor"></p-autoComplete>
+      <div class="p-field">
+        <label for="fornecedor" class="p-d-block">Fornecedor</label>
+        <p-autoComplete formControlName="fornecedor" [suggestions]="filteredFornecedors"
+          (completeMethod)="searchFornecedors($event)" [field]="'nomeFornecedor'" [dropdown]="true"
+          placeholder="Selecione o fornecedor" (onSelect)="selectedFornecedor = $event"></p-autoComplete>
+        <div *ngIf="produtoForm.get('fornecedor')?.invalid && produtoForm.get('fornecedor')?.touched" class="p-invalid">Fornecedor é obrigatório</div>
       </div>
-    </div>
 
-    <div class="p-d-flex p-jc-end">
+      <div class="p-field">
+          <button pButton type="submit" class="p-button-primary" (click)="salvar()" [disabled]="produtoForm?.invalid"><i class="pi pi-save"></i>Salvar</button>
+          <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
+          
+      </div>
+
       <p-messages [(value)]="msgs"></p-messages>
-      <button (click)="salvar()" pButton type="button" class="p-button-primary"><i class="pi pi-save"></i></button>
     </div>
-  </div>
+  </form>
 </p-dialog>
-
-
-
-

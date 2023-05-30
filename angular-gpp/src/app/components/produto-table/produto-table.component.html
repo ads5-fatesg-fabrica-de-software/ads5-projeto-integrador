@@ -1,22 +1,16 @@
-<h1>Produto Lista <i class="fas fa-list"></i></h1>
+<div class="page-title">
+    <h1>{{ pageTitle }}</h1>
+</div>
 
-<!-- <h1>Peças Lista</h1> -->
+<div class="button-container">
+    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarProduto()"></button>
+  </div>
 
 <div class="card">
-    <p-table
-        #dt2
-        [value]="produtos" 
-        [sortField]="'idProduto'"
-        [sortOrder]="-1"
-        [tableStyle]="{ 'min-width': '50rem' }" 
-        [rows]="5" 
-        [paginator]="true"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
-        [tableStyle]="{ 'min-width': '75rem' }" 
-        [rowHover]="true" 
-        dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
-        [showCurrentPageReport]="true">
+    <p-table #dt2 [value]="produtos" [sortField]="'idProduto'" [sortOrder]="-1" [tableStyle]="{ 'min-width': '50rem' }"
+        [rows]="5" [paginator]="true" [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [tableStyle]="{ 'min-width': '75rem' }" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
 
         <ng-template pTemplate="caption">
             <div class="flex">
@@ -25,32 +19,18 @@
 
 
 
-                    <!-- <input pInputText type="text" (keyup)="onSearch($event)" placeholder="Search keyword" /> -->
                 </span>
             </div>
         </ng-template>
-        
+
         <ng-template pTemplate="header">
             <tr>
 
-                <!-- <th>idProduto</th> -->
+
                 <th>ID Produto</th>
-                <!-- <th>numero</th>
-                <th>codigoFabrica</th>
-                <th>unidade</th> -->
+
                 <th>Produto</th>
-                <!-- <th>altura</th>
-                <th>largura</th> -->
-                <!-- <th>profundidade</th>
-                <th>unidadeMedida</th>
-                <th>volumes</th>
-                <th>active</th>
-                <th>custo</th>
-                <th>cor</th>
-                <th>material</th>
-                <th>idProduto</th>
-                <th>materialFabricacao</th>
-                <th>produtosProduto</th> -->
+
                 <th></th>
             </tr>
 
@@ -64,28 +44,14 @@
 
                 <th>
                 </th>
-              
+
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-produto>
             <tr>
                 <td>{{ produto.idProduto }}</td>
-                <!-- <td>{{ produto.numero }}</td>
-                <td>{{ produto.codigoFabrica }}</td>
-                <td>{{ produto.unidade }}</td> -->
                 <td>{{ produto.descricao }}</td>
-                <!-- <td>{{ produto.altura }}</td>
-                <td>{{ produto.largura }}</td> -->
-                <!-- <td>{{ produto.profundidade }}</td>
-                <td>{{ produto.unidadeMedida }}</td>
-                <td>{{ produto.volumes }}</td>
-                <td>{{ produto.active }}</td>
-                <td>{{ produto.custo }}</td>
-                <td>{{ produto.cor }}</td>
-                <td>{{ produto.material }}</td>
-                <td>{{ produto.idProduto }}</td>
-                <td>{{ produto.materialFabricacao }}</td>
-                <td>{{ produto.produtosProduto }}</td> -->
+
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                         (click)="editeProduto(produto)"></button>
