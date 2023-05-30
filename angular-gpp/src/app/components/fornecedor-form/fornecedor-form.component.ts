@@ -21,6 +21,8 @@ function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
 export class FornecedorFormComponent implements OnInit {
   displayDialog = true;
   fornecedorForm: FormGroup;
+  pageTitle: string = 'Fornecedor';
+  
 
   constructor(
     private fornecedorService: FornecedorService,

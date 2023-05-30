@@ -1,11 +1,12 @@
-<h1>Fornecedor Novo <i class="fas pi pi-fw pi-plus"></i></h1>
-
+<div class="page-title">
+    <h1>{{ pageTitle }}</h1>
+  </div>
 <p-dialog header="Novo Fornecedor" [(visible)]="displayDialog" (onHide)="onDialogHide()">
   <form [formGroup]="fornecedorForm">
     <div class="form-group">
       <label for="nomeFornecedor" class="p-d-block">Fornecedor</label>
       <input type="text" id="nomeFornecedor" placeholder="5654" formControlName="nomeFornecedor" class="p-inputtext" />
-      <div *ngIf="fornecedorForm.get('nomeFornecedor')?.invalid && fornecedorForm.get('nomeFornecedor')?.touched" class="p-invalid">nomeFornecedor é obrigatório</div>
+      <div *ngIf="fornecedorForm.get('nomeFornecedor')?.invalid && fornecedorForm.get('nomeFornecedor')?.touched" class="p-invalid">O nome do Fornecedor é obrigatório</div>
     </div>
 
     <div class="p-field">
