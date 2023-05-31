@@ -1,17 +1,20 @@
-export class SolicitacaoAstecaModel {
-  idAsteca: number = 0;
-  astecaMotivo: string = "";
-  tipoAsteca: number = 0;
-  idFilialRegistro: number = 0;
-  observacao: string = "";
-  defeitoEstadoProd: string = "";
-  dataEmissao!: Date;
-  astecaEndCliente: string = "";
-  documentoFiscal: string = "";
-  compEstProd: string[] = ["test1", "test2", "testtest"];
-  funcionario: string = "";
-  pedidoSaida: string = "";
-  pedidoEntrada: string = "";
-  astecaPendencias: string[] = ["test1", "test2", "testtest"];
+import { AstecaMotivoModel } from "./AstecaMotivoModel";
+import { DocumentoFiscalModel } from "./DocumentoFiscalModel";
+import { ItemSolicitacaoAstecaModel } from "./ItemSolicitacaoAstecaModel";
+import { SituacaoAstecaEnum } from "./SituacaoAstecaEnum";
+import { TipoAstecaEnum } from "./TipoAstecaEnum";
 
+export class SolicitacaoAstecaModel {
+  constructor(
+    public idAsteca?: number,
+    public idProduto?: number,
+    public descricaoProduto?: string,
+    public observacao?: string,
+    public dataCriacao?: Date,
+    public situacaoAsteca?: SituacaoAstecaEnum,
+    public tipoAsteca?: TipoAstecaEnum,
+    public documentoFiscal?: DocumentoFiscalModel,
+    public itensAsteca?: ItemSolicitacaoAstecaModel[],
+    public motivoCriacaoAsteca?: AstecaMotivoModel
+  ) {}
 }
