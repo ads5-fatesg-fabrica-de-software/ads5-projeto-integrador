@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-asteca-table',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AstecaTableComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('dt2') dt2: Table | undefined;
+  
+  pageTitle: string = 'Asteca';
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) 
+    {
+
+      
+     }
 
   ngOnInit(): void {
+  }
+
+  adicionarAsteca(){
+    this.router.navigateByUrl(`asteca/:id`);
   }
 
 }
