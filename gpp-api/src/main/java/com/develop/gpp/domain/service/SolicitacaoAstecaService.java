@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.HttpClientErrorException;
 
+import com.develop.gpp.domain.entity.ItemSolicitacaoAstecaModel;
 import com.develop.gpp.domain.entity.PecasEstoqueModel;
 import com.develop.gpp.domain.entity.SolicitacaoAstecaModel;
 import com.develop.gpp.domain.enumeradores.SituacaoAstecaEnum;
@@ -61,12 +62,9 @@ public class SolicitacaoAstecaService {
 
         }
 
-        for (int i = 0; i < asteca.getItensAsteca().size(); i++) {
-
-            PecasEstoqueModel estoque = asteca.getItensAsteca().get(i).getPecaEstoque();
-
-            pecasEstoqueService.editarPeca(estoque, asteca.getItensAsteca().get(i).getQuantidade());
-
+        for (ItemSolicitacaoAstecaModel item : asteca.getItensAsteca()) {
+            PecasEstoqueModel estoque = item.getPecaEstoque();
+            pecasEstoqueService.editarPeca(estoque, item.getQuantidade());
         }
 
         SolicitacaoAstecaModel solicitacaoSalva = solicitacaoAstecaRepository.save(asteca);
