@@ -6,7 +6,7 @@ bin-release/
 
 angular-gpp/.angular/
 angular-gpp/node_modules/
-
+auth-server/.idea/
 # Other files and folders
 .settings/
 
