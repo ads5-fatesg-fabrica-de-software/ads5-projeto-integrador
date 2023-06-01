@@ -65,22 +65,20 @@ public class SolicitacaoAstecaController {
     //         TipoAstecaEnum tipo = null;
 
 
-    //         item.setPecaEstoque(pecasEstoque.get(0));
-    //         item.setQuantidade(2);
 
-    //         item2.setPecaEstoque(pecasEstoque.get(0));
-    //         item2.setQuantidade(3);
+    //         item2.setPecaEstoque(pecasEstoque.get(10));
+    //         item2.setQuantidade(0);
 
     //         List<ItemSolicitacaoAstecaModel> listaItens = new ArrayList<>();
 
-    //         listaItens.add(item);
+          
     //         listaItens.add(item2);
 
     //         itemAstecaRepository.saveAll(listaItens);
 
     //         asteca.setDataCriacao(LocalDateTime.now());
-    //         asteca.setDocumentoFiscal(documento.get(8));
-    //         asteca.setDescricaoProduto(documento.get(8).getDescricao());
+    //         asteca.setDocumentoFiscal(documento.get(0));
+    //         asteca.setDescricaoProduto(documento.get(0).getDescricao());
     //         asteca.setIdProduto(3);
     //         asteca.setItensAsteca(listaItens);
     //         asteca.setMotivoCriacaoAsteca(motivo.get(0));
