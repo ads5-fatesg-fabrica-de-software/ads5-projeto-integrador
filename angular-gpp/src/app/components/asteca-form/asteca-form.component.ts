@@ -77,6 +77,7 @@ export class AstecaFormComponent implements OnInit {
     const selectedPecasToSend = this.todasPecasParaEsseIdProduto.filter(
       (_, index) => this.selectedPecaIndices[index]
     );
+    this.selectedPecas = [];
     this.selectedPecas = this.selectedPecas.concat(selectedPecasToSend);
     this.displayPecasModal = false;
   }

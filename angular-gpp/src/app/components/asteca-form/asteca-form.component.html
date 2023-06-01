@@ -155,12 +155,13 @@
     </div>
   </div>
 
-  <!-- Pecas -->
   <div class="p-d-flex p-jc-between p-ai-center">
     <h1 class="p-m-0">Escolhas as peças para atendimento</h1>
+     <!-- botão adicionar pecas que abre a Modal Escolhas as peças para atendimento   -->
     <button pButton type="button" icon="pi pi-plus" (click)="selecionarTodasPecasComIdProduto()" class="p-button-secondary"></button>
   </div>
-
+  
+  <!-- Modal Escolhas as peças para atendimento -->
   <p-dialog [(visible)]="displayPecasModal" [modal]="true">
     <h3>Escolhas as Peças do Produto {{ numero }}</h3>
     <div class="p-grid p-dir-col">
@@ -195,7 +196,7 @@
     </div>
   </p-dialog>
 
-  <!-- pecas selecionadas para o produto -->
+   <!-- table Escolhas as peças para atendimento -->
   <div class="p-col-12">
     <div class="p-card">
       <div class="p-card-body">
