@@ -51,47 +51,7 @@ public class SolicitacaoAstecaController {
 
     @Autowired
     private AstecaMotivoRepository astecaMotivoRepository;
-
-    // @PostConstruct
-    // public void init() {
-
-    //         ItemSolicitacaoAstecaModel item = new ItemSolicitacaoAstecaModel();
-    //         ItemSolicitacaoAstecaModel item2 = new ItemSolicitacaoAstecaModel();
-    //         SolicitacaoAstecaModel  asteca = new SolicitacaoAstecaModel();
-    //         List<DocumentoFiscalModel> documento = documentoFiscalRepository.findAll();
-    //         List<PecasEstoqueModel> pecasEstoque = pecasEstoqueRepository.findAll();
-    //         List<AstecaMotivoModel> motivo = astecaMotivoRepository.findAll();
-    //         SituacaoAstecaEnum situacao = null;
-    //         TipoAstecaEnum tipo = null;
-
-
-
-    //         item2.setPecaEstoque(pecasEstoque.get(10));
-    //         item2.setQuantidade(0);
-
-    //         List<ItemSolicitacaoAstecaModel> listaItens = new ArrayList<>();
-
-          
-    //         listaItens.add(item2);
-
-    //         itemAstecaRepository.saveAll(listaItens);
-
-    //         asteca.setDataCriacao(LocalDateTime.now());
-    //         asteca.setDocumentoFiscal(documento.get(0));
-    //         asteca.setDescricaoProduto(documento.get(0).getDescricao());
-    //         asteca.setIdProduto(3);
-    //         asteca.setItensAsteca(listaItens);
-    //         asteca.setMotivoCriacaoAsteca(motivo.get(0));
-    //         asteca.setObservacao("Primeiro Teste");
-    //         asteca.setSituacaoAsteca(situacao.EMABERTO);
-    //         asteca.setTipoAsteca(tipo.VISTORIA);
-
-           
-    //         solicitacaoAstecaService.salvarAsteca(asteca);
-            
-
-    // }
-
+    
     @GetMapping("/")
     public List<SolicitacaoAstecaModel> listarTodas(){
 
