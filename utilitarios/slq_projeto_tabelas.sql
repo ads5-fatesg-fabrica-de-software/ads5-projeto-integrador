@@ -78,7 +78,26 @@ TRUNCATE TABLE peca CASCADE;
 INSERT INTO public.peca (id_peca, active, altura, codigo_fabrica, cor, custo, descricao, id_fornecedor, largura, material, material_fabricacao, numero, profundidade, unidade, unidade_medida, volumes, produto_id)
 VALUES 
     (1, true, 5, 'COD1', 'Preto', 10, 'Parafuso para cama', 1, 0.5, 'Metal', 'Aço', 111, 0.5, 100, 5, 50, 1),
-    (2, true, 75, 'COD2', 'Marrom', 100, 'Perna de cadeira', 2, 5, 'Madeira', 'Carvalho', 222, 5, 1, 54, 4, 2);
+    (2, true, 75, 'COD2', 'Marrom', 100, 'Perna de cadeira', 2, 5, 'Madeira', 'Carvalho', 222, 5, 1, 54, 4, 2),
+    (3, true, 20, 'COD3', 'Prata', 30, 'Dobradiça para armário', 3, 2, 'Metal', 'Aço Inoxidável', 333, 2, 50, 47, 10, 3),
+    (4, true, 10, 'COD4', 'Marrom', 30, 'Parafuso da mesa', 4, 1, 'Metal', 'Aço', 456, 1, 100, 58, 1, 3),
+    (5, true, 20, 'COD5', 'Preto', 40, 'Pé de cadeira', 2, 5, 'Madeira', 'Carvalho', 567, 5, 4, 65, 4, 4),
+    (6, true, 15, 'COD6', 'Branco', 35, 'Dobradiça de armário', 6, 2, 'Metal', 'Ferro', 678, 1, 50, 62, 2, 5),
+    (7, true, 8, 'COD7', 'Marrom Escuro', 25, 'Tampo de mesa', 7, 120, 'Madeira', 'Mogno', 789, 80, 2, 40, 1, 6),
+    (8, true, 30, 'COD8', 'Prata', 45, 'Suporte de prateleira', 8, 5, 'Metal', 'Alumínio', 890, 2, 100, 65, 4, 7),
+    (9, true, 50, 'COD9', 'Azul', 50, 'Estrutura de sofá', 9, 200, 'Madeira', 'Pinho', 901, 90, 2, 25, 1, 7),
+    (10, true, 5, 'COD10', 'Dourado', 15, 'Maçaneta de gaveta', 10, 2, 'Metal', 'Bronze', 123, 1, 30, 14, 2, 8),
+	(11, true, 10, 'COD11', 'Vermelho', 20, 'Parafuso para mesa', 3, 1.5, 'Metal', 'Aço', 222, 1.5, 100, 5, 50, 9),
+    (12, true, 40, 'COD12', 'Amarelo', 60, 'Pé de sofá', 4, 3, 'Madeira', 'Pinho', 333, 10, 4, 65, 4, 10),
+    (13, true, 12, 'COD13', 'Verde', 25, 'Dobradiça para porta', 5, 2.5, 'Metal', 'Aço Inoxidável', 444, 2, 50, 47, 10, 2),
+    (14, true, 8, 'COD14', 'Branco', 15, 'Parafuso para armário', 6, 0.8, 'Metal', 'Aço', 555, 0.8, 100, 58, 1, 3),
+    (15, true, 18, 'COD15', 'Marrom', 50, 'Puxador de gaveta', 7, 6, 'Plástico', 'ABS', 666, 4, 2, 40, 1, 4),
+    (16, true, 15, 'COD16', 'Prata', 40, 'Corrediça para gaveta', 8, 4, 'Metal', 'Alumínio', 777, 1, 100, 65, 4, 5),
+    (17, true, 8, 'COD17', 'Marrom', 25, 'Tampo de mesa', 9, 120, 'Madeira', 'Mogno', 888, 80, 2, 40, 1, 6),
+    (18, true, 25, 'COD18', 'Prata', 35, 'Suporte para prateleira', 10, 4, 'Metal', 'Aço Inoxidável', 999, 2, 50, 62, 2, 7),
+    (19, true, 60, 'COD19', 'Azul', 60, 'Encosto de cadeira', 11, 200, 'Madeira', 'Carvalho', 1010, 90, 2, 25, 1, 8),
+    (20, true, 5, 'COD20', 'Dourado', 15, 'Dobradiça para gaveta', 12, 1, 'Metal', 'Bronze', 1111, 1, 30, 14, 2, 9)
+    ON CONFLICT (id_peca) DO NOTHING;
 
 SELECT id_peca, active, altura, codigo_fabrica, cor, custo, descricao, id_fornecedor, largura, material, material_fabricacao, numero, profundidade, unidade, unidade_medida, volumes, produto_id FROM peca;
 --****************************************************************************************************************************************************************************************************************************
@@ -91,11 +110,11 @@ SELECT
     p.id_peca AS id_peca_estoque,
     'Endereco ' || p.id_peca AS endereco,
     'Fornecedor ' || p.id_peca AS fornecedor,
-    ROUND(RANDOM() * 20 + 10) + 5 AS quantidade_ideal,
-    ROUND(RANDOM() * 40 + 20) + 5 AS quantidade_maxima,
-    ROUND(RANDOM() * 10) + 5 AS quantidade_minima,
-    ROUND(RANDOM() * 10) + 5 AS saldo_disponivel,
-    ROUND(RANDOM() * 5) + 5 AS saldo_reservado,
+    ROUND(RANDOM() * 20 + 10) + 10 AS quantidade_ideal,
+    ROUND(RANDOM() * 40 + 20) + 10 AS quantidade_maxima,
+    ROUND(RANDOM() * 10) + 10 AS quantidade_minima,
+    ROUND(RANDOM() * 10) + 10 AS saldo_disponivel,
+    ROUND(RANDOM() * 5) + 10 AS saldo_reservado,
     p.id_peca
 FROM peca p;
 
