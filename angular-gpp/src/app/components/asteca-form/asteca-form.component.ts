@@ -1,7 +1,8 @@
+import { AstecaService } from './../../services/asteca.service';
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { take } from "rxjs";
+import { Observer, take } from "rxjs";
 import { DialogService } from "primeng/dynamicdialog";
 
 import { AstecaMotivoModel } from "../../models/AstecaMotivoModel";
@@ -14,6 +15,7 @@ import { DocumentoFiscalModel } from "src/app/models/DocumentoFiscalModel";
 import { DocumentoFiscalService } from "src/app/services/doc.service";
 import { PecasEstoqueModel } from "src/app/models/PecasEstoqueModel";
 import { PecaEstoqueService } from "src/app/services/pecaestoque.service";
+import { SolicitacaoAstecaModel } from 'src/app/models/SolicitacaoAstecaModel';
 
 interface Item {
   name: string;
@@ -50,6 +52,7 @@ export class AstecaFormComponent implements OnInit {
   selectedPecaIndices: boolean[] = [];
   todasPecasParaEsseIdProduto: PecaModel[] = [];
   pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
+  asteca: SolicitacaoAstecaModel = new SolicitacaoAstecaModel;
 
   constructor(
     private pecaEstoqueService: PecaEstoqueService,
@@ -60,7 +63,8 @@ export class AstecaFormComponent implements OnInit {
     private route: ActivatedRoute,
     private produtoService: ProdutoService,
     private documentoFiscalService: DocumentoFiscalService,
-    private astecaMotivoService: AstecaMotivoService
+    private astecaMotivoService: AstecaMotivoService,
+    private astecaService: AstecaService
   ) {}
 
   ngOnInit(): void {
@@ -227,4 +231,26 @@ export class AstecaFormComponent implements OnInit {
 
     this.showDialog();
   }
+
+  salvarAsteca() {
+    // Perform any necessary validations or data manipulation before saving
+    // Assign the relevant data to the asteca object
+
+    const observer: Observer<any> = {
+      next: (response) => {
+        // Handle success response
+        console.log("Asteca saved successfully:", response);
+      },
+      error: (error) => {
+        // Handle error response
+        console.error("Error saving Asteca:", error);
+      },
+      complete: () => {
+        // Handle completion
+      },
+    };
+
+    this.astecaService.add(this.asteca).subscribe(observer);
+  }
+
 }
