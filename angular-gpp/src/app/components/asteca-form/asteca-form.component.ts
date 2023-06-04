@@ -2,7 +2,7 @@ import { AstecaService } from './../../services/asteca.service';
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Observer, take } from "rxjs";
+import { Observer, forkJoin, take } from "rxjs";
 import { DialogService } from "primeng/dynamicdialog";
 
 import { AstecaMotivoModel } from "../../models/AstecaMotivoModel";
@@ -13,7 +13,7 @@ import { ProdutoModel } from "src/app/models/ProdutoModel";
 import { ProdutoService } from "src/app/services/produto.service";
 import { DocumentoFiscalModel } from "src/app/models/DocumentoFiscalModel";
 import { DocumentoFiscalService } from "src/app/services/doc.service";
-import { PecasEstoqueModel } from "src/app/models/PecasEstoqueModel";
+import { PecaEstoqueModel } from "src/app/models/PecaEstoqueModel";
 import { PecaEstoqueService } from "src/app/services/pecaestoque.service";
 import { SolicitacaoAstecaModel } from 'src/app/models/SolicitacaoAstecaModel';
 import { SituacaoAstecaEnum } from 'src/app/models/SituacaoAstecaEnum';
@@ -33,6 +33,7 @@ interface Item {
 })
 export class AstecaFormComponent implements OnInit {
   numero: string = "";
+  
   qtdNotasPorProdutoSelecionado: number = 0;
   selectedItem: DocumentoFiscalModel = new DocumentoFiscalModel();
   displayModal = false;
@@ -57,6 +58,8 @@ export class AstecaFormComponent implements OnInit {
   pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
   asteca: SolicitacaoAstecaModel = new SolicitacaoAstecaModel;
   pecas: PecaModel[] = []; // Array to store selected pecas with quantity
+  observacao: string = "";
+
 
 
   constructor(
@@ -125,7 +128,7 @@ export class AstecaFormComponent implements OnInit {
 
       for (const peca of this.todasPecasParaEsseIdProduto) {
         this.pecaEstoqueService.get(peca.idPeca).subscribe(
-          (pecaEstoque: PecasEstoqueModel) => {
+          (pecaEstoque: PecaEstoqueModel) => {
             peca.saldoDisponivel = pecaEstoque.saldoDisponivel;
           },
           (error) => {
@@ -236,6 +239,16 @@ export class AstecaFormComponent implements OnInit {
     this.isDataLoaded = false;
     this.idProdutoSelecionado = parseInt(numero);
 
+    this.produtoService.get(this.idProdutoSelecionado).subscribe(
+      (produtoResp) => {
+        this.produto.descricao = produtoResp.descricao;
+      },
+      (error) => {
+        console.error("Error:", error);
+      }
+    );
+    
+
     const num = parseInt(numero);
     this.documentoFiscalService.get(num).subscribe(
       (documentoFiscalResp) => {
@@ -264,39 +277,62 @@ export class AstecaFormComponent implements OnInit {
     // Example:
     this.asteca.situacaoAsteca = SituacaoAstecaEnum.EMABERTO;
     this.asteca.tipoAsteca = TipoAstecaEnum.VISTORIA;
+
+    this.asteca.observacao = this.observacao;
   
     this.asteca.documentoFiscal = this.selectedItem; // Assign the selected document
   
     // Assign the selected items from the pecasEstoque to the asteca object
-    this.asteca.itensAsteca = this.selectedPecas.map((peca) => {
+    const itemAstecas: ItemSolicitacaoAstecaModel[] = [];
+    const pecaRequests = this.selectedPecas.map((peca) => {
       const itemAsteca = new ItemSolicitacaoAstecaModel();
-      
       itemAsteca.quantidade = peca.quantidade;
-      return itemAsteca;
+  
+      return this.pecaEstoqueService.get(peca.idPeca);
     });
   
-    // Assign the selected motivoCriacaoAsteca
-    this.asteca.motivoCriacaoAsteca = this.selectedMotivo;
+    // Fetch the PecaEstoqueModel for each selected Peca
+    forkJoin(pecaRequests).subscribe(
+      (responses: PecaEstoqueModel[]) => {
+        responses.forEach((pecaEstoque) => {
+          const itemAsteca = new ItemSolicitacaoAstecaModel();
+          itemAsteca.quantidade = this.selectedPecas.find(
+            (peca) => peca.idPeca === pecaEstoque.peca.idPeca
+          )?.quantidade;
+          itemAsteca.pecaEstoque = pecaEstoque;
   
-    console.log("JSON Data:", JSON.stringify(this.asteca)); // Log the JSON data being sent
+          itemAstecas.push(itemAsteca);
+        });
+  
+        // Assign the selected itemAstecas to the asteca object
+        this.asteca.itensAsteca = itemAstecas;
+  
+        // Assign the selected motivoCriacaoAsteca
+        this.asteca.motivoCriacaoAsteca = this.selectedMotivo;
 
-    const observer: Observer<any> = {
-      next: (response) => {
-        // Handle success response
-        console.log("Asteca saved successfully:", response);
-        this.router.navigate(["/asteca-list"]);
-      },
-      error: (error) => {
-        // Handle error response
-        console.error("Error saving Asteca:", error);
-      },
-      complete: () => {
-        // Handle completion
-      },
-    };
+        console.log("JSON Data:", JSON.stringify(this.asteca)); // Log the JSON data being sent
   
-    this.astecaService.add(this.asteca).subscribe(observer);
+        this.astecaService.add(this.asteca).subscribe({
+          next: (response) => {
+            // Handle success response
+            console.log("Asteca salva com sucesso:", response);
+            this.router.navigate(["/asteca-list"]);
+          },
+          error: (error) => {
+            // Handle error response
+            console.error("Erro salvando Asteca:", error);
+          },
+          complete: () => {
+            // Handle completion
+          },
+        });
+      },
+      (error) => {
+        console.error("Error fetching PecaEstoqueModel:", error);
+      }
+    );
   }
+  
   
 
 }

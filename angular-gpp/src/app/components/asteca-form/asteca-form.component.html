@@ -13,14 +13,6 @@
           </div>
         </div>
 
-        <!--<ng-container *ngIf="buttonClicked && (!documentosFiscais || documentosFiscais.length == 0)">
-          <div class="p-field">
-            <div class="p-grid p-justify-center">
-              <div class="p-col-12 p-text-center error-message">Sem produtos disponíveis.</div>
-            </div>
-          </div>
-        </ng-container>-->
-
         <div class="p-field">
           <label for="codigoFabrica" class="p-d-block">Produto:</label>
           <input type="text" id="codigoFabrica" placeholder="Guarda-roupa 3 portas" [(ngModel)]="produto.descricao"
@@ -41,8 +33,12 @@
           <input type="text" id="altura" placeholder="Vistoria" class="p-inputtext" />
         </div>
         <div class="p-field">
-          <label for="largura" class="p-d-block">Tipo:</label>
-          <input type="text" id="largura" placeholder="Estoque" class="p-inputtext" />
+          <label for="tipo" class="p-d-block">Tipo:</label>
+          <input type="text" id="largura" placeholder="tipo" class="p-inputtext" />
+        </div>
+        <div class="p-field">
+          <label for="obsercacao" class="p-d-block">Observação:</label>
+          <input type="text" id="obsercacao" placeholder="Observação" [(ngModel)]="observacao" class="p-inputtext" />
         </div>
       </div>
     </div>

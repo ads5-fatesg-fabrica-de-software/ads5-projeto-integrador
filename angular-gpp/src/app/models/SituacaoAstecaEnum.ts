@@ -1,7 +1,8 @@
 export enum SituacaoAstecaEnum {
-    EMABERTO = 'Em aberto',
-    EMEXECUCAO = 'Em Execução',
-    CANCELADA = 'Cancelada',
-    FINALIZADA = 'Finalizada',
-  }
+  EMABERTO = 'EMABERTO',
+  EMEXECUCAO = 'EMEXECUCAO',
+  CANCELADA = 'CANCELADA',
+  FINALIZADA = 'FINALIZADA',
+}
+
   

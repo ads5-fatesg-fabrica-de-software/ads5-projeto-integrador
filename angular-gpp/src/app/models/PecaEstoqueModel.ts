@@ -1,6 +1,6 @@
 import { PecaModel } from "./PecaModel";
 
-export class PecasEstoqueModel {
+export class PecaEstoqueModel {
   idPecaEstoque: number;
   peca: PecaModel;
   saldoDisponivel: number;

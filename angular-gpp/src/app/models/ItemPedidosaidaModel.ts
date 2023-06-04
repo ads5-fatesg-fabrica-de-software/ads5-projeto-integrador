@@ -11,6 +11,6 @@ export class ItemPedidosaidaModel {
   pendenciaItem: boolean = false;
   endereco: String;
   saldo_disponivel: int;
-  pecaEstoque: PecasEstoqueModel = new PecasEstoqueModel;
+  pecaEstoque: PecaEstoqueModel = new PecaEstoqueModel;
 
 }
