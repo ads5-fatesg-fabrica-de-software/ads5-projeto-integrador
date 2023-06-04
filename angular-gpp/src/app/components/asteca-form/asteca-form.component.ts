@@ -16,6 +16,9 @@ import { DocumentoFiscalService } from "src/app/services/doc.service";
 import { PecasEstoqueModel } from "src/app/models/PecasEstoqueModel";
 import { PecaEstoqueService } from "src/app/services/pecaestoque.service";
 import { SolicitacaoAstecaModel } from 'src/app/models/SolicitacaoAstecaModel';
+import { SituacaoAstecaEnum } from 'src/app/models/SituacaoAstecaEnum';
+import { TipoAstecaEnum } from 'src/app/models/TipoAstecaEnum';
+import { ItemSolicitacaoAstecaModel } from 'src/app/models/ItemSolicitacaoAstecaModel';
 
 interface Item {
   name: string;
@@ -53,6 +56,8 @@ export class AstecaFormComponent implements OnInit {
   todasPecasParaEsseIdProduto: PecaModel[] = [];
   pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
   asteca: SolicitacaoAstecaModel = new SolicitacaoAstecaModel;
+  pecas: PecaModel[] = []; // Array to store selected pecas with quantity
+
 
   constructor(
     private pecaEstoqueService: PecaEstoqueService,
@@ -86,13 +91,27 @@ export class AstecaFormComponent implements OnInit {
     this.displayPecasModal = false;
   }
 
-  incrementarQuantidade(peca: any) {
-    peca.quantity = peca.quantity ? peca.quantity + 1 : 1;
+  incrementarQuantidade(peca: PecaModel) {
+    console.log(peca.idPeca);
+    
+    if (!peca.quantidade) {
+      peca.quantidade = 1;
+      this.pecas.push(peca); // Add the peca to the pecas array
+    } else {
+      peca.quantidade += 1;
+    }
+
   }
 
-  diminuirQuantidade(peca: any) {
-    if (peca.quantity && peca.quantity > 0) {
-      peca.quantity -= 1;
+  diminuirQuantidade(peca: PecaModel) {
+    if (peca.quantidade && peca.quantidade > 0) {
+      peca.quantidade -= 1;
+      if (peca.quantidade === 0) {
+        const index = this.pecas.indexOf(peca);
+        if (index !== -1) {
+          this.pecas.splice(index, 1); // Remove the peca from the pecas array
+        }
+      }
     }
   }
 
@@ -234,12 +253,38 @@ export class AstecaFormComponent implements OnInit {
 
   salvarAsteca() {
     // Perform any necessary validations or data manipulation before saving
-    // Assign the relevant data to the asteca object
+  
+    // Compose the asteca object
+    this.asteca.idProduto = this.idProdutoSelecionado;
+    this.asteca.descricaoProduto = this.produto.descricao;
+    this.asteca.observacao = ""; // Assign the desired observation
+    this.asteca.dataCriacao = new Date(); // Assign the creation date
+  
+    // Set the situacaoAsteca and tipoAsteca properties based on your logic
+    // Example:
+    this.asteca.situacaoAsteca = SituacaoAstecaEnum.EMABERTO;
+    this.asteca.tipoAsteca = TipoAstecaEnum.VISTORIA;
+  
+    this.asteca.documentoFiscal = this.selectedItem; // Assign the selected document
+  
+    // Assign the selected items from the pecasEstoque to the asteca object
+    this.asteca.itensAsteca = this.selectedPecas.map((peca) => {
+      const itemAsteca = new ItemSolicitacaoAstecaModel();
+      
+      itemAsteca.quantidade = peca.quantidade;
+      return itemAsteca;
+    });
+  
+    // Assign the selected motivoCriacaoAsteca
+    this.asteca.motivoCriacaoAsteca = this.selectedMotivo;
+  
+    console.log("JSON Data:", JSON.stringify(this.asteca)); // Log the JSON data being sent
 
     const observer: Observer<any> = {
       next: (response) => {
         // Handle success response
         console.log("Asteca saved successfully:", response);
+        this.router.navigate(["/asteca-list"]);
       },
       error: (error) => {
         // Handle error response
@@ -249,8 +294,9 @@ export class AstecaFormComponent implements OnInit {
         // Handle completion
       },
     };
-
+  
     this.astecaService.add(this.asteca).subscribe(observer);
   }
+  
 
 }
