@@ -216,30 +216,28 @@
   </div>
   <!-- Modal Escolhas as peças para atendimento -->
   <p-dialog [(visible)]="displayPecasModal" [modal]="true">
-    <h3>Escolhas as Peças do Produto {{ numero }}</h3>
+    <h3>Escolha as Peças do Produto {{ numero }}</h3>
     <div class="p-grid p-dir-col">
       <div class="p-col">
         <table class="p-table p-mb-3">
           <thead>
             <tr>
-              <th style="width: 20%;">Check</th>
-              <th style="width: 20%;">ID</th>
-              <th style="width: 40%;">Nome</th>
-              <th style="width: 20%;">Estoque</th>
+              <th class="p-col-2">Check</th>
+              <th class="p-col-2">ID</th>
+              <th class="p-col-6">Nome</th>
+              <th class="p-col-2">Estoque</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let peca of todasPecasParaEsseIdProduto; let i = index">
-              <td style="text-align: center; width: 20%;">
-                <div class="p-checkbox">
-                  <input type="checkbox" [checked]="selectedPecaIndices[i]" (change)="togglePecaSelection(i)"
-                    class="p-checkbox-input" />
-                  <label class="p-checkbox-label"></label>
+              <td class="p-col-2">
+                <div class="p-field-checkbox">
+                  <p-checkbox [(ngModel)]="selectedPecaIndices[i]" [binary]="true"></p-checkbox>
                 </div>
               </td>
-              <td style="text-align: center; width: 20%;">{{ peca.idPeca }}</td>
-              <td style="width: 40%;">{{ peca.descricao }}</td>
-              <td style="text-align: center; width: 20%;">{{ peca.saldoDisponivel }}</td>
+              <td class="p-col-2">{{ peca.idPeca }}</td>
+              <td class="p-col-6">{{ peca.descricao }}</td>
+              <td class="p-col-2">{{ peca.saldoDisponivel }}</td>
             </tr>
           </tbody>
         </table>
@@ -250,6 +248,7 @@
       </div>
     </div>
   </p-dialog>
+  
 </div>
 
 <div style="text-align: right;">
