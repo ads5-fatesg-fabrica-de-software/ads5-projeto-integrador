@@ -1,6 +1,11 @@
-<h1>Asteca <i class="fas pi pi-fw pi-plus"></i></h1>
+<div class="page-title">
+  <h1>{{ pageTitle }}</h1>
+</div>
+
 
 <div class="p-grid">
+
+  <!-- acima da nota -->
   <div class="p-col-12">
     <div class="p-card">
       <div class="p-card-body">
@@ -17,9 +22,7 @@
           <label for="codigoFabrica" class="p-d-block">Produto:</label>
           <div id="codigoFabrica" class="p-text">{{ produto.descricao || ' ' }}</div>
         </div>
-        
-        
-        
+
         <div class="p-field">
           <label for="Motivo" class="p-d-block">Motivo:</label>
           <div class="p-field">
@@ -28,30 +31,17 @@
               placeholder="Selecione o motivo"></p-autoComplete>
           </div>
         </div>
-        
-        
-        
-        
-        <div class="p-field">
-          <label for="descricao" class="p-d-block">Custo:</label>
-          <input type="text" id="descricao" placeholder="550,00" class="p-inputtext" />
-        </div>
-        <div class="p-field">
-          <label for="altura" class="p-d-block">Atendimento:</label>
-          <input type="text" id="altura" placeholder="Vistoria" class="p-inputtext" />
-        </div>
 
-          <div class="p-field">
-            <label class="p-d-block">Situação:</label>
-            <p-dropdown [options]="situacaoOptions" [(ngModel)]="asteca.situacaoAsteca" optionLabel="label"
-              optionValue="value"></p-dropdown>
-          </div>
-       
+        <div class="p-field">
+          <label class="p-d-block">Situação:</label>
+          <p-dropdown [options]="situacaoOptions" [(ngModel)]="asteca.situacaoAsteca" optionLabel="label"
+            optionValue="value"></p-dropdown>
+        </div>
 
         <div class="p-field">
           <label for="tipo" class="p-d-block">Tipo:</label>
           <p-dropdown [options]="tipoOptions" [(ngModel)]="asteca.tipoAsteca" optionLabel="label"
-              optionValue="value"></p-dropdown>
+            optionValue="value"></p-dropdown>
         </div>
 
         <div class="p-field">
@@ -61,6 +51,8 @@
       </div>
     </div>
   </div>
+
+  <!-- model notas -->
 
   <p-dialog *ngIf="isDataLoaded" header="Produto {{ numero }}  Notas Fiscais {{ qtdNotasPorProdutoSelecionado }}"
     [(visible)]="displayModal" [modal]="true">

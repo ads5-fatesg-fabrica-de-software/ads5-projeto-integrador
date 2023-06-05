@@ -61,6 +61,7 @@ export class AstecaFormComponent implements OnInit {
   pecas: PecaModel[] = []; // Array to store selected pecas with quantity
   observacao: string = "";
   produto: ProdutoModel = new ProdutoModel();
+  pageTitle: string = 'Asteca';
   
 
 
@@ -82,9 +83,31 @@ export class AstecaFormComponent implements OnInit {
     this.filterDocumentosFiscais();
     this.listAstecaMotivo();
     this.testeListResp();
+    this.iniciaMotivos();
     this.produto.descricao = "";
-    this.selectedMotivo = this.filteredAstecaMotivos[0];
+    
+    
   }
+
+  iniciaMotivos(): void {
+    this.astecaMotivoService.list().subscribe({
+      next: (resp) => {
+        this.filteredAstecaMotivos = resp;
+        
+        if (this.filteredAstecaMotivos.length > 0) {
+          this.selectedMotivo = this.filteredAstecaMotivos[0];
+        }
+        
+        // console.log(this.selectedMotivo);
+      },
+      error: (error) => {
+        console.error("Erro:", error);
+      }
+    });
+  }
+  
+  
+  
 
   togglePecaSelection(index: number) {
     this.selectedPecaIndices[index] = !this.selectedPecaIndices[index];
