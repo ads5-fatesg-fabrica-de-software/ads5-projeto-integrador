@@ -20,6 +20,7 @@ import { SituacaoAstecaEnum } from 'src/app/models/SituacaoAstecaEnum';
 import { TipoAstecaEnum } from 'src/app/models/TipoAstecaEnum';
 import { ItemSolicitacaoAstecaModel } from 'src/app/models/ItemSolicitacaoAstecaModel';
 import { SelectItem } from 'primeng/api';
+import { FormBuilder } from '@angular/forms';
 
 interface Item {
   name: string;
@@ -76,7 +77,8 @@ export class AstecaFormComponent implements OnInit {
     private produtoService: ProdutoService,
     private documentoFiscalService: DocumentoFiscalService,
     private astecaMotivoService: AstecaMotivoService,
-    private astecaService: AstecaService
+    private astecaService: AstecaService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +87,8 @@ export class AstecaFormComponent implements OnInit {
     this.testeListResp();
     this.iniciaMotivos();
     this.produto.descricao = "";
+    
+
     
     
   }
@@ -129,10 +133,15 @@ export class AstecaFormComponent implements OnInit {
       peca.quantidade = 1;
       this.pecas.push(peca); // Add the peca to the pecas array
     } else {
-      peca.quantidade += 1;
-    }
+      if (peca.saldoDisponivel !== undefined && peca.quantidade < peca.saldoDisponivel) {
+        peca.quantidade += 1;
+      }else {
+        // Quantity cannot exceed saldoDisponivel
+        // You can display an error message or handle the situation as needed
+      }
 
   }
+}
 
   diminuirQuantidade(peca: PecaModel) {
     if (peca.quantidade && peca.quantidade > 0) {
