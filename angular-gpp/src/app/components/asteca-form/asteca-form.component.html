@@ -15,15 +15,23 @@
 
         <div class="p-field">
           <label for="codigoFabrica" class="p-d-block">Produto:</label>
-          <input type="text" id="codigoFabrica" placeholder="Guarda-roupa 3 portas" [(ngModel)]="produto.descricao"
-            class="p-inputtext" />
+          <div id="codigoFabrica" class="p-text">{{ produto.descricao || ' ' }}</div>
         </div>
+        
+        
+        
         <div class="p-field">
-          <label for="Motivo" class="p-d-block">Motivo</label>
-          <p-autoComplete [(ngModel)]="selectedMotivo" [suggestions]="filteredAstecaMotivos"
-            (completeMethod)="pesquiseMotivos($event)" field="denominacao" [dropdown]="true"
-            placeholder="Selecione o motivo"></p-autoComplete>
+          <label for="Motivo" class="p-d-block">Motivo:</label>
+          <div class="p-field">
+            <p-autoComplete [(ngModel)]="selectedMotivo" [suggestions]="filteredAstecaMotivos"
+              (completeMethod)="pesquiseMotivos($event)" field="denominacao" [dropdown]="true"
+              placeholder="Selecione o motivo"></p-autoComplete>
+          </div>
         </div>
+        
+        
+        
+        
         <div class="p-field">
           <label for="descricao" class="p-d-block">Custo:</label>
           <input type="text" id="descricao" placeholder="550,00" class="p-inputtext" />
@@ -32,10 +40,20 @@
           <label for="altura" class="p-d-block">Atendimento:</label>
           <input type="text" id="altura" placeholder="Vistoria" class="p-inputtext" />
         </div>
+
+          <div class="p-field">
+            <label class="p-d-block">Situação:</label>
+            <p-dropdown [options]="situacaoOptions" [(ngModel)]="asteca.situacaoAsteca" optionLabel="label"
+              optionValue="value"></p-dropdown>
+          </div>
+       
+
         <div class="p-field">
           <label for="tipo" class="p-d-block">Tipo:</label>
-          <input type="text" id="largura" placeholder="tipo" class="p-inputtext" />
+          <p-dropdown [options]="tipoOptions" [(ngModel)]="asteca.tipoAsteca" optionLabel="label"
+              optionValue="value"></p-dropdown>
         </div>
+
         <div class="p-field">
           <label for="obsercacao" class="p-d-block">Observação:</label>
           <input type="text" id="obsercacao" placeholder="Observação" [(ngModel)]="observacao" class="p-inputtext" />

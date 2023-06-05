@@ -19,6 +19,7 @@ import { SolicitacaoAstecaModel } from 'src/app/models/SolicitacaoAstecaModel';
 import { SituacaoAstecaEnum } from 'src/app/models/SituacaoAstecaEnum';
 import { TipoAstecaEnum } from 'src/app/models/TipoAstecaEnum';
 import { ItemSolicitacaoAstecaModel } from 'src/app/models/ItemSolicitacaoAstecaModel';
+import { SelectItem } from 'primeng/api';
 
 interface Item {
   name: string;
@@ -40,7 +41,7 @@ export class AstecaFormComponent implements OnInit {
   displaySelectedModal = false;
   displayDialog: boolean = true;
   documentosFiscais: DocumentoFiscalModel[] = [];
-  produto: ProdutoModel = new ProdutoModel();
+  
   astecaMotivos: AstecaMotivoModel[] = [];
   filteredAstecaMotivos: AstecaMotivoModel[] = [];
   searchText = "";
@@ -59,6 +60,8 @@ export class AstecaFormComponent implements OnInit {
   asteca: SolicitacaoAstecaModel = new SolicitacaoAstecaModel;
   pecas: PecaModel[] = []; // Array to store selected pecas with quantity
   observacao: string = "";
+  produto: ProdutoModel = new ProdutoModel();
+  
 
 
 
@@ -79,6 +82,8 @@ export class AstecaFormComponent implements OnInit {
     this.filterDocumentosFiscais();
     this.listAstecaMotivo();
     this.testeListResp();
+    this.produto.descricao = "";
+    this.selectedMotivo = this.filteredAstecaMotivos[0];
   }
 
   togglePecaSelection(index: number) {
@@ -95,7 +100,7 @@ export class AstecaFormComponent implements OnInit {
   }
 
   incrementarQuantidade(peca: PecaModel) {
-    console.log(peca.idPeca);
+    // console.log(peca.idPeca);
     
     if (!peca.quantidade) {
       peca.quantidade = 1;
@@ -310,13 +315,13 @@ export class AstecaFormComponent implements OnInit {
         // Assign the selected motivoCriacaoAsteca
         this.asteca.motivoCriacaoAsteca = this.selectedMotivo;
 
-        console.log("JSON Data:", JSON.stringify(this.asteca)); // Log the JSON data being sent
+        // console.log("JSON Data:", JSON.stringify(this.asteca)); // Log the JSON data being sent
   
         this.astecaService.add(this.asteca).subscribe({
           next: (response) => {
             // Handle success response
-            console.log("Asteca salva com sucesso:", response);
-            this.router.navigate(["/asteca-list"]);
+            // console.log("Asteca salva com sucesso:", response);
+            this.router.navigate(["/astecaList"]);
           },
           error: (error) => {
             // Handle error response
@@ -332,7 +337,18 @@ export class AstecaFormComponent implements OnInit {
       }
     );
   }
-  
-  
 
+  situacaoOptions: SelectItem[] = [
+    { label: 'Em Aberto', value: SituacaoAstecaEnum.EMABERTO },
+    { label: 'Em Execução', value: SituacaoAstecaEnum.EMEXECUCAO },
+    { label: 'Cancelada', value: SituacaoAstecaEnum.CANCELADA },
+    { label: 'Finalizada', value: SituacaoAstecaEnum.FINALIZADA }
+  ];
+  
+  tipoOptions: SelectItem[] = [
+    { label: 'Reparo', value: TipoAstecaEnum.REPARO },
+    { label: 'Vistoria', value: TipoAstecaEnum.VISTORIA }
+  ];
+  
+  
 }
