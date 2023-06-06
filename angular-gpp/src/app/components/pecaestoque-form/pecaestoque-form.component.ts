@@ -32,7 +32,7 @@ function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
 }
 
 @Component({
-  selector: 'pecaestoque-produto-form',
+  selector: 'app-pecaestoque-form',
   templateUrl: './pecaestoque-form.component.html',
   styleUrls: ['./pecaestoque-form.component.css']
 })
@@ -45,6 +45,7 @@ export class PecaEstoqueFormComponent implements OnInit {
   pecaEstoqueForm: FormGroup;
   filteredPecasM: PecaModel[] = [];
   selectedPeca: PecaModel | null = null;
+  pecaEstoque : PecasEstoqueModel ;
 
   ngOnInit(): void {
     this.buildForm();
@@ -83,7 +84,7 @@ export class PecaEstoqueFormComponent implements OnInit {
     endereco: '',
   };
 
-  searchFornecedors(event: any) {
+  searchPecas(event: any) {
     this.filteredPecas = this.peca.filter(peca =>
       peca?.descricao?.toLowerCase().includes(event.query.toLowerCase())
     );

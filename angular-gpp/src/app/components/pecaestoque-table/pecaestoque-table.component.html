@@ -27,8 +27,8 @@
         <tr>
           <th>Id Estoque</th>
           <th>Descrição</th>
-          <!-- <th>Saldo Disponível</th>
-          <th>Quantidade Ideal</th> -->
+          <th>Saldo Disponível</th>
+          <th>Quantidade Ideal</th>
           <th></th>
         </tr>
         <tr>
@@ -38,12 +38,12 @@
           <th>
             <p-columnFilter type="text" field="peca"></p-columnFilter>
           </th>
-          <!-- <th>
+          <th>
             <p-columnFilter type="text" field="saldoDisponivel"></p-columnFilter>
           </th>
           <th>
             <p-columnFilter type="text" field="quantidadeIdeal"></p-columnFilter>
-          </th> -->
+          </th>
           <th></th>
         </tr>
       </ng-template>
@@ -52,8 +52,8 @@
         <tr>
           <td>{{ pecaEstoque.idPecaEstoque }}</td>
           <td>{{ pecaEstoque.peca.descricao }}</td>
-          <!-- <td>{{ pecaEstoque.saldoDisponivel }}</td>
-          <td>{{ pecaEstoque.quantidadeIdeal }}</td> -->
+          <td>{{ pecaEstoque.saldoDisponivel }}</td>
+          <td>{{ pecaEstoque.quantidadeIdeal }}</td>
           <td>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
               (click)="editePecaEstoque(pecaEstoque)"></button>

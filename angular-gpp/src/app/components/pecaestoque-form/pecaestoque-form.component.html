@@ -1,31 +1,44 @@
-<!-- <div class="page-title">
+<div class="page-title">
   <h1>{{ pageTitle }}</h1>
 </div>
 
-<p-dialog header="Novo" [(visible)]="displayDialog" (onHide)="onDialogHide()">
-  <form [formGroup]="produtoForm">
-    <div class="p-fluid">
-      <div class="form-group">
-        <label for="nomeProduto" class="p-d-block">Produto</label>
-        <input type="text" id="nomeProduto" placeholder="Guarda-roupa 3 portas" formControlName="descricao" class="p-inputtext" />
-        <div *ngIf="produtoForm.get('descricao')?.invalid && produtoForm.get('descricao')?.touched" class="p-invalid">O nome do produto é obrigatório</div>
+
+  
+     
+      <div class="p-grid">
+        <div class="form-group">
+          <label for="nomeProduto" class="p-d-block">Peça</label>
+          <input type="text" id="nomeProduto" placeholder="Guarda-roupa 3 portas" formControlName="descricao" class="p-inputtext" />
+          <div *ngIf="pecaEstoqueForm.get('descricao')?.invalid && pecaEstoqueForm.get('descricao')?.touched" class="p-invalid">O nome do produto é obrigatório</div>
+        </div>
+
+        <!-- <div class="p-field">
+          <label for="codigoFabrica" class="p-d-block">Quantidade Mínima:</label>
+          <input type="text" id="codigoFabrica" [(ngModel)]="pecaEstoque.quantidadeMinima"
+            class="p-inputtext" />
+        </div>
+        
+   -->
+   
+        <div class="p-field">
+          <label for="fornecedor" class="p-d-block">Peça</label>
+          <p-autoComplete formControlName="fornecedor" [suggestions]="filteredPecas"
+            (completeMethod)="searchPecas($event)" [field]="'Peça'" [dropdown]="true"
+            placeholder="Selecione o fornecedor" (onSelect)="selectedPeca = $event"></p-autoComplete>
+          <div *ngIf="pecaEstoqueForm.get('peca')?.invalid && pecaEstoqueForm.get('peca')?.touched" class="p-invalid">Peça è obrigatório!</div>
+        </div>
+  
+        <div style="text-align: right;">
+          <button pButton type="submit" class="p-button-primary" (click)="salvar()" [disabled]="pecaEstoqueForm?.invalid">
+            <i class="pi pi-save"></i>Salvar
+          </button>
+    
+          <button pButton type="button" class="p-button-secondary" (click)="cancelar()">
+            <i class="pi pi-times"></i>Cancelar
+          </button>
+        </div>
+        
+        <p-messages [(value)]="msgs"></p-messages>
       </div>
 
-      <div class="p-field">
-        <label for="fornecedor" class="p-d-block">Fornecedor</label>
-        <p-autoComplete formControlName="fornecedor" [suggestions]="filteredFornecedors"
-          (completeMethod)="searchFornecedors($event)" [field]="'nomeFornecedor'" [dropdown]="true"
-          placeholder="Selecione o fornecedor" (onSelect)="selectedFornecedor = $event"></p-autoComplete>
-        <div *ngIf="produtoForm.get('fornecedor')?.invalid && produtoForm.get('fornecedor')?.touched" class="p-invalid">Fornecedor é obrigatório</div>
-      </div>
 
-      <div class="p-field">
-          <button pButton type="submit" class="p-button-primary" (click)="salvar()" [disabled]="produtoForm?.invalid"><i class="pi pi-save"></i>Salvar</button>
-          <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
-          
-      </div>
-
-      <p-messages [(value)]="msgs"></p-messages>
-    </div>
-  </form>
-</p-dialog> -->

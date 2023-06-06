@@ -51,6 +51,8 @@ import { ListboxModule } from 'primeng/listbox';
 import { FieldsetModule } from 'primeng/fieldset';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProdutoEditComponent } from './components/produto-edit/produto-edit.component';
+import { PecaEstoqueTableComponent } from './components/pecaestoque-table/pecaestoque-table.component';
+import { PecaEstoqueFormComponent } from './components/pecaestoque-form/pecaestoque-form.component';
 
 
 registerLocaleData(localePt);
@@ -75,7 +77,9 @@ registerLocaleData(localePt);
     AstecaFormComponent,
     AstecaTableComponent,
     DashboardComponent,
-    ProdutoEditComponent
+    ProdutoEditComponent,
+    PecaEstoqueTableComponent,
+    PecaEstoqueFormComponent
   ],
   imports: [
     InputTextModule,

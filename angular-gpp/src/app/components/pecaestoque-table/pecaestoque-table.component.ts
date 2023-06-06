@@ -6,8 +6,9 @@ import { PecaEstoqueService } from 'src/app/services/pecaestoque.service';
 import { PecasEstoqueModel } from 'src/app/models/PecasEstoqueModel';
 import { MessageService } from 'primeng/api';
 
+
 @Component({
-  selector: 'app-estoque-table',
+  selector: 'app-pecaestoque-table',
   templateUrl: './pecaestoque-table.component.html',
   styleUrls: ['./pecaestoque-table.component.css'],
   providers: [MessageService]
