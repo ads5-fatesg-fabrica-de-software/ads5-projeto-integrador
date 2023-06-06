@@ -46,7 +46,7 @@ export class PanelMenuBasicDemoComponent implements OnInit {
         label: "Estoque",
         icon: "pi pi-fw pi-table",
         command: () => {
-          this.router.navigate(["/produtoList"]);
+          this.router.navigate(["/pecaestoqueList"]);
         },
       },
       {

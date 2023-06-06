@@ -27,7 +27,7 @@ export class PecaEstoqueService {
   }
 
   public list(): Observable<any>{
-    // console.log(this.httpClient.get("${environment.url}/pecasestoque/"))
+     console.log(this.httpClient.get("${environment.url}/pecasestoque/"))
     return this.httpClient.get(`${environment.url}/pecasestoque/`);
   }
 

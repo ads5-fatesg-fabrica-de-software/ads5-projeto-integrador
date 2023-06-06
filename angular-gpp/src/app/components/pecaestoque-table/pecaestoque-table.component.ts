@@ -7,7 +7,7 @@ import { PecasEstoqueModel } from 'src/app/models/PecasEstoqueModel';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-pecaestoque-table',
+  selector: 'app-estoque-table',
   templateUrl: './pecaestoque-table.component.html',
   styleUrls: ['./pecaestoque-table.component.css'],
   providers: [MessageService]
@@ -28,7 +28,7 @@ export class PecaEstoqueTableComponent implements OnInit {
   ) { }
 
   ngAfterViewInit() {
-    // console.log('dt2:', this.dt2);
+     console.log('dt2:', this.dt2);
   }
 
   ngOnInit(): void {
@@ -43,27 +43,27 @@ export class PecaEstoqueTableComponent implements OnInit {
   }
 
   novo(): void {
-    this.router.navigateByUrl('/pecasestoque/novo');
+    this.router.navigateByUrl('/pecaestoque/novo');
   }
 
   onCustomAction(event: any): void {
     const pecaEstoque: PecasEstoqueModel = event.data;
     console.log(event);
-    this.router.navigate([`pecasestoque/${pecaEstoque.idPecaEstoque}`]);
+    this.router.navigate([`pecaestoque/${pecaEstoque.idPecaEstoque}`]);
   }
 
   editePecaEstoque(pecaEstoque: PecasEstoqueModel): void {
-    this.router.navigateByUrl(`/pecasestoque/editar/${pecaEstoque.idPecaEstoque}`);
+    this.router.navigateByUrl(`/pecaestoque/editar/${pecaEstoque.idPecaEstoque}`);
   }
 
   editPecaEstoque(id: number): void {
-    this.router.navigate(['/pecasestoque/editar', id]);
+    this.router.navigate(['/pecaestoque/editar', id]);
   }
 
   deletePecaEstoque(id: number): void {
     this.pecaEstoqueService.delete(id).subscribe(() => {
       this.list();
-      this.showMessage(`O produto ${id} foi deletado`);
+      this.showMessage(`O estoque para peça ${id} foi deletado`);
     });
   }
 
@@ -86,6 +86,6 @@ export class PecaEstoqueTableComponent implements OnInit {
   }
 
   adicionarPecaEstoque(): void {
-    this.router.navigateByUrl(`pecasestoque/:id`);
+     this.router.navigateByUrl(`pecaestoque/:id`);
   }
 }

@@ -2,14 +2,14 @@
     <h1>{{ pageTitle }}</h1>
   </div>
  
-  <p-messages></p-messages>
+ <p-messages></p-messages>
 
   <div class="button-container">
-    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarProduto()"></button>
+    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarPecaEstoque()"></button>
   </div>
   
   <div class="card">
-    <p-table #dt2 [value]="produtos" [sortField]="'idProduto'" [sortOrder]="-1" [tableStyle]="{ 'min-width': '50rem' }"
+    <p-table #dt2 [value]="PecasEstoque" [sortField]="'idPecaEstoque'" [sortOrder]="-1" [tableStyle]="{ 'min-width': '50rem' }"
       [rows]="5" [paginator]="true" [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
       [tableStyle]="{ 'min-width': '75rem' }" [rowHover]="true" dataKey="id"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -18,37 +18,47 @@
         <div class="flex">
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
-            <input type="text" pInputText (input)="onSearch($event)" placeholder="Search" />
+            <!-- <input type="text" pInputText (input)="onSearch($event)" placeholder="Search" /> -->
           </span>
         </div>
       </ng-template>
   
       <ng-template pTemplate="header">
         <tr>
-          <th>ID Produto</th>
-          <th>Produto</th>
+          <th>Id Estoque</th>
+          <th>Descrição</th>
+          <!-- <th>Saldo Disponível</th>
+          <th>Quantidade Ideal</th> -->
           <th></th>
         </tr>
         <tr>
           <th>
-            <p-columnFilter type="text" field="idProduto"></p-columnFilter>
+            <p-columnFilter type="text" field="idPecaEstoque"></p-columnFilter>
           </th>
           <th>
-            <p-columnFilter type="text" field="nomeProduto"></p-columnFilter>
+            <p-columnFilter type="text" field="peca"></p-columnFilter>
           </th>
+          <!-- <th>
+            <p-columnFilter type="text" field="saldoDisponivel"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="quantidadeIdeal"></p-columnFilter>
+          </th> -->
           <th></th>
         </tr>
       </ng-template>
   
-      <ng-template pTemplate="body" let-produto>
+      <ng-template pTemplate="body" let-pecaEstoque>
         <tr>
-          <td>{{ produto.idProduto }}</td>
-          <td>{{ produto.descricao }}</td>
+          <td>{{ pecaEstoque.idPecaEstoque }}</td>
+          <td>{{ pecaEstoque.peca.descricao }}</td>
+          <!-- <td>{{ pecaEstoque.saldoDisponivel }}</td>
+          <td>{{ pecaEstoque.quantidadeIdeal }}</td> -->
           <td>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-              (click)="editeProduto(produto)"></button>
+              (click)="editePecaEstoque(pecaEstoque)"></button>
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-              (click)="deleteProduto(produto.idProduto)"></button>
+              (click)="deletePecaEstoque(pecaEstoque.idPecaEstoque)"></button>
           </td>
         </tr>
       </ng-template>
