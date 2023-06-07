@@ -16,6 +16,7 @@ import { AstecaFormComponent } from './components/asteca-form/asteca-form.compon
 import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProdutoEditComponent } from './components/produto-edit/produto-edit.component';
+import { AstecaEditComponent } from './components/asteca-edit/asteca-edit.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
   {path: 'clienteList', component: ClienteListComponent},
   {path: 'cliente/:id', component: ClienteComponent},
   {path: 'teste', component: PecaTableComponent},
-  {path: 'produto/editar/:id', component: ProdutoEditComponent }
+  {path: 'produto/editar/:id', component: ProdutoEditComponent},
+  {path: 'asteca/editar/:id', component: AstecaEditComponent }
 ];
 
 @NgModule({

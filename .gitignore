@@ -25,3 +25,6 @@ gpp-api/src/main/resources/static/
 angular-gpp/package-lock.json
 angular-gpp/package.json
 gpp-api/src/main/resources/application.properties
+.vscode/launch.json
+.vscode/
+.vscode

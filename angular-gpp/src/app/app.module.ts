@@ -51,6 +51,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { FieldsetModule } from 'primeng/fieldset';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProdutoEditComponent } from './components/produto-edit/produto-edit.component';
+import { AstecaEditComponent } from './components/asteca-edit/asteca-edit.component';
 
 
 registerLocaleData(localePt);
@@ -75,7 +76,8 @@ registerLocaleData(localePt);
     AstecaFormComponent,
     AstecaTableComponent,
     DashboardComponent,
-    ProdutoEditComponent
+    ProdutoEditComponent,
+    AstecaEditComponent
   ],
   imports: [
     InputTextModule,
