@@ -34,4 +34,10 @@ public class PecasEstoqueController {
         }
     }
 
+    @PostMapping("/")
+    public PecasEstoqueModel salvarPeca(@RequestBody PecasEstoqueModel pecasEstoque) {
+
+        return pecasEstoqueService.salvarPecaEstoque(pecasEstoque);
+    }
+
 }

@@ -62,4 +62,9 @@ public class PecasEstoqueService {
 
     }
 
+    public PecasEstoqueModel salvarPecaEstoque(PecasEstoqueModel pecaEstoque) {
+
+        return pecasEstoqueRepository.save(pecaEstoque);
+    }
+
 }

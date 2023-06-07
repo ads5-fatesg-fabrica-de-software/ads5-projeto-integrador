@@ -19,21 +19,14 @@ public class PecasEstoqueModel {
     @JoinColumn(name = "idPeca")
     private PecaModel peca;
 
-    @Column(nullable = false)
     private Integer saldoDisponivel;
 
-    @Column(nullable = false)
     private Integer saldoReservado;
-
-    private String fornecedor;
-
-    private String endereco;
 
     private Integer quantidadeMinima;
 
     private Integer quantidadeMaxima;
 
     private Integer quantidadeIdeal;
-
 
 }

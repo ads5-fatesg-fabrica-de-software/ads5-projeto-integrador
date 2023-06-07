@@ -27,7 +27,7 @@ function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
   if (!lettersPattern.test(value.replace(/\s/g, '')) || value.length < 4) {
     return { lettersOnly: true };
   }
-  
+
   return null;
 }
 
@@ -38,20 +38,20 @@ function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
 })
 export class PecaEstoqueFormComponent implements OnInit {
   displayDialog: boolean = true;
-  peca: PecaModel[] = [];
+  pecas: PecaModel[] = [];
   filteredPecas: PecaModel[] = [];
   msgs: Message[] = [];
   pageTitle: string = 'Estoque';
   pecaEstoqueForm: FormGroup;
-  filteredPecasM: PecaModel[] = [];
+  //filteredPecasM: PecaModel[] = [];
   selectedPeca: PecaModel | null = null;
-  pecaEstoque : PecasEstoqueModel ;
+  pecaEstoque: PecasEstoqueModel | undefined;
 
   ngOnInit(): void {
     this.buildForm();
 
     this.pecaService.list().subscribe(pecas => {
-      this.peca = pecas;
+      this.pecas = pecas;
     });
   }
 
@@ -63,29 +63,22 @@ export class PecaEstoqueFormComponent implements OnInit {
     private messageService: MessageService,
     private formBuilder: FormBuilder
   ) {
-    this.pecaEstoqueForm = this.formBuilder.group({
-      quantidadeMaxima: ['', Validators.required],
-      quantidadeMinima: [null, Validators.required],
-      saldoDisponivel: [null, Validators.required],
-      quantidadeIdeal: [null, Validators.required],
-      peca : [null, Validators.required]// Use 'fornecedor' as the form control name
-    });
+
+    this.pecaEstoqueForm = this.formBuilder.group({});
+
   }
 
   pecaestoque: PecasEstoqueModel = {
-    quantidadeMaxima : 0,
-    quantidadeMinima : 0,
-    saldoDisponivel :0,
+    quantidadeMaxima: 0,
+    quantidadeMinima: 0,
+    saldoDisponivel: 0,
     quantidadeIdeal: 0,
     peca: new PecaModel(),
-    idPecaEstoque: 0,
     saldoReservado: 0,
-    fornecedor: '',
-    endereco: '',
   };
 
   searchPecas(event: any) {
-    this.filteredPecas = this.peca.filter(peca =>
+    this.filteredPecas = this.pecas.filter(peca =>
       peca?.descricao?.toLowerCase().includes(event.query.toLowerCase())
     );
 
@@ -98,6 +91,8 @@ export class PecaEstoqueFormComponent implements OnInit {
     }
 
     this.pecaestoque = { ...this.pecaestoque, ...this.pecaEstoqueForm.value };
+
+    console.log(this.pecaEstoque);
 
     this.pecaEstoqueService.add(this.pecaestoque).subscribe(() => {
       this.router.navigateByUrl('/pecaestoqueList');
@@ -114,8 +109,11 @@ export class PecaEstoqueFormComponent implements OnInit {
 
   private buildForm(): void {
     this.pecaEstoqueForm = this.formBuilder.group({
-      descricao: ['', Validators.required],
-      fornecedor: [null, Validators.required] // Use 'fornecedor' as the form control name
+      quantidadeMaxima: ['', Validators.required],
+      quantidadeMinima: [null, Validators.required],
+      saldoDisponivel: [null, Validators.required],
+      quantidadeIdeal: [null, Validators.required],
+      peca: [null, Validators.required]// Use 'fornecedor' as the form control name
     });
   }
 }
