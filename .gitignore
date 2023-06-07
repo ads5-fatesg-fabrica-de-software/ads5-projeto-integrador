@@ -28,3 +28,34 @@ gpp-api/src/main/resources/application.properties
 .vscode/launch.json
 .vscode/
 .vscode
+auth-server/target/
+
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+auth-server/nbproject/private/
+auth-server/build/
+auth-server/nbbuild/
+auth-server/dist/
+auth-server/nbdist/
+auth-server/.nb-gradle/
+auth-server/.mvn/
+auth-server/mvnw
+auth-server/mvnw.cmd
+auth-server/bin/
