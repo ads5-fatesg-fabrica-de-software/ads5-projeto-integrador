@@ -7,6 +7,9 @@ sudo docker run --name postgres-container-docker -e POSTGRES_PASSWORD=123456 -p 
 docker run -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=123456 postgres
 docker run -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=123456 -d postgres
 
+Auth
+
+
 
 
 *****************************************************************************************************************************************************************************
