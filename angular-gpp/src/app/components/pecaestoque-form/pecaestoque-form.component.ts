@@ -8,7 +8,7 @@ import { SelectItem } from 'primeng/api';
 import { Message, MessageService } from 'primeng/api';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PecaModel } from 'src/app/models/PecaModel';
-import { PecasEstoqueModel } from 'src/app/models/PecasEstoqueModel';
+import { PecaEstoqueModel } from 'src/app/models/PecaEstoqueModel';
 import { PecaService } from 'src/app/services/peca.service';
 import { PecaEstoqueService } from 'src/app/services/pecaestoque.service';
 
@@ -45,7 +45,7 @@ export class PecaEstoqueFormComponent implements OnInit {
   pecaEstoqueForm: FormGroup;
   //filteredPecasM: PecaModel[] = [];
   selectedPeca: PecaModel | null = null;
-  pecaEstoque: PecasEstoqueModel | undefined;
+  pecaEstoque: PecaEstoqueModel | undefined;
 
   ngOnInit(): void {
     this.buildForm();
@@ -68,7 +68,7 @@ export class PecaEstoqueFormComponent implements OnInit {
 
   }
 
-  pecaestoque: PecasEstoqueModel = {
+  pecaestoque: PecaEstoqueModel = {
     quantidadeMaxima: 0,
     quantidadeMinima: 0,
     saldoDisponivel: 0,

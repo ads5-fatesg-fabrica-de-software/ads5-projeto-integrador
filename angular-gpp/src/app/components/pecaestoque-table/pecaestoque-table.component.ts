@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Table } from 'primeng/table';
 import { PecaEstoqueService } from 'src/app/services/pecaestoque.service';
-import { PecasEstoqueModel } from 'src/app/models/PecasEstoqueModel';
+import { PecaEstoqueModel } from 'src/app/models/PecaEstoqueModel';
 import { MessageService } from 'primeng/api';
 
 
@@ -17,7 +17,7 @@ export class PecaEstoqueTableComponent implements OnInit {
 
   @ViewChild('dt2') dt2: Table | undefined;
 
-  PecasEstoque: PecasEstoqueModel[] = [];
+  PecasEstoque: PecaEstoqueModel[] = [];
   pageTitle: string = 'Estoque';
   public source: LocalDataSource = new LocalDataSource(this.PecasEstoque);
 
@@ -48,12 +48,12 @@ export class PecaEstoqueTableComponent implements OnInit {
   }
 
   onCustomAction(event: any): void {
-    const pecaEstoque: PecasEstoqueModel = event.data;
+    const pecaEstoque: PecaEstoqueModel = event.data;
     console.log(event);
     this.router.navigate([`pecaestoque/${pecaEstoque.idPecaEstoque}`]);
   }
 
-  editePecaEstoque(pecaEstoque: PecasEstoqueModel): void {
+  editePecaEstoque(pecaEstoque: PecaEstoqueModel): void {
     this.router.navigateByUrl(`/pecaestoque/editar/${pecaEstoque.idPecaEstoque}`);
   }
 

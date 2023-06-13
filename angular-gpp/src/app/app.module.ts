@@ -80,7 +80,8 @@ registerLocaleData(localePt);
     DashboardComponent,
     ProdutoEditComponent,
     PecaEstoqueTableComponent,
-    PecaEstoqueFormComponent
+    PecaEstoqueFormComponent,
+    AstecaEditComponent
   ],
   imports: [
     InputTextModule,
