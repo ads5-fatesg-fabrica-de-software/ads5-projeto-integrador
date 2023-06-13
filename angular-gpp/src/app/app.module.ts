@@ -78,7 +78,9 @@ registerLocaleData(localePt);
     AstecaFormComponent,
     AstecaTableComponent,
     DashboardComponent,
-    ProdutoEditComponent
+    ProdutoEditComponent,
+    PecaEstoqueTableComponent,
+    PecaEstoqueFormComponent
   ],
   imports: [
     InputTextModule,
