@@ -1,6 +1,11 @@
-<h1>Asteca <i class="fas pi pi-fw pi-plus"></i></h1>
+<div class="page-title">
+  <h1>{{ pageTitle }}</h1>
+</div>
+
 
 <div class="p-grid">
+
+  <!-- acima da nota -->
   <div class="p-col-12">
     <div class="p-card">
       <div class="p-card-body">
@@ -13,40 +18,41 @@
           </div>
         </div>
 
-        <!--<ng-container *ngIf="buttonClicked && (!documentosFiscais || documentosFiscais.length == 0)">
-          <div class="p-field">
-            <div class="p-grid p-justify-center">
-              <div class="p-col-12 p-text-center error-message">Sem produtos disponíveis.</div>
-            </div>
-          </div>
-        </ng-container>-->
-
         <div class="p-field">
           <label for="codigoFabrica" class="p-d-block">Produto:</label>
-          <input type="text" id="codigoFabrica" placeholder="Guarda-roupa 3 portas" [(ngModel)]="produto.descricao"
-            class="p-inputtext" />
+          <div id="codigoFabrica" class="p-text">{{ produto.descricao || ' ' }}</div>
         </div>
+
         <div class="p-field">
-          <label for="Motivo" class="p-d-block">Motivo</label>
-          <p-autoComplete [(ngModel)]="selectedMotivo" [suggestions]="filteredAstecaMotivos"
-            (completeMethod)="pesquiseMotivos($event)" field="denominacao" [dropdown]="true"
-            placeholder="Selecione o motivo"></p-autoComplete>
+          <label for="Motivo" class="p-d-block">Motivo:</label>
+          <div class="p-field">
+            <p-autoComplete [(ngModel)]="selectedMotivo" [suggestions]="filteredAstecaMotivos"
+              (completeMethod)="pesquiseMotivos($event)" field="denominacao" [dropdown]="true"
+              placeholder="Selecione o motivo"></p-autoComplete>
+          </div>
         </div>
+
         <div class="p-field">
-          <label for="descricao" class="p-d-block">Custo:</label>
-          <input type="text" id="descricao" placeholder="550,00" class="p-inputtext" />
+          <label class="p-d-block">Situação:</label>
+          <p-dropdown [options]="situacaoOptions" [(ngModel)]="asteca.situacaoAsteca" optionLabel="label"
+            optionValue="value"></p-dropdown>
         </div>
+
         <div class="p-field">
-          <label for="altura" class="p-d-block">Atendimento:</label>
-          <input type="text" id="altura" placeholder="Vistoria" class="p-inputtext" />
+          <label for="tipo" class="p-d-block">Tipo:</label>
+          <p-dropdown [options]="tipoOptions" [(ngModel)]="asteca.tipoAsteca" optionLabel="label"
+            optionValue="value"></p-dropdown>
         </div>
+
         <div class="p-field">
-          <label for="largura" class="p-d-block">Tipo:</label>
-          <input type="text" id="largura" placeholder="Estoque" class="p-inputtext" />
+          <label for="obsercacao" class="p-d-block">Observação:</label>
+          <input type="text" id="obsercacao" placeholder="Observação" [(ngModel)]="observacao" class="p-inputtext" />
         </div>
       </div>
     </div>
   </div>
+
+  <!-- model notas -->
 
   <p-dialog *ngIf="isDataLoaded" header="Produto {{ numero }}  Notas Fiscais {{ qtdNotasPorProdutoSelecionado }}"
     [(visible)]="displayModal" [modal]="true">
@@ -194,7 +200,7 @@
                   <div class="p-inputgroup">
                     <button pButton type="button" icon="pi pi-plus" class="p-button-secondary"
                       (click)="incrementarQuantidade(peca)"></button>
-                    <input type="text" [(ngModel)]="peca.quantity" class="p-inputtext" />
+                    <input type="text" [(ngModel)]="peca.quantidade" class="p-inputtext" />
                     <button pButton type="button" icon="pi pi-minus" class="p-button-secondary"
                       (click)="diminuirQuantidade(peca)"></button>
                   </div>
@@ -210,30 +216,28 @@
   </div>
   <!-- Modal Escolhas as peças para atendimento -->
   <p-dialog [(visible)]="displayPecasModal" [modal]="true">
-    <h3>Escolhas as Peças do Produto {{ numero }}</h3>
+    <h3>Escolha as Peças do Produto {{ numero }}</h3>
     <div class="p-grid p-dir-col">
       <div class="p-col">
         <table class="p-table p-mb-3">
           <thead>
             <tr>
-              <th style="width: 20%;">Check</th>
-              <th style="width: 20%;">ID</th>
-              <th style="width: 40%;">Nome</th>
-              <th style="width: 20%;">Estoque</th>
+              <th class="p-col-2">Check</th>
+              <th class="p-col-2">ID</th>
+              <th class="p-col-6">Nome</th>
+              <th class="p-col-2">Estoque</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let peca of todasPecasParaEsseIdProduto; let i = index">
-              <td style="text-align: center; width: 20%;">
-                <div class="p-checkbox">
-                  <input type="checkbox" [checked]="selectedPecaIndices[i]" (change)="togglePecaSelection(i)"
-                    class="p-checkbox-input" />
-                  <label class="p-checkbox-label"></label>
+              <td class="p-col-2">
+                <div class="p-field-checkbox">
+                  <p-checkbox [(ngModel)]="selectedPecaIndices[i]" [binary]="true"></p-checkbox>
                 </div>
               </td>
-              <td style="text-align: center; width: 20%;">{{ peca.idPeca }}</td>
-              <td style="width: 40%;">{{ peca.descricao }}</td>
-              <td style="text-align: center; width: 20%;">{{ peca.saldoDisponivel }}</td>
+              <td class="p-col-2">{{ peca.idPeca }}</td>
+              <td class="p-col-6">{{ peca.descricao }}</td>
+              <td class="p-col-2">{{ peca.saldoDisponivel }}</td>
             </tr>
           </tbody>
         </table>
@@ -244,6 +248,7 @@
       </div>
     </div>
   </p-dialog>
+  
 </div>
 
 <div style="text-align: right;">

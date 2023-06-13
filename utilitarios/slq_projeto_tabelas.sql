@@ -110,11 +110,11 @@ SELECT
     p.id_peca AS id_peca_estoque,
     'Endereco ' || p.id_peca AS endereco,
     'Fornecedor ' || p.id_peca AS fornecedor,
-    ROUND(RANDOM() * 20 + 10) + 10 AS quantidade_ideal,
-    ROUND(RANDOM() * 40 + 20) + 10 AS quantidade_maxima,
-    ROUND(RANDOM() * 10) + 10 AS quantidade_minima,
-    ROUND(RANDOM() * 10) + 10 AS saldo_disponivel,
-    ROUND(RANDOM() * 5) + 10 AS saldo_reservado,
+    ROUND(RANDOM() * 20 + 10) + 50 AS quantidade_ideal,
+    ROUND(RANDOM() * 40 + 20) + 50 AS quantidade_maxima,
+    ROUND(RANDOM() * 10) + 50 AS quantidade_minima,
+    ROUND(RANDOM() * 10) + 50 AS saldo_disponivel,
+    ROUND(RANDOM() * 5) + 50 AS saldo_reservado,
     p.id_peca
 FROM peca p;
 

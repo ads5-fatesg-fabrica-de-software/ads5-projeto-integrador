@@ -2,7 +2,7 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { PecasEstoqueModel } from '../models/PecasEstoqueModel';
+import { PecaEstoqueModel } from '../models/PecaEstoqueModel';
 
 
 @Injectable({
@@ -10,15 +10,15 @@ import { PecasEstoqueModel } from '../models/PecasEstoqueModel';
 })
 export class PecaEstoqueService {
 
-  public pecasEstoque: PecasEstoqueModel[] = [];
+  public pecasEstoque: PecaEstoqueModel[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
-  public post(peca: PecasEstoqueModel): Observable<any>{
+  public post(peca: PecaEstoqueModel): Observable<any>{
     return this.httpClient.post(`${environment.url}/pecasestoque/`, peca);
   }
 
-  public add(peca: PecasEstoqueModel): Observable<any>{
+  public add(peca: PecaEstoqueModel): Observable<any>{
     return this.httpClient.post(`${environment.url}/pecasestoque/`, peca);
   }
 

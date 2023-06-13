@@ -1,4 +1,4 @@
 export enum TipoAstecaEnum {
-    VISTORIA = 'Vistoria',
-    REPARO = 'Reparo',
+    VISTORIA = 'VISTORIA',
+    REPARO = 'REPARO',
   }  

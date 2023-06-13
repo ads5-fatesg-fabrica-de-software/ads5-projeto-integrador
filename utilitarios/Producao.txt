@@ -1,6 +1,16 @@
 Postgresql docker
 docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.CreatedAt}}"
+this is my container postgres if instance restar
 docker start dc6
+
+sudo docker run --name postgres-container-docker -e POSTGRES_PASSWORD=123456 -p 5433:5432 -d postgres
+docker run -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=123456 postgres
+docker run -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=123456 -d postgres
+
+Auth
+
+
+
 
 *****************************************************************************************************************************************************************************
 Build angular

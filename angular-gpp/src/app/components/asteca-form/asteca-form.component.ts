@@ -2,7 +2,7 @@ import { AstecaService } from './../../services/asteca.service';
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Observer, take } from "rxjs";
+import { Observer, forkJoin, take } from "rxjs";
 import { DialogService } from "primeng/dynamicdialog";
 
 import { AstecaMotivoModel } from "../../models/AstecaMotivoModel";
@@ -13,9 +13,14 @@ import { ProdutoModel } from "src/app/models/ProdutoModel";
 import { ProdutoService } from "src/app/services/produto.service";
 import { DocumentoFiscalModel } from "src/app/models/DocumentoFiscalModel";
 import { DocumentoFiscalService } from "src/app/services/doc.service";
-import { PecasEstoqueModel } from "src/app/models/PecasEstoqueModel";
+import { PecaEstoqueModel } from "src/app/models/PecaEstoqueModel";
 import { PecaEstoqueService } from "src/app/services/pecaestoque.service";
 import { SolicitacaoAstecaModel } from 'src/app/models/SolicitacaoAstecaModel';
+import { SituacaoAstecaEnum } from 'src/app/models/SituacaoAstecaEnum';
+import { TipoAstecaEnum } from 'src/app/models/TipoAstecaEnum';
+import { ItemSolicitacaoAstecaModel } from 'src/app/models/ItemSolicitacaoAstecaModel';
+import { SelectItem } from 'primeng/api';
+import { FormBuilder } from '@angular/forms';
 
 interface Item {
   name: string;
@@ -30,13 +35,14 @@ interface Item {
 })
 export class AstecaFormComponent implements OnInit {
   numero: string = "";
+  
   qtdNotasPorProdutoSelecionado: number = 0;
   selectedItem: DocumentoFiscalModel = new DocumentoFiscalModel();
   displayModal = false;
   displaySelectedModal = false;
   displayDialog: boolean = true;
   documentosFiscais: DocumentoFiscalModel[] = [];
-  produto: ProdutoModel = new ProdutoModel();
+  
   astecaMotivos: AstecaMotivoModel[] = [];
   filteredAstecaMotivos: AstecaMotivoModel[] = [];
   searchText = "";
@@ -53,6 +59,13 @@ export class AstecaFormComponent implements OnInit {
   todasPecasParaEsseIdProduto: PecaModel[] = [];
   pecasSelecionadaParaEsseIdProduto: PecaModel[] = [];
   asteca: SolicitacaoAstecaModel = new SolicitacaoAstecaModel;
+  pecas: PecaModel[] = []; // Array to store selected pecas with quantity
+  observacao: string = "";
+  produto: ProdutoModel = new ProdutoModel();
+  pageTitle: string = 'Asteca';
+  
+
+
 
   constructor(
     private pecaEstoqueService: PecaEstoqueService,
@@ -64,14 +77,41 @@ export class AstecaFormComponent implements OnInit {
     private produtoService: ProdutoService,
     private documentoFiscalService: DocumentoFiscalService,
     private astecaMotivoService: AstecaMotivoService,
-    private astecaService: AstecaService
+    private astecaService: AstecaService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.filterDocumentosFiscais();
     this.listAstecaMotivo();
     this.testeListResp();
+    this.iniciaMotivos();
+    this.produto.descricao = "";
+    
+
+    
+    
   }
+
+  iniciaMotivos(): void {
+    this.astecaMotivoService.list().subscribe({
+      next: (resp) => {
+        this.filteredAstecaMotivos = resp;
+        
+        if (this.filteredAstecaMotivos.length > 0) {
+          this.selectedMotivo = this.filteredAstecaMotivos[0];
+        }
+        
+        // console.log(this.selectedMotivo);
+      },
+      error: (error) => {
+        console.error("Erro:", error);
+      }
+    });
+  }
+  
+  
+  
 
   togglePecaSelection(index: number) {
     this.selectedPecaIndices[index] = !this.selectedPecaIndices[index];
@@ -86,13 +126,32 @@ export class AstecaFormComponent implements OnInit {
     this.displayPecasModal = false;
   }
 
-  incrementarQuantidade(peca: any) {
-    peca.quantity = peca.quantity ? peca.quantity + 1 : 1;
-  }
+  incrementarQuantidade(peca: PecaModel) {
+    // console.log(peca.idPeca);
+    
+    if (!peca.quantidade) {
+      peca.quantidade = 1;
+      this.pecas.push(peca); // Add the peca to the pecas array
+    } else {
+      if (peca.saldoDisponivel !== undefined && peca.quantidade < peca.saldoDisponivel) {
+        peca.quantidade += 1;
+      }else {
+        // Quantity cannot exceed saldoDisponivel
+        // You can display an error message or handle the situation as needed
+      }
 
-  diminuirQuantidade(peca: any) {
-    if (peca.quantity && peca.quantity > 0) {
-      peca.quantity -= 1;
+  }
+}
+
+  diminuirQuantidade(peca: PecaModel) {
+    if (peca.quantidade && peca.quantidade > 0) {
+      peca.quantidade -= 1;
+      if (peca.quantidade === 0) {
+        const index = this.pecas.indexOf(peca);
+        if (index !== -1) {
+          this.pecas.splice(index, 1); // Remove the peca from the pecas array
+        }
+      }
     }
   }
 
@@ -106,7 +165,7 @@ export class AstecaFormComponent implements OnInit {
 
       for (const peca of this.todasPecasParaEsseIdProduto) {
         this.pecaEstoqueService.get(peca.idPeca).subscribe(
-          (pecaEstoque: PecasEstoqueModel) => {
+          (pecaEstoque: PecaEstoqueModel) => {
             peca.saldoDisponivel = pecaEstoque.saldoDisponivel;
           },
           (error) => {
@@ -217,6 +276,16 @@ export class AstecaFormComponent implements OnInit {
     this.isDataLoaded = false;
     this.idProdutoSelecionado = parseInt(numero);
 
+    this.produtoService.get(this.idProdutoSelecionado).subscribe(
+      (produtoResp) => {
+        this.produto.descricao = produtoResp.descricao;
+      },
+      (error) => {
+        console.error("Error:", error);
+      }
+    );
+    
+
     const num = parseInt(numero);
     this.documentoFiscalService.get(num).subscribe(
       (documentoFiscalResp) => {
@@ -234,23 +303,84 @@ export class AstecaFormComponent implements OnInit {
 
   salvarAsteca() {
     // Perform any necessary validations or data manipulation before saving
-    // Assign the relevant data to the asteca object
+  
+    // Compose the asteca object
+    this.asteca.idProduto = this.idProdutoSelecionado;
+    this.asteca.descricaoProduto = this.produto.descricao;
+    this.asteca.observacao = ""; // Assign the desired observation
+    this.asteca.dataCriacao = new Date(); // Assign the creation date
+  
+    // Set the situacaoAsteca and tipoAsteca properties based on your logic
+    // Example:
+    this.asteca.situacaoAsteca = SituacaoAstecaEnum.EMABERTO;
+    this.asteca.tipoAsteca = TipoAstecaEnum.VISTORIA;
 
-    const observer: Observer<any> = {
-      next: (response) => {
-        // Handle success response
-        console.log("Asteca saved successfully:", response);
-      },
-      error: (error) => {
-        // Handle error response
-        console.error("Error saving Asteca:", error);
-      },
-      complete: () => {
-        // Handle completion
-      },
-    };
+    this.asteca.observacao = this.observacao;
+  
+    this.asteca.documentoFiscal = this.selectedItem; // Assign the selected document
+  
+    // Assign the selected items from the pecasEstoque to the asteca object
+    const itemAstecas: ItemSolicitacaoAstecaModel[] = [];
+    const pecaRequests = this.selectedPecas.map((peca) => {
+      const itemAsteca = new ItemSolicitacaoAstecaModel();
+      itemAsteca.quantidade = peca.quantidade;
+  
+      return this.pecaEstoqueService.get(peca.idPeca);
+    });
+  
+    // Fetch the PecaEstoqueModel for each selected Peca
+    forkJoin(pecaRequests).subscribe(
+      (responses: PecaEstoqueModel[]) => {
+        responses.forEach((pecaEstoque) => {
+          const itemAsteca = new ItemSolicitacaoAstecaModel();
+          itemAsteca.quantidade = this.selectedPecas.find(
+            (peca) => peca.idPeca === pecaEstoque.peca.idPeca
+          )?.quantidade;
+          itemAsteca.pecaEstoque = pecaEstoque;
+  
+          itemAstecas.push(itemAsteca);
+        });
+  
+        // Assign the selected itemAstecas to the asteca object
+        this.asteca.itensAsteca = itemAstecas;
+  
+        // Assign the selected motivoCriacaoAsteca
+        this.asteca.motivoCriacaoAsteca = this.selectedMotivo;
 
-    this.astecaService.add(this.asteca).subscribe(observer);
+        // console.log("JSON Data:", JSON.stringify(this.asteca)); // Log the JSON data being sent
+  
+        this.astecaService.add(this.asteca).subscribe({
+          next: (response) => {
+            // Handle success response
+            // console.log("Asteca salva com sucesso:", response);
+            this.router.navigate(["/astecaList"]);
+          },
+          error: (error) => {
+            // Handle error response
+            console.error("Erro salvando Asteca:", error);
+          },
+          complete: () => {
+            // Handle completion
+          },
+        });
+      },
+      (error) => {
+        console.error("Error fetching PecaEstoqueModel:", error);
+      }
+    );
   }
 
+  situacaoOptions: SelectItem[] = [
+    { label: 'Em Aberto', value: SituacaoAstecaEnum.EMABERTO },
+    { label: 'Em Execução', value: SituacaoAstecaEnum.EMEXECUCAO },
+    { label: 'Cancelada', value: SituacaoAstecaEnum.CANCELADA },
+    { label: 'Finalizada', value: SituacaoAstecaEnum.FINALIZADA }
+  ];
+  
+  tipoOptions: SelectItem[] = [
+    { label: 'Reparo', value: TipoAstecaEnum.REPARO },
+    { label: 'Vistoria', value: TipoAstecaEnum.VISTORIA }
+  ];
+  
+  
 }

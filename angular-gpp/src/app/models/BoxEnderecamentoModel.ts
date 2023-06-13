@@ -1,5 +1,5 @@
 import { PrateleiraEnderecamentoModel } from './PrateleiraEnderecamentoModel';
-import { PecasEstoqueModel } from './PecasEstoqueModel';
+import { PecaEstoqueModel } from './PecaEstoqueModel';
 
 export class BoxEnderecamentoModeI {
   id_box: number;
@@ -12,7 +12,7 @@ export class BoxEnderecamentoModeI {
   created_at: string;
   prateleira: PrateleiraEnderecamentoModel;
   endereco: string;
-  pecaEstoque: PecasEstoqueModel;
+  pecaEstoque: PecaEstoqueModel;
 
   constructor(
     id_box: number,
@@ -25,7 +25,7 @@ export class BoxEnderecamentoModeI {
     created_at: string,
     prateleira: PrateleiraEnderecamentoModel,
     endereco: string,
-    pecaEstoque: PecasEstoqueModel
+    pecaEstoque: PecaEstoqueModel
   ) {
     this.id_box = id_box;
     this.desc_box = desc_box;
