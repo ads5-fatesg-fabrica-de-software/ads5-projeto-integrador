@@ -15,11 +15,16 @@ import { ProdutoFormComponent } from './components/produto-form/produto-form.com
 import { AstecaFormComponent } from './components/asteca-form/asteca-form.component';
 import { AstecaTableComponent } from './components/asteca-table/asteca-table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProdutoEditComponent } from './components/produto-edit/produto-edit.component';
+import { PecaEstoqueTableComponent } from './components/pecaestoque-table/pecaestoque-table.component';
+import { PecaEstoqueFormComponent } from './components/pecaestoque-form/pecaestoque-form.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'asteca/:id', component: AstecaFormComponent},
   {path: 'astecaList', component: AstecaTableComponent},
+  {path: 'pecaestoque/:id', component: PecaEstoqueFormComponent},
+  {path: 'pecaestoqueList', component: PecaEstoqueTableComponent},
   {path: 'produto/:id', component: ProdutoFormComponent},
   {path: 'produtoList', component: ProdutoTableComponent},
   {path: 'fornecedor/:id', component: FornecedorFormComponent},
@@ -34,7 +39,8 @@ const routes: Routes = [
   {path: 'pecaList', component: PecaTableComponent},
   {path: 'clienteList', component: ClienteListComponent},
   {path: 'cliente/:id', component: ClienteComponent},
-  {path: 'teste', component: PecaTableComponent}
+  {path: 'teste', component: PecaTableComponent},
+  {path: 'produto/editar/:id', component: ProdutoEditComponent }
 ];
 
 @NgModule({

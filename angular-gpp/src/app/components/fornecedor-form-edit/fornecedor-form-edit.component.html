@@ -1,18 +1,31 @@
-<h1>Fornecedor Edição <i class="fas pi pi-fw pi-plus"></i></h1>
+<div class="page-title">
+    <h1>{{ pageTitle }}</h1>
+  </div>
+
+<p-dialog header="Editar Fornecedor" [(visible)]="displayDialog" (onHide)="onDialogHide()">
+    <form [formGroup]="fornecedorForm">
+        <div class="p-fluid">
+          <div class="p-field">
+            <label for="nomeFornecedor" class="label">Fornecedor:</label>
+            <input type="text" id="nomeFornecedor" placeholder="Empresa Alfa" pInput formControlName="nomeFornecedor" [ngClass]="{ 'p-invalid': fornecedorForm.get('nomeFornecedor')?.invalid && fornecedorForm.get('nomeFornecedor')?.touched }">
+            <small class="p-error" *ngIf="fornecedorForm.get('nomeFornecedor')?.invalid && fornecedorForm.get('nomeFornecedor')?.touched">Nome do Fornecedor é obrigatório e deve conter apenas letras.</small>
+          </div>
+        </div>
 
 
-<p-dialog header="Editar Fornecedor" [(visible)]="displayDialog">
-    <!-- <div class="form-group">
-        <label for="numero" class="label">idFornecedor:</label>
-        <input type="text" pInput id="numero" placeholder="5654" [(ngModel)]="fornecedor.idFornecedor">
-    </div> -->
-    <div class="form-group">
-        <label for="codigoFabrica" class="label">Fornecedor</label>
-        <input type="text" pInput id="nomeFornecedor" placeholder="Empresa Alfa" [(ngModel)]="fornecedor.nomeFornecedor">
-    </div>
+        <!-- <div class="form-group">
+            <label for="codigoFabrica" class="label">Fornecedor</label>
+            <input type="text" pInput id="nomeFornecedor" placeholder="Empresa Alfa" [(ngModel)]="fornecedor.nomeFornecedor">
+        </div> -->
+    </form>
     
-    <button (click)="editar()" pButton type="button" class="p-button-primary"><i class="pi pi-user-edit"></i></button>
-    
+    <div class="p-field button-group">
+        <div class="p-field">
+            <button pButton type="submit" class="p-button-primary" [disabled]="fornecedorForm.invalid" (click)="editar()"><i class="pi pi-save"></i>Editar</button>
+            <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
+        </div>
+      </div>
+</p-dialog>
     <br/><br/>
     
     

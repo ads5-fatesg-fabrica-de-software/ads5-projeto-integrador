@@ -1,197 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { MenuItem } from "primeng/api";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: "app-menu",
+  templateUrl: "./menu.component.html",
+  styleUrls: ["./menu.component.css"],
 })
 export class PanelMenuBasicDemoComponent implements OnInit {
-
   items: MenuItem[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.items = [
       {
-        label: 'Dashboard',
-        icon: 'pi pi-fw pi-home',
+        label: "Dashboard",
+        icon: "pi pi-fw pi-home",
         command: () => {
-          this.router.navigate(['/dashboard']);
-        }
+          this.router.navigate(["/dashboard"]);
+        },
       },
       {
-        label: 'Peça',
-        icon: 'pi pi-fw pi-box',
-        items: [
-          {
-            label: 'Nova',
-            icon: 'pi pi-fw pi-plus',
-            command: () => {
-              this.router.navigate(['/peca/:id']);
-            }
-
-          },
-          {
-            label: 'Lista',
-            icon: 'pi pi-fw pi-list',
-            command: () => {
-              this.router.navigate(['/pecaList']);
-            }
-          }
-        ]
+        label: "Peça",
+        icon: "pi pi-fw pi-box",
+        command: () => {
+          this.router.navigate(["/pecaList"]);
+        },
       },
       {
-        label: 'Fornecedor',
-        icon: 'pi pi-fw pi-user',
-        items: [
-          {
-            label: 'Nova',
-            icon: 'pi pi-fw pi-plus',
-            command: () => {
-              this.router.navigate(['/fornecedor/:id']);
-            }
-
-          },
-          {
-            label: 'Lista',
-            icon: 'pi pi-fw pi-list',
-            command: () => {
-              this.router.navigate(['/fornecedorList']);
-            }
-          }
-        ]
+        label: "Fornecedor",
+        icon: "pi pi-fw pi-user",
+        command: () => {
+          this.router.navigate(["/fornecedorList"]);
+        },
       },
       {
-        label: 'Produto',
-        icon: 'pi pi-fw pi-table',
-        items: [
-          {
-            label: 'Nova',
-            icon: 'pi pi-fw pi-plus',
-            command: () => {
-              this.router.navigate(['/produto/:id']);
-            }
-
-          },
-          {
-            label: 'Lista',
-            icon: 'pi pi-fw pi-list',
-            command: () => {
-              this.router.navigate(['/produtoList']);
-            }
-          }
-        ]
+        label: "Produto",
+        icon: "pi pi-fw pi-table",
+        command: () => {
+          this.router.navigate(["/produtoList"]);
+        },
       },
       {
-        label: 'Asteca',
-        icon: 'pi pi-fw pi-inbox',
-        items: [
-          {
-            label: 'Nova',
-            icon: 'pi pi-fw pi-plus',
-            command: () => {
-              this.router.navigate(['/asteca/:id']);
-            }
-
-          },
-          {
-            label: 'Lista',
-            icon: 'pi pi-fw pi-list',
-            command: () => {
-              this.router.navigate(['/astecaList']);
-            }
-          }
-        ]
+        label: "Estoque",
+        icon: "pi pi-fw pi-table",
+        command: () => {
+          this.router.navigate(["/pecaestoqueList"]);
+        },
       },
-      // {
-      //   label: 'Edit',
-      //   icon: 'pi pi-fw pi-pencil',
-      //   items: [
-      //     {
-      //       label: 'Left',
-      //       icon: 'pi pi-fw pi-align-left'
-      //     },
-      //     {
-      //       label: 'Right',
-      //       icon: 'pi pi-fw pi-align-right'
-      //     },
-      //     {
-      //       label: 'Center',
-      //       icon: 'pi pi-fw pi-align-center'
-      //     },
-      //     {
-      //       label: 'Justify',
-      //       icon: 'pi pi-fw pi-align-justify'
-      //     }
-      //   ]
-      // },
-      // {
-      //   label: 'Users',
-      //   icon: 'pi pi-fw pi-user',
-      //   items: [
-      //     {
-      //       label: 'New',
-      //       icon: 'pi pi-fw pi-user-plus'
-      //     },
-      //     {
-      //       label: 'Delete',
-      //       icon: 'pi pi-fw pi-user-minus'
-      //     },
-      //     {
-      //       label: 'Search',
-      //       icon: 'pi pi-fw pi-users',
-      //       items: [
-      //         {
-      //           label: 'Filter',
-      //           icon: 'pi pi-fw pi-filter',
-      //           items: [
-      //             {
-      //               label: 'Print',
-      //               icon: 'pi pi-fw pi-print'
-      //             }
-      //           ]
-      //         },
-      //         {
-      //           icon: 'pi pi-fw pi-bars',
-      //           label: 'List'
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // },
-      // {
-      //   label: 'Events',
-      //   icon: 'pi pi-fw pi-calendar',
-      //   items: [
-      //     {
-      //       label: 'Edit',
-      //       icon: 'pi pi-fw pi-pencil',
-      //       items: [
-      //         {
-      //           label: 'Save',
-      //           icon: 'pi pi-fw pi-calendar-plus'
-      //         },
-      //         {
-      //           label: 'Delete',
-      //           icon: 'pi pi-fw pi-calendar-minus'
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       label: 'Archieve',
-      //       icon: 'pi pi-fw pi-calendar-times',
-      //       items: [
-      //         {
-      //           label: 'Remove',
-      //           icon: 'pi pi-fw pi-calendar-minus'
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // }
+      {
+        label: "Asteca",
+        icon: "pi pi-fw pi-inbox",
+        command: () => {
+          this.router.navigate(["/astecaList"]);
+        },
+      },
     ];
   }
 }

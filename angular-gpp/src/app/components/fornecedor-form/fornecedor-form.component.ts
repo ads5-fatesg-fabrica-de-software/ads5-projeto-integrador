@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { FornecedorModel } from 'src/app/models/FornecedorModel';
 import { FornecedorService } from '../../services/fornecedor.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
+  const lettersPattern = /^[A-Za-z]+$/;
+  const value = control.value;
+  if (!lettersPattern.test(value.replace(/\s/g, '')) || value.length < 4) {
+    return { lettersOnly: true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-fornecedor-form',
@@ -9,26 +19,52 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./fornecedor-form.component.css']
 })
 export class FornecedorFormComponent implements OnInit {
+  displayDialog = true;
+  fornecedorForm: FormGroup;
+  pageTitle: string = 'Fornecedor';
+  
 
-  displayDialog: boolean = true; // add this line
-
-  ngOnInit(): void {
-    
+  constructor(
+    private fornecedorService: FornecedorService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.fornecedorForm = this.formBuilder.group({});
   }
 
-  constructor(private fornecedorService: FornecedorService, private router: Router, private route: ActivatedRoute){}
+  ngOnInit(): void {
+    this.buildForm();
+  }
 
   fornecedor: FornecedorModel = {
     nomeFornecedor: '',
   };
 
-  public salvar(){
-    this.fornecedorService.add(this.fornecedor).subscribe(r => {
+  salvar(): void {
+    if (this.fornecedorForm.invalid) {
+      return;
+    }
 
+    this.fornecedor = { ...this.fornecedor, ...this.fornecedorForm.value };
+
+    this.fornecedorService.add(this.fornecedor).subscribe(() => {
       this.fornecedor = new FornecedorModel();
-      console.log(`funcionou. Nome: `);
       this.router.navigateByUrl('/fornecedorList');
-  
+    });
+  }
+
+  cancelar(): void {
+    this.router.navigateByUrl('/fornecedorList');
+  }
+
+  onDialogHide(): void {
+    this.cancelar();
+  }
+
+  private buildForm(): void {
+    this.fornecedorForm = this.formBuilder.group({
+      nomeFornecedor: ['', [Validators.required, lettersOnly]]
     });
   }
 }

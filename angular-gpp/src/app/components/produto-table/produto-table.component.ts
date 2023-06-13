@@ -1,88 +1,91 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
-import { ProdutoService } from 'src/app/services/produto.service';
 import { Table } from 'primeng/table';
+import { ProdutoService } from 'src/app/services/produto.service';
 import { ProdutoModel } from 'src/app/models/ProdutoModel';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-produto-table',
   templateUrl: './produto-table.component.html',
-  styleUrls: ['./produto-table.component.css']
+  styleUrls: ['./produto-table.component.css'],
+  providers: [MessageService]
 })
 export class ProdutoTableComponent implements OnInit {
 
   @ViewChild('dt2') dt2: Table | undefined;
 
-  ngAfterViewInit() {
-    console.log('dt2:', this.dt2);
-  }
-  
   produtos: ProdutoModel[] = [];
-
+  pageTitle: string = 'Produto';
   public source: LocalDataSource = new LocalDataSource(this.produtos);
 
-  
-  constructor(private produtoService: ProdutoService, private router: Router, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private produtoService: ProdutoService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private messageService: MessageService
+  ) { }
 
-  // onSearch(event: Event) {
-  //   console.log("test")
-  //   const value = (event.target as HTMLInputElement).value;
-  //   this.dt2?.filterGlobal(value, 'contains');
-  // }
-  
-  onSearch(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    console.log('Search value:', value);
-    this.dt2?.filterGlobal(value, 'contains');
-    console.log('Filtered data:', this.dt2?.value);
-    this.cdr.detectChanges(); // trigger change detection
-
-    console.log('test data:', this.dt2?.value);
+  ngAfterViewInit() {
+    // console.log('dt2:', this.dt2);
   }
-  
-  
 
   ngOnInit(): void {
     this.list();
   }
 
-  list(){
+  list(): void {
     this.produtoService.list().subscribe(resp => {
       this.produtos = resp;
+      this.source.load(resp);
     });
   }
 
-  novo() {
+  novo(): void {
     this.router.navigateByUrl('/produto/novo');
   }
 
-  onCustomAction(event: any) {
-    let produto: ProdutoModel = event.data;
+  onCustomAction(event: any): void {
+    const produto: ProdutoModel = event.data;
     console.log(event);
     this.router.navigate([`produto/${produto.idProduto}`]);
   }
 
-
-
-  editeProduto(produto: ProdutoModel) {
+  editeProduto(produto: ProdutoModel): void {
     this.router.navigateByUrl(`/produto/editar/${produto.idProduto}`);
-}
+  }
 
-editProduto(id: number) {
-  this.router.navigate(['/produto/editar', id]);
-}
+  editProduto(id: number): void {
+    this.router.navigate(['/produto/editar', id]);
+  }
 
-
-  deleteProduto(id: number) {
-    console.log('deletar produto');
-  
+  deleteProduto(id: number): void {
     this.produtoService.delete(id).subscribe(() => {
       this.list();
-      console.log(`Produto ${id} foi deletada`);
+      this.showMessage(`O produto ${id} foi deletado`);
     });
   }
-  
 
+  showMessage(message: string): void {
+    this.messageService.add({
+      severity: 'success',
+      summary: '',
+      detail: message,
+      life: 10000
+    });
+  }
 
+  onSearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    console.log('Search value:', value);
+    this.dt2?.filterGlobal(value, 'contains');
+    console.log('Filtered data:', this.dt2?.value);
+    this.cdr.detectChanges();
+    console.log('test data:', this.dt2?.value);
+  }
 
+  adicionarProduto(): void {
+    this.router.navigateByUrl(`produto/:id`);
+  }
 }

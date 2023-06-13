@@ -6,7 +6,26 @@ import { FornecedorModel } from 'src/app/models/FornecedorModel';
 import { FornecedorService } from '../../services/fornecedor.service';
 import { SelectItem } from 'primeng/api';
 import { Message, MessageService } from 'primeng/api';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
+  const lettersPattern = /^[A-Za-z]+$/;
+  let value = control.value;
+
+  if (value == null || value === '') {
+    return null; // Skip validation if the value is null or empty
+  }
+
+  if (typeof value !== 'string') {
+    value = value.toString(); // Convert to string if value is not already a string
+  }
+
+  if (!lettersPattern.test(value.replace(/\s/g, '')) || value.length < 4) {
+    return { lettersOnly: true };
+  }
+  
+  return null;
+}
 
 @Component({
   selector: 'app-produto-form',
@@ -14,48 +33,74 @@ import { Message, MessageService } from 'primeng/api';
   styleUrls: ['./produto-form.component.css']
 })
 export class ProdutoFormComponent implements OnInit {
-
   displayDialog: boolean = true;
   fornecedors: FornecedorModel[] = [];
   filteredFornecedors: FornecedorModel[] = [];
   msgs: Message[] = [];
+  pageTitle: string = 'Produto';
+  produtoForm: FormGroup;
+  filteredFornecedores: FornecedorModel[] = [];
+  selectedFornecedor: FornecedorModel | null = null;
 
   ngOnInit(): void {
+    this.buildForm();
+
     this.fornecedorService.list().subscribe(fornecedors => {
       this.fornecedors = fornecedors;
     });
   }
 
-  constructor(private produtoService: ProdutoService, private router: Router, private route: ActivatedRoute, private fornecedorService: FornecedorService, private messageService: MessageService){}
+  constructor(
+    private produtoService: ProdutoService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private fornecedorService: FornecedorService,
+    private messageService: MessageService,
+    private formBuilder: FormBuilder
+  ) {
+    this.produtoForm = this.formBuilder.group({
+      descricao: ['', Validators.required],
+      fornecedor: [null, Validators.required] // Use 'fornecedor' as the form control name
+    });
+  }
 
   produto: ProdutoModel = {
     descricao: '',
     fornecedor: new FornecedorModel()
   };
 
-  searchFornecedors(event: any)  {
+  searchFornecedors(event: any) {
     this.filteredFornecedors = this.fornecedors.filter(fornecedor =>
       fornecedor?.nomeFornecedor?.toLowerCase().includes(event.query.toLowerCase())
     );
+
+    this.selectedFornecedor = null;
   }
-  
 
   public salvar() {
-    this.produtoService.add(this.produto).subscribe(
-      response => {
-        this.produto = new ProdutoModel();
-        console.log(`funcionou. Nome: `);
-        this.router.navigateByUrl('/produtoList');
-        this.msgs = [{severity:'success', summary:'Success', detail:'Product added successfully.'}];
-      },
-      error => {
-        console.log(`ocorreu um erro: ${error}`);
-        console.log(`Status code: ${error.status}`);
-        console.log(`Response body: ${error.error}`);
-        this.msgs = [{severity:'error', summary:'Error', detail:`Failed to add product. Status code: ${error.status}. Response body: ${error.error.message}` }];
+    if (this.produtoForm.invalid) {
+      return;
+    }
 
-      }
-    );
+    this.produto = { ...this.produto, ...this.produtoForm.value };
+
+    this.produtoService.add(this.produto).subscribe(() => {
+      this.router.navigateByUrl('/produtoList');
+    });
   }
-  
+
+  cancelar(): void {
+    this.router.navigateByUrl('/produtoList');
+  }
+
+  onDialogHide(): void {
+    this.cancelar();
+  }
+
+  private buildForm(): void {
+    this.produtoForm = this.formBuilder.group({
+      descricao: ['', Validators.required],
+      fornecedor: [null, Validators.required] // Use 'fornecedor' as the form control name
+    });
+  }
 }

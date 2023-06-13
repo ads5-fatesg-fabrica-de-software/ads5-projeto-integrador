@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PecaModel } from 'src/app/models/PecaModel';
 import { PecaService } from '../../services/peca.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,27 +17,58 @@ export class PecaFormComponent implements OnInit {
   produtos: ProdutoModel[] = [];
   filteredProdutos: ProdutoModel[] = [];
   selectedProduto: ProdutoModel | null = null;
-
   peca: PecaModel = new PecaModel();
+  pageTitle: string = 'Novo';
+  pecaForm: FormGroup;
 
   constructor(
     private pecaService: PecaService,
     private router: Router,
     private route: ActivatedRoute,
-    private produtoService: ProdutoService
-  ) {}
+    private produtoService: ProdutoService,
+    private formBuilder: FormBuilder
+  ) {
+    this.pecaForm = this.formBuilder.group({});
+  }
 
   ngOnInit(): void {
     this.produtoService.list().subscribe(produtos => {
       this.produtos = produtos;
     });
+    this.buildForm();
+  }
+
+  private buildForm(): void {
+    this.pecaForm = this.formBuilder.group({
+      numero: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      codigoFabrica: ['', Validators.required],
+      unidade: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      descricao: ['', Validators.required],
+      altura: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      largura: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      profundidade: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      unidadeMedida: ['', Validators.required],
+      volumes: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      active: [false],
+      custo: ['', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      cor: ['', Validators.required],
+      material: ['', Validators.required],
+      materialFabricacao: ['', Validators.required],
+      produto: ['', Validators.required]
+    });
   }
 
   public salvar(): void {
-    this.peca.idFornecedor = this.peca.produto?.fornecedor?.idFornecedor;
+    if (this.pecaForm.invalid) {
+      return;
+    }
+
+    const formValue = this.pecaForm.value;
+    this.peca = { ...this.peca, ...formValue };
+    this.peca.idFornecedor = this.selectedProduto?.fornecedor?.idFornecedor;
 
     this.pecaService.add(this.peca).subscribe(() => {
-      console.log('Saved successfully.');
+      this.peca = new PecaModel();
       this.router.navigateByUrl('/pecaList');
     });
   }
@@ -45,5 +77,11 @@ export class PecaFormComponent implements OnInit {
     this.filteredProdutos = this.produtos.filter(produto =>
       produto?.descricao?.toLowerCase().includes(event.query.toLowerCase())
     );
+
+    this.selectedProduto = null;
+  }
+
+  cancelar(): void {
+    this.router.navigateByUrl('/pecaList');
   }
 }

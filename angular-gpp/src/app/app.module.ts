@@ -5,7 +5,7 @@ registerLocaleData(localePt);
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import 'eva-icons';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +50,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ListboxModule } from 'primeng/listbox';
 import { FieldsetModule } from 'primeng/fieldset';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProdutoEditComponent } from './components/produto-edit/produto-edit.component';
+import { PecaEstoqueTableComponent } from './components/pecaestoque-table/pecaestoque-table.component';
+import { PecaEstoqueFormComponent } from './components/pecaestoque-form/pecaestoque-form.component';
 
 
 registerLocaleData(localePt);
@@ -73,7 +76,10 @@ registerLocaleData(localePt);
     ProdutoFormComponent,
     AstecaFormComponent,
     AstecaTableComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProdutoEditComponent,
+    PecaEstoqueTableComponent,
+    PecaEstoqueFormComponent
   ],
   imports: [
     InputTextModule,
@@ -107,7 +113,8 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     NbEvaIconsModule,
     HttpClientModule,
-    NbSelectModule
+    NbSelectModule,
+    ReactiveFormsModule
   ],
   providers: [MessageService, DialogService],
   bootstrap: [AppComponent]

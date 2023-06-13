@@ -1,38 +1,92 @@
-<h1>Peça Edição <i class="fas pi pi-pencil"></i></h1>
+<div class="page-title">
+  <h1>{{ pageTitle }}</h1>
+</div>
 
-<p-dialog header="Edite Peça" [(visible)]="displayDialog">
-  <div class="form-group">
-    <label for="descricao" class="label">Descrição:</label>
-    <div class="input">
-      <input type="text" pInput id="descricao" placeholder="" [(ngModel)]="peca.descricao">
+<p-dialog header="Editar" [(visible)]="displayDialog" [style]="{ 'max-width': '600px' }" (onHide)="onDialogHide()">
+  <form [formGroup]="pecaForm">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="numero" class="label">Número:</label>
+        <input type="text" id="numero" pInput formControlName="numero" [ngClass]="{ 'p-invalid': pecaForm.get('numero')?.invalid && pecaForm.get('numero')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('numero')?.invalid && pecaForm.get('numero')?.touched">Número é obrigatório e deve conter apenas dígitos.</small>
+      </div>
+      <div class="p-field">
+        <label for="codigoFabrica" class="label">Código de Fábrica:</label>
+        <input type="text" id="codigoFabrica" pInput formControlName="codigoFabrica" [ngClass]="{ 'p-invalid': pecaForm.get('codigoFabrica')?.invalid && pecaForm.get('codigoFabrica')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('codigoFabrica')?.invalid && pecaForm.get('codigoFabrica')?.touched">Código de Fábrica é obrigatório.</small>
+      </div>
+      <div class="p-field">
+        <label for="unidade" class="label">Unidade:</label>
+        <input type="text" id="unidade" pInput formControlName="unidade" [ngClass]="{ 'p-invalid': pecaForm.get('unidade')?.invalid && pecaForm.get('unidade')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('unidade')?.invalid && pecaForm.get('unidade')?.touched">Unidade é obrigatória e deve conter apenas dígitos.</small>
+      </div>
+      <div class="p-field">
+        <label for="descricao" class="label">Descrição:</label>
+        <input type="text" id="descricao" pInput formControlName="descricao" [ngClass]="{ 'p-invalid': pecaForm.get('descricao')?.invalid && pecaForm.get('descricao')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('descricao')?.invalid && pecaForm.get('descricao')?.touched">Descrição é obrigatória.</small>
+      </div>
+      <div class="p-field">
+        <label for="altura" class="label">Altura:</label>
+        <input type="text" id="altura" pInput formControlName="altura" [ngClass]="{ 'p-invalid': pecaForm.get('altura')?.invalid && pecaForm.get('altura')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('altura')?.invalid && pecaForm.get('altura')?.touched">Altura é obrigatória e deve ser um número válido.</small>
+      </div>
+      <div class="p-field">
+        <label for="largura" class="label">Largura:</label>
+        <input type="text" id="largura" pInput formControlName="largura" [ngClass]="{ 'p-invalid': pecaForm.get('largura')?.invalid && pecaForm.get('largura')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('largura')?.invalid && pecaForm.get('largura')?.touched">Largura é obrigatória e deve ser um número válido.</small>
+      </div>
+      <div class="p-field">
+        <label for="profundidade" class="label">Profundidade:</label>
+        <input type="text" id="profundidade" pInput formControlName="profundidade" [ngClass]="{ 'p-invalid': pecaForm.get('profundidade')?.invalid && pecaForm.get('profundidade')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('profundidade')?.invalid && pecaForm.get('profundidade')?.touched">Profundidade é obrigatória e deve ser um número válido.</small>
+      </div>
+      <div class="p-field">
+        <label for="unidadeMedida" class="label">Unidade de Medida:</label>
+        <input type="text" id="unidadeMedida" pInput formControlName="unidadeMedida" [ngClass]="{ 'p-invalid': pecaForm.get('unidadeMedida')?.invalid && pecaForm.get('unidadeMedida')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('unidadeMedida')?.invalid && pecaForm.get('unidadeMedida')?.touched">Unidade de Medida é obrigatória.</small>
+      </div>
+      <div class="p-field">
+        <label for="volumes" class="label">Volumes:</label>
+        <input type="text" id="volumes" pInput formControlName="volumes" [ngClass]="{ 'p-invalid': pecaForm.get('volumes')?.invalid && pecaForm.get('volumes')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('volumes')?.invalid && pecaForm.get('volumes')?.touched">Volumes é obrigatório e deve ser um número válido.</small>
+      </div>
+      <div class="p-field">
+        <label for="active" class="label">Ativo:</label>
+        <input type="text" id="active" pInput formControlName="active" [ngClass]="{ 'p-invalid': pecaForm.get('active')?.invalid && pecaForm.get('active')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('active')?.invalid && pecaForm.get('active')?.touched">Ativo é obrigatório.</small>
+      </div>
+      <div class="p-field">
+        <label for="custo" class="label">Custo:</label>
+        <input type="text" id="custo" pInput formControlName="custo" [ngClass]="{ 'p-invalid': pecaForm.get('custo')?.invalid && pecaForm.get('custo')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('custo')?.invalid && pecaForm.get('custo')?.touched">Custo é obrigatório e deve ser um número válido.</small>
+      </div>
+      <div class="p-field">
+        <label for="cor" class="label">Cor:</label>
+        <input type="text" id="cor" pInput formControlName="cor" [ngClass]="{ 'p-invalid': pecaForm.get('cor')?.invalid && pecaForm.get('cor')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('cor')?.invalid && pecaForm.get('cor')?.touched">Cor é obrigatória.</small>
+      </div>
+      <div class="p-field">
+        <label for="material" class="label">Material:</label>
+        <input type="text" id="material" pInput formControlName="material" [ngClass]="{ 'p-invalid': pecaForm.get('material')?.invalid && pecaForm.get('material')?.touched }">
+        <small class="p-error" *ngIf="pecaForm.get('material')?.invalid && pecaForm.get('material')?.touched">Material é obrigatório.</small>
+      </div>
+      <div class="p-field">
+        <label for="produto" class="label">Produto:</label>
+        <p-dropdown id="produto" [options]="produtos" formControlName="produto" optionLabel="descricao"
+          [ngClass]="{ 'p-invalid': pecaForm.get('produto')?.invalid && pecaForm.get('produto')?.touched }"></p-dropdown>
+        <small class="p-error" *ngIf="pecaForm.get('produto')?.invalid && pecaForm.get('produto')?.touched">Produto é obrigatório.</small>
+      </div>
+      <div class="p-field">
+        <label for="nomeFornecedor" class="label">Nome do Fornecedor:</label>
+        <input type="text" id="nomeFornecedor" pInput [value]="getSelectedProdutoFornecedorNome()" readonly>
+      </div>
+      <div class="p-field button-group">
+        <div class="p-field">
+          <button pButton type="submit" class="p-button-primary" [disabled]="pecaForm.invalid" (click)="editar()"><i class="pi pi-save"></i>Editar</button>
+      
+          <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="cor" class="label">Cor:</label>
-    <div class="input">
-      <input type="text" pInput id="cor" placeholder="" [(ngModel)]="peca.cor">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="material" class="label">Material:</label>
-    <div class="input">
-      <input type="text" pInput id="material" placeholder="" [(ngModel)]="peca.material">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="idFornecedor" class="label">ID Fornecedor:</label>
-    <div class="input">
-      <input type="text" id="idFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.idFornecedor">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="nomeFornecedor" class="label">Nome do Fornecedor:</label>
-    <div class="input">
-      <input type="text" id="nomeFornecedor" pInput [(ngModel)]="peca.produto.fornecedor.nomeFornecedor">
-    </div>
-  </div>
-  <div class="form-group button-group">
-    <button (click)="editar()" pButton type="button" label="Editar" class="p-button p-button-primary"></button>
-  </div>
-  <br /><br />
+  </form>
 </p-dialog>

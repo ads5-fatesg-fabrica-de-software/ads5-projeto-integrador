@@ -29,7 +29,7 @@ export class FornecedorService {
   }
 
   public list(): Observable<any>{
-    console.log(this.httpClient.get(`${environment.url}/fornecedor/`))
+    // console.log(this.httpClient.get(`${environment.url}/fornecedor/`))
     return this.httpClient.get(`${environment.url}/fornecedor/`);
   }
 

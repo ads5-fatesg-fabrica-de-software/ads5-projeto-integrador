@@ -14,8 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountController {
     
-	@Autowired
-    private final AccountService service;
+	private final AccountService service = new AccountService();
 
     @PostMapping("register")
     public Account register(@RequestBody Account account) {

@@ -59,4 +59,7 @@ public class DocumentoFiscalModel {
 
     private String fornecedor;
 
+    // @OneToMany(mappedBy = "documentoFiscal")
+    // private SolicitacaoAstecaModel asteca;
+
 }
