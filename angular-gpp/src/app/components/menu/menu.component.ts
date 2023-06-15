@@ -32,7 +32,7 @@ export class PanelMenuBasicDemoComponent implements OnInit {
         label: "Fornecedor",
         icon: "pi pi-fw pi-user",
         command: () => {
-          this.router.navigate(["/fornecedorList"]);
+          this.router.navigate(["//fornecedor/:id"]);
         },
       },
       {

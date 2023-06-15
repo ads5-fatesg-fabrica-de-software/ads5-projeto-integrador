@@ -54,6 +54,8 @@ import { ProdutoEditComponent } from './components/produto-edit/produto-edit.com
 import { AstecaEditComponent } from './components/asteca-edit/asteca-edit.component';
 import { PecaEstoqueTableComponent } from './components/pecaestoque-table/pecaestoque-table.component';
 import { PecaEstoqueFormComponent } from './components/pecaestoque-form/pecaestoque-form.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 
 registerLocaleData(localePt);
@@ -81,7 +83,8 @@ registerLocaleData(localePt);
     ProdutoEditComponent,
     PecaEstoqueTableComponent,
     PecaEstoqueFormComponent,
-    AstecaEditComponent
+    AstecaEditComponent,
+     
   ],
   imports: [
     InputTextModule,
@@ -116,7 +119,9 @@ registerLocaleData(localePt);
     NbEvaIconsModule,
     HttpClientModule,
     NbSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [MessageService, DialogService],
   bootstrap: [AppComponent]

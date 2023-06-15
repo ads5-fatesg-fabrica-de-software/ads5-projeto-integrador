@@ -23,7 +23,6 @@ public class FornecedorService {
     @Autowired
     private FornecedorRepository fornecedorRepository;
 
-
     public ResponseEntity<FornecedorModel> BuscarPorId(@PathVariable Integer id) {
 
         Optional<FornecedorModel> optionalFornecedor = fornecedorRepository.findById(id);
@@ -49,6 +48,7 @@ public class FornecedorService {
             return fornecedorRepository.save(fornec);
 
         }
+
     }
 
     public List<FornecedorModel> listarPorNome(@PathVariable String nome) {

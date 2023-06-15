@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { FornecedorModel } from 'src/app/models/FornecedorModel';
 import { FornecedorService } from '../../services/fornecedor.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { LocalDataSource } from 'ng2-smart-table';
+
 
 function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
   const lettersPattern = /^[A-Za-z]+$/;
@@ -16,30 +19,43 @@ function lettersOnly(control: AbstractControl): { [key: string]: any } | null {
 @Component({
   selector: 'app-fornecedor-form',
   templateUrl: './fornecedor-form.component.html',
-  styleUrls: ['./fornecedor-form.component.css']
+  styleUrls: ['./fornecedor-form.component.css'],
+  providers: [ConfirmationService, MessageService]
+
 })
 export class FornecedorFormComponent implements OnInit {
   displayDialog = true;
   fornecedorForm: FormGroup;
   pageTitle: string = 'Fornecedor';
-  
+  fornecedores: FornecedorModel[] = [];
+  source: LocalDataSource = new LocalDataSource(this.fornecedores);
 
   constructor(
     private fornecedorService: FornecedorService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {
     this.fornecedorForm = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
     this.buildForm();
+    this.list();
   }
 
   fornecedor: FornecedorModel = {
     nomeFornecedor: '',
   };
+
+  list(): void {
+    this.fornecedorService.list().subscribe(resp => {
+      this.fornecedores = resp;
+    });
+  }
+
 
   salvar(): void {
     if (this.fornecedorForm.invalid) {
@@ -48,10 +64,24 @@ export class FornecedorFormComponent implements OnInit {
 
     this.fornecedor = { ...this.fornecedor, ...this.fornecedorForm.value };
 
-    this.fornecedorService.add(this.fornecedor).subscribe(() => {
-      this.fornecedor = new FornecedorModel();
-      this.router.navigateByUrl('/fornecedorList');
+    this.fornecedorService.add(this.fornecedor).subscribe({
+
+      error: (error: any) => {
+        if (error.status === 400 || error.status === 500 || error.status === 404) {
+          const errorMessage = error?.error?.message || 'Erro desconhecido';
+          console.log(errorMessage);
+
+          this.messageService.add({ severity: 'error', detail: errorMessage });
+        
+        } else {
+          this.messageService.add({ severity: 'info', detail: 'Cadastro Realizado!' });
+          this.list();
+          this.fornecedor = new FornecedorModel();
+    
+        }
+      }
     });
+
   }
 
   cancelar(): void {
