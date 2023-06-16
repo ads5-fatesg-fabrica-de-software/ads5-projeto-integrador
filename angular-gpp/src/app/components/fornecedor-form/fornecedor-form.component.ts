@@ -30,6 +30,7 @@ export class FornecedorFormComponent implements OnInit {
   fornecedores: FornecedorModel[] = [];
   source: LocalDataSource = new LocalDataSource(this.fornecedores);
 
+
   constructor(
     private fornecedorService: FornecedorService,
     private router: Router,
@@ -48,6 +49,8 @@ export class FornecedorFormComponent implements OnInit {
 
   fornecedor: FornecedorModel = {
     nomeFornecedor: '',
+    email: '',
+    cnpj: ''
   };
 
   list(): void {
@@ -58,9 +61,9 @@ export class FornecedorFormComponent implements OnInit {
 
 
   salvar(): void {
-    if (this.fornecedorForm.invalid) {
-      return;
-    }
+    // if (this.fornecedorForm.invalid) {
+    //   return;
+    // }
 
     this.fornecedor = { ...this.fornecedor, ...this.fornecedorForm.value };
 
@@ -72,12 +75,16 @@ export class FornecedorFormComponent implements OnInit {
           console.log(errorMessage);
 
           this.messageService.add({ severity: 'error', detail: errorMessage });
-        
+
         } else {
-          this.messageService.add({ severity: 'info', detail: 'Cadastro Realizado!' });
+          this.messageService.add({ severity: 'success', detail: 'Cadastro Realizado!' });
           this.list();
           this.fornecedor = new FornecedorModel();
-    
+          this.fornecedorForm.patchValue({
+            nomeFornecedor: '',
+            email: '',
+            cnpj: ''
+          });
         }
       }
     });
@@ -85,7 +92,36 @@ export class FornecedorFormComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigateByUrl('/fornecedorList');
+    this.fornecedorForm.patchValue({
+      nomeFornecedor: '',
+      email: '',
+      cnpj: ''
+    });
+
+  }
+
+  loadProduto(fornecedor: FornecedorModel): void {
+    this.fornecedorService.get(fornecedor.idFornecedor!).subscribe(fornecedor => {
+      this.fornecedor = fornecedor;
+
+      // Update form values with loaded product data
+      this.fornecedorForm.patchValue({
+        nomeFornecedor: fornecedor.nomeFornecedor,
+        email: fornecedor.email,
+        cnpj: fornecedor.cnpj
+      });
+    });
+  }
+
+  editeFornecedor(fornecedor: FornecedorModel): void {
+
+    this.loadProduto(fornecedor);
+
+  }
+
+  deleteFornecedor(id: number): void {
+
+
   }
 
   onDialogHide(): void {
@@ -94,7 +130,9 @@ export class FornecedorFormComponent implements OnInit {
 
   private buildForm(): void {
     this.fornecedorForm = this.formBuilder.group({
-      nomeFornecedor: ['', [Validators.required, lettersOnly]]
+      nomeFornecedor: ['', [Validators.required, lettersOnly]],
+      email: ['', [Validators.required, lettersOnly]],
+      cnpj: ['', [Validators.required, lettersOnly]]
     });
   }
 }

@@ -45,7 +45,6 @@ export class FornecedorService {
 
   public get(idx: number): Observable<any> {
     return this.httpClient.get(`${environment.url}/fornecedor/${idx}`);
-
   }
 
   public list(): Observable<any> {

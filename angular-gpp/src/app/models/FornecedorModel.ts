@@ -1,7 +1,9 @@
 
 export class FornecedorModel {
-  constructor(
-    public idFornecedor?: number,
-    public nomeFornecedor?: String
-  ) {}
+
+   idFornecedor?: number | number
+   nomeFornecedor?: String
+   email? : string
+   cnpj? : string
+
 }

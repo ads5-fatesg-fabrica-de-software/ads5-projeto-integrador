@@ -56,6 +56,10 @@ import { PecaEstoqueTableComponent } from './components/pecaestoque-table/pecaes
 import { PecaEstoqueFormComponent } from './components/pecaestoque-form/pecaestoque-form.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputNumberModule } from 'primeng/inputnumber';
+
+
 
 
 registerLocaleData(localePt);
@@ -121,7 +125,9 @@ registerLocaleData(localePt);
     NbSelectModule,
     ReactiveFormsModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    InputMaskModule,
+    InputNumberModule
   ],
   providers: [MessageService, DialogService],
   bootstrap: [AppComponent]

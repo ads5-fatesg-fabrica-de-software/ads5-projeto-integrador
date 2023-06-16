@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @Setter
 @Entity
@@ -18,5 +19,9 @@ public class FornecedorModel {
   private Integer idFornecedor;
 
   private String nomeFornecedor;
+
+  private String email;
+
+  private String cnpj;
 
 }
