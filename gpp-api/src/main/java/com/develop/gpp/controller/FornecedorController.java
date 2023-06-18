@@ -24,11 +24,11 @@ public class FornecedorController {
         return fornecedorService.listarTodos();
     }
 
-//    @GetMapping("/{nome}")
-//    public List<FornecedorModel> listarPorNome(@PathVariable String nome) {
-//
-//        return fornecedorService.listarPorNome(nome);
-//    }
+    // @GetMapping("/{nome}")
+    // public List<FornecedorModel> listarPorNome(@PathVariable String nome) {
+    //
+    // return fornecedorService.listarPorNome(nome);
+    // }
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
@@ -49,6 +49,12 @@ public class FornecedorController {
     public FornecedorModel salvarFornec(@RequestBody FornecedorModel fornec) {
 
         return fornecedorService.salvarFornec(fornec);
+    }
+
+    @PutMapping("/")
+    public FornecedorModel editarFornec(@RequestBody FornecedorModel fornec) {
+
+        return fornecedorService.editarFornec(fornec);
     }
 
 }

@@ -16,8 +16,8 @@ export class FornecedorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public post(fornecedor: FornecedorModel): Observable<any> {
-    return this.httpClient.post(`${environment.url}/fornecedor/`, fornecedor);
+  public put(fornecedor: FornecedorModel): Observable<any> {
+    return this.httpClient.put(`${environment.url}/fornecedor/`, fornecedor);
   }
 
 

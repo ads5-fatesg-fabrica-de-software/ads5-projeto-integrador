@@ -51,6 +51,29 @@ public class FornecedorService {
 
     }
 
+    public FornecedorModel editarFornec(@RequestBody FornecedorModel fornec) {
+
+        boolean validarID = fornecedorRepository.existsById(fornec.getIdFornecedor());
+
+        FornecedorModel obj = new FornecedorModel();
+
+        if (validarID) {
+
+            obj = fornecedorRepository.findById(fornec.getIdFornecedor()).get();
+
+            if (obj.getEmail().equalsIgnoreCase(fornec.getEmail())
+                    || obj.getNomeFornecedor().equalsIgnoreCase(fornec.getNomeFornecedor())) {
+
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "Dados devem ser diferentes do cadastrado atual!");
+
+            }
+
+        }
+
+        return fornecedorRepository.save(fornec);
+    }
+
     public List<FornecedorModel> listarPorNome(@PathVariable String nome) {
 
         return fornecedorRepository.listarPorNome(nome);

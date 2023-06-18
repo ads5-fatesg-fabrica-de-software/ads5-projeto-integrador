@@ -1,32 +1,53 @@
 <div class="page-title">
-    <h1>{{ pageTitle }}</h1>
+  <h1>{{ pageTitle }}</h1>
+</div>
+
+<form [formGroup]="fornecedorForm">
+  <div class="form-group">
+    <table>
+
+      <tr>
+        <td>
+          <label for="nomeFornecedor" class="p-d-block">Fornecedor:</label>
+        </td>
+        <td>
+          <input type="text" id="nomeFornecedor" placeholder="5654" formControlName="nomeFornecedor"
+            class="p-inputtext" />
+        </td>
+        <td>
+          <div *ngIf="fornecedorForm.get('nomeFornecedor')?.invalid && fornecedorForm?.get('nomeFornecedor')?.touched"
+            class="p-invalid">O nome do Fornecedor é obrigatório</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="email" class="p-d-block">Email:</label>
+        </td>
+        <td>
+          <input type="email" id="email" placeholder="exemple@gmail.com" formControlName="email" class="p-inputtext" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="cnpj" class="p-d-block">CNPJ:</label>
+        </td>
+        <td>
+          <p-inputMask mask="99.999.999/9999-99" formControlName="cnpj" id="cnpj" [disabled]="!fornecedorForm.get('cnpj')?.enabled"></p-inputMask>
+        </td>
+
+
+    </table>
+
   </div>
 
-<p-dialog header="Editar Fornecedor" [(visible)]="displayDialog" (onHide)="onDialogHide()">
-    <form [formGroup]="fornecedorForm">
-        <div class="p-fluid">
-          <div class="p-field">
-            <label for="nomeFornecedor" class="label">Fornecedor:</label>
-            <input type="text" id="nomeFornecedor" placeholder="Empresa Alfa" pInput formControlName="nomeFornecedor" [ngClass]="{ 'p-invalid': fornecedorForm.get('nomeFornecedor')?.invalid && fornecedorForm.get('nomeFornecedor')?.touched }">
-            <small class="p-error" *ngIf="fornecedorForm.get('nomeFornecedor')?.invalid && fornecedorForm.get('nomeFornecedor')?.touched">Nome do Fornecedor é obrigatório e deve conter apenas letras.</small>
-          </div>
-        </div>
+  <br /><br />
 
+  <div class="card flex justify-content-start gap-2">
+    <p-toast></p-toast>
+    <p-button (click)="editar()" icon="pi pi-check" label="Salvar"></p-button>
+    <p-button (click)="cancelar()" icon="pi pi-times" label="Cancelar" class="p-button-danger"></p-button>
+  </div>
 
-        <!-- <div class="form-group">
-            <label for="codigoFabrica" class="label">Fornecedor</label>
-            <input type="text" pInput id="nomeFornecedor" placeholder="Empresa Alfa" [(ngModel)]="fornecedor.nomeFornecedor">
-        </div> -->
-    </form>
-    
-    <div class="p-field button-group">
-        <div class="p-field">
-            <button pButton type="submit" class="p-button-primary" [disabled]="fornecedorForm.invalid" (click)="editar()"><i class="pi pi-save"></i>Editar</button>
-            <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
-        </div>
-      </div>
-</p-dialog>
-    <br/><br/>
-    
-    
-  
+  <br /><br />
+</form>
+<br /><br />

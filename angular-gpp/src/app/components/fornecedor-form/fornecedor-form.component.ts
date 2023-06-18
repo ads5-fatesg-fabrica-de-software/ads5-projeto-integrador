@@ -92,11 +92,7 @@ export class FornecedorFormComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.fornecedorForm.patchValue({
-      nomeFornecedor: '',
-      email: '',
-      cnpj: ''
-    });
+    this.router.navigateByUrl(`fornecedorList`);
 
   }
 

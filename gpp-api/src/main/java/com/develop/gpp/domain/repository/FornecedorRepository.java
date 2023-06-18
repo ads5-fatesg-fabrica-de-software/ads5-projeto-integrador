@@ -16,11 +16,16 @@ public interface FornecedorRepository extends JpaRepository<FornecedorModel, Int
 
     Optional<FornecedorModel> findByNomeFornecedor(String nome);
 
+    Optional<FornecedorModel> findByCnpj(String cnpj);
+
+    Optional<FornecedorModel> findByEmail(String email);
+
     Optional<FornecedorModel> findById(@PathVariable Integer id);
+
+    @Query(nativeQuery = true, value = "select * from fornecedor f where f.cnpj is not null and f.email is not null;")
+    List<FornecedorModel> validacaoEmailCnpj();
 
     @Query(nativeQuery = true, value = "select * from fornecedor f where lower(f.nome_fornecedor) like lower(:nome)")
     List<FornecedorModel> listarPorNome(@Param("nome") String nome);
-
- 
 
 }
