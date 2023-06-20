@@ -19,7 +19,7 @@ import { SolicitacaoAstecaModel } from 'src/app/models/SolicitacaoAstecaModel';
 import { SituacaoAstecaEnum } from 'src/app/models/SituacaoAstecaEnum';
 import { TipoAstecaEnum } from 'src/app/models/TipoAstecaEnum';
 import { ItemSolicitacaoAstecaModel } from 'src/app/models/ItemSolicitacaoAstecaModel';
-import { SelectItem } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { FormBuilder } from '@angular/forms';
 
 interface Item {
@@ -31,7 +31,7 @@ interface Item {
   selector: "app-asteca-form",
   templateUrl: "./asteca-form.component.html",
   styleUrls: ["./asteca-form.component.css"],
-  providers: [DatePipe],
+  providers: [DatePipe,MessageService],
 })
 export class AstecaFormComponent implements OnInit {
   numero: string = "";
@@ -78,7 +78,9 @@ export class AstecaFormComponent implements OnInit {
     private documentoFiscalService: DocumentoFiscalService,
     private astecaMotivoService: AstecaMotivoService,
     private astecaService: AstecaService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageService: MessageService,
+
   ) {}
 
   ngOnInit(): void {
@@ -87,10 +89,6 @@ export class AstecaFormComponent implements OnInit {
     this.testeListResp();
     this.iniciaMotivos();
     this.produto.descricao = "";
-    
-
-    
-    
   }
 
   iniciaMotivos(): void {
@@ -110,9 +108,6 @@ export class AstecaFormComponent implements OnInit {
     });
   }
   
-  
-  
-
   togglePecaSelection(index: number) {
     this.selectedPecaIndices[index] = !this.selectedPecaIndices[index];
   }
@@ -353,18 +348,24 @@ export class AstecaFormComponent implements OnInit {
           next: (response) => {
             // Handle success response
             // console.log("Asteca salva com sucesso:", response);
+            this.messageService.add({ severity: 'error', detail: 'Solicitação criada!' });
             this.router.navigate(["/astecaList"]);
           },
           error: (error) => {
-            // Handle error response
-            console.error("Erro salvando Asteca:", error);
+            if (error.status === 400 || error.status === 500 || error.status === 404) {
+              const errorMessage = error?.error?.message || 'Erro desconhecido';
+              console.log(errorMessage);
+    
+              this.messageService.add({ severity: 'error', detail: errorMessage });
+    
+            }
           },
           complete: () => {
             // Handle completion
           },
         });
       },
-      (error) => {
+      error => {
         console.error("Error fetching PecaEstoqueModel:", error);
       }
     );
@@ -372,9 +373,9 @@ export class AstecaFormComponent implements OnInit {
 
   situacaoOptions: SelectItem[] = [
     { label: 'Em Aberto', value: SituacaoAstecaEnum.EMABERTO },
-    { label: 'Em Execução', value: SituacaoAstecaEnum.EMEXECUCAO },
-    { label: 'Cancelada', value: SituacaoAstecaEnum.CANCELADA },
-    { label: 'Finalizada', value: SituacaoAstecaEnum.FINALIZADA }
+    // { label: 'Em Execução', value: SituacaoAstecaEnum.EMEXECUCAO },
+    // { label: 'Cancelada', value: SituacaoAstecaEnum.CANCELADA },
+    // { label: 'Finalizada', value: SituacaoAstecaEnum.FINALIZADA }
   ];
   
   tipoOptions: SelectItem[] = [

@@ -22,20 +22,21 @@
           <label for="codigoFabrica" class="p-d-block">Produto:</label>
           <div id="codigoFabrica" class="p-text">{{ produto.descricao || ' ' }}</div>
         </div>
-
+        
         <div class="p-field">
           <label for="Motivo" class="p-d-block">Motivo:</label>
           <div class="p-field">
             <p-autoComplete [(ngModel)]="selectedMotivo" [suggestions]="filteredAstecaMotivos"
               (completeMethod)="pesquiseMotivos($event)" field="denominacao" [dropdown]="true"
-              placeholder="Selecione o motivo"></p-autoComplete>
+              placeholder="Selecione o motivo" class="custom-autocomplete"></p-autoComplete>
           </div>
         </div>
+        
 
         <div class="p-field">
           <label class="p-d-block">Situação:</label>
-          <p-dropdown [options]="situacaoOptions" [(ngModel)]="asteca.situacaoAsteca" optionLabel="label"
-            optionValue="value"></p-dropdown>
+          <p-dropdown [options]="situacaoOptions" [(ngModel)]="asteca.situacaoAsteca"  optionLabel="label"
+            optionValue="value" [disabled]="true" ></p-dropdown>
         </div>
 
         <div class="p-field">
@@ -252,6 +253,7 @@
 </div>
 
 <div style="text-align: right;">
+  <p-toast></p-toast>
   <button pButton type="submit" class="p-button-primary" (click)="salvarAsteca()">
     <i class="pi pi-save"></i> Finalizar Pedido
   </button>

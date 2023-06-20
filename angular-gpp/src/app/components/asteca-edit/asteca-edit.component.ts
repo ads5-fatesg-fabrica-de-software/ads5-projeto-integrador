@@ -36,6 +36,10 @@ export class AstecaEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // asteca : SolicitacaoAstecaModel{
+
+  // }
+
   private buildForm(): void {
     this.astecaForm = this.formBuilder.group({
       numero: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],

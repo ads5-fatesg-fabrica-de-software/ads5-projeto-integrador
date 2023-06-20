@@ -81,3 +81,7 @@ label {
   justify-content: space-between;
   align-items: center;
 }
+
+.custom-autocomplete .p-autocomplete-input {
+  width: 300px; /* Ajuste o valor conforme necessário */
+}
