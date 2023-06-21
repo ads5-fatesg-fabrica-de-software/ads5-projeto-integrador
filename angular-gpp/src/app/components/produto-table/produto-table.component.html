@@ -5,7 +5,7 @@
   <p-messages></p-messages>
 
   <div class="button-container">
-    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarProduto()"></button>
+    <button style="border-radius: 10px; margin-bottom: 15px; margin-left: 10px" pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarProduto()"></button>
   </div>
   
   <div class="card">
@@ -45,9 +45,9 @@
           <td>{{ produto.idProduto }}</td>
           <td>{{ produto.descricao }}</td>
           <td>
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+            <button style="background-color: blue;" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
               (click)="editeProduto(produto)"></button>
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            <button style="background-color: red;" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
               (click)="deleteProduto(produto.idProduto)"></button>
           </td>
         </tr>

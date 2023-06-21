@@ -3,7 +3,7 @@
 </div>
 
 <div class="button-container">
-  <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarPeca()"></button>
+  <button style="border-radius: 10px; margin-bottom: 15px; margin-left: 10px" pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarPeca()"></button>
 </div>
 
 <div class="card">
@@ -64,9 +64,9 @@
         <td>{{ peca.produto.descricao }}</td>
         <td>{{ peca.produto.fornecedor.nomeFornecedor }}</td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+          <button style="background-color: blue;" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
             (click)="editePeca(peca)"></button>
-          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+          <button style="background-color: red;" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
             (click)="deletePeca(peca.idPeca)"></button>
         </td>
       </tr>

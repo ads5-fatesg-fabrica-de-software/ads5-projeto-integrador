@@ -3,7 +3,7 @@
   </div>
 
   <div class="button-container">
-    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarFornecedor()"></button>
+    <button style="border-radius: 10px; margin-bottom: 15px; margin-left: 10px" pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="adicionarFornecedor()"></button>
   </div>
 
 <!-- <h1>Peças Lista</h1> -->
@@ -89,9 +89,9 @@
         <td>{{ fornecedor.materialFabricacao }}</td>
         <td>{{ fornecedor.produtosFornecedor }}</td> -->
       <td>
-        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+        <button style="background-color: blue;" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
           (click)="editeFornecedor(fornecedor)"></button>
-        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+        <button style="background-color: red;" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
           (click)="deleteFornecedor(fornecedor.idFornecedor)"></button>
       </td>
     </tr>

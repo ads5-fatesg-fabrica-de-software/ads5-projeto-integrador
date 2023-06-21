@@ -1,11 +1,10 @@
-<div class="page-title">
-  <h1>{{ pageTitle }}</h1>
-</div>
+
 
 <div class="p-grid">
   <div class="p-col-12">
     <div class="p-card">
       <div class="p-card-body">
+        <p-dialog header="Adicionar Peça" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [appendTo]="">
         <form [formGroup]="pecaForm" (ngSubmit)="salvar()">
           <div class="p-field">
             <label for="numero" class="p-d-block">Número</label>
@@ -89,10 +88,11 @@
             <div *ngIf="pecaForm.get('produto')?.invalid && pecaForm.get('produto')?.touched" class="p-invalid">Produto é obrigatório</div>
           </div>
           <div class="p-field">
-            <button pButton type="submit" class="p-button-primary" (click)="salvar()" [disabled]="pecaForm?.invalid"><i class="pi pi-save"></i>Salvar</button>
-            <button pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
+            <button style="background-color: #3B82F6;" pButton type="submit" class="p-button-primary" (click)="salvar()" [disabled]="pecaForm?.invalid"><i class="pi pi-save"></i>Salvar</button>
+            <button style="background-color:#3B82F6;" pButton type="button" class="p-button-secondary" (click)="cancelar()"><i class="pi pi-times"></i>Cancelar</button>
           </div>
         </form>
+      </p-dialog>
       </div>
     </div>
   </div>

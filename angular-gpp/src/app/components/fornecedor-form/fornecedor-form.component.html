@@ -1,8 +1,6 @@
-<div class="page-title">
-  <h1>{{ pageTitle }}</h1>
-</div>
 
-<p-dialog header="Novo" [(visible)]="displayDialog" (onHide)="onDialogHide()">
+
+<p-dialog header="Adicionar Fornecedor" [(visible)]="displayDialog" (onHide)="onDialogHide()">
 <form [formGroup]="fornecedorForm">
   <div class="form-group">
     <table>
@@ -45,8 +43,8 @@
 
   <div class="card flex justify-content-start gap-2">
     <p-toast></p-toast>
-    <p-button (click)="salvar()" icon="pi pi-check" label="Salvar"></p-button>
-    <p-button (click)="cancelar()" icon="pi pi-times" label="Cancelar" class="p-button-danger"></p-button>
+    <p-button style="background-color:#3B82F6;"  (click)="salvar()" icon="pi pi-save" label="Salvar"></p-button>
+    <p-button style="background-color:#3B82F6;" (click)="cancelar()" icon="pi pi-times" label="Cancelar" class="p-button-danger"></p-button>
   </div>
 
   <br /><br />
