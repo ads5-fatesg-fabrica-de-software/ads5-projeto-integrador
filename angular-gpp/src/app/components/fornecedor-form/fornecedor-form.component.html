@@ -2,6 +2,7 @@
   <h1>{{ pageTitle }}</h1>
 </div>
 
+<p-dialog header="Novo" [(visible)]="displayDialog" (onHide)="onDialogHide()">
 <form [formGroup]="fornecedorForm">
   <div class="form-group">
     <table>
@@ -50,4 +51,5 @@
 
   <br /><br />
 </form>
+</p-dialog>
 <br /><br />
