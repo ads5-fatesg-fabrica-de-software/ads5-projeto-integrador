@@ -11,6 +11,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   PecaService service = PecaService();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    service.lista();
+  }
+  
   @override
   Widget build(BuildContext context) {
     // Your widget tree goes here
@@ -118,8 +126,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  testeRetorno() {
-    //service.lista();
-    print('teste');
-  }
 }

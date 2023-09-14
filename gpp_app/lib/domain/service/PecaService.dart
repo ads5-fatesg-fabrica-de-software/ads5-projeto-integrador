@@ -6,28 +6,30 @@ import 'package:gpp_app/domain/models/PecaModel.dart';
 import 'package:http/http.dart';
 
 class PecaService {
-  List<PecaModel> pecas = [];
+
   bool carregando = false;
 
-  lista() async {
+   List<PecaModel> pecas = [];
+
+  Future<List<PecaModel>> lista() async {
     try {
       carregando = true;
+
       Response response = await get(
-        Uri.parse(Conection.url + 'pecas/'),
-        headers: {'Content-Type': 'application/json'},
-      );
-      var data = jsonDecode(response.body);
-      print(data);
-      pecas = data['pecas']
-          .map<PecaModel>((data) => PecaModel.fromJson(data))
-          .toList();
+        Uri.parse(Conection.url + 'pecas/'));
+
       if (response.statusCode == 200) {
+        List<dynamic> jsonList = jsonDecode(response.body);
+         pecas = jsonList.map((e) => PecaModel.fromJson(e)).toList();
         return pecas;
       } else {
-        Fluttertoast.showToast(msg: jsonDecode(response.body)['message']);
+        throw Exception('Erro ao buscar peças');
       }
     } catch (e) {
       carregando = false;
+      // Você deve retornar um valor aqui para satisfazer o tipo de retorno.
+      return []; // Retorne uma lista vazia ou lide com o erro de forma diferente.
     }
   }
 }
+
