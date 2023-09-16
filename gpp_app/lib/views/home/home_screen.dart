@@ -15,7 +15,7 @@ class PecaList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put<PecaService>(PecaService());
+    final service = Get.put<PecaService>(PecaService());
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -45,11 +45,11 @@ class PecaList extends StatelessWidget {
                       child: InputComponent(
                           hintText: 'Buscar',
                           onChanged: (value) {
-                            controller.pesquisar = value;
+                            service.pesquisar = value;
                           },
                           onFieldSubmitted: (value) async {
-                            controller.pesquisar = value;
-                            await controller.listaPecas();
+                            service.pesquisar = value;
+                            await service.listaPecas();
                           }),
                     ),
                     const SizedBox(
@@ -59,7 +59,7 @@ class PecaList extends StatelessWidget {
                       flex: 2,
                       child: ButtonComponent(
                           onPressed: () async {
-                            await controller.listaPecas();
+                            await service.listaPecas();
                           },
                           text: 'Buscar'),
                     ),
@@ -70,9 +70,9 @@ class PecaList extends StatelessWidget {
                 height: 16,
               ),
               Expanded(
-                child: Obx(() => !controller.carregando.value
+                child: Obx(() => !service.carregando.value
                     ? ListView.builder(
-                        itemCount: controller.pecas.length,
+                        itemCount: service.pecas.length,
                         itemBuilder: (context, index) {
                           return Container(
                               margin: const EdgeInsets.symmetric(vertical: 8),
@@ -90,7 +90,7 @@ class PecaList extends StatelessWidget {
                                             ),
                                           ),
                                           SelectableText(
-                                            controller.pecas[index].idPeca
+                                            service.pecas[index].idPeca
                                                 .toString(),
                                           )
                                         ],
@@ -107,7 +107,7 @@ class PecaList extends StatelessWidget {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          SelectableText(controller
+                                          SelectableText(service
                                                   .pecas[index].descricao
                                                   .toString()
                                                   .capitalize ??
@@ -128,7 +128,7 @@ class PecaList extends StatelessWidget {
                                           ),
                                           Expanded(
                                             child: SelectableText(
-                                              controller.pecas[index].produto
+                                              service.pecas[index].produto
                                                       ?.descricao
                                                       .toString() ??
                                                   '',
@@ -150,12 +150,12 @@ class PecaList extends StatelessWidget {
                                       //     ),
                                       //     ButtonAcaoWidget(detalhe: () {
                                       //       Get.delete<
-                                      //           FornecedorDetalheController>();
+                                      //           FornecedorDetalheservice>();
                                       //       Get.toNamed(
-                                      //           '/fornecedores/${controller.fornecedores[index].idFornecedor}');
+                                      //           '/fornecedores/${service.fornecedores[index].idFornecedor}');
 
                                       //       Get.delete<
-                                      //           SeparacaoDetalheController>();
+                                      //           SeparacaoDetalheservice>();
                                       //     })
                                       //     // maskFormatter.realInputFormmater(pedido[index].valorTotal.toString()).getMaskedText(),
                                       //   ],
@@ -168,23 +168,23 @@ class PecaList extends StatelessWidget {
               ),
               GetBuilder<PecaService>(
                 builder: (_) => PaginacaoComponent(
-                  total: controller.pagina.getTotal(),
-                  atual: controller.pagina.getAtual(),
+                  total: service.pagina.getTotal(),
+                  atual: service.pagina.getAtual(),
                   primeiraPagina: () {
-                    controller.pagina.primeira();
-                    controller.listaPecas();
+                    service.pagina.primeira();
+                    service.listaPecas();
                   },
                   anteriorPagina: () {
-                    controller.pagina.anterior();
-                    controller.listaPecas();
+                    service.pagina.anterior();
+                    service.listaPecas();
                   },
                   proximaPagina: () {
-                    controller.pagina.proxima();
-                    controller.listaPecas();
+                    service.pagina.proxima();
+                    service.listaPecas();
                   },
                   ultimaPagina: () {
-                    controller.pagina.ultima();
-                    controller.listaPecas();
+                    service.pagina.ultima();
+                    service.listaPecas();
                   },
                 ),
               )
