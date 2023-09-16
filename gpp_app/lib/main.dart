@@ -8,7 +8,7 @@ Future<void> main() async {
   runApp(
     MaterialApp(
       title: 'Home',
-      home: HomeScreen(),
+      home: PecaList(),
       debugShowCheckedModeBanner: false,
     ),
   );

@@ -39,28 +39,28 @@ class PecaModel {
     this.produto,
   });
 
-  factory PecaModel.fromJson(Map<String, dynamic> json) {
-    return PecaModel(
-      idPeca: json['idPeca'] as int,
-      numero: json['numero'] as String,
-      codigoFabrica: json['codigoFabrica'] as String,
-      unidade: json['unidade'] as int,
-      descricao: json['descricao'] as String,
-      altura: json['altura'] as int,
-      largura: json['largura'] as int,
-      profundidade: json['profundidade'] as int,
-      unidadeMedida: json['unidadeMedida'] as int,
-      volumes: json['volumes'] as String,
-      active: json['active'] as bool,
-      custo: json['custo'] as double,
-      cor: json['cor'] as String,
-      material: json['material'] as String,
-      idFornecedor: json['idFornecedor'] as int,
-      materialFabricacao: json['materialFabricacao'] as String,
-      produto: json['produto'] != null
+   PecaModel.fromJson(Map<String, dynamic> json) {
+    
+      idPeca = json['idPeca'];
+      numero = json['numero'];
+      codigoFabrica = json['codigoFabrica'] ;
+      unidade = json['unidade'];
+      descricao = json['descricao'];
+      altura = json['altura'];
+      largura = json['largura'];
+      profundidade =  json['profundidade'];
+      unidadeMedida = json['unidadeMedida'];
+      volumes =json['volumes'];
+      active = json['active'];
+      custo = json['custo'];
+      cor = json['cor'];
+      material =  json['material'];
+      idFornecedor = json['idFornecedor'];
+      materialFabricacao = json['materialFabricacao'];
+      produto =  json['produto'] != null
           ? ProdutoModel.fromJson(json['produto'])
-          : null,
-    );
+          : null;
+    
   }
 
   Map<String, dynamic> toJson() {

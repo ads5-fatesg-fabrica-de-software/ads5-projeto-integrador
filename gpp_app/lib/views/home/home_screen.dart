@@ -1,129 +1,195 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gpp_app/domain/service/PecaService.dart';
 
+import '../../shared/components/ButtonComponent.dart';
+import '../../shared/components/InputComponent.dart';
+import '../../shared/components/LoadingComponent.dart';
+import '../../shared/components/PaginacaoComponent.dart';
 import '../../shared/components/TextComponent.dart';
-import '../../shared/components/TitleComponent.dart';
+import '../../widgets/CardWidget.dart';
+import '../../widgets/NavBarWidget.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+class PecaList extends StatelessWidget {
+  const PecaList({Key? key}) : super(key: key);
 
-class _HomeScreenState extends State<HomeScreen> {
-  PecaService service = PecaService();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    service.lista();
-  }
-  
   @override
   Widget build(BuildContext context) {
-    // Your widget tree goes here
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(24),
+    final controller = Get.put<PecaService>(PecaService());
+
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: NavbarWidget(),
+        //drawer: Sidebar(),
+        body: Container(
+          margin: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextComponent('Peças',
+                      fontSize: 24, fontWeight: FontWeight.bold),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SizedBox(
+                width: Get.width,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TitleComponent(
-                      'Peças',
+                    SizedBox(
+                      width: Get.width / 2,
+                      child: InputComponent(
+                          hintText: 'Buscar',
+                          onChanged: (value) {
+                            controller.pesquisar = value;
+                          },
+                          onFieldSubmitted: (value) async {
+                            controller.pesquisar = value;
+                            await controller.listaPecas();
+                          }),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: ButtonComponent(
+                          onPressed: () async {
+                            await controller.listaPecas();
+                          },
+                          text: 'Buscar'),
                     ),
                   ],
                 ),
               ),
-              // _buildState()
+              const SizedBox(
+                height: 16,
+              ),
+              Expanded(
+                child: Obx(() => !controller.carregando.value
+                    ? ListView.builder(
+                        itemCount: controller.pecas.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                              margin: const EdgeInsets.symmetric(vertical: 8),
+                              child: CardWidget(
+                                widget: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(children: [
+                                      Row(
+                                        children: [
+                                          const Expanded(
+                                            flex: 2,
+                                            child: TextComponent(
+                                              'ID Peça',
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SelectableText(
+                                            controller.pecas[index].idPeca
+                                                .toString(),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Expanded(
+                                            flex: 2,
+                                            child: TextComponent(
+                                              'Nome',
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SelectableText(controller
+                                                  .pecas[index].descricao
+                                                  .toString()
+                                                  .capitalize ??
+                                              ''),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Expanded(
+                                            flex: 2,
+                                            child: TextComponent(
+                                              'Produto',
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: SelectableText(
+                                              controller.pecas[index].produto
+                                                      ?.descricao
+                                                      .toString() ??
+                                                  '',
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      // Row(
+                                      //   children: [
+                                      //     Expanded(
+                                      //       flex: 2,
+                                      //       child: TextComponent(
+                                      //         'Ações',
+                                      //         fontWeight: FontWeight.bold,
+                                      //       ),
+                                      //     ),
+                                      //     ButtonAcaoWidget(detalhe: () {
+                                      //       Get.delete<
+                                      //           FornecedorDetalheController>();
+                                      //       Get.toNamed(
+                                      //           '/fornecedores/${controller.fornecedores[index].idFornecedor}');
+
+                                      //       Get.delete<
+                                      //           SeparacaoDetalheController>();
+                                      //     })
+                                      //     // maskFormatter.realInputFormmater(pedido[index].valorTotal.toString()).getMaskedText(),
+                                      //   ],
+                                      // ),
+                                    ])),
+                              ));
+                        },
+                      )
+                    : const LoadingComponent()),
+              ),
+              GetBuilder<PecaService>(
+                builder: (_) => PaginacaoComponent(
+                  total: controller.pagina.getTotal(),
+                  atual: controller.pagina.getAtual(),
+                  primeiraPagina: () {
+                    controller.pagina.primeira();
+                    controller.listaPecas();
+                  },
+                  anteriorPagina: () {
+                    controller.pagina.anterior();
+                    controller.listaPecas();
+                  },
+                  proximaPagina: () {
+                    controller.pagina.proxima();
+                    controller.listaPecas();
+                  },
+                  ultimaPagina: () {
+                    controller.pagina.ultima();
+                    controller.listaPecas();
+                  },
+                ),
+              )
             ],
           ),
-        ),
-        Divider(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // CheckboxComponent(),
-            Expanded(
-              child: TextComponent(
-                'ID',
-              ),
-            ),
-            Expanded(
-              child: TextComponent('Número'),
-            ),
-            Expanded(
-              child: TextComponent('Cod. Fabrica'),
-            ),
-            Expanded(
-              child: TextComponent('Descrição'),
-            ),
-            Expanded(
-              child: Text(
-                'Opções',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-                // textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
-        Divider(),
-        service.carregando
-            ? Column(
-                children: [
-                  Container(
-                    height: 400,
-                    child: ListView.builder(
-                      itemCount: service.pecas.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Padding(padding: EdgeInsets.only(left: 10)),
-                              // CheckboxComponent(),
-                              Expanded(
-                                child: Text(
-                                  service.pecas[index].idPeca.toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16),
-                                  // textAlign: TextAlign.start,
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                    service.pecas[index].numero.toString()),
-                              ),
-                              // Expanded(
-                              //   child: Text(_pecasController
-                              //               .listaPecas[index].codigo_fabrica ==
-                              //           null
-                              //       ? ''
-                              //       : _pecasController
-                              //           .listaPecas[index].codigo_fabrica
-                              //           .toString()),
-                              // ),
-                              // Expanded(
-                              //   child: Text(_pecasController
-                              //       .listaPecas[index].descricao
-                              //       .toString()),
-                              // ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              )
-            : CircularProgressIndicator(),
-      ],
-    );
+        ));
   }
-
 }

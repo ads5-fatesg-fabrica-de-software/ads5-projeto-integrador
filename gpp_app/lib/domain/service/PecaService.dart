@@ -1,35 +1,49 @@
 import 'dart:convert';
 
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:gpp_app/core/config/Conection.dart';
 import 'package:gpp_app/domain/models/PecaModel.dart';
+import 'package:gpp_app/domain/repository/PecaRepository.dart';
+import 'package:gpp_app/shared/components/Notificacao.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 
-class PecaService {
+import '../../shared/components/MaskFormatter.dart';
+import '../models/PaginaModel.dart';
 
-  bool carregando = false;
+class PecaService extends GetxController {
 
-   List<PecaModel> pecas = [];
+  NumberFormat formatter = NumberFormat.simpleCurrency(locale: 'pt_BR');
+  late MaskFormatter maskFormatter = MaskFormatter();
+  String pesquisar = '';
+  var carregando = true.obs;
+  late PecaRepository pecaRepository;
+  late List<PecaModel> pecas;
+  late PaginaModel pagina;
 
-  Future<List<PecaModel>> lista() async {
+  PecaService(){
+    pecaRepository = PecaRepository();
+    pecas = <PecaModel>[].obs;
+    pagina = PaginaModel(total: 0, atual: 1);
+  }
+
+
+  @override
+  void onInit() {
+    listaPecas();
+    super.onInit();
+  }
+
+  listaPecas() async {
     try {
-      carregando = true;
-
-      Response response = await get(
-        Uri.parse(Conection.url + 'pecas/'));
-
-      if (response.statusCode == 200) {
-        List<dynamic> jsonList = jsonDecode(response.body);
-         pecas = jsonList.map((e) => PecaModel.fromJson(e)).toList();
-        return pecas;
-      } else {
-        throw Exception('Erro ao buscar peças');
-      }
+      carregando(true);
+      pecas = await pecaRepository.listaPecas();
     } catch (e) {
-      carregando = false;
-      // Você deve retornar um valor aqui para satisfazer o tipo de retorno.
-      return []; // Retorne uma lista vazia ou lide com o erro de forma diferente.
+     null;
+    } finally {
+      carregando(false);
+      update();
     }
   }
 }
-
