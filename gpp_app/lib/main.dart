@@ -6,7 +6,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
-    MaterialApp(
+    const MaterialApp(
       title: 'Home',
       home: PecaList(),
       debugShowCheckedModeBanner: false,
