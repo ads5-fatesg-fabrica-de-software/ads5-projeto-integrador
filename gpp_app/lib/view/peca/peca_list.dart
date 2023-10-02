@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gpp_app/domain/service/PecaService.dart';
 
+import '../../domain/service/peca_service.dart';
 import '../../shared/components/ButtonComponent.dart';
 import '../../shared/components/InputComponent.dart';
 import '../../shared/components/LoadingComponent.dart';
 import '../../shared/components/PaginacaoComponent.dart';
 import '../../shared/components/TextComponent.dart';
-import '../../widgets/CardWidget.dart';
-import '../../widgets/NavBarWidget.dart';
+import '../../shared/widgets/CardWidget.dart';
+import '../../shared/widgets/NavBarWidget.dart';
 
 class PecaList extends StatelessWidget {
   const PecaList({Key? key}) : super(key: key);

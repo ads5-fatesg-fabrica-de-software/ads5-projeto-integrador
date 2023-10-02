@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:gpp_app/shared/components/styles.dart';
+import 'styles.dart';
 
 class InputComponent extends StatelessWidget {
   final String? label;

@@ -1,16 +1,10 @@
-import 'dart:convert';
-
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:gpp_app/core/config/Conection.dart';
-import 'package:gpp_app/domain/models/PecaModel.dart';
-import 'package:gpp_app/domain/repository/PecaRepository.dart';
-import 'package:gpp_app/shared/components/Notificacao.dart';
-import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 
 import '../../shared/components/MaskFormatter.dart';
-import '../models/PaginaModel.dart';
+import '../model/pagina_model.dart';
+import '../model/peca_model.dart';
+import '../repository/peca_repository.dart';
 
 class PecaService extends GetxController {
 
@@ -19,15 +13,15 @@ class PecaService extends GetxController {
   String pesquisar = '';
   var carregando = true.obs;
   late PecaRepository pecaRepository;
-  late List<PecaModel> pecas;
-  late PaginaModel pagina;
+  late List<Peca> pecas;
+  late Pagina pagina;
+
 
   PecaService(){
     pecaRepository = PecaRepository();
-    pecas = <PecaModel>[].obs;
-    pagina = PaginaModel(total: 0, atual: 1);
+    pecas = <Peca>[].obs;
+    pagina = Pagina(total: 0, atual: 1);
   }
-
 
   @override
   void onInit() {

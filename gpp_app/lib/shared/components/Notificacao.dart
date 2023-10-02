@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gpp_app/shared/components/styles.dart';
+import 'styles.dart';
 import 'TextButtonComponent.dart';
 import 'TextComponent.dart';
 

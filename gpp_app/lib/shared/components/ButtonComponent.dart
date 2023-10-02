@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gpp_app/shared/components/styles.dart';
+
+import 'styles.dart';
 
 
 class ButtonComponent extends StatefulWidget {
