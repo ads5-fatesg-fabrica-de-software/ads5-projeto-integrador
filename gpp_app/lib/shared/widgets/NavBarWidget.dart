@@ -1,3 +1,4 @@
+import 'package:auth_migration/view/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../domain/service/auth_service.dart';
@@ -5,7 +6,7 @@ import '../../view/login/login_screen.dart';
 import '../components/styles.dart';
 
 class NavbarWidget extends StatelessWidget implements PreferredSizeWidget {
-  NavbarWidget({
+  const NavbarWidget({
     Key? key,
   }) : super(key: key);
 
@@ -27,7 +28,7 @@ class NavbarMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthService _authService = AuthService();
 
-     logout() {
+    logout() {
       _authService.logOut();
       Navigator.pushAndRemoveUntil(
         context,
@@ -63,13 +64,11 @@ class NavbarMobile extends StatelessWidget {
                           fontSize: 24)),
                 ],
               ),
-               Row(
+              Row(
                 children: [
                   IconButton(
-                    icon: 
-                      const Icon(Icons.logout_rounded),
-                      color: Colors.white,
-                  
+                    icon: const Icon(Icons.logout_rounded),
+                    color: Colors.white,
                     onPressed: logout,
                   ),
                 ],
@@ -78,13 +77,18 @@ class NavbarMobile extends StatelessWidget {
       );
     }
 
-
     return AppBar(
       backgroundColor: Theme.of(context).primaryColor,
       shadowColor: Colors.transparent,
       title: GestureDetector(
           onTap: () {
-            Get.toNamed('/dashboard');
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const HomeScreen(),
+              ),
+              (route) => false,
+            );
           },
           child: Text(
             'GPP',
@@ -94,12 +98,12 @@ class NavbarMobile extends StatelessWidget {
         const SizedBox(
           width: 32,
         ),
-        const SizedBox(
+        SizedBox(
           height: 50,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               //FilialWidget(),
             ],
           ),

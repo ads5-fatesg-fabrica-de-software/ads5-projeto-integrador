@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../../shared/widgets/NavBarWidget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, int? cla}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  NavbarWidget(),
+      appBar: const NavbarWidget(),
       body: Container(
         margin: const EdgeInsets.only(left: 50, right: 50),
         child: Center(

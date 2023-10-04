@@ -25,9 +25,9 @@ class PecaList extends StatelessWidget {
           margin: const EdgeInsets.all(16),
           child: Column(
             children: [
-              const Row(
+               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   TextComponent('Peças',
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ],

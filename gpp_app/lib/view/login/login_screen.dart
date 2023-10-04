@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _usernameController,
                 decoration: const InputDecoration(
-                  hintText: 'CPF',
+                  hintText: 'Usuário',
                   suffixIcon: Icon(
                     Icons.person,
                   ),
@@ -76,9 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   _enabled ? loginAction() : null;
                 },
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                  children: const <Widget>[
                     Icon(Icons
                         .login), // Substitua "Icons.login" pelo ícone que você deseja usar
                     SizedBox(width: 8), // Espaço entre o ícone e o texto
