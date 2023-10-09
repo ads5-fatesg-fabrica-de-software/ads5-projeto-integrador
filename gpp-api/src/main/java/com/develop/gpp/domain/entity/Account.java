@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,4 +24,9 @@ public class Account {
     private String username;
 
     private String password;
+
+    private Integer ativo;
+
+    @OneToOne
+    private PerfilUsuarioModel iPerfilUsuario;
 }
