@@ -26,15 +26,5 @@ public class AccountController {
         return service.register(account);
     }
 
-    @GetMapping("user")
-    public Account getUser(@RequestBody LoginDTO dto){
-
-        return service.getUser(dto);
-    }
-
-    @PostMapping("vincular/{id}")
-    public Account vincularPerfil(@RequestBody LoginDTO dto, @PathVariable Long id){
-
-        return service.vincularPerfil(dto, id);
-    }
+  
 }

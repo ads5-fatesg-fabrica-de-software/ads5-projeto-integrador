@@ -1,9 +1,13 @@
 package com.develop.gpp.domain.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -24,5 +28,8 @@ public class FuncionalidadesModel {
     private Integer situacao;
 
     private String icone;
+
+    @OneToMany(mappedBy = "funcionalidade", cascade = CascadeType.ALL)
+    List<PerfilUsuarioFuncionalidades> perfilUsuarioFuncionalidades;
     
 }
