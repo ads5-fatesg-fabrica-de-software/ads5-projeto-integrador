@@ -22,7 +22,7 @@ public class PerfilUsuarioModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer  idPerfilUsuario;
+    private Long  idPerfilUsuario;
 
     private String descricao;
 

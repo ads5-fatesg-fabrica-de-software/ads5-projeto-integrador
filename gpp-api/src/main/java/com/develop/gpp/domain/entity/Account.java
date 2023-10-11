@@ -28,5 +28,5 @@ public class Account {
     private Integer ativo;
 
     @OneToOne
-    private PerfilUsuarioModel iPerfilUsuario;
+    private PerfilUsuarioModel perfilUsuario;
 }
