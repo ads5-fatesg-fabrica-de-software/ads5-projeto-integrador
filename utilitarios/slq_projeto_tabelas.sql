@@ -285,6 +285,42 @@ INSERT INTO public.item_documento_fiscal (id_item_doc_fiscal, qtde, valor_venda,
 VALUES (4, 15, 40.0, 4, 2);
 
 --****************************************************************************************************************************************************************************************************************************
+--Perfis
+insert into perfil_usuario (id_perfil_usuario,descricao) values (1,'Administrativo');
+
+--Funcionalidades
+insert into funcionalidades (id_funcionalidade,icone,nome,situacao) values (1,'0xf7cc','Peças',1);
+insert into funcionalidades (id_funcionalidade,icone,nome,situacao) values (2,'0xe1b1','Astecas',1);
+insert into funcionalidades (id_funcionalidade,icone,nome,situacao) values (3,'0xf5d3','Estoque',1);
+insert into funcionalidades (id_funcionalidade,icone,nome,situacao) values (4,'0xf89e','Administração',1);
+insert into funcionalidades (id_funcionalidade,icone,nome,situacao) values (5,'0xe1bf','Produtos',1);
+insert into funcionalidades (id_funcionalidade,icone,nome,situacao) values (6,'0xf01f4','Fornecedores',1);
+
+--Subfuncionalidades
+insert into sub_funcionalidadades (id_subfuncionalidade,nome,rota,situacao,id_funcionalidade_id_funcionalidade) 
+values (1,'Usuários','/usuarios',1,1);
+insert into sub_funcionalidadades (id_subfuncionalidade,nome,rota,situacao,id_funcionalidade_id_funcionalidade) 
+values (2,'Perfil de usuário','/perfil-usuario',1,1);
+
+--perfil_usuario_funcionalidade
+insert into perfil_usuario_funcionalidade (id_perfil_usuario_funcionalidadade,funcionalidade_id_funcionalidade,perfil_usuario_id_perfil_usuario) 
+ values (1,1,1);
+insert into perfil_usuario_funcionalidade (id_perfil_usuario_funcionalidadade,funcionalidade_id_funcionalidade,perfil_usuario_id_perfil_usuario) 
+ values (2,2,1);
+insert into perfil_usuario_funcionalidade (id_perfil_usuario_funcionalidadade,funcionalidade_id_funcionalidade,perfil_usuario_id_perfil_usuario) 
+ values (3,3,1);
+insert into perfil_usuario_funcionalidade (id_perfil_usuario_funcionalidadade,funcionalidade_id_funcionalidade,perfil_usuario_id_perfil_usuario) 
+ values (4,4,1);
+insert into perfil_usuario_funcionalidade (id_perfil_usuario_funcionalidadade,funcionalidade_id_funcionalidade,perfil_usuario_id_perfil_usuario) 
+ values (5,5,1);
+insert into perfil_usuario_funcionalidade (id_perfil_usuario_funcionalidadade,funcionalidade_id_funcionalidade,perfil_usuario_id_perfil_usuario) 
+ values (6,6,1);
+
+select * from perfil_usuario_funcionalidade puf;
+
+select * from account a;   
+
+select * from perfil_usuario pu; 
 
 /*
 
