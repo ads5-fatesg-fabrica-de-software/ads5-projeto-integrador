@@ -44,7 +44,7 @@ class Token {
 
   Map<String, String> sendToken() {
     return {
-      'Authorization': 'Bearer $token',
+      'token': '$token',
     };
   }
 }

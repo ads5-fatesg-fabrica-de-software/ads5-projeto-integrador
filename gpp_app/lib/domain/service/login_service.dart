@@ -20,7 +20,8 @@ class LoginService {
         body: login.toJson(),
         secure: false);
         if (response.statusCode == 200) {
-           tokenService.save(response.body);
+          var retorno = jsonDecode(response.body);
+           tokenService.save(retorno["token"]);
            return true;
         }else{
           return false;
