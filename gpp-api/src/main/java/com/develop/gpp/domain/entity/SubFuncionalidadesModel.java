@@ -4,10 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +26,10 @@ public class SubFuncionalidadesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSubfuncionalidade;
 
-    @ManyToOne()
-    private FuncionalidadesModel idFuncionalidade;
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "id_funcionalidade")
+    private FuncionalidadesModel funcionalidade;
 
     private String nome;
 

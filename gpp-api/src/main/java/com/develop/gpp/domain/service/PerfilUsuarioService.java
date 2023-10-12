@@ -1,5 +1,6 @@
 package com.develop.gpp.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.develop.gpp.domain.entity.Account;
+import com.develop.gpp.domain.entity.PerfilUsuarioFuncionalidades;
 import com.develop.gpp.domain.entity.PerfilUsuarioModel;
 import com.develop.gpp.domain.entity.dto.LoginDTO;
 import com.develop.gpp.domain.repository.AccountRepository;
@@ -22,9 +24,9 @@ public class PerfilUsuarioService {
     @Autowired
     private PerfilRepository perfilRepository;
 
-    public Account getUser(LoginDTO dto) {
-        Optional<Account> user = repository.findByUsernameAndPassword(dto.getUsername(), dto.getPassword());
-
+    public Account getUser(String username) {
+        Optional<Account> user = repository.findByUsername(username);
+       System.out.println(username);
         if (user.isEmpty()) {
 
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado!");

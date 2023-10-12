@@ -9,6 +9,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,12 +24,15 @@ public class PerfilUsuarioFuncionalidades {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer idPerfilUsuarioFuncionalidadade;
 
     @ManyToOne
+    @JsonManagedReference
     private FuncionalidadesModel funcionalidade;
 
     @ManyToOne
+    @JsonBackReference
     private PerfilUsuarioModel perfilUsuario; 
     
 }

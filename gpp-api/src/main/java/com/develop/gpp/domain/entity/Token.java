@@ -21,7 +21,6 @@ public class Token {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JsonIgnore
     private String username;
 
     private String token;

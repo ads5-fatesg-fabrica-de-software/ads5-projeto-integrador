@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +33,11 @@ public class FuncionalidadesModel {
     private String icone;
 
     @OneToMany(mappedBy = "funcionalidade", cascade = CascadeType.ALL)
+    @JsonBackReference
     List<PerfilUsuarioFuncionalidades> perfilUsuarioFuncionalidades;
+
+    @OneToMany(mappedBy = "funcionalidade", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<SubFuncionalidadesModel> subFuncionalidades;
     
 }
