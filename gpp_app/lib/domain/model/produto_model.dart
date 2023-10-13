@@ -34,8 +34,15 @@ class Produto extends AbstractEntity {
 
   String toJson() => json.encode(toMap());
 
-  factory Produto.fromJson(String source) =>
-      Produto.fromMap(json.decode(source));
+  factory Produto.fromJson(Map<String, dynamic> json) {
+    return Produto(
+      idProduto: json['idProduto'],
+      descricao: json['descricao'],
+      fornecedor: json['fornecedor'] != null
+          ? Fornecedor.fromJson(json['fornecedor'])
+          : null,
+    );
+  }
 
   @override
   String toString() {

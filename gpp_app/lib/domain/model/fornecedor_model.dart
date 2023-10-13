@@ -34,8 +34,14 @@ factory Fornecedor.fromMap(Map<String, dynamic> map){
 
  String toJson() => json.encode(toMap());
 
- factory Fornecedor.fromJson(String source) =>
-      Fornecedor.fromMap(json.decode(source));
+ factory Fornecedor.fromJson(Map<String, dynamic> json) {
+    return Fornecedor(
+      idFornecedor: json['idFornecedor'],
+      nomeFornecedor: json['nomeFornecedor'],
+      email: json['email'],
+      cnpj: json['cnpj'],
+    );
+  }
 
   @override
   String toString() {
