@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../core/auth/usuario_service.dart';
 import '../../shared/components/MaskFormatter.dart';
 import '../model/pagina_model.dart';
 import '../model/peca_model.dart';
@@ -15,6 +16,8 @@ class PecaService extends GetxController {
   late PecaRepository pecaRepository;
   late List<Peca> pecas;
   late Pagina pagina;
+  final UsuarioService _usuarioService = UsuarioService();
+
 
 
   PecaService(){
