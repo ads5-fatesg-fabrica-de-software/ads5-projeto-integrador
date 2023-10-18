@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auth_migration/core/auth/usuario_service.dart';
 import 'package:auth_migration/shared/components/Notificacao.dart';
 
 import '../../base/service/base_service.dart';
@@ -14,6 +15,8 @@ class PecaRepository {
 
   final TokenService _tokenService = TokenService();
 
+  final UsuarioService _usuarioService = UsuarioService(); 
+
   Future<List<Peca>> listaPecas() async {
     Token token = _tokenService.get();
 
@@ -25,6 +28,7 @@ class PecaRepository {
     if (response.statusCode == 200) {
       List<dynamic> jsonList = jsonDecode(response.body);
       var pecas = jsonList.map((e) => Peca.fromJson(e)).toList();
+         print(_usuarioService.getUsuario().toJson());
       return pecas;
     } else {
       var error = jsonDecode(response.body)['error'];

@@ -5,6 +5,7 @@ import '../../core/auth/usuario_service.dart';
 import '../../shared/components/MaskFormatter.dart';
 import '../model/pagina_model.dart';
 import '../model/peca_model.dart';
+import '../model/usuario_model.dart';
 import '../repository/peca_repository.dart';
 
 class PecaService extends GetxController {

@@ -22,15 +22,17 @@ class Funcionalidades extends AbstractEntity {
           : null,
     );
   }
+  
   Funcionalidades.fromJson(Map<String, dynamic> json) {
     idFuncionalidade = json['idFuncionalidade'];
     icone = json['icone'];
     nome = json['nome'];
-    subFuncionalidades = json['subfuncionalidades']
-        ? json['subfuncionalidades'].map<SubFuncionalidades>((data) {
-            return SubFuncionalidades.fromJson(data);
-          }).toList()
-        : null;
+    if (json['subfuncionalidades'] != null) {
+      subFuncionalidades = <SubFuncionalidades>[];
+      json['subfuncionalidades'].forEach((f){
+        subFuncionalidades!.add(f);
+      });
+    }
   }
 
   @override

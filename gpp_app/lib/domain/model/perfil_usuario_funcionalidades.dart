@@ -28,7 +28,7 @@ class PerfilUsuarioFuncionalidades extends AbstractEntity{
   Map<String,dynamic>toJson() {
    final Map<String,dynamic> data = <String,dynamic>{};
    data['idPerfilUsuarioFuncionalidadade'] = idPerfilUsuarioFuncionalidadade;
-   data['funcionalidade'] = funcionalidade != null ? funcionalidade! : null;
+   data['funcionalidade'] = funcionalidade != null ? funcionalidade!.toJson() : null;
     return data;
   }
   

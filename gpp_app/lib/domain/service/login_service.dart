@@ -37,8 +37,8 @@ class LoginService {
       );
       if (responseUser.statusCode == 200) {
         var user = jsonDecode(responseUser.body);
-        Usuario usuario = Usuario.fromMap(user);
-        print(user);
+        Usuario usuario = Usuario.fromJson(user);
+        print(usuario.toJson());
        _usuarioService.setUsuario(usuario);
       }
       return true;
