@@ -20,4 +20,8 @@ class TokenService {
   delete() {
     _storage.put('token', '');
   }
+
+  bool isAuthenticated() {
+    return _storage.get('token') != null;
+  }
 }

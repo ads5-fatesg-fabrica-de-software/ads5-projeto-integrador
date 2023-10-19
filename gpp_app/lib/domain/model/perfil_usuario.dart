@@ -17,7 +17,7 @@ class PerfilUsuario extends AbstractEntity {
     final List<PerfilUsuarioFuncionalidades>? funcionalidades;
     if (funcionalidadesData != null) {
       funcionalidades = funcionalidadesData
-          .map((p) => PerfilUsuarioFuncionalidades.fromJson(p))
+          .map((p) => PerfilUsuarioFuncionalidades.fromMap(p))
           .toList();
     } else {
       funcionalidades = null;
