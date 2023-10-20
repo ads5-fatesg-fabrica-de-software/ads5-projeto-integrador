@@ -16,7 +16,7 @@ class Funcionalidades extends AbstractEntity {
     final List<SubFuncionalidades>? subFuncionalidades;
     if (subList != null) {
       subFuncionalidades =
-          subList.map((e) => SubFuncionalidades.fromMap(e)).toList();
+          subList.map((e) => SubFuncionalidades?.fromMap(e)).toList();
     } else {
       subFuncionalidades = null;
     }
@@ -34,12 +34,10 @@ class Funcionalidades extends AbstractEntity {
     icone = json['icone'];
     nome = json['nome'];
     situacao = json['situacao'];
-    if (json['subfuncionalidades'] != null) {
-      subFuncionalidades = <SubFuncionalidades>[];
-      json['subfuncionalidades'].forEach((f) {
-        subFuncionalidades!.add(f);
+    subFuncionalidades = <SubFuncionalidades>[];
+      json['subFuncionalidades'].forEach((f) {
+        subFuncionalidades?.add(SubFuncionalidades.fromMap(f));
       });
-    }
   }
 
   @override
@@ -49,10 +47,7 @@ class Funcionalidades extends AbstractEntity {
     data['icone'] = icone;
     data['nome'] = nome;
     data['situacao'] = situacao;
-    if (subFuncionalidades != null) {
-      data['subFuncionalidades'] =
-          subFuncionalidades!.map((e) => e.toJson()).toList();
-    }
+    data['subFuncionalidades'] = subFuncionalidades?.map((e) => e.toJson()).toList();
     return data;
   }
 

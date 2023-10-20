@@ -37,8 +37,8 @@ class LoginService {
         headers: token.sendToken(),
       );
       if (responseUser.statusCode == 200) {
-        var user = jsonDecode(responseUser.body);
-        Usuario usuario = Usuario.fromJson(user);
+        Map<String, dynamic> data  = jsonDecode(responseUser.body);
+        Usuario usuario = Usuario.fromJson(data);
         print(usuario.toJson());
         _usuarioService.setUsuario(usuario);
       }

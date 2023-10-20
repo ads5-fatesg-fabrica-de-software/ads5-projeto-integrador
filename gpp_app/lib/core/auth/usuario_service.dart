@@ -16,7 +16,7 @@ class UsuarioService {
   Usuario getUsuario() {
     Map<String, dynamic> json = jsonDecode(_storage.get('usuario') ?? '');
 
-    Usuario usuario = Usuario.fromMap(json);
+    Usuario usuario = Usuario.fromJson(json);
     return usuario;
   }
 }

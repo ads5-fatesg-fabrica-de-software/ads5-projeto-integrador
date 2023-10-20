@@ -9,6 +9,7 @@ import '../../shared/components/PaginacaoComponent.dart';
 import '../../shared/components/TextComponent.dart';
 import '../../shared/widgets/CardWidget.dart';
 import '../../shared/widgets/NavBarWidget.dart';
+import '../../widgets/sidebar_widget.dart';
 
 class PecaList extends StatelessWidget {
   const PecaList({Key? key}) : super(key: key);
@@ -19,8 +20,8 @@ class PecaList extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: NavbarWidget(),
-        //drawer: Sidebar(),
+        appBar: const NavbarWidget(),
+        drawer: const Sidebar(),
         body: Container(
           margin: const EdgeInsets.all(16),
           child: Column(

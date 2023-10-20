@@ -15,11 +15,11 @@ class Usuario {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
+    data['username'] = username;
     data['password'] = password;
     data['ativo'] = ativo;
     data['perfilUsuario'] =
         perfilUsuario != null ? perfilUsuario!.toJson() : null;
-    data['username'] = username;
     return data;
   }
 
@@ -27,22 +27,23 @@ class Usuario {
     return Usuario(
         id: map['id'],
         name: map['name'],
+        username: map['username'],
         password: map['password'],
         ativo: map['ativo'],
         perfilUsuario: map['perfilUsuario'] != null
             ? PerfilUsuario.fromMap(map['perfilUsuario'])
-            : null,
-        username: map['username'],);
+            : null,);
   }
 
   Usuario.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    username = json['username'];
     password = json['password'];
     ativo = json['ativo'];
     perfilUsuario = json['perfilUsuario'] != null
         ? PerfilUsuario.fromJson(json['perfilUsuario'])
         : null;
-    username = json['username'];
+   
   }
 }
