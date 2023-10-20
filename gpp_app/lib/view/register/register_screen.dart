@@ -13,8 +13,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  
 
   final RegisterService _registerService = RegisterService();
 
@@ -39,12 +41,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 'CADASTRO',
                 style: TextStyle(fontSize: 35),
               ),
+               const SizedBox(
+                height: 40,
+              ),
+              TextField(
+                controller: _nameController,
+                decoration: const InputDecoration(hintText: 'Nome'),
+              ),
               const SizedBox(
                 height: 40,
               ),
               TextField(
                 controller: _usernameController,
-                decoration: const InputDecoration(hintText: 'username'),
+                decoration: const InputDecoration(hintText: 'Usuário'),
               ),
               const SizedBox(
                 height: 25,
@@ -52,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextField(
                 obscureText: true,
                 controller: _passwordController,
-                decoration: const InputDecoration(hintText: 'password'),
+                decoration: const InputDecoration(hintText: 'Senha'),
               ),
               const SizedBox(
                 height: 25,
@@ -80,6 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _screenState(false);
     String usr = _usernameController.text;
     String pwd = _passwordController.text;
+    String nm = _nameController.text;
     if (StringUtil.isEmpty(usr) || StringUtil.isEmpty(pwd)) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -89,10 +99,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       );
     } else {
-      bool result = await _registerService.tryRegister(usr, pwd);
+      bool result = await _registerService.tryRegister(nm,usr, pwd);
       if (result) {
         _usernameController.clear();
         _passwordController.clear();
+        _nameController.clear();
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(

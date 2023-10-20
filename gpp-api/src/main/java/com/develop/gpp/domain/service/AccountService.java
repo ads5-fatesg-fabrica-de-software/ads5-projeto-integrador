@@ -21,10 +21,7 @@ public class AccountService {
 
     @Autowired
     private AccountRepository repository;
-
-    @Autowired
-    private PerfilRepository perfilRepository;
-
+    
     public Account register(Account account) {
         existsByUsername(account.getUsername());
         return repository.save(account);
@@ -34,7 +31,7 @@ public class AccountService {
         Optional<Account> acc = repository.findByUsernameAndPassword(dto.getUsername(), dto.getPassword());
 
         if (acc.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid username or password");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalido Usuário ou Senha");
         } else if (acc.get().getPerfilUsuario() == null) {
 
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
@@ -46,7 +43,7 @@ public class AccountService {
 
     private void existsByUsername(String username) {
         if (repository.findByUsername(username).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already registered!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já registrado!");
         }
     }
 }

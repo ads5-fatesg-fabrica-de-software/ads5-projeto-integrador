@@ -25,6 +25,4 @@ public class AccountController {
     public Account register(@RequestBody Account account) {
         return service.register(account);
     }
-
-  
 }

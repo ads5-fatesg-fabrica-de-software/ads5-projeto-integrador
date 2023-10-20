@@ -50,6 +50,8 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
 
                 //Retornando o objeto com erro
                 new ObjectMapper().writeValue(response.getOutputStream(), error);
+
+                return;
             }
             // Seguir o fluxo padrao do spring Controller>Service>Repository
             filterChain.doFilter(request, response);
