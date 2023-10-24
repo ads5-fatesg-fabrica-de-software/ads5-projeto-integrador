@@ -37,9 +37,8 @@ class LoginService {
         headers: token.sendToken(),
       );
       if (responseUser.statusCode == 200) {
-        Map<String, dynamic> data  = jsonDecode(responseUser.body);
+        Map<String, dynamic> data  = jsonDecode(utf8.decode(responseUser.bodyBytes));
         Usuario usuario = Usuario.fromJson(data);
-        print(usuario.toJson());
         _usuarioService.setUsuario(usuario);
       }
       valida = true;

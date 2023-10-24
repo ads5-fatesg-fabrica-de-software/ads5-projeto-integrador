@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:auth_migration/core/auth/usuario_service.dart';
 import 'package:auth_migration/shared/components/Notificacao.dart';
+import 'package:auth_migration/view/splash/splash_screen.dart';
+import 'package:get/get.dart' as gett;
 
 import '../../base/service/base_service.dart';
 import '../../core/auth/token_service.dart';
 import '../model/peca_model.dart';
 import 'package:http/http.dart';
+
 
 import '../model/token_model.dart';
 
@@ -31,10 +34,11 @@ class PecaRepository {
          print(_usuarioService.getUsuario().toJson());
       return pecas;
     } else {
-      var error = jsonDecode(response.body)['error'];
-       Notificacao.snackBar(
-         error,
+      _tokenService.delete();
+      var error = jsonDecode(response.body)['message'];
+       Notificacao.snackBar(error,
          tipoNotificacao: TipoNotificacaoEnum.error);
+      gett.Get.to(const SplashScreen());
       throw error;
     }
   }

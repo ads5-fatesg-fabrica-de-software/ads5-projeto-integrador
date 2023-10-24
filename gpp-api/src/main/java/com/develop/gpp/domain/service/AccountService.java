@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.develop.gpp.domain.entity.Account;
 import com.develop.gpp.domain.entity.PerfilUsuarioModel;
 import com.develop.gpp.domain.entity.dto.LoginDTO;
+import com.develop.gpp.domain.entity.dto.RegisterDTO;
 import com.develop.gpp.domain.repository.AccountRepository;
 import com.develop.gpp.domain.repository.PerfilRepository;
 
@@ -22,9 +23,15 @@ public class AccountService {
     @Autowired
     private AccountRepository repository;
     
-    public Account register(Account account) {
-        existsByUsername(account.getUsername());
-        return repository.save(account);
+    public Account register(RegisterDTO dto) {
+        existsByUsername(dto.getUsername());
+        Account novoUser =  new Account();
+        novoUser.setName(dto.getName());
+        novoUser.setAtivo(1);//- 1 Sim,2-Não;
+        novoUser.setPassword(dto.getPassword());
+        novoUser.setUsername(dto.getUsername());
+        novoUser.setPerfilUsuario(null);
+        return repository.save(novoUser);
     }
 
     public Account getByLogin(LoginDTO dto) {

@@ -58,8 +58,8 @@ class Notificacao {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: tipoNotificacaoColor(tipoNotificacao),
           borderRadius: 5,
-          duration: Duration(seconds: 1),
-          margin: EdgeInsets.only(left: 20, bottom: 20, right: 20),
+          duration: const Duration(seconds: 2),
+          margin: const EdgeInsets.only(left: 20, bottom: 20, right: 20),
           maxWidth: Get.width * 0.9);
     } else {
       Get.snackbar('Mensagem', mensagem,

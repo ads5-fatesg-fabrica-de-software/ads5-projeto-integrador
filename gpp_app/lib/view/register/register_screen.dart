@@ -2,6 +2,7 @@ import 'package:auth_migration/core/util/string_util.dart';
 import 'package:auth_migration/domain/model/dto/register_dto.dart';
 import 'package:auth_migration/domain/model/register_model.dart';
 import 'package:auth_migration/domain/service/register_service.dart';
+import 'package:auth_migration/shared/components/Notificacao.dart';
 import 'package:auth_migration/view/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -110,13 +111,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             builder: (BuildContext context) => const LoginScreen(),
           ),
           (route) => false,
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            duration: Duration(seconds: 1),
-            content: Text('Erro ao realizar cadastro!'),
-          ),
         );
       }
     }
