@@ -92,13 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     String pwd = _passwordController.text;
     String nm = _nameController.text;
     if (StringUtil.isEmpty(usr) || StringUtil.isEmpty(pwd)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.red,
-          duration: Duration(seconds: 1),
-          content: Text('Login ou senha inválidos!'),
-        ),
-      );
+      Notificacao.snackBar('Todos os campos devem ser preenchidos!', tipoNotificacao: TipoNotificacaoEnum.error);
     } else {
       bool result = await _registerService.tryRegister(nm,usr, pwd);
       if (result) {

@@ -17,7 +17,6 @@ class PecaService extends GetxController {
   late PecaRepository pecaRepository;
   late List<Peca> pecas;
   late Pagina pagina;
-  final UsuarioService _usuarioService = UsuarioService();
 
 
 

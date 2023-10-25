@@ -1,5 +1,6 @@
 import 'package:auth_migration/core/util/string_util.dart';
 import 'package:auth_migration/domain/service/login_service.dart';
+import 'package:auth_migration/shared/components/Notificacao.dart';
 import 'package:auth_migration/view/home/home_screen.dart';
 import 'package:auth_migration/view/peca/peca_list.dart';
 import 'package:auth_migration/view/register/register_screen.dart';
@@ -103,13 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String usr = _usernameController.text;
     String pwd = _passwordController.text;
     if (StringUtil.isEmpty(usr) || StringUtil.isEmpty(pwd)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.red,
-          duration: Duration(seconds: 2),
-          content: Text('Login ou senha inválidos!'),
-        ),
-      );
+      Notificacao.snackBar('Todos os campos devem ser preenchidos!', tipoNotificacao: TipoNotificacaoEnum.error);
     } else {
       bool result = await _loginService.tryLogin(usr, pwd);
       if (result) {
@@ -121,13 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
             builder: (BuildContext context) => const HomeScreen(),
           ),
           (route) => false,
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            duration: Duration(seconds: 2),
-            content: Text('Erro ao logar!'),
-          ),
         );
       }
     }

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:auth_migration/core/auth/token_service.dart';
 import 'package:auth_migration/core/auth/usuario_service.dart';
 import 'package:auth_migration/domain/service/auth_service.dart';
+import 'package:auth_migration/view/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -80,7 +81,7 @@ class Sidebar extends StatelessWidget {
                         : Container()),
               ),
             ),
-            FooterSidebar()
+            const FooterSidebar()
           ],
         ),
       ),
@@ -114,7 +115,7 @@ class FooterSidebar extends StatelessWidget {
         IconButton(
             onPressed: () {
               _authService.delete();
-              Get.offAllNamed('/login');
+              Get.to(const SplashScreen());
             },
             icon: const Icon(Icons.logout_rounded))
       ],

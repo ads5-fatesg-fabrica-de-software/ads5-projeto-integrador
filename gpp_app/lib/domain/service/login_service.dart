@@ -7,6 +7,7 @@ import 'package:auth_migration/domain/model/token_model.dart';
 import 'package:auth_migration/base/service/base_service.dart';
 import 'package:auth_migration/base/custom/custom_http.dart';
 import 'package:auth_migration/domain/model/usuario_model.dart';
+import 'package:auth_migration/shared/components/Notificacao.dart';
 import 'package:http/http.dart';
 
 class LoginService {
@@ -43,6 +44,8 @@ class LoginService {
       }
       valida = true;
     } else {
+      var error = jsonDecode(utf8.decode(response.bodyBytes))['message'];
+      Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
       valida =  false;
     }
     return valida;
