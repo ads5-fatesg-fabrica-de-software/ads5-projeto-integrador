@@ -1,3 +1,4 @@
+import 'package:auth_migration/routes/app_routes.dart';
 import 'package:auth_migration/view/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,10 +12,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
-    const GetMaterialApp(
+     GetMaterialApp(
       title: 'GPP',
-      home: SplashScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
+      getPages: AuthGuard.appRoutes,
     ),
   );
 }

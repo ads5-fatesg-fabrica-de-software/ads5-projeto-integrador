@@ -27,7 +27,7 @@ public class TokenService {
         Token token = new Token();
         token.setUsername(account.getUsername());
         token.setToken(UUID.randomUUID().toString());
-        token.setValid(LocalDateTime.now().plusMinutes(10));
+        token.setValid(LocalDateTime.now().plusMinutes(1));
         return repository.save(token);
     }
 

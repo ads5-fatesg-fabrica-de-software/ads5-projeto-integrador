@@ -7,9 +7,6 @@ import 'package:auth_migration/view/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-import '../../../main.dart';
-
 import '../../shared/components/TextComponent.dart';
 import '../domain/model/subfuncionalidades_model.dart';
 import '../shared/components/styles.dart';
