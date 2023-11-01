@@ -72,8 +72,6 @@ select * from perfil_usuario pu;
 
 -- fornecedor
 insert into sub_funcionalidadades (id_subfuncionalidade,nome,rota,situacao,id_funcionalidade) 
-values (1,'Usuários','/usuarios',1,4);
-insert into sub_funcionalidadades (id_subfuncionalidade,nome,rota,situacao,id_funcionalidade) 
-values (2,'Perfil de usuário','/perfil-usuario',1,4);
-insert into sub_funcionalidadades (id_subfuncionalidade,nome,rota,situacao,id_funcionalidade) 
 values (4,'Fornecedores','/fornecedores',1,6);
+
+
