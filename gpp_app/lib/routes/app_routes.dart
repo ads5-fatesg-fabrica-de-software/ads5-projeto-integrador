@@ -6,6 +6,9 @@ import 'package:auth_migration/view/login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../view/fornecedor/fornecedor_list.dart';
+import '../view/peca/peca_list.dart';
+
 class Auth extends GetMiddleware {
   @override
   int? get priority => 1;
@@ -38,18 +41,22 @@ class AuthGuard extends GetMiddleware {
 
     if (_serviceUser.getUsuario().perfilUsuario == null) return false;
 
-    _serviceUser.getUsuario().perfilUsuario!.perfilUsuarioFuncionalidades!.forEach((element) {
+    _serviceUser
+        .getUsuario()
+        .perfilUsuario!
+        .perfilUsuarioFuncionalidades!
+        .forEach((element) {
       element.funcionalidade!.subFuncionalidades!.forEach((data) {
         if (data.rota == route) {
           permissao = true;
           return;
-        } 
+        }
       });
     });
     return permissao;
   }
 
-@override
+  @override
   RouteSettings? redirect(String? route) {
     if (verificarPermisao()) {
       return null;
@@ -59,8 +66,9 @@ class AuthGuard extends GetMiddleware {
   }
 
   static var appRoutes = [
-    GetPage(name: '/login', page: ()=> const LoginScreen()),
-    GetPage(name: '/home', page: () => const HomeScreen())
+    GetPage(name: '/login', page: () => const LoginScreen()),
+    GetPage(name: '/home', page: () => const HomeScreen()),
+    GetPage(name: '/fornecedores', page: () => const FornecedorList()),
+    GetPage(name: '/pecas', page: () => const PecaList()),
   ];
 }
-
