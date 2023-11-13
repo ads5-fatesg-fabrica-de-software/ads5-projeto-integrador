@@ -55,8 +55,8 @@ public class SolicitacaoAstecaModel {
     //@Column(columnDefinition = "1- Vistoria, 2- Reparo")
     private TipoAstecaEnum tipoAsteca;
 
-   @ManyToOne
-   @JoinColumn(name = "id_doc_fiscal")
+    @ManyToOne
+    @JoinColumn(name = "id_doc_fiscal")
     private DocumentoFiscalModel documentoFiscal;
 
 //    @OneToMany(cascade = CascadeType.PERSIST)
