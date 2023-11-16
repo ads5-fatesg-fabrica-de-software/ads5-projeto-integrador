@@ -19,7 +19,7 @@ class ProdutoRepository {
 
   final UsuarioService _usuarioService = UsuarioService();
 
-  Future<List<Produto>> listaProdutoes() async {
+  Future<List<Produto>> listaProdutos() async {
     Token token = _tokenService.get();
 
     Response response = await get(
@@ -29,14 +29,14 @@ class ProdutoRepository {
 
     if (response.statusCode == 200) {
       List<dynamic> jsonList = jsonDecode(response.body);
-      var Produtoes = jsonList.map((e) => Produto.fromJson(e)).toList();
+      var Produtos = jsonList.map((e) => Produto.fromJson(e)).toList();
          print(_usuarioService.getUsuario().toJson());
-      return Produtoes;
+      return Produtos;
       // var data = jsonDecode(response.body);
-      // List<Produto> produtoes = data['produtoes']
+      // List<Produto> produtos = data['produtos']
       //     .map<Produto>((data) => Produto.fromJson(data))
       //     .toList();
-      // return produtoes;
+      // return produtos;
     } else {
       _tokenService.delete();
       var error = jsonDecode(response.body)['message'];

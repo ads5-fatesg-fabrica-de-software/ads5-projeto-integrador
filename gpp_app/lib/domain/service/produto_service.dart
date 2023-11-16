@@ -15,14 +15,14 @@ class ProdutoService extends GetxController {
   String pesquisar = '';
   var carregando = true.obs;
   late ProdutoRepository produtoRepository;
-  late List<Produto> produtoes;
+  late List<Produto> produtos;
   late Pagina pagina;
 
 
 
   ProdutoService(){
     produtoRepository = ProdutoRepository();
-    produtoes = <Produto>[].obs;
+    produtos = <Produto>[].obs;
     pagina = Pagina(total: 0, atual: 1);
   }
 
@@ -35,7 +35,7 @@ class ProdutoService extends GetxController {
   listaProdutos() async {
     try {
       carregando(true);
-      produtoes = await produtoRepository.listaProdutoes();
+      produtos = await produtoRepository.listaProdutos();
     } catch (e) {
      null;
     } finally {

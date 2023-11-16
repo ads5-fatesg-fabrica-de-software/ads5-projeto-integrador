@@ -3,6 +3,7 @@ import 'package:auth_migration/core/auth/usuario_service.dart';
 import 'package:auth_migration/domain/service/auth_service.dart';
 import 'package:auth_migration/view/home/home_screen.dart';
 import 'package:auth_migration/view/login/login_screen.dart';
+import 'package:auth_migration/view/produto/produto_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -70,5 +71,6 @@ class AuthGuard extends GetMiddleware {
     GetPage(name: '/home', page: () => const HomeScreen()),
     GetPage(name: '/fornecedores', page: () => const FornecedorList()),
     GetPage(name: '/pecas', page: () => const PecaList()),
+    GetPage(name: '/produtos', page: () => const ProdutoList()),
   ];
 }

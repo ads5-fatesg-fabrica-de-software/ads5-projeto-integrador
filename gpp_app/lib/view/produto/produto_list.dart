@@ -29,7 +29,7 @@ class ProdutoList extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  TextComponent('Produtoes',
+                  TextComponent('Produtos',
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ],
               ),
@@ -73,7 +73,7 @@ class ProdutoList extends StatelessWidget {
               Expanded(
                 child: Obx(() => !service.carregando.value
                     ? ListView.builder(
-                        itemCount: service.produtoes.length,
+                        itemCount: service.produtos.length,
                         itemBuilder: (context, index) {
                           return Container(
                               margin: const EdgeInsets.symmetric(vertical: 8),
@@ -91,7 +91,7 @@ class ProdutoList extends StatelessWidget {
                                             ),
                                           ),
                                           SelectableText(
-                                            service.produtoes[index]
+                                            service.produtos[index]
                                                 .idProduto
                                                 .toString(),
                                           )
@@ -110,8 +110,8 @@ class ProdutoList extends StatelessWidget {
                                             ),
                                           ),
                                           SelectableText(service
-                                                  .produtoes[index]
-                                                  .nomeProduto
+                                                  .produtos[index]
+                                                  .descricao
                                                   .toString()
                                                   .capitalize ??
                                               ''),
@@ -125,13 +125,13 @@ class ProdutoList extends StatelessWidget {
                                           const Expanded(
                                             flex: 2,
                                             child: TextComponent(
-                                              'Email',
+                                              'Fornecedor',
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           Expanded(
                                             child: SelectableText(
-                                              service.produtoes[index].email
+                                              service.produtos[index].fornecedor?.nomeFornecedor
                                                       .toString() ??
                                                   '',
                                             ),
@@ -154,7 +154,7 @@ class ProdutoList extends StatelessWidget {
                                       //       Get.delete<
                                       //           ProdutoDetalheservice>();
                                       //       Get.toNamed(
-                                      //           '/produtoes/${service.produtoes[index].idProduto}');
+                                      //           '/produtos/${service.produtos[index].idProduto}');
 
                                       //       Get.delete<
                                       //           SeparacaoDetalheservice>();
