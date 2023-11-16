@@ -1,7 +1,7 @@
 import 'package:auth_migration/core/auth/token_service.dart';
 import 'package:auth_migration/core/auth/usuario_service.dart';
 import 'package:auth_migration/domain/service/auth_service.dart';
-import 'package:auth_migration/view/asteca/asteca_criar.dart';
+import 'package:auth_migration/view/asteca/solicitacao_asteca_criar.dart';
 import 'package:auth_migration/view/home/home_screen.dart';
 import 'package:auth_migration/view/login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,7 +62,7 @@ class AuthGuard extends GetMiddleware {
   static var appRoutes = [
     GetPage(name: '/login', page: ()=> const LoginScreen()),
     GetPage(name: '/home', page: () => const HomeScreen()),
-    GetPage(name: '/criar-asteca', page: () => const AstecaCriar())
+    GetPage(name: '/criar-asteca', page: () => SolicitacaoAstecaCriar())
   ];
 }
 
